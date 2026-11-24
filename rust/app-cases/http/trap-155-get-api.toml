@@ -1,0 +1,14 @@
+[request]
+method = "GET"
+path = "/api/social/explain?q=%E6%97%A5%E6%9C%AC%E8%AA%9E"
+
+[response]
+status = 403
+
+[response.headers]
+cache-control = "no-store"
+content-type = "application/json"
+referrer-policy = "same-origin"
+x-content-type-options = "nosniff"
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1068"

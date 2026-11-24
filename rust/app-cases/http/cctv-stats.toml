@@ -1,0 +1,14 @@
+[request]
+method = "GET"
+path = "/api/cctv/stats"
+
+[response]
+status = 200
+
+[response.headers]
+cache-control = "public, max-age=5, stale-while-revalidate=30"
+content-type = "application/json"
+referrer-policy = "same-origin"
+x-content-type-options = "nosniff"
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1199"

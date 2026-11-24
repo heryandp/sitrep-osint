@@ -1,0 +1,12 @@
+[request]
+method = "GET"
+path = "/api/ping"
+
+[response]
+status = 200
+
+[response.headers]
+cache-control = "no-store"
+content-type = "application/json"
+referrer-policy = "same-origin"
+x-content-type-options = "nosniff"

@@ -1,0 +1,10 @@
+[request]
+method = "GET"
+path = "/api/geo/%F0%9F%91%8D%F0%9F%8F%BD%20thumbs"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1099"

@@ -1,0 +1,12 @@
+[request]
+method = "POST"
+path = "/api/auth/logout"
+
+[response]
+status = 403
+
+[response.headers]
+cache-control = "no-store"
+content-type = "application/json"
+referrer-policy = "same-origin"
+x-content-type-options = "nosniff"

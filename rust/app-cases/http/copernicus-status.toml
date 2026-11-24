@@ -1,0 +1,14 @@
+[request]
+method = "GET"
+path = "/api/copernicus/status"
+
+[response]
+status = 200
+
+[response.headers]
+cache-control = "public, max-age=15, stale-while-revalidate=60"
+content-type = "application/json"
+referrer-policy = "same-origin"
+x-content-type-options = "nosniff"
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1198"

@@ -1,0 +1,6 @@
+[request]
+method = "POST"
+path = "/api/auth/%C4%B0stanbul"
+
+[response]
+status = 404

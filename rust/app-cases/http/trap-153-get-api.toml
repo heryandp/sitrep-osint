@@ -1,0 +1,14 @@
+[request]
+method = "GET"
+path = "/api/social/explain?q=h%C3%A9llo%20w%C3%B6rld"
+
+[response]
+status = 403
+
+[response.headers]
+cache-control = "no-store"
+content-type = "application/json"
+referrer-policy = "same-origin"
+x-content-type-options = "nosniff"
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1070"

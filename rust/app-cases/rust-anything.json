@@ -1,0 +1,19 @@
+{
+  "schema": "rust-anything/app-cases@1",
+  "name": "djp-sitrep",
+  "run": [
+    "env",
+    "SITREP_PUBLIC=1",
+    "SITREP_HOST=127.0.0.1",
+    "node",
+    "server.js"
+  ],
+  "normalize": [
+    "timestamps"
+  ],
+  "normalizers": {
+    "epoch_ms": "\\b1[6-9]\\d{11}\\b"
+  },
+  "timeout_secs": 30,
+  "http": {}
+}

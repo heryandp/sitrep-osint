@@ -1,0 +1,10 @@
+[request]
+method = "POST"
+path = "/api/auth/%F0%9F%91%8D%F0%9F%8F%BD%20thumbs"
+body = '{"username":"invalid","password":"wrong"}'
+
+[request.headers]
+content-type = "application/json"
+
+[response]
+status = 404

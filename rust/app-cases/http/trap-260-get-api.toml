@@ -1,0 +1,10 @@
+[request]
+method = "GET"
+path = "/api/?u=http%3A%2F%2F169.254.169.254%2Flatest"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "977"

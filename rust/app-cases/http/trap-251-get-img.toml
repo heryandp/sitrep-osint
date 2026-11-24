@@ -1,0 +1,10 @@
+[request]
+method = "GET"
+path = "/img?u=e%CC%81"
+
+[response]
+status = 403
+
+[response.headers]
+x-ratelimit-limit = "600"
+x-ratelimit-remaining = "587"

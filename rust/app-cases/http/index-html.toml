@@ -1,0 +1,12 @@
+[request]
+method = "GET"
+path = "/"
+
+[response]
+status = 200
+
+[response.headers]
+cache-control = "public, max-age=30, stale-while-revalidate=300"
+content-type = "text/html; charset=utf-8"
+vary = "accept-encoding"
+x-content-type-options = "nosniff"

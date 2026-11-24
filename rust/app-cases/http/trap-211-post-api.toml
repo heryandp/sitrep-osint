@@ -1,0 +1,14 @@
+[request]
+method = "POST"
+path = "/api/%F0%9F%91%A8%E2%80%8D%F0%9F%91%A9%E2%80%8D%F0%9F%91%A7%20family/summarize"
+body = '{"url":"http://127.0.0.1/secret"}'
+
+[request.headers]
+content-type = "application/json"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1012"

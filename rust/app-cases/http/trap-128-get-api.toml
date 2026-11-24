@@ -1,0 +1,10 @@
+[request]
+method = "GET"
+path = "/api/geo/%C4%B0stanbul"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1095"

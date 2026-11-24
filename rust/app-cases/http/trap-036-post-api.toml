@@ -1,0 +1,14 @@
+[request]
+method = "POST"
+path = "/api/%C4%B0stanbul/login"
+body = '{"username":"invalid","password":"wrong"}'
+
+[request.headers]
+content-type = "application/json"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1165"

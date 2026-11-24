@@ -1,0 +1,14 @@
+[request]
+method = "POST"
+path = "/api/%F0%9F%91%8D%F0%9F%8F%BD%20thumbs/login"
+body = '{"username":"invalid","password":"wrong"}'
+
+[request.headers]
+content-type = "application/json"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1169"

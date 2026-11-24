@@ -1,0 +1,10 @@
+[request]
+method = "GET"
+path = "/api/%E6%97%A5%E6%9C%AC%E8%AA%9E/status"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1148"

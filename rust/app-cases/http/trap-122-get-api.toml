@@ -1,0 +1,10 @@
+[request]
+method = "GET"
+path = "/api/a%C2%A0b/labels"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1101"

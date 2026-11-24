@@ -1,0 +1,6 @@
+[request]
+method = "GET"
+path = "/api/auth/stra%C3%9Fe"
+
+[response]
+status = 404

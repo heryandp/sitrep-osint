@@ -1,0 +1,10 @@
+[request]
+method = "POST"
+path = "/api/a%C2%A0b/logout"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1151"

@@ -1,0 +1,14 @@
+[request]
+method = "POST"
+path = "/api/e%CC%81/summarize"
+body = '{"url":"http://127.0.0.1/secret"}'
+
+[request.headers]
+content-type = "application/json"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1016"

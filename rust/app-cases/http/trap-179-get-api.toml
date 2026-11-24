@@ -1,0 +1,10 @@
+[request]
+method = "GET"
+path = "/api/cctv/stra%C3%9Fe"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1044"

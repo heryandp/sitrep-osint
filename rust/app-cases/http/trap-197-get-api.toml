@@ -1,0 +1,10 @@
+[request]
+method = "GET"
+path = "/api/social/e%CC%81?q=pajak"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1026"

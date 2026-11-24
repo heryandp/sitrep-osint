@@ -1,0 +1,12 @@
+[request]
+method = "GET"
+path = "/logo-djp.svg"
+
+[response]
+status = 200
+
+[response.headers]
+cache-control = "public, max-age=86400"
+content-type = "image/svg+xml"
+vary = "accept-encoding"
+x-content-type-options = "nosniff"

@@ -1,0 +1,14 @@
+[request]
+method = "POST"
+path = "/api/pajak/%F0%9F%91%8D%F0%9F%8F%BD%20thumbs"
+body = "{}"
+
+[request.headers]
+content-type = "application/json"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "989"

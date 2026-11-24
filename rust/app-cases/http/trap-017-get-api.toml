@@ -1,0 +1,10 @@
+[request]
+method = "GET"
+path = "/api/stra%C3%9Fe/me"
+
+[response]
+status = 404
+
+[response.headers]
+x-ratelimit-limit = "1200"
+x-ratelimit-remaining = "1174"
