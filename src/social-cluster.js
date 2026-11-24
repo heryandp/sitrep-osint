@@ -1,13 +1,14 @@
 'use strict';
 
 const OFFICIAL_HANDLES = new Set([
+  'ditjenpajakri', 'kring_pajak', 'kemenkeuri',
   'infobmkg', 'bnpb_indonesia', 'basarnas', 'damkardki', 'tmcpoldametro',
   'halo_polisi', 'divhumas_polri', 'puspentni', 'kemkesri', 'bssn_ri',
   'pvmbg_', 'pvmbg', 'bpbd_dki', 'bpbdjabar', 'bpbdjatim', 'bpbdjateng',
   'pln_123', 'infobps', 'kemenhub151', 'komdigi_id', 'kemenkominfo',
 ]);
 
-const OFFICIAL_HANDLE_RE = /^(?:info)?(?:bmkg|bnpb|bpbd|basarnas|pvmbg|bssn|damkar|polres|polda|polsek|tmcpolda|divhumas|puspen|kemkes|kemenkes|kemenhub|komdigi|pemprov|pemkot|pemkab)(?:[._-]|$)/i;
+const OFFICIAL_HANDLE_RE = /^(?:info)?(?:bmkg|bnpb|bpbd|basarnas|pvmbg|bssn|damkar|polres|polda|polsek|tmcpolda|divhumas|puspen|kemkes|kemenkes|kemenhub|komdigi|pemprov|pemkot|pemkab|ditjenpajak|kring_?pajak|kemenkeu|kanwildjp|kpp)(?:[._-]|$)/i;
 
 const NEWS_OUTLET_HANDLES = new Set([
   'detikcom', 'kompascom', 'kompastv', 'cnnindonesia', 'cnbcindonesia',
@@ -16,6 +17,7 @@ const NEWS_OUTLET_HANDLES = new Set([
   'inewsdotid', 'tvonenews', 'metrotv', 'elshinta', 'elshinta90fm',
   'suarasurabayamedia', 'kumparancom', 'vivanews', 'bisniscom', 'kontannews',
   'rri_co_id', 'beritasatu', 'idntimes', 'tirtoid', 'vice_id',
+  'ddtcnews', 'ortaxid',
 ]);
 
 const NEWS_HANDLE_RE = /(?:detik|kompas|cnnind|cnbcind|antara|liputan6|tempo|tribun|republika|merdeka|sindo|okezone|jawapos|inews|tvone|metrotv|elshinta|suarasurabaya|kumparan|beritasatu|rri)(?:com|tv|id|news|dotco|fm|media)?$/i;

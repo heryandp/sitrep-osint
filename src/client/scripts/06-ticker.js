@@ -22,7 +22,7 @@ tkFetchEl.addEventListener('click', () => { if (!breakBusy) pullBreaking(); });
 tkFetchEl.addEventListener('keydown', e => {
   if ((e.key === 'Enter' || e.key === ' ') && !breakBusy) { e.preventDefault(); pullBreaking(); }
 });
-const TK_SIG = { demo:'#i-tk-demo', fire:'#i-tk-fire', flood:'#i-tk-flood', disaster:'#i-tk-disaster',
+const TK_SIG = { pajak:'#i-tk-pajak', demo:'#i-tk-demo', fire:'#i-tk-fire', flood:'#i-tk-flood', disaster:'#i-tk-disaster',
   insiden:'#i-tk-insiden', siber:'#i-tk-siber', kriminal:'#i-tk-kriminal',
   kesehatan:'#i-tk-kesehatan', ekonomi:'#i-tk-ekonomi', politik:'#i-tk-politik' };
 let breakPrev = new Set(), breakSeeded = false;

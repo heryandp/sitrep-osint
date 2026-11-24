@@ -224,6 +224,7 @@
 .cl:last-child{border-bottom:0}
 .cl:hover{background:#1b1b1b}
 .cl-dot{flex:none;width:6px;height:6px;border-radius:1px;background:#3d3d3d;align-self:center}
+.cl[data-cat="pajak"] .cl-dot{background:#22d3ee}
 .cl[data-cat="demo"] .cl-dot{background:#f1c21b}
 .cl[data-cat="fire"] .cl-dot{background:#da1e28}
 .cl[data-cat="flood"] .cl-dot{background:#4589ff}
@@ -276,6 +277,7 @@
 .tr-m{padding:0;min-width:0;display:flex;flex-direction:column;gap:7px}
 .tr-hd{display:flex;align-items:center;gap:6px;min-width:0;flex-wrap:wrap}
 .tr-ic{flex:none;width:14px;height:14px;color:var(--text3)}
+.tr-ic.pajak{color:#22d3ee}
 .tr-ic.demo{color:#f1c21b}
 .tr-ic.fire{color:#ff6168}
 .tr-ic.flood{color:#7aa9ff}
@@ -289,6 +291,7 @@
 .tr-sev-cat{flex:none;font:600 8.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text2)}
 .tr[data-sev="kritis"] .tr-sev-cat{color:#ff8086}
 .tr[data-sev="waspada"] .tr-sev-cat{color:#f1c21b}
+.tr-sev-cat.pajak{color:#22d3ee}
 .tr-sev-cat.demo{color:#f1c21b}
 .tr-sev-cat.fire{color:#ff8086}
 .tr-sev-cat.flood{color:#7aa9ff}

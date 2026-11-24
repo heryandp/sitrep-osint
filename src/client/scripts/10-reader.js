@@ -384,11 +384,58 @@ function rdArticle(d, url) {
     flow = `${note}${outp.join('') || (note ? '' : '<p class="rd-p">Tidak ada teks yang bisa diekstrak.</p>')}`;
   }
   rdStopMedia();
+  const safeExaUrl = d.final || url;
+  const rdExaHit = leadExaCache && leadExaCache.get(safeExaUrl);
   $('#rd-body').innerHTML = `<article class="rd-art">
     <h1>${esc(cleanTitle(d.title || 'Tanpa judul', cleanSite || d.site))}</h1>
     <div class="rd-meta">${meta.map(x => `<span>${esc(x)}</span>`).join('')}</div>
+    <div class="rd-exa-bar">
+      <button class="rd-exa-btn" id="rd-exa-btn" type="button" data-url="${escUrl(safeExaUrl)}" data-title="${esc(d.title || '')}">${rdExaHit ? 'Tutup Ringkasan Exa AI' : 'Ringkas Kejadian · Exa AI'}</button>
+    </div>
+    <div class="rd-exa-slot" id="rd-exa-slot">${rdExaHit ? exaCardHtml(rdExaHit) : ''}</div>
     ${img}${hasBlocks ? note : ''}${flow}
   </article>`;
+  const exaBtn = document.getElementById('rd-exa-btn');
+  if (exaBtn) {
+    exaBtn.addEventListener('click', async () => {
+      const slot = document.getElementById('rd-exa-slot');
+      if (!slot || API == null) return;
+      if (leadExaCache.has(safeExaUrl)) {
+        if (slot.innerHTML) {
+          slot.innerHTML = '';
+          exaBtn.textContent = 'Tampilkan Ringkasan Exa AI';
+        } else {
+          slot.innerHTML = exaCardHtml(leadExaCache.get(safeExaUrl));
+          exaBtn.textContent = 'Tutup Ringkasan Exa AI';
+        }
+        return;
+      }
+      exaBtn.disabled = true;
+      exaBtn.textContent = 'Merangkum via Exa AI…';
+      slot.innerHTML = '<div class="exa-loading">Menganalisis kejadian dengan Exa AI…</div>';
+      try {
+        const paraPreview = Array.isArray(d.paras) ? d.paras.slice(0, 3).join(' ').slice(0, 800) : '';
+        const res = await postJson(API + '/api/pajak/summarize', {
+          url: safeExaUrl,
+          title: d.title || '',
+          desc: paraPreview
+        }, 24000);
+        if (res && res.ok) {
+          leadExaCache.set(safeExaUrl, res);
+          slot.innerHTML = exaCardHtml(res);
+          exaBtn.textContent = 'Tutup Ringkasan Exa AI';
+        } else {
+          slot.innerHTML = '<div class="exa-loading">Gagal merangkum artikel.</div>';
+          exaBtn.textContent = 'Ringkas Kejadian · Exa AI';
+        }
+      } catch (err) {
+        slot.innerHTML = '<div class="exa-loading">Gagal menghubungi Exa AI. Coba ulangi.</div>';
+        exaBtn.textContent = 'Ringkas Kejadian · Exa AI';
+      } finally {
+        exaBtn.disabled = false;
+      }
+    });
+  }
   const stateLabel = d.videoPage ? 'halaman video'
     : (d.wireFallback ? (d.textSource === 'rss_description' ? 'ringkasan rss' : 'dibatasi sumber')
     : (d.textSource === 'meta_description' || d.isFallback || d.thin ? 'ringkasan meta' : (d.paras || []).length + ' paragraf'));
@@ -750,7 +797,7 @@ document.addEventListener('click', e => {
   if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
   const a = e.target.closest('a[href]');
   if (a) {
-    if (a.closest('#reader, #tvwrap, .glb, .mapwrap, .foot') || e.target.closest('.lead-vid')) return;
+    if (a.closest('#reader, #tvwrap, .glb, .mapwrap, .foot') || e.target.closest('.lead-vid, .lead-exa-bar, .lead-exa-slot')) return;
     if (a.target !== '_blank') return;
     const href = a.href;
     if (!/^https?:/i.test(href)) return;

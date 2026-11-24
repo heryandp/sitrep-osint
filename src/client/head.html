@@ -3,10 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
-<title>SITREP // IDN</title>
-<meta name="description" content="Console OSINT: wire berita, X live, CCTV Jakarta, peta insiden, dan pemantauan demo, kebakaran, banjir, bencana, serta insiden di seluruh Indonesia. Auto-sync 2 menit.">
-<link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
+<meta name="color-scheme" content="dark light">
+<script>
+(function(){
+  try {
+    var t = localStorage.getItem('sitrep.theme');
+    if (t !== 'light' && t !== 'night') t = 'night';
+    document.documentElement.dataset.theme = t;
+    var m = document.querySelector('meta[name="color-scheme"]');
+    if (m) m.content = t === 'light' ? 'light' : 'dark';
+  } catch (e) {
+    document.documentElement.dataset.theme = 'night';
+  }
+})();
+</script>
+<title>SITREP // DJP · IDN</title>
+<meta name="description" content="Console OSINT: wire berita, X live, CCTV Jakarta, peta insiden, dan pemantauan perpajakan DJP, demo, kebakaran, banjir, bencana, serta insiden di seluruh Indonesia. Auto-sync 2 menit.">
+<link rel="icon" type="image/svg+xml" href="logo-djp.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..600&family=IBM+Plex+Mono:wght@400;500;600;700&family=Lexend:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">

@@ -9,7 +9,8 @@ const PROXIES = [
   u => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u),
   u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u)
 ];
-let SRC_IDS = null, onlyTopic = true, catFilter = 'semua', seenNews = new Set(), freshNews = new Set(), firstPull = true, mediaLoaded = false;
+let SRC_IDS = null, onlyTopic = true, catFilter = 'pajak', catFilterUserSet = false, seenNews = new Set(), freshNews = new Set(), firstPull = true, mediaLoaded = false;
+const leadExaCache = new Map();
 const lastGood = new Map();
 const srcState = new Map();
 
@@ -21,13 +22,14 @@ const newsCatOf = h => {
 const newsCat = h => newsCatOf(h);
 const topicOK = h => !!newsCatOf(h);
 function renderCatbar(){
-  const ids = ['semua', ...CAT_ORDER];
+  const ids = ['pajak', 'semua', ...CAT_ORDER.filter(c => c !== 'pajak')];
   $('#catbar').innerHTML = ids.map(c =>
-    `<button class="cchip" type="button" data-cat="${esc(c)}" aria-pressed="${c === catFilter ? 'true' : 'false'}">${c === 'semua' ? 'Semua' : CAT_LABEL[c]}</button>`).join('');
+    `<button class="cchip${c === 'pajak' ? ' is-djp-tab' : ''}" type="button" data-cat="${esc(c)}" aria-pressed="${c === catFilter ? 'true' : 'false'}">${c === 'semua' ? 'Semua' : CAT_LABEL[c]}</button>`).join('');
 }
 $('#catbar').addEventListener('click', e => {
   const b = e.target.closest('.cchip'); if (!b) return;
   catFilter = b.dataset.cat;
+  catFilterUserSet = true;
   $$('#catbar .cchip').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
   if (descAbort) { try { descAbort.abort(); } catch (_) {} descAbort = null; }
   descBusy = false;
@@ -35,6 +37,44 @@ $('#catbar').addEventListener('click', e => {
   descQueue.length = 0;
   descQueued.clear();
   renderNews();
+});
+
+$('#lead').addEventListener('click', async e => {
+  const btn = e.target.closest('[data-lead-exa]');
+  if (!btn) return;
+  e.preventDefault();
+  e.stopPropagation();
+  const url = btn.dataset.url || '';
+  const slot = $('#lead-exa-slot');
+  if (!slot || !url || API == null) return;
+  if (leadExaCache.has(url)) {
+    slot.innerHTML = slot.innerHTML ? '' : exaCardHtml(leadExaCache.get(url));
+    return;
+  }
+  if (btn.disabled) return;
+  btn.disabled = true;
+  btn.textContent = 'Merangkum via Exa…';
+  slot.innerHTML = '<div class="exa-loading">Menganalisis kejadian dengan Exa AI…</div>';
+  try {
+    const res = await postJson(API + '/api/pajak/summarize', {
+      url,
+      title: btn.dataset.title || '',
+      desc: btn.dataset.desc || ''
+    }, 24000);
+    if (res && res.ok) {
+      leadExaCache.set(url, res);
+      slot.innerHTML = exaCardHtml(res);
+      btn.textContent = 'Ringkasan Exa AI';
+    } else {
+      slot.innerHTML = '<div class="exa-loading">Gagal merangkum berita. Coba ulangi.</div>';
+      btn.textContent = 'Ringkas Exa AI';
+    }
+  } catch (err) {
+    slot.innerHTML = '<div class="exa-loading">Gagal menghubungi layanan ringkasan. Coba ulangi.</div>';
+    btn.textContent = 'Ringkas Exa AI';
+  } finally {
+    btn.disabled = false;
+  }
 });
 
 const NEWS_BANNED = /infopublik|kompasiana|mozaik\.inilah\.com|mediacenter\.palangkaraya\.go\.id|viva\.co\.id\/foto|nokenlive|polreskedirikota|korankaltim|aboutcirebon\.id|about\s*cirebon/i;
@@ -137,11 +177,18 @@ function leadHtml(h, imageUrl = '', isLatest = true, video = null){
   const mediaHtml = imageUrl
     ? `<div class="lead-img"><img src="${escUrl(imageUrl)}" data-orig="${esc(imageUrl)}" alt="" loading="eager" decoding="async" referrerpolicy="no-referrer" onerror="rdLeadImgFb(this)"></div>`
     : (video ? leadVidWrapHtml(video, h && h.url) : '');
-  return `<a class="lead" data-cat="${esc(cat)}" href="${escUrl(h.url)}" target="_blank" rel="noopener">
+  const isPajak = cat === 'pajak';
+  const taxBadge = isPajak ? `<span class="lead-scope ${isTaxNasional(h) ? 'nas' : 'dae'}">${isTaxNasional(h) ? 'Nasional · DJP' : 'Pajak Daerah'}</span>` : '';
+  const exaCached = isPajak && h && h.url ? leadExaCache.get(h.url) : null;
+  const exaRow = isPajak ? `<div class="lead-exa-bar">
+    <button class="lead-exa-btn" type="button" data-lead-exa="1" data-url="${escUrl(h.url)}" data-title="${esc(deEmoji(h.title || ''))}" data-desc="${esc(deEmoji(rawDesc.slice(0, 500)))}">${exaCached ? 'Ringkasan Exa AI' : 'Ringkas Exa AI'}</button>
+  </div><div class="lead-exa-slot" id="lead-exa-slot">${exaCached ? exaCardHtml(exaCached) : ''}</div>` : '';
+  return `<a class="lead${isPajak ? ' is-djp-lead' : ''}" data-cat="${esc(cat)}" href="${escUrl(h.url)}" target="_blank" rel="noopener">
     ${mediaHtml}
-    <div class="lead-t">${cat ? `<span class="lead-cat">${CAT_LABEL[cat]}</span>` : ''}${h.foreign ? '<span class="lead-cat glob">Global</span>' : ''}<span class="lead-live">${isLatest ? 'Terbaru' : 'Sorotan'}</span><span class="lead-meta-r"><span class="lead-by">${esc(cleanSrc(h.src, h.pub))}</span><time>${esc(h.ts ? wibTime(h.ts) : '')} WIB</time></span></div>
+    <div class="lead-t">${cat ? `<span class="lead-cat">${CAT_LABEL[cat]}</span>` : ''}${taxBadge}${h.foreign ? '<span class="lead-cat glob">Global</span>' : ''}<span class="lead-live">${isLatest ? 'Terbaru' : 'Sorotan'}</span><span class="lead-meta-r"><span class="lead-by">${esc(cleanSrc(h.src, h.pub))}</span><time>${esc(h.ts ? wibTime(h.ts) : '')} WIB</time></span></div>
     <h3>${esc(deEmoji(h.title))}</h3>
     ${desc && desc.length > 25 ? `<p class="lead-ex">${esc(deEmoji(desc))}</p>` : descPending(h) ? `<p class="lead-ex-sk nw-ex-sk" aria-hidden="true"><span class="nw-sk-line"></span><span class="nw-sk-line"></span><span class="nw-sk-line"></span></p>` : ''}
+    ${exaRow}
   </a>`;
 }
 const leadSkeletonHtml = () => `<div class="lead lead-skeleton" aria-hidden="true">
@@ -576,15 +623,23 @@ function renderNews(){
   });
   const items = dedupWire(mapped);
   const q = ($('#fq').value || '').toLowerCase();
-  const list = items.filter(h => (!onlyTopic || topicOK(h)) && (catFilter === 'semua' || h.cat === catFilter) &&
+  let list = items.filter(h => (!onlyTopic || topicOK(h)) && (catFilter === 'semua' || h.cat === catFilter) &&
     (!q || (h.title + ' ' + h.src + ' ' + (h.pub || '')).toLowerCase().includes(q)));
+  if (!list.length && catFilter === 'pajak' && !catFilterUserSet && !q && mediaLoaded && items.length) {
+    catFilter = 'semua';
+    $$('#catbar .cchip').forEach(x => x.setAttribute('aria-pressed', x.dataset.cat === 'semua' ? 'true' : 'false'));
+    list = items.filter(h => !onlyTopic || topicOK(h));
+  }
 
-  const wireSortGroup = x => x.foreign ? 2 : (x.place || (x.assessment && x.assessment.scope === 'Indonesia') ? 0 : 1);
+  const wireSortGroup = x => {
+    if (catFilter === 'pajak') return x.foreign ? 2 : (isTaxNasional(x) ? 0 : 1);
+    return x.foreign ? 2 : (x.place || (x.assessment && x.assessment.scope === 'Indonesia') ? 0 : 1);
+  };
   list.sort((a, b) => wireSortGroup(a) - wireSortGroup(b) || (b.ts || 0) - (a.ts || 0));
   const scope = catFilter + '|' + onlyTopic + '|' + q;
   newsList = list;
   if (!list.length && !mediaLoaded) return;
-  $('#nmeta').textContent = list.length + ' / ' + items.length + ' item';
+  $('#nmeta').textContent = (catFilter === 'pajak' ? 'Fokus DJP · ' : '') + list.length + ' / ' + items.length + ' item';
   $('#lead').setAttribute('aria-busy', 'false');
   $('#nlist').setAttribute('aria-busy', 'false');
   if (!list.length) {

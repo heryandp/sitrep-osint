@@ -45,7 +45,7 @@ function createSocialService({
     .replace(/#[\p{L}\p{N}_]+/gu, ' ')
     .replace(/[^\p{L}\p{N} ]/gu, ' ')
     .replace(/\s+/g, ' ').trim();
-  const AUTH_ACCOUNTS = new Set(['infobmkg', 'bnpb_indonesia', 'basarnas', 'damkardki', 'tmcpoldametro', 'halo_polisi', 'divhumas_polri', 'puspentni', 'kemkesri']);
+  const AUTH_ACCOUNTS = new Set(['ditjenpajakri', 'kring_pajak', 'kemenkeuri', 'infobmkg', 'bnpb_indonesia', 'basarnas', 'damkardki', 'tmcpoldametro', 'halo_polisi', 'divhumas_polri', 'puspentni', 'kemkesri']);
   function histAstroturf(map) {
     const eligible = p => {
       const t = String(p.text || '');
@@ -187,27 +187,73 @@ function createSocialService({
   const xHas = () => xPool.has();
 
   async function xQueryId() {
-    if (X.query_id) return X.query_id;
+    if (X.query_id) return { op: 'SearchTimeline', id: X.query_id, providedVariables: [] };
     return memo('xqid', 6 * 3600e3, async () => {
       const acc = xPool.pick() || xPool.all()[0];
       const hdr = acc ? { cookie: `auth_token=${acc.auth_token}; ct0=${acc.ct0}`, 'x-csrf-token': acc.ct0 } : {};
       const html = await (await get('https://x.com/home', { headers: hdr }, 20000)).text();
       const urls = [...new Set([...html.matchAll(/https:\/\/abs\.twimg\.com\/[^"'\s]*?\.js/g)].map(m => m[0]))];
       urls.sort((a, b) => (/\/main\.[\w]+\.js$/.test(b) ? 1 : 0) - (/\/main\.[\w]+\.js$/.test(a) ? 1 : 0));
+      let xWebEntry = null;
       for (const u of urls) {
         try {
           const js = await (await get(u, {}, 25000)).text();
           const m = js.match(/queryId:"([\w-]+)",operationName:"SearchTimeline"/);
-          if (m) { console.log('[x] SearchTimeline queryId:', m[1]); return m[1]; }
+          if (m) { console.log('[x] SearchTimeline queryId:', m[1]); return { op: 'SearchTimeline', id: m[1], providedVariables: [] }; }
+          if (!xWebEntry && /\/entry-client-[\w-]+\.js$/.test(u)) xWebEntry = { url: u, js };
         } catch (e) {}
       }
-      throw new Error('queryId SearchTimeline tidak ketemu; isi x.query_id manual di config.json');
+      if (xWebEntry) {
+        const base = xWebEntry.url.replace(/[^/]+$/, '');
+        const extractRelaySearch = (code) => {
+          const m = code.match(/params:\{id:[`"']([\w-]+)[`"'],metadata:\{\},name:[`"']SearchByRawQuery[`"'],operationKind:[`"']query[`"'],text:null,providedVariables:\{([^}]*)\}/);
+          if (!m) return null;
+          const pv = [...m[2].matchAll(/(__relay_internal__pv__[A-Za-z0-9_]+)\s*:/g)].map(x => x[1]);
+          console.log('[x] SearchByRawQuery queryId:', m[1], 'pv:', pv.length);
+          return { op: 'SearchByRawQuery', id: m[1], providedVariables: pv };
+        };
+        const direct = extractRelaySearch(xWebEntry.js);
+        if (direct) return direct;
+        const topImports = [...new Set([...xWebEntry.js.matchAll(/(?:from|import\()\s*["']\.\/(assets\/[A-Za-z0-9_-]+\.js)["']/g)].map(m => m[1]))];
+        for (const imp of topImports) {
+          try {
+            const rjs = await (await get(base + imp, {}, 25000)).text();
+            const foundInImp = extractRelaySearch(rjs);
+            if (foundInImp) return foundInImp;
+            const rm = rjs.match(/([A-Za-z0-9_$]+)\.update\(\{id:[`"']\/search[`"']/);
+            if (!rm) continue;
+            const defMatch = new RegExp(`\\b${rm[1].replace(/\$/g, '\\$')}\\s*=`).exec(rjs);
+            if (!defMatch) continue;
+            const snippet = rjs.slice(Math.max(0, defMatch.index - 220), defMatch.index + 600);
+            const routeChunks = [...new Set([...snippet.matchAll(/\.\/([A-Za-z0-9_-]+\.js)/g)].map(x => x[1]))];
+            const visited = new Set();
+            const queue = [...routeChunks];
+            while (queue.length && visited.size < 16) {
+              const ch = queue.shift();
+              if (visited.has(ch)) continue;
+              visited.add(ch);
+              const cjs = await (await get(base + 'assets/' + ch, {}, 25000)).text();
+              const hit = extractRelaySearch(cjs);
+              if (hit) return hit;
+              if (visited.size <= routeChunks.length) {
+                for (const sub of [...cjs.matchAll(/\.\/([A-Za-z0-9_-]+\.js)/g)].map(x => x[1])) {
+                  if (!visited.has(sub)) queue.push(sub);
+                }
+              }
+            }
+          } catch (e) {}
+        }
+      }
+      throw new Error('queryId SearchTimeline/SearchByRawQuery tidak ketemu; isi X_QUERY_ID manual di .env');
     });
   }
 
   function collect(o, out) {
     if (!o || typeof o !== 'object') return;
-    const isTweetNode = !!(o.legacy && o.legacy.full_text && o.rest_id);
+    const lgT = o.legacy || {};
+    const dt = o.details || {};
+    const rawFullText = lgT.full_text || dt.full_text || '';
+    const isTweetNode = !!(rawFullText && o.rest_id);
     if (isTweetNode) {
       const u = o.core && o.core.user_results && o.core.user_results.result;
       const lg = (u && u.legacy) || {};
@@ -215,43 +261,46 @@ function createSocialService({
       const h = uc.screen_name || lg.screen_name || '';
       const nt = o.note_tweet && o.note_tweet.note_tweet_results && o.note_tweet.note_tweet_results.result;
       const extractedUrls = [];
-      if (o.legacy.entities && Array.isArray(o.legacy.entities.urls)) {
-        for (const uo of o.legacy.entities.urls) {
-          if (uo.expanded_url) extractedUrls.push(uo.expanded_url);
-          else if (uo.url) extractedUrls.push(uo.url);
+      const pushUrls = (arr) => {
+        if (!Array.isArray(arr)) return;
+        for (const uo of arr) {
+          const val = uo && (uo.expanded_url || uo.url);
+          if (val && !extractedUrls.includes(val)) extractedUrls.push(val);
         }
-      }
-      if (nt && nt.entity_set && Array.isArray(nt.entity_set.urls)) {
-        for (const uo of nt.entity_set.urls) {
-          if (uo.expanded_url) extractedUrls.push(uo.expanded_url);
-          else if (uo.url) extractedUrls.push(uo.url);
-        }
-      }
-      const rawMedia = (o.legacy.extended_entities && Array.isArray(o.legacy.extended_entities.media) && o.legacy.extended_entities.media)
-        || (o.legacy.entities && Array.isArray(o.legacy.entities.media) && o.legacy.entities.media) || [];
+      };
+      pushUrls(lgT.entities && lgT.entities.urls);
+      pushUrls(dt.url_entities);
+      pushUrls(o.url_entities);
+      pushUrls(nt && nt.entity_set && nt.entity_set.urls);
+      const rawMedia = (Array.isArray(o.media_entities2) && o.media_entities2.length && o.media_entities2)
+        || (lgT.extended_entities && Array.isArray(lgT.extended_entities.media) && lgT.extended_entities.media)
+        || (lgT.entities && Array.isArray(lgT.entities.media) && lgT.entities.media) || [];
       const media = [];
       for (const m of rawMedia) {
         const mu = m && (m.media_url_https || m.media_url);
         if (mu && !media.some(x => x.url === mu)) media.push({ type: 'image', url: mu });
       }
+      const counts = o.counts || {};
+      const tsMs = (dt.created_at_ms && Number(dt.created_at_ms)) || Date.parse(lgT.created_at || '') || 0;
+      const createdAtStr = lgT.created_at || (tsMs ? new Date(tsMs).toUTCString() : '');
       out.set(o.rest_id, {
         id: o.rest_id,
         handle: h ? '@' + h : '',
         name: uc.name || lg.name || h,
         avatar: String((u && u.avatar && u.avatar.image_url) || lg.profile_image_url_https || '').replace(/_normal(\.\w+)$/, '_bigger$1'),
-        text: FEEDTEXT.decodeEntities((nt && nt.text) || o.legacy.full_text),
+        text: FEEDTEXT.decodeEntities((nt && nt.text) || rawFullText),
         urls: extractedUrls,
         media,
-        ts: Date.parse(o.legacy.created_at) || 0,
-        created_at: o.legacy.created_at || '',
+        ts: tsMs,
+        created_at: createdAtStr,
         url: h ? `https://x.com/${h}/status/${o.rest_id}` : '',
-        replies: o.legacy.reply_count || 0,
-        reposts: o.legacy.retweet_count || 0,
-        likes: o.legacy.favorite_count || 0,
+        replies: lgT.reply_count || counts.reply_count || 0,
+        reposts: lgT.retweet_count || counts.retweet_count || 0,
+        likes: lgT.favorite_count || counts.favorite_count || 0,
         views: o.views ? (+o.views.count || 0) : 0,
-        parent: o.legacy.in_reply_to_status_id_str || '',
-        to: o.legacy.in_reply_to_screen_name || '',
-        verified: !!(u && (u.is_blue_verified || (u.verification && u.verification.verified)))
+        parent: lgT.in_reply_to_status_id_str || (o.in_reply_to && o.in_reply_to.rest_id) || '',
+        to: lgT.in_reply_to_screen_name || (o.in_reply_to && o.in_reply_to.screen_name) || '',
+        verified: !!(u && (u.is_blue_verified || (u.verification && (u.verification.verified || u.verification.is_blue_verified))))
       });
     }
     for (const k in o) {
@@ -264,34 +313,71 @@ function createSocialService({
     let c = '';
     const walk = o => {
       if (!o || typeof o !== 'object' || c) return;
-      if (o.cursorType === 'Bottom' && typeof o.value === 'string') { c = o.value; return; }
+      if ((o.cursorType === 'Bottom' || o.cursor_type === 'Bottom') && typeof o.value === 'string') { c = o.value; return; }
       for (const k in o) walk(o[k]);
     };
     walk(j);
     return c;
   }
 
-  const xSem = makeSem(4);
+  const xSem = makeSem(Math.min(4, Math.max(1, xPool.size() || 1)));
   const xCooling = () => xPool.allCooling();
+  let xLastCallAt = 0;
   async function xSearchGo(q, cursor, winH) {
     if (!xHas()) throw new Error('auth_token / ct0 belum diisi');
     if (xCooling()) { const until = xPool.earliestReset(); const e = new Error('X rate-limit cooldown'); e.cooldown = true; e.retryAt = until; throw e; }
-    const id = await xQueryId();
+    if (xPool.size() <= 1) {
+      const gap = 240 - (Date.now() - xLastCallAt);
+      if (gap > 0) await sleep(gap);
+      xLastCallAt = Date.now();
+    }
+    const qidInfo = await xQueryId();
+    const qid = typeof qidInfo === 'string' ? { op: 'SearchTimeline', id: qidInfo, providedVariables: [] } : qidInfo;
     const win = winH == null ? 46 : winH;
-    const vars = { rawQuery: q + (win > 0 ? ' since_time:' + Math.floor((Date.now() - win * 3600e3) / 1000) : ''), count: 20, querySource: 'typed_query', product: 'Latest' };
-    if (cursor) vars.cursor = cursor;
-    const url = `https://api.x.com/graphql/${id}/SearchTimeline`;
+    const isRelay = qid.op === 'SearchByRawQuery';
+    const buildVars = (useSince) => {
+      const v = {
+        rawQuery: q + (useSince && win > 0 ? ' since_time:' + Math.floor((Date.now() - win * 3600e3) / 1000) : ''),
+        count: 20,
+        querySource: 'typed_query',
+        product: 'Latest'
+      };
+      if (cursor) v.cursor = cursor;
+      if (isRelay) {
+        v.withMediaGridTweet = false;
+        for (const k of (qid.providedVariables || [])) v[k] = /viewerisloggedin/i.test(k);
+      }
+      return v;
+    };
+    const buildUrl = (v) => isRelay
+      ? `https://api.x.com/graphql/${qid.id}/SearchByRawQuery?variables=${encodeURIComponent(JSON.stringify(v))}`
+      : `https://api.x.com/graphql/${qid.id}/SearchTimeline`;
+    const fmtGqlErr = (errs) => {
+      const msgs = Array.isArray(errs) ? errs.map(e => (e && e.message) || '').filter(Boolean) : [];
+      const joined = [...new Set(msgs)].join('; ');
+      if (/internal server error/i.test(joined)) return 'X sementara padat (Internal server error)';
+      return joined ? ('X GraphQL: ' + joined.slice(0, 140)) : JSON.stringify(errs).slice(0, 160);
+    };
     const tried = new Set();
     let lastErr = null;
     for (let attempt = 0; attempt < Math.max(1, xPool.size()); attempt++) {
       const acc = xPool.pick(Date.now(), tried);
       if (!acc) break;
       tried.add(acc);
-      const r = await get(url, { method: 'POST', headers: { 'content-type': 'application/json',
+      const baseHeaders = {
         authorization: 'Bearer ' + (X.bearer || BEARER), cookie: `auth_token=${acc.auth_token}; ct0=${acc.ct0}`,
         'x-csrf-token': acc.ct0, 'x-twitter-auth-type': 'OAuth2Session', 'x-twitter-active-user': 'yes',
-        'x-twitter-client-language': 'id', referer: 'https://x.com/search?q=' + encodeURIComponent(q) + '&f=live' },
-        body: JSON.stringify({ variables: vars, features: X.features || FEATURES }) }, 20000);
+        'x-twitter-client-language': 'id', origin: 'https://x.com',
+        referer: 'https://x.com/search?q=' + encodeURIComponent(q) + '&f=live'
+      };
+      const execSearch = async (useSince) => {
+        const v = buildVars(useSince);
+        const reqOpt = isRelay
+          ? { method: 'GET', headers: baseHeaders }
+          : { method: 'POST', headers: { ...baseHeaders, 'content-type': 'application/json' }, body: JSON.stringify({ variables: v, features: X.features || FEATURES }) };
+        return await get(buildUrl(v), reqOpt, 20000);
+      };
+      let r = await execSearch(true);
       if (!r.ok) {
         const textSnippet = (await r.text()).slice(0, 160);
         const err = new Error('X HTTP ' + r.status + (r.status === 401 || r.status === 403 ? ' (cookie kadaluarsa?)' : '') + ' ' + textSnippet);
@@ -310,16 +396,24 @@ function createSocialService({
         }
         throw err;
       }
-      const j = await r.json(), out = new Map(); collect(j, out);
+      let j = await r.json(), out = new Map(); collect(j, out);
+      if (isRelay && !out.size && Array.isArray(j.errors) && j.errors.some(e => /internal server error/i.test(String(e && e.message || '')))) {
+        await sleep(750);
+        const r2 = await execSearch(false);
+        if (r2.ok) {
+          const j2 = await r2.json(), out2 = new Map(); collect(j2, out2);
+          if (out2.size || !j2.errors) { j = j2; out = out2; }
+        }
+      }
       if (!out.size && !cursor) {
         if (q.startsWith('conversation_id:')) return { posts: [], cursor: '' };
-        if (j.errors) throw new Error(JSON.stringify(j.errors).slice(0, 200));
+        if (j.errors) throw new Error(fmtGqlErr(j.errors));
         const raw = JSON.stringify(j);
         throw new Error('X HTTP 200 tapi 0 tweet (' + raw.length + 'B): ' + raw.slice(0, 180));
       }
       if (j.errors && j.errors.length && !out.size) {
         if (q.startsWith('conversation_id:')) return { posts: [], cursor: '' };
-        throw new Error(JSON.stringify(j.errors).slice(0, 200));
+        throw new Error(fmtGqlErr(j.errors));
       }
       return { posts: [...out.values()].map(p => ({ ...p, q })), cursor: bottomCursor(j) };
     }
@@ -1016,7 +1110,7 @@ function createSocialService({
     const newsHotIds = (newsHotTop || []).map(x => typeof x === 'string' ? x : (x && x.id)).filter(Boolean);
     const synthSet = new Set(synth.map(e => e.t));
 
-    const forcedOrd = hotTop.concat(newsHotIds, ADHOC.map(a => a.id), synth.map(e => e.t));
+    const forcedOrd = ['coretax', 'pajak'].concat(hotTop, newsHotIds, ADHOC.map(a => a.id), synth.map(e => e.t));
     const forced = new Set(forcedOrd);
     const chosen = new Set(), chosenQueries = new Map();
 

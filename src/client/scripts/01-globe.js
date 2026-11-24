@@ -292,7 +292,8 @@ function drawGlobe(now){
   globeProj = proj;
   globeCenter = [view.lon, view.lat];
 
-  const baseKey = [cw, ch, view.lon.toFixed(4), view.lat.toFixed(4), view.zoom.toFixed(5),
+  const light = typeof isLightTheme === 'function' && isLightTheme();
+  const baseKey = [light ? 'L' : 'N', cw, ch, view.lon.toFixed(4), view.lat.toFixed(4), view.zoom.toFixed(5),
     globeCtx ? 1 : 0, globeIdn ? 1 : 0, (globeProv && !gesture) ? 1 : 0].join('|');
   if (!globeBaseCanvas) {
     globeBaseCanvas = document.createElement('canvas');
@@ -307,41 +308,47 @@ function drawGlobe(now){
     const baseR = Math.min(w, h) / 2 - 8;
 
     const grad = bctx.createRadialGradient(w * 0.38, h * 0.34, baseR * view.zoom * 0.12, w / 2, h / 2, baseR * view.zoom + 2);
-    grad.addColorStop(0, '#161616');
-    grad.addColorStop(0.72, '#101010');
-    grad.addColorStop(1, '#0b0b0b');
+    if (light) {
+      grad.addColorStop(0, '#f7f9fc');
+      grad.addColorStop(0.72, '#e6ecf4');
+      grad.addColorStop(1, '#d5dfeb');
+    } else {
+      grad.addColorStop(0, '#161616');
+      grad.addColorStop(0.72, '#101010');
+      grad.addColorStop(1, '#0b0b0b');
+    }
     bctx.beginPath(); bpath({ type: 'Sphere' });
     bctx.fillStyle = grad; bctx.fill();
-    bctx.lineWidth = 1; bctx.strokeStyle = '#2e2e2e'; bctx.stroke();
+    bctx.lineWidth = 1; bctx.strokeStyle = light ? '#94a3b8' : '#2e2e2e'; bctx.stroke();
 
     bctx.beginPath(); bpath(d3.geoGraticule10());
-    bctx.lineWidth = .45; bctx.strokeStyle = 'rgba(255,255,255,.06)'; bctx.stroke();
+    bctx.lineWidth = .45; bctx.strokeStyle = light ? 'rgba(30,41,59,.11)' : 'rgba(255,255,255,.06)'; bctx.stroke();
 
     if (globeCtx) {
       for (const f of globeCtx.features) {
         bctx.beginPath(); bpath(f);
-        bctx.fillStyle = '#141414'; bctx.fill();
-        bctx.lineWidth = .55; bctx.strokeStyle = '#222222'; bctx.stroke();
+        bctx.fillStyle = light ? '#dce3ec' : '#141414'; bctx.fill();
+        bctx.lineWidth = .55; bctx.strokeStyle = light ? '#b5c1d0' : '#222222'; bctx.stroke();
       }
     }
 
     if (globeIdn) {
       for (const f of globeIdn.features) {
         bctx.beginPath(); bpath(f);
-        bctx.fillStyle = '#202020'; bctx.fill();
-        bctx.lineWidth = .9; bctx.strokeStyle = '#4e4e4e'; bctx.stroke();
+        bctx.fillStyle = light ? '#ffffff' : '#202020'; bctx.fill();
+        bctx.lineWidth = .9; bctx.strokeStyle = light ? '#475569' : '#4e4e4e'; bctx.stroke();
       }
     }
     if (globeProv && !gesture) {
       bctx.save();
       if (globeIdn) { bctx.beginPath(); for (const f of globeIdn.features) bpath(f); bctx.clip(); }
       bctx.beginPath(); bpath(globeProv);
-      bctx.lineWidth = .7; bctx.strokeStyle = 'rgba(200,200,200,.28)'; bctx.stroke();
+      bctx.lineWidth = .7; bctx.strokeStyle = light ? 'rgba(71,85,105,.36)' : 'rgba(200,200,200,.28)'; bctx.stroke();
       bctx.restore();
     }
 
     bctx.beginPath(); bpath({ type: 'Sphere' });
-    bctx.lineWidth = 2.2; bctx.strokeStyle = 'rgba(96,96,96,.32)'; bctx.stroke();
+    bctx.lineWidth = 2.2; bctx.strokeStyle = light ? 'rgba(100,116,139,.38)' : 'rgba(96,96,96,.32)'; bctx.stroke();
     globeBaseKey = baseKey;
   }
   ctx.drawImage(globeBaseCanvas, 0, 0, w, h);
@@ -361,7 +368,7 @@ function drawGlobe(now){
 
     const nr = Math.max(1.0, (0.55 + Math.min(0.75, Math.max(0, view.zoom - 1) * 0.22)) * zoomTaper);
     ctx.save();
-    ctx.fillStyle = 'rgba(160,160,160,.30)';
+    ctx.fillStyle = light ? 'rgba(71,85,105,.32)' : 'rgba(160,160,160,.30)';
     ctx.beginPath();
     for (const p of (PULSE || [])) {
       if (!p.fixed || hot.has(p.name) || typeof p.la !== 'number') continue;
@@ -439,7 +446,7 @@ function drawGlobe(now){
       ctx.shadowColor = d.color; ctx.shadowBlur = dim ? 0 : (alert ? 12 : 5);
       ctx.fillStyle = hexA(d.color, (alert ? 0.95 : 0.72) * (dim ? 0.3 : 1));
       ctx.fill(); ctx.restore();
-      ctx.lineWidth = .9; ctx.strokeStyle = '#0d0d0d'; ctx.stroke();
+      ctx.lineWidth = .9; ctx.strokeStyle = light ? '#ffffff' : '#0d0d0d'; ctx.stroke();
       continue;
     }
     if (sub === 'tma' || sub === 'flood') {
@@ -464,7 +471,7 @@ function drawGlobe(now){
       ctx.shadowColor = d.color; ctx.shadowBlur = dim ? 0 : (alert ? 12 : 6);
       ctx.fillStyle = hexA(d.color, (alert ? 0.95 : 0.78) * (dim ? 0.3 : 1));
       ctx.fill(); ctx.restore();
-      ctx.lineWidth = .9; ctx.strokeStyle = '#0d0d0d'; ctx.stroke();
+      ctx.lineWidth = .9; ctx.strokeStyle = light ? '#ffffff' : '#0d0d0d'; ctx.stroke();
       continue;
     }
 
@@ -483,7 +490,7 @@ function drawGlobe(now){
     ctx.fillStyle = hexA(d.color, (d.alpha || 0.65) * (dim ? 0.3 : 1));
     ctx.fill();
     ctx.restore();
-    ctx.lineWidth = .7; ctx.strokeStyle = '#0d0d0d'; ctx.stroke();
+    ctx.lineWidth = .7; ctx.strokeStyle = light ? '#ffffff' : '#0d0d0d'; ctx.stroke();
     if (d.p && (d.p.prec === 'prov' || d.p.prec === 'region') && !dim) {
       ctx.save(); ctx.setLineDash([2, 2]); ctx.beginPath(); ctx.arc(d.x, d.y, d.r + 3.2, 0, Math.PI * 2);
       ctx.strokeStyle = hexA(d.color, .7); ctx.lineWidth = .9; ctx.stroke(); ctx.restore();
@@ -492,11 +499,11 @@ function drawGlobe(now){
 
   if (globeActInc) {
     const d = pts.find(q => q.p && itemIdOf(q.p) === globeActInc);
-    if (d) { ctx.beginPath(); ctx.arc(d.x, d.y, d.r + 3, 0, Math.PI * 2); ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.lineWidth = 1.5; ctx.stroke(); }
+    if (d) { ctx.beginPath(); ctx.arc(d.x, d.y, d.r + 3, 0, Math.PI * 2); ctx.strokeStyle = light ? 'rgba(22,22,24,.88)' : 'rgba(255,255,255,.9)'; ctx.lineWidth = 1.5; ctx.stroke(); }
   }
   if (globeActNode) {
     const d = nodePts.find(q => q.node && 'n:' + (q.node.name || '') === globeActNode);
-    if (d) { ctx.beginPath(); ctx.arc(d.x, d.y, 6.5, 0, Math.PI * 2); ctx.strokeStyle = 'rgba(255,255,255,.75)'; ctx.lineWidth = 1.3; ctx.stroke(); }
+    if (d) { ctx.beginPath(); ctx.arc(d.x, d.y, 6.5, 0, Math.PI * 2); ctx.strokeStyle = light ? 'rgba(22,22,24,.72)' : 'rgba(255,255,255,.75)'; ctx.lineWidth = 1.3; ctx.stroke(); }
   }
 
   if (view.zoom >= 1.0 && !gesture) {
@@ -525,12 +532,12 @@ function drawGlobe(now){
       if (placed.length >= maxLab) break;
       const clash = placed.some(p => p.x < box.x + box.w && p.x + p.w > box.x && p.y < box.y + box.h && p.y + p.h > box.y);
       if (clash) continue;
-      ctx.fillStyle = 'rgba(10,10,10,.72)';
+      ctx.fillStyle = light ? 'rgba(255,255,255,.9)' : 'rgba(10,10,10,.72)';
       ctx.fillRect(box.x, box.y, box.w, box.h);
-      ctx.strokeStyle = 'rgba(255,255,255,.09)';
+      ctx.strokeStyle = light ? 'rgba(15,23,42,.18)' : 'rgba(255,255,255,.09)';
       ctx.lineWidth = 1;
       ctx.strokeRect(box.x, box.y, box.w, box.h);
-      ctx.fillStyle = '#d4d4d4';
+      ctx.fillStyle = light ? '#161618' : '#d4d4d4';
       ctx.fillText(text, box.x + 3, box.y + box.h / 2 + 0.5);
       placed.push(box);
     }

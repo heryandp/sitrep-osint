@@ -316,10 +316,20 @@ function createGeoSensors({
     if (!key) { fireCache.at = Date.now(); fireCache.data = { ok: false, err: 'NASA_FIRMS_API_KEY belum diset', items: [], at: Date.now(), sources: [] }; return fireCache.data; }
     const out = [];
     const sourceStatus = [];
+    const FIRMS_HOSTS = ['https://firms.modaps.eosdis.nasa.gov', 'https://firms2.modaps.eosdis.nasa.gov'];
+    let preferredHost = FIRMS_HOSTS[0];
     for (const [id, label] of FIRE_SOURCES) {
       try {
-        const r = await get(`https://firms2.modaps.eosdis.nasa.gov/api/area/csv/${encodeURIComponent(key)}/${id}/95,-11,141,6/1`, {}, 20000);
-        const text = await r.text();
+        let r = await get(`${preferredHost}/api/area/csv/${encodeURIComponent(key)}/${id}/95,-11,141,6/1`, {}, 20000);
+        let text = await r.text();
+        if ((!r.ok || /Invalid MAP_KEY|provided MAP_KEY/i.test(text)) && preferredHost === FIRMS_HOSTS[0]) {
+          const alt = await get(`${FIRMS_HOSTS[1]}/api/area/csv/${encodeURIComponent(key)}/${id}/95,-11,141,6/1`, {}, 20000);
+          const altText = await alt.text();
+          if (alt.ok && !/Invalid MAP_KEY|provided MAP_KEY/i.test(altText)) {
+            preferredHost = FIRMS_HOSTS[1];
+            r = alt; text = altText;
+          }
+        }
         if (!r.ok || /Invalid MAP_KEY|provided MAP_KEY/i.test(text)) {
           sourceStatus.push({ id, ok: false, err: 'invalid key or request' }); continue;
         }

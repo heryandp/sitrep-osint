@@ -20,7 +20,8 @@ test('frontend modular source tree integrity and zero-drift build verification',
       '00-tokens.css', '01-header.css', '02-ticker.css', '03-console.css',
       '04-situasi.css', '05-wire.css', '06-cctv.css', '07-social.css',
       '08-map.css', '09-hud.css', '10-tv-foot.css', '11-reader-glb.css',
-      '12-responsive.css', '13-toasts.css'
+      '12-responsive.css', '13-toasts.css', '14-theme-light.css', '15-pajak-window.css',
+      '16-splash.css'
     ];
     for (const s of expectedStyles) {
       assert.ok(fs.existsSync(path.join(CLIENT_DIR, 'styles', s)), `styles/${s} must exist`);
@@ -37,7 +38,8 @@ test('frontend modular source tree integrity and zero-drift build verification',
     const expectedScripts = [
       '00-auth-utils.js', '01-globe.js', '02-toasts.js', '03-market.js',
       '04-social.js', '05-wire.js', '06-ticker.js', '07-cctv.js',
-      '08-map.js', '09-tv-footer.js', '10-reader.js', '11-boot.js'
+      '08-map.js', '09-tv-footer.js', '10-reader.js', '11-boot.js',
+      '12-pajak-window.js', '13-splash.js'
     ];
     for (const sc of expectedScripts) {
       assert.ok(fs.existsSync(path.join(CLIENT_DIR, 'scripts', sc)), `scripts/${sc} must exist`);
@@ -76,5 +78,15 @@ test('frontend modular source tree integrity and zero-drift build verification',
           `Found forbidden comment in ${path.relative(ROOT, f)} line ${i + 1}: ${line}`);
       }
     }
+  });
+
+  await t.test('Night | Light mode toggle, persistence, and canvas/map adaptation contracts', () => {
+    const html = fs.readFileSync(TARGET_FILE, 'utf8');
+    assert.ok(html.includes('id="theme-switch"'), 'header must include #theme-switch toggle');
+    assert.ok(html.includes('data-theme-opt="night"') && html.includes('data-theme-opt="light"'), 'toggle must provide night and light options');
+    assert.ok(html.includes("localStorage.getItem('sitrep.theme')"), 'head must bootstrap persisted theme before paint');
+    assert.ok(html.includes('html[data-theme="light"]'), 'compiled CSS must include light theme token overrides');
+    assert.ok(html.includes('function setTheme(') && html.includes('function toggleTheme('), 'client scripts must expose setTheme/toggleTheme');
+    assert.ok(html.includes('World_Light_Gray_Base'), 'Leaflet map must support Light Gray basemap');
   });
 });

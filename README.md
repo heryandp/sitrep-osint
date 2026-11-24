@@ -1,6 +1,9 @@
-# SITREP — OSINT Console
+# SITREP — DJP OSINT Console
 
-Real-time situation dashboard for Indonesia: incident news, social signals, disaster tracking, markets, and live CCTV/TV — all in one local-first web console.
+> **Upstream Source (MIT License):** [`alexandephilia/sitrep-osint`](https://github.com/alexandephilia/sitrep-osint)  
+> **Modified by:** **Lantai10**
+
+Real-time situation dashboard for Indonesia: taxation & DJP/Coretax 6-dimension clustering, incident news, social signals, disaster tracking, markets, and live CCTV/TV — all in one local-first web console.
 
 ![SITREP dashboard](docs/screenshot.jpg)
 

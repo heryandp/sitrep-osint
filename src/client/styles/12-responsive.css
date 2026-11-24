@@ -30,6 +30,9 @@
   .mark::after{display:none}
   .brand-case{display:none}
   .hdr-tools{margin-left:auto;gap:6px}
+  .hdr-theme{height:28px;padding:2px;gap:1px}
+  .hdr-th-btn{height:22px;padding:0 6px}
+  .hdr-th-btn .th-tx{display:none}
   .hdr-dock{height:28px;padding:0 8px;gap:7px}
   .hdr-sync{height:28px;min-width:auto;padding:0 9px 2px 9px;gap:5px}
   #btn-refresh .btn-tx{display:none}
@@ -60,6 +63,10 @@
   .foot .sp{margin-left:auto;min-width:0;text-align:right}
   .foot .fb-mark{letter-spacing:.08em}
   .foot .fb-sep{padding:0 3px}
+  .foot-attr{margin-left:2px;padding-left:5px}
+  .foot-src-host,.foot-src-pre{display:none}
+  .mark-logo-wrap{height:24px;padding:2px 5px}
+  .mark-logo{height:18px;max-width:56px}
   .geobar{width:100%;padding:0 0 0 8px;gap:0}
   .geo-head{padding:0 8px 0 0;gap:5px}
   .geo-k{display:none}

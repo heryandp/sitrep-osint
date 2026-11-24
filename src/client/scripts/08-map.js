@@ -15,7 +15,7 @@ const ttIcon = (inc, sz = 20) => L.divIcon({ className: 'mk-tt-ic', iconSize: [s
 
 const ttPtSize = () => { const s = Math.pow(1.3, (map ? map.getZoom() : 10) - 10); return Math.max(22, Math.min(48, Math.round(26 * s))); };
 const ttLnSize = () => { const s = Math.pow(1.3, (map ? map.getZoom() : 10) - 10); return Math.max(17, Math.min(36, Math.round(20 * s))); };
-let map = null, heat = null, pinLayer = null, regLabelLayer = null, camLayer = null, mapReady = false, mapOpen = false, mapBusy = false, mapData = [], esriRefLayer = null, esriDarkBaseLayer = null, esriSatBaseLayer = null;
+let map = null, heat = null, pinLayer = null, pajakLayer = null, regLabelLayer = null, camLayer = null, mapReady = false, mapOpen = false, mapBusy = false, mapData = [], esriRefLayer = null, esriDarkBaseLayer = null, esriLightBaseLayer = null, esriSatBaseLayer = null;
 let esriTransRefLayer = null, esriPlacesRefLayer = null, geoCtxLayer = null, provBoundLayer = null, lastRegPlacedBoxes = [];
 let ttFlowLayer = null, ttIncTileLayer = null, ttIncDataLayer = null, routeLayer = null, measureLayer = null;
 let flightLayer = null, shipLayer = null, transitLayer = null;
@@ -26,7 +26,7 @@ let radarFrames = [], radarIndex = 0, radarPlaying = false, radarTimer = null, r
 let radarLayerCache = {}, radarPendingLayer = null, radarSwapTimer = null, radarWasPlaying = false;
 let ttOk = false, ttIncBusy = false, ttIncInterval = 0, s2Ok = false, s2StatusText = '', s2FlashUntil = 0;
 let routeMode = false, routeA = null, routeB = null, flowMode = false, flowProbe = null, flowBusy = false;
-const layerOn = { heat:true, pins:true, cams:true, tma:true, ttflow:false, ttinc:false, ttdata:false, rute:false, lalin:false, flight:false, ship:false, transit:false, gempa:true, gunung:true, cuaca:false, wind:true, radar:false, radarbmkg:false, peringatan:true, 'sat-ir':false, 'sat-nc':false, 'sat-wv':false, 'sat-rain':false, fires:true, air:true, 'basemap-sat':true, sentinel2:false };
+const layerOn = { heat:true, pins:true, pajak:true, cams:true, tma:true, ttflow:false, ttinc:false, ttdata:false, rute:false, lalin:false, flight:false, ship:false, transit:false, gempa:true, gunung:true, cuaca:false, wind:true, radar:false, radarbmkg:false, peringatan:true, 'sat-ir':false, 'sat-nc':false, 'sat-wv':false, 'sat-rain':false, fires:true, air:true, 'basemap-sat':true, sentinel2:false };
 
 const ttTileUrl = kind => tokQ((API != null ? API : '') + '/tomtom/tile/' + kind + '/{z}/{x}/{y}.png');
 const s2TileUrl = () => tokQ((API != null ? API : '') + '/api/copernicus/tile/{z}/{x}/{y}.png');
@@ -138,18 +138,26 @@ function syncLayers(){
   if (!map) return;
   if (esriDarkBaseLayer && esriSatBaseLayer) {
     const wantSatBase = !!layerOn['basemap-sat'];
+    const wantLightGray = !wantSatBase && typeof isLightTheme === 'function' && isLightTheme() && esriLightBaseLayer;
     if (wantSatBase) {
       if (map.hasLayer(esriDarkBaseLayer)) map.removeLayer(esriDarkBaseLayer);
+      if (esriLightBaseLayer && map.hasLayer(esriLightBaseLayer)) map.removeLayer(esriLightBaseLayer);
       if (!map.hasLayer(esriSatBaseLayer)) map.addLayer(esriSatBaseLayer);
       esriSatBaseLayer.bringToBack();
+    } else if (wantLightGray) {
+      if (map.hasLayer(esriSatBaseLayer)) map.removeLayer(esriSatBaseLayer);
+      if (map.hasLayer(esriDarkBaseLayer)) map.removeLayer(esriDarkBaseLayer);
+      if (!map.hasLayer(esriLightBaseLayer)) map.addLayer(esriLightBaseLayer);
+      esriLightBaseLayer.bringToBack();
     } else {
       if (map.hasLayer(esriSatBaseLayer)) map.removeLayer(esriSatBaseLayer);
+      if (esriLightBaseLayer && map.hasLayer(esriLightBaseLayer)) map.removeLayer(esriLightBaseLayer);
       if (!map.hasLayer(esriDarkBaseLayer)) map.addLayer(esriDarkBaseLayer);
       esriDarkBaseLayer.bringToBack();
     }
   }
-  const pairs = [[heat, 'heat'], [pinLayer, 'pins'], [camLayer, 'cams'], [tmaLayer, 'tma'], [ttFlowLayer, 'ttflow'], [ttIncTileLayer, 'ttinc'], [ttIncDataLayer, 'ttdata'], [flightLayer, 'flight'], [shipLayer, 'ship'], [transitLayer, 'transit'], [gempaLayer, 'gempa'], [gunungLayer, 'gunung'], [wxLayer, 'cuaca'], [windVelocityLayer, 'wind'], [radarLayer, 'radar'], [radarBmkgLayer, 'radarbmkg'], [peringatanLayer, 'peringatan'], [satIrLayer, 'sat-ir'], [satNcLayer, 'sat-nc'], [satWvLayer, 'sat-wv'], [satRainLayer, 'sat-rain'], [airLayer, 'air']];
-  const legGate = { tma: 'tma', gempa: 'gempa', gunung: 'gunung' };
+  const pairs = [[heat, 'heat'], [pinLayer, 'pins'], [pajakLayer, 'pajak'], [camLayer, 'cams'], [tmaLayer, 'tma'], [ttFlowLayer, 'ttflow'], [ttIncTileLayer, 'ttinc'], [ttIncDataLayer, 'ttdata'], [flightLayer, 'flight'], [shipLayer, 'ship'], [transitLayer, 'transit'], [gempaLayer, 'gempa'], [gunungLayer, 'gunung'], [wxLayer, 'cuaca'], [windVelocityLayer, 'wind'], [radarLayer, 'radar'], [radarBmkgLayer, 'radarbmkg'], [peringatanLayer, 'peringatan'], [satIrLayer, 'sat-ir'], [satNcLayer, 'sat-nc'], [satWvLayer, 'sat-wv'], [satRainLayer, 'sat-rain'], [airLayer, 'air']];
+  const legGate = { pajak: 'pajak', tma: 'tma', gempa: 'gempa', gunung: 'gunung' };
   for (const [l, k] of pairs) {
     if (!l) continue;
     const on = !!layerOn[k] && (!legGate[k] || legendOn[legGate[k]] !== false);
@@ -167,9 +175,9 @@ function syncLayers(){
   if (esriRefLayer && !map.hasLayer(esriRefLayer)) map.addLayer(esriRefLayer);
   if (esriTransRefLayer) esriTransRefLayer.setOpacity(layerOn.ttflow ? .52 : .88);
   if (regLabelLayer) {
-    const showReg = !!(layerOn.pins || layerOn.heat);
-    if (showReg && !map.hasLayer(regLabelLayer)) {
-      map.addLayer(regLabelLayer);
+    const showReg = !!(layerOn.pins || layerOn.pajak || layerOn.heat);
+    if (showReg) {
+      if (!map.hasLayer(regLabelLayer)) map.addLayer(regLabelLayer);
       paintMapRegLabels();
     } else if (!showReg && map.hasLayer(regLabelLayer)) {
       map.removeLayer(regLabelLayer);
@@ -518,14 +526,24 @@ function paintMap(){
     const [dx, dy] = joff(i); return [i.la + dy, i.lo + dx, Math.max(0.18, Math.min(1, i.weight || 0.3))];
   }));
   pinLayer.clearLayers();
+  if (pajakLayer) pajakLayer.clearLayers();
   for (const it of visData) {
     if (it.fixed) continue;
+    const isPajak = it.kind === 'pajak';
     const c = it.sub === 'gempa' ? '#ff5a4e' : (KIND_COLOR[it.kind] || '#8d8d8d');
     const [dx, dy] = joff(it);
     const ageMs = it.ts ? Math.max(0, now - it.ts) : 3 * 3600e3;
     const fresh = ageMs < 2 * 3600e3;
     let m;
-    if (fresh) {
+    if (isPajak) {
+      const sz = 20 + Math.round(Math.min(1, it.weight || 0.3) * 6);
+      m = L.marker([it.la + dy, it.lo + dx], {
+        icon: L.divIcon({ className: '', iconSize: [sz, sz], iconAnchor: [sz / 2, sz / 2],
+          html: `<div class="pin-pajak" style="width:${sz}px;height:${sz}px"><i></i></div>` }),
+        zIndexOffset: 400,
+        keyboard: false
+      });
+    } else if (fresh) {
       const sz = 18 + Math.round(Math.min(1, it.weight || 0.3) * 8);
       m = L.marker([it.la + dy, it.lo + dx], {
         icon: L.divIcon({ className: '', iconSize: [sz, sz], iconAnchor: [sz / 2, sz / 2],
@@ -546,8 +564,9 @@ function paintMap(){
       });
     }
     m.bindPopup(mapPopup(it), { maxWidth: 290, keepInView: true });
-    m.bindTooltip(deEmoji(it.name), { direction: 'top', offset: [0, -5], opacity: .85 });
-    pinLayer.addLayer(m);
+    m.bindTooltip((isPajak ? 'PAJAK · ' : '') + deEmoji(it.name), { direction: 'top', offset: [0, -5], opacity: .88 });
+    if (isPajak && pajakLayer) pajakLayer.addLayer(m);
+    else pinLayer.addLayer(m);
   }
   camLayer.clearLayers();
   for (const c of CAMS) {
@@ -638,7 +657,7 @@ async function paintGeoContextLabels(){
 }
 function paintMapRegLabels(){
   if (!mapReady || !map || !regLabelLayer) return;
-  if (!mapOpen || !(layerOn.pins || layerOn.heat)) {
+  if (!mapOpen || !(layerOn.pins || layerOn.pajak || layerOn.heat)) {
     regLabelLayer.clearLayers();
     if (typeof lastRegPlacedBoxes !== 'undefined') lastRegPlacedBoxes = [];
     if (typeof scheduleGeoContextLabels === 'function') scheduleGeoContextLabels();
@@ -649,6 +668,8 @@ function paintMapRegLabels(){
   const groups = new Map();
   for (const it of mapData) {
     if (it.fixed || typeof it.la !== 'number' || typeof it.lo !== 'number') continue;
+    const isPajak = it.kind === 'pajak';
+    if (!layerOn.heat && ((isPajak && !layerOn.pajak) || (!isPajak && !layerOn.pins))) continue;
     const raw = (deEmoji(it.name) || '').trim();
     if (!raw) continue;
     const key = raw.toUpperCase();
@@ -865,6 +886,9 @@ function ensureMap(){
   esriDarkBaseLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
     maxNativeZoom: 16, maxZoom: 18, zIndex: 10
   });
+  esriLightBaseLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    maxNativeZoom: 16, maxZoom: 18, zIndex: 10
+  });
   esriSatBaseLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     maxNativeZoom: 17, maxZoom: 18, zIndex: 10, className: 'sat-base-pane'
   });
@@ -874,7 +898,7 @@ function ensureMap(){
   const refPane = map.createPane('refTiles');
   refPane.style.zIndex = 380;
   refPane.style.pointerEvents = 'none';
-  (layerOn['basemap-sat'] ? esriSatBaseLayer : esriDarkBaseLayer).addTo(map);
+  (layerOn['basemap-sat'] ? esriSatBaseLayer : (typeof isLightTheme === 'function' && isLightTheme() ? esriLightBaseLayer : esriDarkBaseLayer)).addTo(map);
   esriTransRefLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', {
     pane: 'refTiles', minZoom: 7, maxNativeZoom: 18, maxZoom: 18, opacity: .88, zIndex: 180
   });
@@ -897,6 +921,7 @@ function ensureMap(){
   regPane.style.zIndex = 620;
   regPane.style.pointerEvents = 'none';
   pinLayer = L.layerGroup();
+  pajakLayer = L.layerGroup();
   regLabelLayer = L.layerGroup();
   geoCtxLayer = L.layerGroup().addTo(map);
   (typeof globeProv !== 'undefined' && globeProv
@@ -907,9 +932,14 @@ function ensureMap(){
     provBoundLayer = L.geoJSON(gj, {
       pane: 'provBounds',
       interactive: false,
-      style: { color: 'rgba(138, 216, 255, 0.22)', weight: 1, fill: false, interactive: false }
+      style: { color: (typeof isLightTheme === 'function' && isLightTheme()) ? 'rgba(30, 58, 138, 0.28)' : 'rgba(138, 216, 255, 0.22)', weight: 1, fill: false, interactive: false }
     }).addTo(map);
   });
+  function syncProvBoundStyle(){
+    if (!provBoundLayer || typeof provBoundLayer.setStyle !== 'function') return;
+    provBoundLayer.setStyle({ color: (typeof isLightTheme === 'function' && isLightTheme()) ? 'rgba(30, 58, 138, 0.28)' : 'rgba(138, 216, 255, 0.22)' });
+  }
+  window.syncProvBoundStyle = syncProvBoundStyle;
   camLayer = L.layerGroup();
   tmaLayer = L.layerGroup();
   ttIncDataLayer = L.layerGroup();
@@ -982,7 +1012,7 @@ function ensureMap(){
   checkTomTom();
   paintMap();
 }
-const GEO_SHINGLE_ORDER = ['demo','fire','flood','disaster','insiden','kriminal','kesehatan','politik','ekonomi','siber'];
+const GEO_SHINGLE_ORDER = ['pajak','demo','fire','flood','disaster','insiden','kriminal','kesehatan','politik','ekonomi','siber'];
 function renderGeoTelemetry(){
   const specEl = $('#geo-spec');
   const idxEl = $('#geo-idx');
@@ -1178,6 +1208,7 @@ function hydrateMapLayers(){
   pullDisaster();
 }
 function openMap(){
+  if (typeof pjOpen !== 'undefined' && pjOpen && typeof closePajakWindow === 'function') closePajakWindow();
   sizeMap();
   const wrap = $('#mapwrap');
   wrap.classList.add('on');
@@ -1189,7 +1220,11 @@ function openMap(){
   ensureLeaflet().then(() => {
     if (!mapOpen) return;
     hydrateMapLayers();
-    setTimeout(() => { if (map && mapOpen) map.invalidateSize(); }, 380);
+    setTimeout(() => {
+      if (map && mapOpen) map.invalidateSize();
+      const ml = document.querySelector('.map-layers');
+      if (ml && typeof ml._hsSync === 'function') ml._hsSync();
+    }, 380);
   }).catch(() => {
     const mEl = $('#map');
     if (mEl && !map) mEl.innerHTML = '<div class="empty">Leaflet gagal dimuat. Cek koneksi ke CDN.</div>';

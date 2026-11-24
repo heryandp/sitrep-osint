@@ -39,6 +39,39 @@ const apiHeaders = url => {
   } catch (e) { return {}; }
 };
 const tokQ = u => SIT_TOKEN ? u + (u.includes('?') ? '&' : '?') + 'token=' + encodeURIComponent(SIT_TOKEN) : u;
+async function postJson(url, payload, ms){
+  const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), ms || 22000);
+  const ours = isOurUrl(url);
+  try {
+    const r = await fetch(url, {
+      method: 'POST',
+      cache: 'no-store',
+      credentials: ours ? 'same-origin' : 'omit',
+      signal: ctl.signal,
+      headers: { 'content-type': 'application/json', ...apiHeaders(url) },
+      body: JSON.stringify(payload || {})
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return await r.json();
+  } finally { clearTimeout(t); }
+}
+function exaCardHtml(d){
+  if (!d) return '';
+  const isExa = d.mode === 'exa';
+  const badge = isExa ? (d.cached ? 'Exa AI · Cache' : 'Exa AI') : 'Ringkasan Lokal';
+  const ents = Array.isArray(d.entitas_kunci) && d.entitas_kunci.length
+    ? `<div class="exa-ents">${d.entitas_kunci.map(e => `<span class="exa-ent">${esc(e)}</span>`).join('')}</div>` : '';
+  return `<div class="exa-card${isExa ? ' is-exa' : ' is-fb'}">
+    <div class="exa-hd">
+      <span class="exa-k">Ringkasan Kejadian</span>
+      <span class="exa-mode${isExa ? ' live' : ''}">${esc(badge)}</span>
+    </div>
+    <p class="exa-sum">${esc(d.ringkasan || '')}</p>
+    ${d.dampak_djp ? `<div class="exa-row"><span class="exa-lbl">Dampak DJP / Fiskal</span><span class="exa-val">${esc(d.dampak_djp)}</span></div>` : ''}
+    ${d.atensi ? `<div class="exa-row"><span class="exa-lbl">Atensi</span><span class="exa-val">${esc(d.atensi)}</span></div>` : ''}
+    ${ents}
+  </div>`;
+}
 if (!SITREP_USER && !SITREP_PUBLIC && !SITREP_TOKEN) console.warn('[SITREP] No API token available; gated /api/* and media proxies will return 403.');
 (function initUserLogoutBtn(){
   if (!SITREP_USER) return;
@@ -62,6 +95,147 @@ if (!SITREP_USER && !SITREP_PUBLIC && !SITREP_TOKEN) console.warn('[SITREP] No A
   });
   dock.append(sep, btn);
 })();
+
+const THEME_KEY = 'sitrep.theme';
+const getTheme = () => (typeof document !== 'undefined' && document.documentElement && document.documentElement.dataset && document.documentElement.dataset.theme === 'light') ? 'light' : 'night';
+const isLightTheme = () => getTheme() === 'light';
+function syncThemeUi(mode){
+  const sw = typeof document !== 'undefined' && document.getElementById ? document.getElementById('theme-switch') : null;
+  if (!sw) return;
+  sw.dataset.mode = mode;
+  sw.querySelectorAll('.hdr-th-btn[data-theme-opt]').forEach(b => {
+    b.setAttribute('aria-pressed', b.dataset.themeOpt === mode ? 'true' : 'false');
+  });
+}
+function setTheme(mode, persist = true){
+  const next = mode === 'light' ? 'light' : 'night';
+  if (typeof document !== 'undefined' && document.documentElement && document.documentElement.dataset) {
+    document.documentElement.dataset.theme = next;
+  }
+  const meta = typeof document !== 'undefined' && document.querySelector ? document.querySelector('meta[name="color-scheme"]') : null;
+  if (meta) meta.content = next === 'light' ? 'light' : 'dark';
+  if (persist) { try { localStorage.setItem(THEME_KEY, next); } catch (e) {} }
+  syncThemeUi(next);
+  if (typeof globeBaseKey !== 'undefined') globeBaseKey = '';
+  if (typeof drawGlobe === 'function') drawGlobe(performance.now());
+  if (typeof repaintAllSparks === 'function') repaintAllSparks();
+  if (typeof syncLayers === 'function') syncLayers();
+  if (typeof syncProvBoundStyle === 'function') syncProvBoundStyle();
+  return next;
+}
+function toggleTheme(){
+  return setTheme(isLightTheme() ? 'night' : 'light', true);
+}
+(function initThemeSwitch(){
+  syncThemeUi(getTheme());
+  const sw = typeof document !== 'undefined' && document.getElementById ? document.getElementById('theme-switch') : null;
+  if (!sw) return;
+  sw.addEventListener('click', e => {
+    const btn = e.target.closest('.hdr-th-btn[data-theme-opt]');
+    if (!btn) return;
+    setTheme(btn.dataset.themeOpt, true);
+  });
+})();
+
+function initHScroll(el){
+  if (!el || el.dataset.hsBound === '1' || !el.parentNode) return;
+  el.dataset.hsBound = '1';
+  el.dataset.hs = '1';
+  const wrap = document.createElement('div');
+  wrap.className = 'hs-wrap' + (el.classList.contains('stk-chips') ? ' hs-flex' : '');
+  wrap.hidden = !!el.hidden;
+  el.parentNode.insertBefore(wrap, el);
+  wrap.appendChild(el);
+  const mkBtn = (dir, label, icon) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'hs-btn ' + (dir < 0 ? 'hs-l' : 'hs-r');
+    b.setAttribute('aria-label', label);
+    b.title = label;
+    b.hidden = true;
+    b.innerHTML = `<svg class="ic" aria-hidden="true"><use href="#i-${icon}"></use></svg>`;
+    b.addEventListener('click', e => {
+      e.stopPropagation();
+      const step = Math.max(150, Math.round(el.clientWidth * 0.65));
+      el.scrollBy({ left: dir * step, behavior: 'smooth' });
+    });
+    return b;
+  };
+  const btnL = mkBtn(-1, 'Geser tab ke kiri', 'chev-l');
+  const btnR = mkBtn(1, 'Geser tab ke kanan', 'chev-r');
+  wrap.append(btnL, btnR);
+  const sync = () => {
+    wrap.hidden = !!el.hidden;
+    if (el.hidden) return;
+    const maxScroll = Math.max(0, el.scrollWidth - el.clientWidth);
+    const hasOverflow = maxScroll > 3;
+    const atStart = !hasOverflow || el.scrollLeft <= 2;
+    const atEnd = !hasOverflow || el.scrollLeft >= maxScroll - 2;
+    el.dataset.hsStart = atStart ? '1' : '0';
+    el.dataset.hsEnd = atEnd ? '1' : '0';
+    btnL.hidden = atStart;
+    btnR.hidden = atEnd;
+  };
+  el.addEventListener('scroll', sync, { passive: true });
+  el.addEventListener('wheel', e => {
+    if (el.scrollWidth <= el.clientWidth + 2) return;
+    const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (!d) return;
+    e.preventDefault();
+    el.scrollLeft += d;
+  }, { passive: false });
+  let dragging = false, moved = false, startX = 0, startLeft = 0, suppressClickUntil = 0;
+  el.addEventListener('pointerdown', e => {
+    if (e.button !== 0 || e.pointerType === 'touch') return;
+    if (el.scrollWidth <= el.clientWidth + 2) return;
+    dragging = true;
+    moved = false;
+    startX = e.clientX;
+    startLeft = el.scrollLeft;
+  });
+  addEventListener('pointermove', e => {
+    if (!dragging) return;
+    const dx = e.clientX - startX;
+    if (!moved && Math.abs(dx) > 5) {
+      moved = true;
+      el.classList.add('hs-drag');
+    }
+    if (moved) {
+      el.scrollLeft = startLeft - dx;
+      sync();
+    }
+  }, { passive: true });
+  const endDrag = () => {
+    if (!dragging) return;
+    dragging = false;
+    if (moved) {
+      suppressClickUntil = performance.now() + 180;
+      el.classList.remove('hs-drag');
+    }
+    moved = false;
+  };
+  addEventListener('pointerup', endDrag, { passive: true });
+  addEventListener('pointercancel', endDrag, { passive: true });
+  el.addEventListener('click', e => {
+    if (performance.now() < suppressClickUntil) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+  if (typeof ResizeObserver === 'function') {
+    new ResizeObserver(sync).observe(el);
+  }
+  if (typeof MutationObserver === 'function') {
+    new MutationObserver(() => requestAnimationFrame(sync)).observe(el, { childList: true, subtree: true, attributes: true, attributeFilter: ['hidden', 'class'] });
+  }
+  addEventListener('resize', sync, { passive: true });
+  el._hsSync = sync;
+  requestAnimationFrame(sync);
+}
+function initAllHScrolls(){
+  if (typeof document === 'undefined' || !document.querySelectorAll) return;
+  document.querySelectorAll('.catbar, .qchips, .citybar, .map-layers, .stk-chips').forEach(initHScroll);
+}
 
 const cityLabel = s => {
   let t = String(s == null ? '' : s).trim();
@@ -226,12 +400,23 @@ setInterval(() => {
 }, 250);
 paintCountdown(CYCLE * 1000);
 
-const CAT_ORDER = ['demo','fire','flood','disaster','insiden','siber','kriminal','kesehatan','ekonomi','politik'];
-const CAT_COLOR = { demo:'#f1c21b', fire:'#da1e28', flood:'#4589ff', disaster:'#be95ff', insiden:'#8d8d8d', siber:'#c8f04b', kriminal:'#ff9f43', kesehatan:'#ff6b9d', ekonomi:'#3ddc97', politik:'#6ea8fe', gempa:'#ff5a4e', gunung:'#ff9f0a', tma:'#00e5ff' };
-const CAT_LABEL = { demo:'Demo', fire:'Kebakaran', flood:'Banjir', disaster:'Bencana', insiden:'Insiden', siber:'Siber', kriminal:'Kriminal', kesehatan:'Kesehatan', ekonomi:'Ekonomi', politik:'Politik', gempa:'Gempa', gunung:'Gunung Api', tma:'Pintu Air' };
-const CAT_GEO = { demo:1, fire:1, flood:1, disaster:1, insiden:1, siber:1, kriminal:1, kesehatan:1, ekonomi:1, politik:1 };
+const CAT_ORDER = ['pajak','demo','fire','flood','disaster','insiden','siber','kriminal','kesehatan','ekonomi','politik'];
+const CAT_COLOR = { pajak:'#22d3ee', demo:'#f1c21b', fire:'#da1e28', flood:'#4589ff', disaster:'#be95ff', insiden:'#8d8d8d', siber:'#c8f04b', kriminal:'#ff9f43', kesehatan:'#ff6b9d', ekonomi:'#3ddc97', politik:'#6ea8fe', gempa:'#ff5a4e', gunung:'#ff9f0a', tma:'#00e5ff' };
+const CAT_LABEL = { pajak:'Pajak & Fiskal', demo:'Demo', fire:'Kebakaran', flood:'Banjir', disaster:'Bencana', insiden:'Insiden', siber:'Siber', kriminal:'Kriminal', kesehatan:'Kesehatan', ekonomi:'Ekonomi', politik:'Politik', gempa:'Gempa', gunung:'Gunung Api', tma:'Pintu Air' };
+const CAT_GEO = { pajak:1, demo:1, fire:1, flood:1, disaster:1, insiden:1, siber:1, kriminal:1, kesehatan:1, ekonomi:1, politik:1 };
 const LEGEND_SUB = ['gempa','gunung','tma'];
+const TAX_DAERAH_CLIENT_RE = /(?:pajak\s+daerah|pajak\s+kendaraan|\bpkb\b|\bbbnkb\b|pemutihan\s+pajak|\bsamsat\b|\bbapenda\b|\bdispenda\b|\bbphtb\b|\bpbb[- ]?p2\b|\bpbjt\b|opsen\s+(?:pkb|bbnkb))/i;
+const TAX_NASIONAL_CLIENT_RE = /(?:\bdjp\b|ditjen\s+pajak|direktorat\s+jenderal\s+pajak|\bcoretax\b|kemenkeu|kementerian\s+keuangan|\bmenkeu\b|keuangan\s+negara|\bapbn\b|penerimaan\s+negara|belanja\s+negara|\bpnbp\b|\bdjbc\b|bea\s+(?:dan\s+)?cukai|\bppn\b|\bpph\b|\bspt\b|\bnpwp\b|faktur\s+pajak|e-?faktur|e-?bupot|pengadilan\s+pajak|ppatk|ddtc|ortax|\bpmk\b)/i;
+const isTaxNasional = h => {
+  if (!h) return false;
+  if (h.taxScope === 'nasional') return true;
+  if (h.taxScope === 'daerah') return false;
+  const tx = (h.title || '') + ' ' + (h.desc || '') + ' ' + (h.src || '');
+  if (TAX_DAERAH_CLIENT_RE.test(tx) && !TAX_NASIONAL_CLIENT_RE.test(tx)) return false;
+  return true;
+};
 const CAT_RE = {
+  pajak:/(?:\bcoretax\b|core\s*tax|\bdjp\b|ditjen\s+pajak|direktorat\s+jenderal\s+pajak|kring\s+pajak|kanwil\s+djp|\bkpp\s+(?:pratama|madya|wajib\s+pajak|khusus|bumn|pma)\b|kantor\s+pelayanan\s+pajak|perpajakan|wajib\s+pajak|penerimaan\s+pajak|setoran\s+pajak|tunggakan\s+pajak|restitusi\s+pajak|pemeriksaan\s+pajak|penagihan\s+pajak|pidana\s+pajak|pengemplang\s+pajak|pengampunan\s+pajak|tax\s+amnesty|tax\s+ratio|rasio\s+pajak|faktur\s+pajak|e-?faktur|e-?bupot|e-?filing|e-?billing|\bspt\s+(?:tahunan|masa|pph|ppn)\b|lapor\s+spt|pelaporan\s+spt|\bnpwp\b|nik\s*(?:jadi|menjadi)?\s*npwp|\bppn\s*(?:\d{1,2}%|bm)?\b|\bppnbm\b|\bpph\s*(?:pasal\s*\d+|21|22|23|25|26|29|final|badan|orang\s+pribadi)?\b|pajak\s+(?:penghasilan|pertambahan\s+nilai|bumi\s+dan\s+bangunan|kendaraan|daerah|karbon|digital|kripto|natura|umkm|dividen|progresif|impor|ekspor|hiburan|warisan)|ter\s+pph|pengadilan\s+pajak|konsultan\s+pajak|fiskus|gijzeling|penyanderaan\s+pajak|sita\s+aset\s+pajak|keuangan\s+negara|\bapbn\b|defisit\s+apbn|surplus\s+apbn|penerimaan\s+negara|belanja\s+negara|utang\s+negara|\bpnbp\b|\bdjbc\b|bea\s+(?:dan\s+)?cukai|\bdja\b|\bdjppr\b|kemenkeu|kementerian\s+keuangan|\bmenkeu\b|menteri\s+keuangan|kebijakan\s+fiskal|surat\s+berharga\s+negara|\bsbn\b|\bpmk\s*(?:no\.?|nomor)?\s*\d+)/i,
   demo:/(\bdemo\b(?!\s*(aplikasi|game|produk|sistem|fitur|cara|tutorial|masak|memasak|kuliner|spesial|special))(?<!cooking demo|cooking\s+demo)|unjuk rasa|aksi massa|protes|mogok|kerusuhan|bentrok|pemogokan|long march|women'?s\s+march|international\s+women'?s\s+day|hari\s+buruh|buruh\s+sedunia|labour\s+day|labor\s+day)/i,
   fire:/(?:\b(?:kebakaran|karhutla|kebakaran hutan|kebakaran lahan|terbakar|kobaran api|asap tebal)\b)(?!\s+(?:jenggot|harga|promo|diskon|api amarah|api cemburu|api asmara|semangat))/i,
   flood:/(?:\bbanjir\b(?!\s*(?:serangan|siber|cyber|orderan|hadiah|promo|diskon|bonus|cuan|kritik|hujatan|komentar|aduan|laporan|pujian|ucapan|impor|produk|pemudik|turis|wisatawan|penonton|pelamar|pendaftar|peserta|air mata|gol))\b|banjir bandang|banjir rob|banjir lahar|banjir lumpur|banjir kiriman|terendam banjir|merendam pemukiman|genangan air|air meluap|tanggul jebol|tanah longsor|\blongsor\b(?!\s*(?:saham|suara|harga|ihsg|rupiah|kurs))\b|cuaca ekstrem|hujan deras|\brob\b|\bkebanjiran\b(?!\s*(?:orderan|hadiah|promo|diskon|bonus|cuan|kritik|hujatan|komentar|aduan|laporan|pujian|ucapan|impor|produk|pesan|chat|dm|keluhan|tamu|serangan|siber))\b)/i,
@@ -245,7 +430,7 @@ const CAT_RE = {
 };
 const CAT_SKIP = /(pascabencana|pascagempa|pascabanjir|mitigasi|kesiapsiagaan(?!\s*(?:pengamanan|aparat|pasukan|personel|polri|tni|demo|unjuk rasa|aksi))|potensi bencana|rawan bencana|risiko bencana|kajian risiko|simulasi|edukasi|sosialisasi|pelatihan|antisipasi(?!\s*(?:demo|unjuk rasa|aksi|massa|kerusuhan|bentrok|keamanan|pengamanan))|siaga bencana|hadapi bencana|menghadapi bencana|asuransi|operasi patuh|ranperda|perda|godok|dana bencana|modus|ruu|boikot dirinya|perang harga|perang dagang|joget|cooking demo|demo (masak|memasak|kuliner|spesial)|liga|top skor|voli|sepak bola|piala|kualifikasi|gaun|mahalini|fashion|film|sinema|bioskop|trailer|teaser|poster|nonton|netflix|zombie|mayat hidup|hantu|sekuel|layar lebar|sinetron|sinetrik|penghargaan|jasa raharja|warisan|turun-temurun|sepanjang 20\d\d|berdampak ke ekonomi)/i;
 
-const DOMAIN_CATS = ['siber', 'kesehatan', 'ekonomi', 'politik', 'kriminal'];
+const DOMAIN_CATS = ['pajak', 'siber', 'kesehatan', 'ekonomi', 'politik', 'kriminal'];
 const PHYSICAL_ACT = {
   flood: /(?:terendam|merendam|menggenang|menggenangi|tergenang|ketinggian\s+\d+|air\s+meluap|tanggul\s+jebol|banjir\s+bandang|banjir\s+rob|hujan\s+deras|luapan\s+air)/i,
   insiden: /(?:kecelakaan|tabrakan|tertabrak|menabrak|terguling|anjlok|pesawat\s+jatuh|kapal\s+(?:karam|tenggelam)|pohon\s+tumbang|jembatan\s+(?:ambruk|putus)|gedung\s+ambruk|atap\s+roboh|meledak\s+di|ledakan\s+tabung|ledakan\s+bom)/i,
@@ -259,13 +444,14 @@ const METAPHOR_DISASTER = {
   fire: /kebakaran\s+(?:jenggot|harga|promo|diskon)/i
 };
 const DOMAIN_ACTIVE_ACT = {
+  pajak: /(?:\bcoretax\b|core\s*tax|\bdjp\b|ditjen\s+pajak|direktorat\s+jenderal\s+pajak|faktur\s+pajak|e-?faktur|e-?bupot|lapor\s+spt|spt\s+tahunan|penerimaan\s+pajak|restitusi\s+pajak|pidana\s+pajak|tunggakan\s+pajak|pemeriksaan\s+pajak|penagihan\s+pajak|ppn\s*\d{1,2}%|pph\s*(?:pasal\s*\d+|21|22|23)|kanwil\s+djp|kpp\s+(?:pratama|madya)|keuangan\s+negara|\bapbn\b|penerimaan\s+negara|belanja\s+negara|\bpnbp\b|kemenkeu|kementerian\s+keuangan|\bmenkeu\b|bea\s+(?:dan\s+)?cukai|\bdjbc\b|kebijakan\s+fiskal)/i,
   siber: /(?:peretasan|peretas|diretas|dibajak|dibobol|hacker|ransomware|ddos|data\s+breach|kebocoran\s+data|bocor\s+data|serangan\s+siber|serangan\s+cyber|exploit|dieksploitasi|phishing|malware|vulnerabilit)/i,
   ekonomi: /(?:phk|rupiah\s+(?:melemah|anjlok)|ihsg\s+(?:anjlok|turun|terkoreksi)|inflasi|suku\s+bunga|kebijakan\s+tarif)/i,
   kesehatan: /(?:terjangkit|terinfeksi|tertular|positif|pasien|korban\s+keracunan|gejala|dilarikan\s+ke\s+rs)/i,
   politik: /(?:pilpres|pilkada|pelantikan|pemilu|sidang|reshuffle|perang|invasi|gencatan\s+senjata)/i,
   kriminal: /(?:ditembak|dibunuh|ditangkap|membunuh|merampok|tersangka|terorisme)/i
 };
-const CAT_PRECEDENCE = ['demo', 'fire', 'flood', 'disaster', 'siber', 'kesehatan', 'kriminal', 'ekonomi', 'politik', 'insiden'];
+const CAT_PRECEDENCE = ['demo', 'fire', 'flood', 'disaster', 'siber', 'pajak', 'kesehatan', 'kriminal', 'ekonomi', 'politik', 'insiden'];
 
 const resolveCategory = (ids, title) => {
   const candidates = new Set(ids);

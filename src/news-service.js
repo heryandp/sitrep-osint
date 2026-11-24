@@ -1,5 +1,7 @@
 'use strict';
 
+const PAJAK_CLUSTER = require('./pajak-cluster');
+
 function createNewsService({
   fs,
   path,
@@ -71,6 +73,22 @@ function createNewsService({
     ['TRIBUN BALI', 'https://bali.tribunnews.com/rss'],
     ['TRIBUN PAPUA', 'https://papua.tribunnews.com/rss'],
     ['RRI', 'https://rri.co.id/rss'],
+    ['DETIK FINANCE', 'https://finance.detik.com/rss'],
+    ['ANTARA EKONOMI', 'https://www.antaranews.com/rss/ekonomi.xml'],
+    ['ANTARA FINANSIAL', 'https://www.antaranews.com/rss/ekonomi-finansial.xml'],
+    ['CNN EKONOMI', 'https://www.cnnindonesia.com/ekonomi/rss'],
+    ['CNBC MARKET', 'https://www.cnbcindonesia.com/market/rss'],
+    ['KONTAN NASIONAL', 'https://nasional.kontan.co.id/rss'],
+    ['KONTAN KEUANGAN', 'https://keuangan.kontan.co.id/rss'],
+    ['TEMPO BISNIS', 'https://rss.tempo.co/bisnis'],
+    ['SINDO EKBIS', 'https://ekbis.sindonews.com/rss'],
+    ['IDX CHANNEL', 'https://www.idxchannel.com/rss'],
+    ['GNEWS · PAJAK', gn('pajak OR DJP OR "Direktorat Jenderal Pajak" OR "lapor SPT" OR "faktur pajak" OR "penerimaan pajak" OR "restitusi pajak" OR "pemeriksaan pajak" OR "pidana pajak" OR "Kanwil DJP"')],
+    ['GNEWS · CORETAX', gn('Coretax OR "Core Tax" OR "e-Faktur" OR "e-Bupot" OR "NPWP 16 digit" OR "gangguan Coretax" OR "error Coretax" OR "Kring Pajak"')],
+    ['GNEWS · DDTC ORTAX', gn('site:news.ddtc.co.id OR site:ortax.org OR site:pajak.go.id')],
+    ['GNEWS · KEMENKEU PAJAK', gn('site:kemenkeu.go.id OR site:hukumonline.com pajak')],
+    ['GNEWS · PIDANA PAJAK', gn('"pidana pajak" OR "pengadilan pajak" OR "faktur fiktif" OR "sita aset pajak" OR "PPATK pajak" OR "gijzeling" OR "penipuan pajak DJP"')],
+    ['GNEWS · FISKAL PAJAK', gn('"tax ratio" OR "UU HPP" OR "PMK pajak" OR "Komisi XI pajak" OR "insentif pajak" OR "Badan Penerimaan Negara" OR "tax amnesty"')],
     ['GNEWS · DEMO', gn('demo OR "unjuk rasa" OR "aksi massa"')],
     ['GNEWS · KEBAKARAN', gn('kebakaran OR karhutla OR "kebakaran hutan"')],
     ['GNEWS · BANJIR', gn('banjir OR longsor OR "tanah longsor" OR "banjir bandang" OR "cuaca ekstrem"')],
@@ -202,7 +220,7 @@ function createNewsService({
   const INCIDENT_RETAIN_MS = 48 * 3600e3;
   const INCIDENT_DISK_MAX = 2500;
   const INCIDENT_API_CAP = 1500;
-  const OPS_CATS = new Set(['demo', 'fire', 'flood', 'disaster', 'insiden', 'kriminal', 'kesehatan']);
+  const OPS_CATS = new Set(['pajak', 'demo', 'fire', 'flood', 'disaster', 'insiden', 'kriminal', 'kesehatan']);
   const incidentHistByEid = new Map();
   let newsHistDirty = false, newsHistSaveAt = 0, newsHistInflight = false;
   let incHistDirty = false, incHistSaveAt = 0, incHistInflight = false;
@@ -563,6 +581,7 @@ function createNewsService({
   const HEALTH_DZ = String.raw`wabah|\bklb\b|kejadian luar biasa|dbd|\bdhf\b|demam berdarah|covid|korona|influenza|\bflu\b|mpox|cacar monyet|campak|morbili|cacar air|tangan kaki mulut|hfmd|leptospirosis|tifus|thypoid|typhoid|kolera|rabies|gila anjing|anjing gila|anthrax|difteri|polio|meningitis|meningokokus|ensefalitis|chikungunya|cikungunya|zika|filariasis|kaki gajah|hepatitis|\bhiv\b|\baids\b|kusta|lepra|\bispa\b|pneumonia|bronkopneumonia|bronkitis|hmpv|human metapneumovirus|\brsv\b|\bmers\b|ebola|marburg|lassa|west nile|h5n1|avian influenza|\btbc\b|tuberkulosis|\btb\b|diare|disentri|scabies|kudis|keracunan|intoksikasi|rotavirus|flu burung|h1n1|malaria|salmonella|e\.?\s*coli|bakteri pangan`;
   const HEALTH_EVT = String.raw`gagal ginjal|gizi buruk|busung lapar|malnutrisi|donor darah|bank darah|transfusi darah|stok darah|obat palsu|talasemia|hemofilia|keracunan (?:massal|makanan|mbg|pangan|nasi|katering|gas|miras|hidrogen sulfida|karbon monoksida)?|miras oplosan|alkohol oplosan|oplosan maut|makanan (?:basi|beracun|kedaluwarsa|kadaluwarsa)|mual|muntah|dilarikan ke (?:rs|puskesmas|rumah sakit)|gejala keracunan|etilen glikol|dietilen glikol|cemaran obat|sirup beracun|obat sirup`;
   const CATS = [
+    { id:'pajak', label:'Pajak & Fiskal', sev:0.78, geo:true, re:/(?:\bcoretax\b|core\s*tax|\bdjp\b|ditjen\s+pajak|direktorat\s+jenderal\s+pajak|kring\s+pajak|kanwil\s+djp|\bkpp\s+(?:pratama|madya|wajib\s+pajak|khusus|bumn|pma)\b|kantor\s+pelayanan\s+pajak|perpajakan|wajib\s+pajak|penerimaan\s+pajak|setoran\s+pajak|tunggakan\s+pajak|restitusi\s+pajak|pemeriksaan\s+pajak|penagihan\s+pajak|pidana\s+pajak|pengemplang\s+pajak|pengampunan\s+pajak|tax\s+amnesty|tax\s+ratio|rasio\s+pajak|faktur\s+pajak|e-?faktur|e-?bupot|e-?filing|e-?billing|\bspt\s+(?:tahunan|masa|pph|ppn)\b|lapor\s+spt|pelaporan\s+spt|\bnpwp\b|nik\s*(?:jadi|menjadi)?\s*npwp|\bppn\s*(?:\d{1,2}%|bm)?\b|\bppnbm\b|\bpph\s*(?:pasal\s*\d+|21|22|23|25|26|29|final|badan|orang\s+pribadi)?\b|pajak\s+(?:penghasilan|pertambahan\s+nilai|bumi\s+dan\s+bangunan|kendaraan|daerah|karbon|digital|kripto|natura|umkm|dividen|progresif|impor|ekspor|hiburan|warisan)|ter\s+pph|pengadilan\s+pajak|konsultan\s+pajak|fiskus|gijzeling|penyanderaan\s+pajak|sita\s+aset\s+pajak|keuangan\s+negara|\bapbn\b|defisit\s+apbn|surplus\s+apbn|penerimaan\s+negara|belanja\s+negara|utang\s+negara|\bpnbp\b|\bdjbc\b|bea\s+(?:dan\s+)?cukai|\bdja\b|\bdjppr\b|kemenkeu|kementerian\s+keuangan|\bmenkeu\b|menteri\s+keuangan|kebijakan\s+fiskal|surat\s+berharga\s+negara|\bsbn\b|\bpmk\s*(?:no\.?|nomor)?\s*\d+)/i },
     { id:'demo', label:'Demo', sev:0.82, geo:true, re:/(\bdemo\b(?!\s*(aplikasi|game|produk|sistem|fitur|cara|tutorial|masak|memasak|kuliner|spesial|special))(?<!cooking demo|cooking\s+demo)|unjuk rasa|aksi massa|protes|mogok|kerusuhan|bentrok|long march|women'?s\s+march|international\s+women'?s\s+day|hari\s+buruh|buruh\s+sedunia|labour\s+day|labor\s+day)/i },
     { id:'fire', label:'Kebakaran', sev:0.96, geo:true, re:/(?:\b(?:kebakaran|karhutla|kebakaran hutan|kebakaran lahan|terbakar|kobaran api|asap tebal)\b)(?!\s+(?:jenggot|harga|promo|diskon|api amarah|api cemburu|api asmara|semangat))/i },
     { id:'flood', label:'Banjir', sev:0.86, geo:true, re:/(?:\bbanjir\b(?!\s*(?:serangan|siber|cyber|orderan|hadiah|promo|diskon|bonus|cuan|kritik|hujatan|komentar|aduan|laporan|pujian|ucapan|impor|produk|pemudik|turis|wisatawan|penonton|pelamar|pendaftar|peserta|air mata|gol))\b|banjir bandang|banjir rob|banjir lahar|banjir lumpur|banjir kiriman|terendam banjir|merendam pemukiman|genangan air|air meluap|tanggul jebol|tanah longsor|\blongsor\b(?!\s*(?:saham|suara|harga|ihsg|rupiah|kurs))\b|cuaca ekstrem|hujan deras|\brob\b|\bkebanjiran\b(?!\s*(?:orderan|hadiah|promo|diskon|bonus|cuan|kritik|hujatan|komentar|aduan|laporan|pujian|ucapan|impor|produk|pesan|chat|dm|keluhan|tamu|serangan|siber))\b)/i },
@@ -644,7 +663,7 @@ function createNewsService({
     return ASSESS.classifyScope(t, null).scope === 'foreign';
   };
 
-  const DOMAIN_CATS = ['siber', 'kesehatan', 'ekonomi', 'politik', 'kriminal'];
+  const DOMAIN_CATS = ['pajak', 'siber', 'kesehatan', 'ekonomi', 'politik', 'kriminal'];
   const PHYSICAL_ACT = {
     flood: /(?:terendam|merendam|menggenang|menggenangi|tergenang|ketinggian\s+\d+|air\s+meluap|tanggul\s+jebol|banjir\s+bandang|banjir\s+rob|hujan\s+deras|luapan\s+air)/i,
     insiden: /(?:kecelakaan|tabrakan|tertabrak|menabrak|terguling|anjlok|pesawat\s+jatuh|kapal\s+(?:karam|tenggelam)|pohon\s+tumbang|jembatan\s+(?:ambruk|putus)|gedung\s+ambruk|atap\s+roboh|meledak\s+di|ledakan\s+tabung|ledakan\s+bom)/i,
@@ -658,13 +677,14 @@ function createNewsService({
     fire: /kebakaran\s+(?:jenggot|harga|promo|diskon)/i
   };
   const DOMAIN_ACTIVE_ACT = {
+    pajak: /(?:\bcoretax\b|core\s*tax|\bdjp\b|ditjen\s+pajak|direktorat\s+jenderal\s+pajak|faktur\s+pajak|e-?faktur|e-?bupot|lapor\s+spt|spt\s+tahunan|penerimaan\s+pajak|restitusi\s+pajak|pidana\s+pajak|tunggakan\s+pajak|pemeriksaan\s+pajak|penagihan\s+pajak|ppn\s*\d{1,2}%|pph\s*(?:pasal\s*\d+|21|22|23)|kanwil\s+djp|kpp\s+(?:pratama|madya)|keuangan\s+negara|\bapbn\b|penerimaan\s+negara|belanja\s+negara|\bpnbp\b|kemenkeu|kementerian\s+keuangan|\bmenkeu\b|bea\s+(?:dan\s+)?cukai|\bdjbc\b|kebijakan\s+fiskal)/i,
     siber: /(?:peretasan|peretas|diretas|dibajak|dibobol|hacker|ransomware|ddos|data\s+breach|kebocoran\s+data|bocor\s+data|serangan\s+siber|serangan\s+cyber|exploit|dieksploitasi|phishing|malware|vulnerabilit)/i,
     ekonomi: /(?:phk|rupiah\s+(?:melemah|anjlok)|ihsg\s+(?:anjlok|turun|terkoreksi)|inflasi|suku\s+bunga|kebijakan\s+tarif)/i,
     kesehatan: /(?:terjangkit|terinfeksi|tertular|positif|pasien|korban\s+keracunan|gejala|dilarikan\s+ke\s+rs)/i,
     politik: /(?:pilpres|pilkada|pelantikan|pemilu|sidang|reshuffle|perang|invasi|gencatan\s+senjata)/i,
     kriminal: /(?:ditembak|dibunuh|ditangkap|membunuh|merampok|tersangka|terorisme)/i
   };
-  const CAT_PRECEDENCE = ['demo', 'fire', 'flood', 'disaster', 'siber', 'kesehatan', 'kriminal', 'ekonomi', 'politik', 'insiden'];
+  const CAT_PRECEDENCE = ['demo', 'fire', 'flood', 'disaster', 'siber', 'pajak', 'kesehatan', 'kriminal', 'ekonomi', 'politik', 'insiden'];
 
   function resolveCategory(ids, title) {
     const candidates = new Set(ids);
@@ -699,7 +719,7 @@ function createNewsService({
     a = a || assessNews(t);
     if (!a.topics.length) return '';
     if (SKIP_JUNK.test(t)) {
-      const isCrisisOrDemo = /(?:demo|unjuk rasa|aksi massa|protes|mogok|kerusuhan|bentrok|tsunami|gempa|erupsi|kebakaran|banjir|pengamanan|siagakan|siapkan)/i.test(t);
+      const isCrisisOrDemo = /(?:demo|unjuk rasa|aksi massa|protes|mogok|kerusuhan|bentrok|tsunami|gempa|erupsi|kebakaran|banjir|pengamanan|siagakan|siapkan|\bcoretax\b|core\s*tax|\bdjp\b|ditjen\s+pajak|direktorat\s+jenderal\s+pajak|kanwil\s+djp|faktur\s+pajak|e-?faktur|e-?bupot|lapor\s+spt|spt\s+tahunan|penerimaan\s+pajak|pidana\s+pajak|restitusi\s+pajak)/i.test(t);
       if (!isCrisisOrDemo) return '';
     }
     const NON_NEWS_TOPICS = new Set(['pendidikan', 'transport']);
@@ -747,7 +767,7 @@ function createNewsService({
     return run;
   }
 
-  const FEED_CAT = { demo:'demo', kebakaran:'fire', banjir:'flood', bencana:'disaster', insiden:'insiden', kriminal:'kriminal', kesehatan:'kesehatan', keracunan:'kesehatan', ekonomi:'ekonomi', politik:'politik', siber:'siber', lingkungan:'disaster' };
+  const FEED_CAT = { pajak:'pajak', coretax:'pajak', 'ddtc ortax':'pajak', 'kemenkeu pajak':'pajak', 'pidana pajak':'pajak', 'fiskal pajak':'pajak', demo:'demo', kebakaran:'fire', banjir:'flood', bencana:'disaster', insiden:'insiden', kriminal:'kriminal', kesehatan:'kesehatan', keracunan:'kesehatan', ekonomi:'ekonomi', politik:'politik', siber:'siber', lingkungan:'disaster' };
   const feedCatOf = id => FEED_CAT[String(id || '').toLowerCase().split('·').pop().trim()] || '';
 
   const hydrateFailedSources = (srcs, now = Date.now()) => srcs.map(s => {
@@ -790,14 +810,14 @@ function createNewsService({
         items.push({ ...it, assessment: projectAssessment(a), src: s.id, cat, label: meta.label, score: +(meta.sev * recency).toFixed(3), foreign: fr || undefined });
       }
     }
-    const ord = { demo: 0, fire: 1, flood: 2, disaster: 3, insiden: 4, kriminal: 5, kesehatan: 6 };
+    const ord = { pajak: 0, demo: 1, fire: 2, flood: 3, disaster: 4, insiden: 5, kriminal: 6, kesehatan: 7 };
     items.sort((a, b) => (ord[a.cat] ?? 9) - (ord[b.cat] ?? 9) || (b.ts || 0) - (a.ts || 0));
     const per = {}, ranked = [], sigs = [];
     const toks = s => new Set(breakNorm(s).split(' ').filter(w => w.length > 2));
     const jac = (a, b) => { let n = 0; for (const w of a) if (b.has(w)) n++; return n / (a.size + b.size - n); };
     for (const it of items) {
-      if (ranked.length >= 14) break;
-      const cap = it.cat === 'disaster' ? 4 : 3;
+      if (ranked.length >= 16) break;
+      const cap = it.cat === 'pajak' ? 5 : (it.cat === 'disaster' ? 4 : 3);
       if ((per[it.cat] || 0) >= cap) continue;
       const sig = toks(it.title);
       if (sigs.some(s => jac(s, sig) > 0.62)) continue;
@@ -1128,6 +1148,7 @@ function createNewsService({
             videos: (mHit && Array.isArray(mHit.videos) && mHit.videos.length) ? mHit.videos : undefined,
             canonicalUrl: (mHit && mHit.canonicalUrl) || (info && info.canon) || i.url,
             cat,
+            taxScope: cat === 'pajak' ? PAJAK_CLUSTER.classifyTaxScope((i.title || '') + ' ' + (i.desc || '') + ' ' + (s.id || '')) : undefined,
             place: pl ? pl.name : '',
             feedTopic: feedCatOf(s.id),
             assessment: projectNewsAssessment(a),

@@ -131,9 +131,10 @@ async function xLazy(q){
   } catch (e) {}
 }
 let socStats = {}, socBoth = [], socTrends = new Map();
-const TOPIC_LABEL = { phk:'PHK', ihsg:'IHSG', bssn:'BSSN', bbm:'BBM', mbg:'MBG', ransomware:'Ransomware' };
+const TOPIC_LABEL = { coretax:'Coretax', pajak:'Pajak · DJP', phk:'PHK', ihsg:'IHSG', bssn:'BSSN', bbm:'BBM', mbg:'MBG', ransomware:'Ransomware' };
 const topicLabel = q => TOPIC_LABEL[q] || String(q).replace(/(^|\s)(\S)/g, (m, a, b) => a + b.toUpperCase());
 const TOPIC_COLOR_MAP = {
+  coretax:'#22d3ee', pajak:'#22d3ee', djp:'#22d3ee',
   demo:'#f1c21b', politik:'#6ea8fe', pemilu:'#6ea8fe', prabowo:'#6ea8fe', gibran:'#6ea8fe',
   banjir:'#4589ff', karhutla:'#ff4d4f', kebakaran:'#ff4d4f', gempa:'#ff5a4e', tsunami:'#4589ff',
   longsor:'#be95ff', erupsi:'#ff9f0a', gunung:'#ff9f0a', cuaca:'#38bdf8', kecelakaan:'#ff9f43',
@@ -166,8 +167,11 @@ function qchipsHtml(queries, trending, active, me, other){
   const tr = trending || [];
   const all = [...new Set(queries || [])];
   const vis = all.filter(q => socCountFor(q, me) > 0);
-  const hot = vis.filter(q => tr.includes(q)).sort((a, b) => tr.indexOf(a) - tr.indexOf(b));
-  const restActive = vis.filter(q => !tr.includes(q)).sort((a, b) => socCountFor(b, me) - socCountFor(a, me));
+  const DJP_PIN = ['coretax', 'pajak'];
+  const pinOrder = q => { const i = DJP_PIN.indexOf(q); return i >= 0 ? i : 99; };
+  const hot = vis.filter(q => tr.includes(q) || DJP_PIN.includes(q))
+    .sort((a, b) => (pinOrder(a) - pinOrder(b)) || ((tr.includes(a) ? tr.indexOf(a) : 999) - (tr.includes(b) ? tr.indexOf(b) : 999)));
+  const restActive = vis.filter(q => !tr.includes(q) && !DJP_PIN.includes(q)).sort((a, b) => socCountFor(b, me) - socCountFor(a, me));
 
   const panel = (q, idx, isHot) => {
     const nx = socCountFor(q, 'x'), nt = socCountFor(q, 'th');
@@ -267,6 +271,14 @@ function renderX(){
   const list = xPosts.filter(p =>
     (!xQuery || xMatchQ(p, xQuery)) &&
     (!q || ((p.text || '') + ' ' + (p.handle || '') + ' ' + (p.name || '')).toLowerCase().includes(q)));
+  if (!xQuery && !q) {
+    const cut = Date.now() - 8 * 3600e3;
+    const isPajakPost = p => {
+      const tps = p && p.assessment && p.assessment.version === SitrepSignals.VERSION ? (p.assessment.topics || []) : [];
+      return (tps.includes('coretax') || tps.includes('pajak')) && (p.ts || 0) >= cut;
+    };
+    list.sort((a, b) => (isPajakPost(b) ? 1 : 0) - (isPajakPost(a) ? 1 : 0) || (b.ts || 0) - (a.ts || 0));
+  }
   if ($('#xmeta')) $('#xmeta').textContent = list.length + ' post';
   const page = list.slice(0, xShown);
   const xWait = API != null && !xPosts.length && (xCold || (xErrStreak < 3 && xEmptyStreak < 3));
@@ -302,7 +314,7 @@ $('#qchips').addEventListener('click', e => {
 });
 $('#xq').addEventListener('input', debounce(() => { xShown = 30; renderX(); }, 140));
 
-let tPosts = [], tAt = 0, tBusy = false, socTab = 'x';
+let tPosts = [], tAt = 0, tBusy = false, socTab = 'threads';
 let tQuery = '', tQueries = [], tTrending = [], tErrs = [], tNewestTs = 0;
 const tAll = new Map(); let tShown = 30;
 let tCold = false, tEmptyStreak = 0, tErrStreak = 0, tLastErr = '';
@@ -363,6 +375,15 @@ function renderThreads(){
   const list = tPosts.filter(p =>
     (!tQuery || tMatchQ(p, tQuery)) &&
     (!q || ((p.text || '') + ' ' + (p.username || '') + ' ' + (p.full_name || '')).toLowerCase().includes(q)));
+  if (!tQuery && !q) {
+    const cut = Date.now() - 8 * 3600e3;
+    const isPajakTh = p => {
+      const tps = p && p.assessment && p.assessment.version === SitrepSignals.VERSION ? (p.assessment.topics || []) : [];
+      const ts = p.ts || Date.parse(p.created_at || '') || 0;
+      return (tps.includes('coretax') || tps.includes('pajak')) && ts >= cut;
+    };
+    list.sort((a, b) => (isPajakTh(b) ? 1 : 0) - (isPajakTh(a) ? 1 : 0) || ((b.ts || Date.parse(b.created_at || '') || 0) - (a.ts || Date.parse(a.created_at || '') || 0)));
+  }
 
   const tNew = tNewestTs > 0 ? tNewestTs
     : Math.max(0, ...tPosts.map(p => p.ts || Date.parse(p.created_at || '') || 0));

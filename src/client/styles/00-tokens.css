@@ -2,8 +2,9 @@
 :root{
   --bg:#161616; --layer:#1f1f1f; --layer2:#262626; --field:#262626;
   --border:#333333; --border2:#525252;
-  --text:#EFECE6; --text2:#c6c6c6; --text3:#d6d3cb85;
+  --text:#EFECE6; --text2:#c6c6c6; --text3:#a19e96;
   --accent:#da1e28; --ok:#42be65; --warn:#f1c21b; --info:#4589ff;
+  --focus:#22d3ee;
   --sans:"Plus Jakarta Sans",ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   --disp:"Bricolage Grotesque","Plus Jakarta Sans",ui-sans-serif,system-ui,sans-serif;
@@ -20,10 +21,22 @@ body{
   font-synthesis-weight:none;
 }
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;border-radius:0;-webkit-tap-highlight-color:transparent}
+button:disabled,[aria-disabled="true"]{cursor:not-allowed;opacity:.55}
 a{color:inherit;text-decoration:none;text-underline-offset:2px}
+a[href],[role="button"]:not([aria-disabled="true"]),summary,select{cursor:pointer}
 ::selection{background:var(--accent);color:#fff}
 :focus{outline:none}
-:focus-visible{outline:1px solid rgba(255,255,255,.28);outline-offset:-1px}
+:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+.skip-link{
+  position:fixed;top:-48px;left:10px;z-index:999;padding:8px 12px;
+  background:var(--bg);color:var(--text);border:2px solid var(--focus);
+  font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;
+}
+.skip-link:focus-visible{top:8px}
 .mono{font-family:var(--mono)}
 [hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){
+  .dot::after,.hstat-live .dot,.mark-ret .crn.hot,.geo-live,.pj-live i,.tv-live i,.flow-dot,.mk-rip,.mk-quake,.tapetrack,.hdr-sync .sync-rail::before{animation:none!important}
+  *,*::before,*::after{scroll-behavior:auto!important}
+}
 

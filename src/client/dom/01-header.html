@@ -1,10 +1,33 @@
+<div class="splash" id="splash" role="status" aria-live="polite" aria-label="Memuat SITREP DJP OSINT Console">
+  <div class="spl-stage">
+    <div class="spl-ring" aria-hidden="true"></div>
+    <div class="spl-crest">
+      <img class="spl-logo" src="https://www.pajak.go.id/media/logo-djp-warna-d8d4818f?w=1024&amp;q=75" width="160" height="60" alt="Direktorat Jenderal Pajak" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='logo-djp.svg';}">
+    </div>
+    <div class="spl-rule" aria-hidden="true"></div>
+    <div class="spl-brand">
+      <span class="spl-k">SITREP</span>
+      <span class="spl-sep" aria-hidden="true">//</span>
+      <span class="spl-sub">DJP OSINT · IDN</span>
+    </div>
+    <div class="spl-desc">Konsol Situasi Perpajakan &amp; Nasional · Modified by Lantai10</div>
+    <div class="spl-rail" aria-hidden="true"><i id="spl-bar"></i></div>
+    <div class="spl-meta">
+      <span id="spl-status">Menyiapkan konsol…</span>
+      <button class="spl-skip" id="spl-skip" type="button">Lewati</button>
+    </div>
+  </div>
+</div>
+<a class="skip-link" href="#main-console">Lewati ke konten utama</a>
 <header class="hdr" data-bc="a">
   <div class="brand">
     <span class="mark">
-      <svg class="mark-ret" viewBox="0 0 16 16" aria-hidden="true"><circle class="crn" cx="3" cy="3" r="1.3"/><circle class="crn" cx="13" cy="3" r="1.3"/><circle class="crn" cx="3" cy="13" r="1.3"/><circle class="crn" cx="13" cy="13" r="1.3"/><circle class="crn hot" cx="8" cy="8" r="1.6"/></svg>
+      <span class="mark-logo-wrap">
+        <img class="mark-logo" src="https://www.pajak.go.id/media/logo-djp-warna-d8d4818f?w=1024&amp;q=75" width="64" height="24" alt="Direktorat Jenderal Pajak" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='logo-djp.svg';}">
+      </span>
       <span class="mark-stack">
         <span class="mark-tx">SITREP</span>
-        <span class="brand-tag">OSINT // IDN</span>
+        <span class="brand-tag">DJP OSINT // IDN</span>
       </span>
     </span>
     <span class="brand-case">
@@ -32,6 +55,17 @@
     </span>
   </div>
   <div class="hdr-tools">
+    <div class="hdr-theme" id="theme-switch" role="group" aria-label="Mode tampilan" data-mode="night">
+      <button class="hdr-th-btn" type="button" data-theme-opt="night" aria-pressed="true" title="Mode Night (Shift+L)">
+        <svg class="ic" aria-hidden="true"><use href="#i-moon"></use></svg>
+        <span class="th-tx">Night</span>
+      </button>
+      <span class="hdr-th-sep" aria-hidden="true"></span>
+      <button class="hdr-th-btn" type="button" data-theme-opt="light" aria-pressed="false" title="Mode Light (Shift+L)">
+        <svg class="ic" aria-hidden="true"><use href="#i-sun"></use></svg>
+        <span class="th-tx">Light</span>
+      </button>
+    </div>
     <div class="hdr-dock">
       <span class="hstat hstat-live"><i class="dot"></i>Live</span>
       <span class="hdr-dock-sep" aria-hidden="true"></span>

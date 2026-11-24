@@ -1271,11 +1271,14 @@ addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     if (!$('#lightbox').hidden) { closeLightbox(); return; }
     if (rdOn) { rdClose(); return; }
+    if (typeof pjOpen !== 'undefined' && pjOpen && typeof closePajakWindow === 'function') { closePajakWindow(); return; }
     if ($('#mapwrap').classList.contains('on')) { closeMap(); return; }
     if (tvOn) { tvClose(); return; }
   }
   if (e.key === '/' && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) { e.preventDefault(); fltSet(true, true); }
   if ((e.key === 'r' || e.key === 'R') && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) refreshAll(true);
+  if (e.shiftKey && (e.key === 'l' || e.key === 'L') && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName) && typeof toggleTheme === 'function') { e.preventDefault(); toggleTheme(); }
+  if (e.shiftKey && (e.key === 'p' || e.key === 'P') && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName) && typeof togglePajakWindow === 'function') { e.preventDefault(); togglePajakWindow(); }
 });
 async function pullAlive(){
   if (API == null) return;

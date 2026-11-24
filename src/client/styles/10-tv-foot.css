@@ -148,4 +148,13 @@
 .foot .sp{margin-left:auto;overflow:hidden;text-overflow:ellipsis}
 .foot .fb-mark{font-weight:600;letter-spacing:.28em;color:var(--text2)}
 .foot .fb-sep{font-style:normal;color:var(--text3);opacity:.55;padding:0 12px;letter-spacing:0}
+.foot-attr{
+  display:inline-flex;align-items:center;min-width:0;overflow:hidden;text-overflow:ellipsis;
+  margin-left:8px;padding-left:14px;border-left:1px solid var(--border);
+  text-transform:none;letter-spacing:.02em;color:var(--text3);
+}
+.foot-attr .fb-sep{padding:0 7px}
+.foot-src{color:var(--text2);text-decoration:underline;text-decoration-color:rgba(239,236,230,.32);text-underline-offset:2px}
+.foot-src:hover{color:#22d3ee;text-decoration-color:#22d3ee}
+.foot-mod b{color:var(--text);font-weight:600}
 

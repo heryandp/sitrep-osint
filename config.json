@@ -34,7 +34,13 @@
     "siar.us",
     "dens.tv"
   ],
-  "threads": {},
+  "threads": {
+    "watch": [
+      "ditjenpajakri",
+      "kemenkeuri",
+      "infobmkg"
+    ]
+  },
   "tomtom": {},
   "_note": "Topik sosial (X + Threads) ada di social.js (SOC_TOPICS). Satu registry, bukan daftar query per platform."
 }

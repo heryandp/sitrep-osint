@@ -146,6 +146,9 @@ LM('monas', 'Monas', -6.1754, 106.8272, /(?:^| )(?:monas|patung kuda|medan merde
 LM('mk', 'Mahkamah Konstitusi', -6.1751, 106.8228, /(?:^| )(?:gedung mk|mahkamah konstitusi)(?= |$)/);
 LM('kpk', 'Gedung KPK', -6.2115, 106.8315, /(?:^| )(?:gedung kpk|kantor kpk|kpk ri)(?= |$)/);
 LM('kpu', 'KPU RI', -6.1994, 106.8322, /(?:^| )(?:gedung kpu|kantor kpu|kpu ri)(?= |$)/);
+LM('djp-pusat', 'Kantor Pusat DJP', -6.2297, 106.8174, /(?:^| )(?:kantor pusat djp|gedung djp|kantor djp|ditjen pajak|direktorat jenderal pajak|kring pajak)(?= |$)/);
+LM('kemenkeu', 'Kementerian Keuangan', -6.1695, 106.8364, /(?:^| )(?:gedung kemenkeu|kantor kemenkeu|kementerian keuangan|kemenkeu)(?= |$)/);
+LM('pengadilan-pajak', 'Pengadilan Pajak', -6.1712, 106.8359, /(?:^| )(?:pengadilan pajak|sekretariat pengadilan pajak)(?= |$)/);
 POI.push({ re: /(?:^| )pelaga(?= |$)/, e: { id: 'pelaga', level: 'poi', name: 'Pelaga, Badung', la: -8.2918, lo: 115.2127, prov: 'Bali', prec: 'poi' } });
 
 const CITY = [];

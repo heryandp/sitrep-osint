@@ -3,9 +3,11 @@
 const GEO = require('./geocode');
 const NLP = require('./indonesian-nlp');
 
-const VERSION = '2026-11-13.1';
+const VERSION = '2026-11-23.1';
 
 const CATEGORY = {
+  coretax: 'pajak',
+  pajak: 'pajak',
   demo: 'demo',
   kebakaran: 'fire',
   karhutla: 'fire',
@@ -109,16 +111,18 @@ function classifyScope(span, target) {
 }
 
 function concreteTarget(span, category) {
-  if (category !== 'siber' && category !== 'ekonomi' && category !== 'politik' && category !== 'kesehatan') return null;
+  if (category !== 'pajak' && category !== 'siber' && category !== 'ekonomi' && category !== 'politik' && category !== 'kesehatan') return null;
   const known = span.match(LOCAL_ORG);
   if (known) return known[0].toUpperCase();
   const enGov = span.match(/\b(?:[Ii]ndonesia['’]?s\s+)?(?:[Vv]ice[- ]?[Pp]resident|[Pp]resident|[Mm]inister|[Gg]overnment|[Pp]arliament)\b/);
   if (enGov) return enGov[0].toUpperCase();
-  const m = span.match(/\b(?:[Ss]erver|[Jj]aringan|[Ss]istem|[Ss]itus|[Ww]ebsite|[Ll]ayanan|[Aa]kun|[Pp]abrik|[Pp]erusahaan|[Rr]umah\s+[Ss]akit|[Rr][Ss][Uu]?[Dd]?|[Pp]uskesmas|[Kk]linik|[Ss][Pp][Pp][Gg]|[Bb]adan\s+[Gg]izi\s+[Nn]asional|[Kk]omdigi|[Kk]ominfo)\s+((?:[A-Z][\w.-]*)(?:\s+[A-Z][\w.-]*){0,3})\b/);
+  const m = span.match(/\b(?:[Ss]erver|[Jj]aringan|[Ss]istem|[Ss]itus|[Ww]ebsite|[Ll]ayanan|[Aa]kun|[Pp]abrik|[Pp]erusahaan|[Rr]umah\s+[Ss]akit|[Rr][Ss][Uu]?[Dd]?|[Pp]uskesmas|[Kk]linik|[Ss][Pp][Pp][Gg]|[Bb]adan\s+[Gg]izi\s+[Nn]asional|[Kk]omdigi|[Kk]ominfo|[Kk]anwil\s+[Dd][Jj][Pp]|[Kk][Pp][Pp]\s+(?:[Pp]ratama|[Mm]adya|[Kk]husus))\s+((?:[A-Z][\w.-]*)(?:\s+[A-Z][\w.-]*){0,3})\b/);
   return m ? m[1] : null;
 }
 
 function eventType(topic, span) {
+  if (topic === 'coretax') return /error|eror|down|gangguan|gagal|lemot|lambat|timeout|crash|bug|lumpuh|kendala|trouble/i.test(span) ? 'coretax_outage' : 'tax_system';
+  if (topic === 'pajak') return /pidana|korupsi|suap|ott|penggelapan|faktur\s+fiktif|penipuan|phishing|sita|gijzeling|penyanderaan/i.test(span) ? 'tax_enforcement' : 'tax_policy';
   if (topic === 'insiden') return /tenggelam|karam/i.test(span) ? 'maritime_accident' : /ambruk|runtuh/i.test(span) ? 'collapse' : /pohon tumbang/i.test(span) ? 'tree_fall' : 'accident';
   if (topic === 'kriminal') return /narkoba/i.test(span) ? 'narcotics' : /pembunuhan|dibunuh/i.test(span) ? 'homicide' : 'violent_crime';
   if (topic === 'kesehatan' || topic === 'wabah') return 'health_incident';
@@ -142,6 +146,8 @@ function isReport(topic, span, location, target, nlpClause) {
   if (hasNlpStrong && identity) return true;
 
   switch (topic) {
+    case 'coretax': return identity && /coretax|core\s*tax|e-?faktur|e-?bupot|faktur\s+pajak|npwp|spt|djp/i.test(span) && /error|eror|down|gangguan|gagal|lemot|lambat|timeout|crash|bug|lumpuh|kendala|trouble|login|otp|akses|bisa|tidak\s+bisa|gabisa|maintenance|pemeliharaan|update|perbaikan|rilis|implementasi|penerapan|migrasi|aktivasi|terbitkan|upload|unduh|antre|keluh|phishing|penipuan|palsu|resmi|imbau|tegas|capai|tumbuh|realisasi/i.test(span);
+    case 'pajak': return identity && /pajak|djp|ditjen\s+pajak|direktorat\s+jenderal\s+pajak|kpp|kanwil\s+djp|kring\s+pajak|spt|npwp|ppn|pph|faktur\s+pajak|fiskus/i.test(span) && /penerimaan|realisasi|target|raup|capai|tembus|tumbuh|setoran|restitusi|pemeriksaan|penagihan|tunggakan|sita|dirampas|perampasan|gijzeling|penyanderaan|pidana|penggelapan|pengemplang|faktur\s+fiktif|korupsi|suap|\bott\b|ditangkap|tersangka|penipuan|phishing|apk\s+palsu|modus|imbau|tegas|bantah|klarifikasi|tarif|kenaikan|naik|turun|insentif|diskon|bebas|pembebasan|aturan|pmk|uu|peraturan|kebijakan|lapor|pelaporan|batas\s+waktu|denda|sanksi|demo|protes|tolak|gangguan|error|eror|down|antre|keluhan|sosialisasi|sinergi/i.test(span);
     case 'kriminal': return identity && EVENT_ACTION.test(span);
     case 'kesehatan': return identity && (/kasus|pasien|terjangkit|keracunan|wabah|\bklb\b|kejadian luar biasa|meninggal|tewas|korban|dirawat|terinfeksi|dilarikan|intoksikasi/i.test(span) || (/(?:mual|muntah)/i.test(span) && /(?:massal|keracunan|makanan|mbg|dilarikan|rumah\s+sakit|\brs\b|puskesmas|korban|banyak\s+orang|warga)/i.test(span)));
     case 'insiden': return identity && EVENT_ACTION.test(span) && /(?:jembatan|gedung|bangunan|atap|plafon|rumah|dinding|konstruksi|tembok|jalan|tebing|tower|tiang|kapal|perahu|sampan|tongkang|speedboat|dermaga|pohon|orang|bocah|anak|korban|warga|penumpang)\b/i.test(span) && !/(?:hati|jiwa|perasaan|senyuman|cinta|asmara)\b/i.test(span);

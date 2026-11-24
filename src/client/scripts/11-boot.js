@@ -76,14 +76,19 @@ if (!tvOn) tvOpen(true);
 
 (async () => {
   await detectApi();
+  if (typeof splashStep === 'function') splashStep(0.74, 'Sinkronisasi 67 sumber & peta…', false);
   drawCityBar(); renderCams();
   renderAllQchips();
   renderCatbar();
+  if (typeof initAllHScrolls === 'function') initAllHScrolls();
   sitInitMap();
   paintBreak();
 
   trackBg(pullDisaster().then(() => drawGlobe(performance.now())).catch(() => {}));
   pullBreaking();
+  if (typeof pullPajakClusters === 'function') trackBg(pullPajakClusters(false).catch(() => {}));
+  if (typeof pullDjpUptime === 'function') trackBg(pullDjpUptime(false).catch(() => {}));
   if (layerOn.peringatan) trackBg(pullAlerts().catch(() => {}));
   refreshAll(false);
+  if (typeof splashStep === 'function') splashStep(1, 'Konsol siap', true);
 })();

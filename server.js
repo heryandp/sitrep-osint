@@ -13,7 +13,11 @@ const COPERNICUS = require('./src/copernicus');
 const XPOOL = require('./src/xpool');
 const GEO = require('./src/geocode');
 const EVM = require('./src/evmerge');
-const http = require('http'), fs = require('fs'), path = require('path'), crypto = require('crypto'), zlib = require('zlib');
+const PAJAK_CLUSTER = require('./src/pajak-cluster');
+const EXA_SUMMARY = require('./src/exa-summary');
+const UPTIME = require('./src/uptime-service');
+const http = require('http'), fs = require('fs'), path = require('path'), crypto = require('crypto'), zlib = require('zlib'), net = require('net');
+try { if (typeof net.setDefaultAutoSelectFamilyAttemptTimeout === 'function') net.setDefaultAutoSelectFamilyAttemptTimeout(2500); } catch (e) {}
 
 try {
   const envPath = path.join(__dirname, '.env');
@@ -737,6 +741,17 @@ const copernicus = COPERNICUS.createCopernicusProxy({
   fetchFn: get,
 });
 
+const exaSummary = EXA_SUMMARY.createExaSummaryService({
+  histDir: HIST_DIR,
+  fetchFn: (url, opt, ms) => get(url, opt, ms),
+  persist: require.main === module || Boolean(process.env.SITREP_DATA_DIR),
+});
+
+const djpUptime = UPTIME.createUptimeService({
+  fetchFn: (url, opt, ms) => get(url, opt, ms),
+  ttlMs: 90000,
+});
+
 const VERSIONED_JS_FILES = ['signals.js', 'wxicons.js', 'wire-core.js', 'cctv-core.js'];
 const STATIC_FILES = {
   '/signals.js': ['signals.js', 'application/javascript; charset=utf-8', 'no-cache'],
@@ -748,6 +763,7 @@ const STATIC_FILES = {
   '/idn-prov.geo.json': ['idn-prov.geo.json', 'application/json', 'public, max-age=3600'],
   '/world110.geo.json': ['world110.geo.json', 'application/json', 'public, max-age=3600'],
   '/favicon.svg': ['favicon.svg', 'image/svg+xml', 'public, max-age=86400'],
+  '/logo-djp.svg': ['logo-djp.svg', 'image/svg+xml', 'public, max-age=86400'],
   '/': ['index.html', 'text/html; charset=utf-8', 'no-cache'],
   '/index.html': ['index.html', 'text/html; charset=utf-8', 'no-cache']
 };
@@ -1091,7 +1107,7 @@ const SITREP_SERVER = http.createServer(async (req, res) => {
         return json({ ok: false, err: AUTH.userMode ? 'autentikasi diperlukan' : 'token tidak valid' }, AUTH.userMode ? 401 : 403);
       }
       const isHeavy = u.pathname === '/img' || u.pathname === '/hls' || u.pathname === '/vhs' ||
-        u.pathname === '/api/thumb' || u.pathname === '/api/read' || u.pathname.startsWith('/api/copernicus/tile/') || Boolean(u.searchParams.get('fresh'));
+        u.pathname === '/api/thumb' || u.pathname === '/api/read' || u.pathname === '/api/pajak/summarize' || u.pathname === '/api/pajak/brief' || u.pathname.startsWith('/api/copernicus/tile/') || Boolean(u.searchParams.get('fresh'));
       const cacheKeyFn = !isHeavy && (req.method === 'GET' || req.method === 'HEAD') ? CACHE_ROUTE_KEY[u.pathname] : null;
       const warmHit = cacheKeyFn ? bodyCache.get(cacheKeyFn(u)) : null;
       const warmCacheRule = (warmHit && Date.now() - warmHit.at < 30000) ? { limit: 3600, windowMs: 60000 } : undefined;
@@ -1397,6 +1413,90 @@ const SITREP_SERVER = http.createServer(async (req, res) => {
       const sitData = await situation();
       const hasSit = Boolean(sitData && sitData.total > 0);
       return json(sitData, 200, 'situation', hasSit ? 12000 : 2500, hasSit ? sitCC : pubCC(2, 5, 0));
+    }
+    if (u.pathname === '/api/pajak/clusters') {
+      const pjCC = pubCC(15, 45, 5);
+      const win = ['24h', 'today', '2h'].includes(u.searchParams.get('win')) ? u.searchParams.get('win') : '24h';
+      const themeParam = String(u.searchParams.get('theme') || '').toLowerCase();
+      const theme = PAJAK_CLUSTER.THEME_BY_ID[themeParam] ? themeParam : '';
+      const scopeParam = String(u.searchParams.get('scope') || '').toLowerCase();
+      const scope = (scopeParam === 'nasional' || scopeParam === 'daerah') ? scopeParam : '';
+      const bKey = 'pajak:clusters:' + win + ':' + (theme || 'all') + ':' + (scope || 'all');
+      if (u.searchParams.get('fresh')) {
+        if (!AUTH.hasRole(principal, 'operator')) return json({ ok: false, err: 'akses ditolak (butuh role operator)' }, 403);
+        await refreshNewsNow();
+        for (const k of [...bodyCache.keys()]) if (k.startsWith('pajak:clusters:')) bodyCache.delete(k);
+      }
+      if (sendCached(bKey, 12000, 200, pjCC)) return;
+      const srcs = await news();
+      const newsItems = [];
+      for (const s of (srcs || [])) {
+        if (!s || !Array.isArray(s.items)) continue;
+        for (const it of s.items) newsItems.push({ ...it, src: it.src || s.id });
+      }
+      if (newsHistByFeed && typeof newsHistByFeed.values === 'function') {
+        for (const bucket of newsHistByFeed.values()) {
+          if (bucket && typeof bucket.values === 'function') {
+            for (const it of bucket.values()) newsItems.push(it);
+          }
+        }
+      }
+      const socialPosts = [...xHist.values()].map(p => ({ ...p, from: 'X' }))
+        .concat([...tHist.values()].map(p => ({ ...p, from: 'Threads' })));
+      const payload = PAJAK_CLUSTER.buildPajakClusters({ newsItems, socialPosts, now: Date.now(), win, theme, scope });
+      const hasData = payload.totalItems > 0;
+      return json(payload, 200, bKey, hasData ? 12000 : 2500, hasData ? pjCC : pubCC(2, 5, 0));
+    }
+    if (u.pathname === '/api/exa/status') {
+      return json(exaSummary.status(), 200, '', 0, 'no-store');
+    }
+    if (u.pathname === '/api/pajak/uptime') {
+      const fresh = Boolean(u.searchParams.get('fresh'));
+      if (fresh && !AUTH.hasRole(principal, 'operator')) return json({ ok: false, err: 'akses ditolak (butuh role operator)' }, 403);
+      const data = await djpUptime.checkAll(fresh);
+      return json(data, 200, '', 0, pubCC(30, 90, 10));
+    }
+    if (u.pathname === '/api/pajak/summarize' && req.method === 'POST') {
+      let body;
+      try { body = await readJsonBody(req, 16384); }
+      catch (e) { return json({ ok: false, err: e.message === 'body terlalu besar' ? 'payload terlalu besar' : 'payload JSON tidak valid' }, e.message === 'body terlalu besar' ? 413 : 400); }
+      const url = typeof body?.url === 'string' ? body.url.trim().slice(0, 1200) : '';
+      const urls = Array.isArray(body?.urls) ? body.urls.filter(x => typeof x === 'string').map(x => x.trim().slice(0, 1200)).slice(0, 5) : [];
+      const title = typeof body?.title === 'string' ? body.title.trim().slice(0, 400) : '';
+      const desc = typeof body?.desc === 'string' ? body.desc.trim().slice(0, 1200) : '';
+      const themeLabel = typeof body?.themeLabel === 'string' ? body.themeLabel.trim().slice(0, 80) : '';
+      const clusterId = typeof body?.clusterId === 'string' ? body.clusterId.trim().slice(0, 120) : '';
+      if (!url && !urls.length && !title) return json({ ok: false, err: 'url atau title wajib diisi' }, 400);
+      const result = await exaSummary.summarize({ url, urls, title, desc, themeLabel, clusterId });
+      return json(result, 200, '', 0, 'no-store');
+    }
+    if (u.pathname === '/api/pajak/brief' && req.method === 'POST') {
+      let body = {};
+      try { body = await readJsonBody(req, 8192); }
+      catch (e) { return json({ ok: false, err: e.message === 'body terlalu besar' ? 'payload terlalu besar' : 'payload JSON tidak valid' }, e.message === 'body terlalu besar' ? 413 : 400); }
+      const win = ['24h', 'today', '2h'].includes(body?.win) ? body.win : '24h';
+      const themeParam = String(body?.theme || '').toLowerCase();
+      const theme = PAJAK_CLUSTER.THEME_BY_ID[themeParam] ? themeParam : '';
+      const scopeParam = String(body?.scope || 'nasional').toLowerCase();
+      const scope = (scopeParam === 'nasional' || scopeParam === 'daerah') ? scopeParam : '';
+      const srcs = await news();
+      const newsItems = [];
+      for (const s of (srcs || [])) {
+        if (!s || !Array.isArray(s.items)) continue;
+        for (const it of s.items) newsItems.push({ ...it, src: it.src || s.id });
+      }
+      if (newsHistByFeed && typeof newsHistByFeed.values === 'function') {
+        for (const bucket of newsHistByFeed.values()) {
+          if (bucket && typeof bucket.values === 'function') {
+            for (const it of bucket.values()) newsItems.push(it);
+          }
+        }
+      }
+      const socialPosts = [...xHist.values()].map(p => ({ ...p, from: 'X' }))
+        .concat([...tHist.values()].map(p => ({ ...p, from: 'Threads' })));
+      const clPayload = PAJAK_CLUSTER.buildPajakClusters({ newsItems, socialPosts, now: Date.now(), win, theme, scope });
+      const brief = await exaSummary.executiveBrief({ clusters: clPayload.clusters || [], win, scope: scope || 'all', theme });
+      return json(brief, 200, '', 0, 'no-store');
     }
     if (u.pathname === '/api/market') {
       const mktCC = pubCC(15, 45, 5);
@@ -1804,6 +1904,10 @@ if (require.main === module) {
       });
       SEC.runIsolated('disasterWarm', async () => { const r = await disaster(); if (r) prewarmJson('disaster', r); });
       SEC.runIsolated('marketWarm', async () => { const r = await market(); if (r) prewarmJson('market', r); });
+      SEC.runIsolated('uptimeWarm', async () => {
+        const r = await djpUptime.checkAll(false);
+        if (r) console.log('Uptime warm: ' + r.upCount + '/' + r.total + ' up' + (r.downCount ? ' (' + r.downCount + ' down)' : ''));
+      });
       SEC.runIsolated('cctvCatalogWarm', async () => {
         const cat = await cctvCatalog().catch(() => null);
         if (cat && !cat.warming) prewarmJson('cctv', cat);

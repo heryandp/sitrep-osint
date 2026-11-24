@@ -35,8 +35,9 @@ function buildClusters(){
     if (it.src) target.sources.add(it.src);
   }
   return groups.sort((a, b) => {
-    const w = g => Math.max(...g.items.map(x => x.weight || 0));
-    return (b.sources.size - a.sources.size) || (w(b) - w(a)) || (b.latest - a.latest);
+    const w = g => Math.max(...g.items.map(x => x.weight || 0)) + (g.cat === 'pajak' ? 0.25 : 0);
+    const pj = g => g.cat === 'pajak' ? 1 : 0;
+    return (pj(b) - pj(a)) || (b.sources.size - a.sources.size) || (w(b) - w(a)) || (b.latest - a.latest);
   });
 }
 function clusterHtml(g, i){

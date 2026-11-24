@@ -68,10 +68,11 @@
 .cb[aria-selected="true"] .cb-name{color:#f4f4f7;font-weight:600}
 .cb[aria-selected="true"] .cb-n{color:#a4a4b2}
 .cb[aria-selected="true"]:hover{background:rgba(255,255,255,.06);color:#fff}
-.cb:focus-visible{outline:1px solid rgba(255,255,255,.3);outline-offset:-1px;z-index:4}
+.cb:focus-visible{outline:2px solid var(--focus);outline-offset:-2px;z-index:4}
 .camgrid{display:grid;grid-template-columns:repeat(var(--cols,2),minmax(0,1fr));gap:1px;background:var(--border)}
 .cam{position:relative;display:block;width:100%;padding:0;background:#000;text-align:left;cursor:pointer;outline:none}
-.cam:focus,.cam:focus-visible{outline:none}
+.cam:focus{outline:none}
+.cam:focus-visible{outline:2px solid var(--focus);outline-offset:-2px;z-index:4}
 .cam .frame{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000}
 .cam video{width:100%;height:100%;object-fit:cover;display:block;background:transparent;outline:none;opacity:0;transition:opacity .2s ease-in-out}
 .cam.is-playing video{opacity:1}

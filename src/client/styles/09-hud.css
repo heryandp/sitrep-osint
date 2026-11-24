@@ -245,6 +245,13 @@ button.mp-src{background:none;border-top:0;border-left:0;border-right:0;cursor:p
 .pin-fresh::before{content:"";position:absolute;inset:0;border-radius:50%;
   box-shadow:0 0 0 1.5px var(--pc,#8d8d8d);filter:blur(.8px);
   animation:pinpulse 2.2s ease-out infinite}
+.pin-pajak{position:relative;display:flex;align-items:center;justify-content:center}
+.pin-pajak::before{content:"";position:absolute;inset:0;border-radius:50%;
+  box-shadow:0 0 0 1.5px #22d3ee;opacity:.8;animation:pinpulse 2.4s ease-out infinite}
+.pin-pajak i{position:relative;width:58%;height:58%;border-radius:3px;transform:rotate(45deg);
+  background:#22d3ee;border:1.5px solid #0b1418;box-shadow:0 0 7px rgba(34,211,238,.75);box-sizing:border-box}
+.mly-unit .mly[data-layer="pajak"][aria-pressed="true"]{color:#22d3ee}
+.mly-unit .mly[data-layer="pajak"][aria-pressed="true"]::before{background:#22d3ee}
 @keyframes pinpulse{0%{transform:scale(.55);opacity:.9}75%{transform:scale(1.6);opacity:0}100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){.pin-fresh::before{animation:none;opacity:.35;transform:scale(1.25)}}
 

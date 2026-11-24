@@ -87,15 +87,42 @@ function socForeignLang(t) {
 }
 
 const SOC_FOREIGN_RE = /\b(amerika|united states|\busa\b|americans?|american|british|canadian|australian|japanese|chinese|korean|french|german|russian|indian|ukrainian|israeli|palestinian|malaysian|singaporean|filipino|vietnamese|brazilian|mexican|european|texas|california|new york|brasil|brazil|filipina|thailand|malaysia|korea|jepang|japan|tiongkok|china|inggris|britain|prancis|perancis|paris|france|jerman|germany|australia|india|pakistan|iran|israel|palestina|palestine|ukraina|ukraine|rusia|russia|gaza|turki|turkey|meksiko|mexico|kanada|canada|vietnam|chile|argentina|spanyol|spain|portugal|italia|italy|belanda|netherlands|den haag|s-gravenhage|tweede kamer|eerste kamer|vvd|cda|d66|pvv|fvd|nsc|gl-pvda|groenlinks|pvda|nederland|nederlands|holland|amsterdam|rotterdam|utrecht|eindhoven|groningen|kabinet rutte|kabinet schoof|dick schoof|geert wilders|swiss|swedia|sweden|norwegia|norway|denmark|yunani|greece|eropa|europe|nepal|london|oyo|osun|nigeria|afrika|trump|poland|polandia|polonia|krakow|warsaw|warszawa|lublin|czechia|ceko|prague|praha|austria|vienna|wina|finland|finlandia|helsinki|singapura|singapore|hong kong|taipei|tokyo|seoul|beijing|manila|bangkok|hanoi|kualalumpur|kathmandu|moskwa|moscow|berlin|rome|roma|madrid|amsterdam|brussels|zurich|stockholm|oslo|copenhagen|dublin|budapest|bucharest|sofia|belgrade|zagreb|vilnius|riga|tallinn|minsk|kiev|kyiv|istanbul|ankara|tehran|baghdad|beirut|riyadh|cairo|tunis|algiers|rabat|tripoli|khartoum|nairobi|kampala|kigali|lusaka|harare|pretoria|mogadishu|bamako|dakar|abuja|lagos|accra|kinshasa|sao paulo|rio de janeiro|brasilia|buenos aires|bogota|caracas|la paz|asuncion|montevideo|kingston|havana|santo domingo|paramaribo|managua|tegucigalpa|san salvador|san jose|guatemala city|mexico city|sucre|suriah|syria|irak|iraq|mesir|egypt|libya|libia|maroko|morocco|aljazair|algeria|tunisia|sudan|ethiopia|kenya|ghana|myanmar|kamboja|cambodia|laos|srilanka|sri lanka|bangladesh|lebanon|yordania|jordan|yaman|yemen|oman|qatar|uea|hungaria|hungary|rumania|romania|bulgaria|serbia|kroasia|croatia|slowakia|slovakia|slovenia|belgia|belgium|irlandia|ireland|estonia|latvia|lithuania|belarus|mongolia|maladewa|maldives|timor leste|selandia baru|new zealand|kuba|cuba|jamaika|jamaica|haiti|nikaragua|kosta rika|costa rica|kolombia|colombia|venezuela|bolivia|ekuador|ecuador|peru|paraguay|uruguay|congo|rwanda|uganda|tanzania|zambia|zimbabwe|mozambique|angola|namibia|botswana|lesotho|madagascar|mauritius|somalia|eritrea|djibouti|afghanistan|bhutan|brunei|albania|armenia|azerbaijan|cyprus|iceland|kosovo|luxembourg|malta|moldova|montenegro|san marino|vatikan|vatican|monako|monaco|georgia|jordan|panama|senegal|cameroon|gambia|guinea|sierra leone|liberia|mauritania|burkina faso|shah alam|selangor|bukit jelutong|subang jaya|petaling jaya|putrajaya|klang|penang|johor bahru|british columbia|tahsis|democrats|republicans|lebuhraya|plusline|llmtrafik|korang|macam ni|banjir tak|banjir ke|kesiannya|memandu|tanpa halangan banjir|terowong smart|m'sia|msia|sejuk beku|bekalan makanan|berbaki|penyokong|rombak kabinet|bubarkan parlimen|bubar parlimen|parlimen|timbalan perdana menteri|pakatan harapan|perikatan nasional|barisan nasional|umno|menteri besar|ketua menteri|dewan rakyat|dewan negara|kerajaan perpaduan|kerajaan madani|malaysia madani|varian baharu|baharu|dikesan|sejauh mana bahayanya|siakap keli|thesiakapkeli|banjir kilat|jabatan bomba|polis diraja|kawasan terjejas|hospital kerajaan|kementerian kesihatan)\b/i;
-const SOC_LOCAL_RE = /(indonesia|\bwni\b|jakarta|jabar|jateng|jatim|jawa|sumatera|sumatra|kalimantan|sulawesi|papua|bali\b|aceh|riau|banten|bekasi|bogor|depok|tangerang|bandung|surabaya|medan|makassar|semarang|yogya|bpbd|bnpb|bmkg|polres|polda|polsek|kodim|damkar|pemkot|pemkab|kabupaten|provinsi|prabowo|gibran|\bdpr\b|dprd|kapolri|polri)/i;
+const SOC_LOCAL_RE = /(indonesia|\bwni\b|jakarta|jabar|jateng|jatim|jawa|sumatera|sumatra|kalimantan|sulawesi|papua|bali\b|aceh|riau|banten|bekasi|bogor|depok|tangerang|bandung|surabaya|medan|makassar|semarang|yogya|bpbd|bnpb|bmkg|polres|polda|polsek|kodim|damkar|pemkot|pemkab|kabupaten|provinsi|prabowo|gibran|\bdpr\b|dprd|kapolri|polri|\bdjp\b|ditjen pajak|direktorat jenderal pajak|kemenkeu|coretax|kring pajak|kanwil djp|\bkpp\b)/i;
 
 const SOC_WATCH_X = [
+  'ditjenpajakri', 'kring_pajak', 'kemenkeuri',
   'infobmkg', 'bnpb_indonesia', 'basarnas', 'pvmbg_', 'damkardki',
   'tmcpoldametro', 'bssn_ri', 'pln_123', 'kemenkesri', 'divhumas_polri',
   'elshinta', 'suarasurabayamedia',
 ];
 
 const SOC_TOPICS = [
+  {
+    id: 'coretax',
+    local: true,
+    pos: /(?:\bcoretax\b|core\s*tax|e-?faktur|e-?bupot|faktur\s+pajak|npwp\s*16\s*digit|nik\s*(?:jadi|menjadi)?\s*npwp|cortex\s+djp)/i,
+    strong: /(?:\bcoretax\b|core\s*tax|e-?faktur|e-?bupot|faktur\s+pajak|cortex\s+djp)/i,
+    ctx: /(pajak|djp|ditjen pajak|kpp|spt|npwp|faktur|bupot|ppn|pph|error|eror|down|gangguan|login|otp|gagal|lemot|lambat|wajib pajak|kemenkeu|server|sistem|aplikasi)/i,
+    neg: /(judi|slot online|gacor|jual\s+beli\s+faktur|jasa\s+bikin\s+npwp\s+palsu)/i,
+    x: [
+      '(Coretax OR "Core Tax" OR e-Faktur OR e-Bupot OR "faktur pajak") (DJP OR pajak OR error OR gangguan OR SPT OR NPWP OR login OR gagal) -filter:replies',
+      '(Coretax OR "Core Tax") -filter:replies',
+    ],
+    th: ['coretax', 'coretax error', 'e-faktur', 'e-bupot', 'faktur pajak', '#coretax'],
+  },
+  {
+    id: 'pajak',
+    local: true,
+    pos: /(?:\bdjp\b|ditjen\s+pajak|direktorat\s+jenderal\s+pajak|kring\s+pajak|kanwil\s+djp|\bkpp\s+(?:pratama|madya|wajib\s+pajak|khusus|bumn|pma)\b|kantor\s+pelayanan\s+pajak|perpajakan|wajib\s+pajak|(?:uang|bayar|tarif|kenaikan|aturan|kebijakan|bebas|insentif|setor|lapor|kepatuhan|literasi|penerimaan|setoran|tunggakan|restitusi|pemeriksaan|penagihan|pidana|pengemplang|pengampunan)\s+pajak|tax\s+amnesty|tax\s+ratio|rasio\s+pajak|lapor\s+spt|pelaporan\s+spt|\bspt\s+(?:tahunan|masa|pph|ppn)\b|\bnpwp\b|\bppn\s*(?:\d{1,2}%|bm)?\b|\bppnbm\b|\bpph\s*(?:pasal\s*\d+|21|22|23|25|26|29|final|badan|orang\s+pribadi)?\b|pajak\s+(?:penghasilan|pertambahan\s+nilai|bumi\s+dan\s+bangunan|kendaraan|daerah|karbon|digital|kripto|natura|umkm|dividen|progresif|impor|ekspor|hiburan|warisan)|ter\s+pph|pengadilan\s+pajak|konsultan\s+pajak|fiskus|gijzeling|penyanderaan\s+pajak|sita\s+aset\s+pajak)/i,
+    strong: /(?:\bdjp\b|ditjen\s+pajak|direktorat\s+jenderal\s+pajak|kring\s+pajak|kanwil\s+djp|\bkpp\s+(?:pratama|madya|khusus)\b|kantor\s+pelayanan\s+pajak|perpajakan|wajib\s+pajak|penerimaan\s+pajak|restitusi\s+pajak|pemeriksaan\s+pajak|pidana\s+pajak|lapor\s+spt|spt\s+tahunan|pengadilan\s+pajak|gijzeling)/i,
+    ctx: /(pajak|djp|kemenkeu|coretax|spt|npwp|ppn|pph|kpp|kanwil|faktur|restitusi|pemeriksaan|penagihan|tunggakan|tarif|penerimaan|realisasi|wajib pajak|fiskus|pmk|penipuan|phishing|apk)/i,
+    neg: /(film|sinema|sinetron|drakor|kpop|anime|skincare|judi|slot online|gacor|pajak\s+jadian|pajak\s+nikah|pajak\s+jodoh|pajak\s+ganteng|pajak\s+cantik|pajak\s+makan\s+bareng)/i,
+    x: [
+      '(DJP OR "Direktorat Jenderal Pajak" OR "Ditjen Pajak" OR "lapor SPT" OR "Kring Pajak" OR "Kanwil DJP") -filter:replies',
+      '(pajak (PPN OR PPh OR SPT OR NPWP OR KPP OR restitusi OR pemeriksaan OR pidana OR penipuan)) -filter:replies',
+    ],
+    th: ['DJP', 'ditjen pajak', 'perpajakan', 'lapor SPT', 'pajak PPN', 'pajak PPh', 'NPWP', 'kring pajak', '#pajak', '#ditjenpajak'],
+  },
   {
     id: 'demo',
     local: true,
