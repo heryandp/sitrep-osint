@@ -1,0 +1,23 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/home/ditip/Documents/djp-sitrep",
+  "unit": "src/metrics.js",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "metrics-rs",
+  "exports": [
+    {
+      "name": "createMetricsService",
+      "file": "src/metrics.js",
+      "line": 4,
+      "params": [],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": []
+}

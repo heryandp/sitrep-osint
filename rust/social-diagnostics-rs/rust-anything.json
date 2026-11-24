@@ -1,0 +1,47 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/home/ditip/Documents/djp-sitrep",
+  "unit": "src/social-diagnostics.js",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "social-diagnostics-rs",
+  "exports": [
+    {
+      "name": "createDiagnostics",
+      "file": "src/social-diagnostics.js",
+      "line": 15,
+      "params": [],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "evaluateCorpus",
+      "file": "src/social-diagnostics.js",
+      "line": 162,
+      "params": [
+        {
+          "name": "corpus",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "classifyFn",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": []
+}

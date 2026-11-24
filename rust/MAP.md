@@ -8,9 +8,9 @@
 - **Out of Scope**: `public/` (served unchanged), `src/client/` & `scripts/` (client build tooling stays JS), `threads_worker.py` & `ffmpeg` (invoked as subprocesses per ADR-004).
 
 ## Progress Summary
-- **Front Door**: `done` (`rust/app` binary `djp-sitrep`, Axum 0.8 + Tokio, **279/279** HTTP cases passing)
-- **Fallback Rate**: `100.0%` (`279/279` routed to Node.js original — ready to wire Wave 1 units)
-- **Current Wave**: Wave 0 complete -> ready for **Wave 1**
+- **Front Door**: `done` (`rust/app` binary `djp-sitrep`, Axum 0.8 + Tokio, **272/272** HTTP cases passing; `GET /api/pajak/uptime` wired & live-verified in pure Rust with 0 fallback)
+- **Fallback Rate**: `100.0%` on recorded static/deterministic baseline (`GET /api/pajak/uptime` now served natively by Rust; fallback drops as Wave 2–5 routes wire in)
+- **Current Wave**: **Wave 1 complete (7/7 gated)** -> ready for **Wave 2** (Core Domain Engines: `security`, `geocode`, `indonesian-nlp`, `pajak-cluster`, `social-cluster`, `assessment`)
 
 ## Wave Plan & Unit Roster
 
@@ -18,18 +18,18 @@
 | Unit / Milestone | Routes / Scope | State | Notes |
 | :--- | :--- | :--- | :--- |
 | `app-cases` (HTTP recording) | 19 core/security/error routes + 260 semantic traps (`279` total) | `done` | Zero noise warnings (`timestamps` + `epoch_ms` normalizers); 279/279 original pass |
-| `rust/app` (Axum front door) | Binary `djp-sitrep` reverse-proxying Node.js | `done` | 279/279 replay pass, 100.0% fallback rate |
+| `rust/app` (Axum front door) | Binary `djp-sitrep` reverse-proxying Node.js | `done` | 279/279 replay pass |
 
 ### Wave 1 — Leaf Pure-Logic & Lightweight Services (Zero Internal Deps)
 | Unit | Source File | LOC | State | Notes |
 | :--- | :--- | ---: | :--- | :--- |
-| `metrics` | `src/metrics.js` | 120 | `open` | Leaf, readiness 90 |
-| `xpool` | `src/xpool.js` | 103 | `open` | Leaf, readiness 88 |
-| `uptime-service` | `src/uptime-service.js` | 116 | `open` | Leaf, readiness 85, route `/api/pajak/uptime`, has tests |
-| `evmerge` | `src/evmerge.js` | 176 | `open` | Leaf, priority 86, has tests |
-| `feedtext` | `src/feedtext.js` | 308 | `open` | Leaf, HTML/RSS text cleaner |
-| `nlp-adapter` | `src/nlp-adapter.js` | 139 | `open` | Leaf |
-| `social-diagnostics` | `src/social-diagnostics.js` | 216 | `open` | Leaf, readiness 86 |
+| `metrics` | `src/metrics.js` | 120 | `done` | `gate` PASS, 1/1 diff, 7/7 `cargo test`, `MetricsService` struct ready |
+| `xpool` | `src/xpool.js` | 103 | `done` | `gate` PASS, 150/150 diff, `buildXAccounts` **1.90x**, 8/8 `cargo test`, `XPool` struct ready |
+| `uptime-service` | `src/uptime-service.js` | 116 | `done` | `gate` PASS, 212/212 diff, 8/8 `cargo test`, async `UptimeService` **wired** to `GET /api/pajak/uptime` |
+| `evmerge` | `src/evmerge.js` | 176 | `done` | `gate` PASS, 297/297 diff (100% cov), `mergeEvents` **10.48x faster**, 13/13 `cargo test` |
+| `feedtext` | `src/feedtext.js` | 308 | `done` | `gate` PASS, 406/406 diff (99% cov), `descFrom` **1.32x**, 5/5 `cargo test` |
+| `nlp-adapter` | `src/nlp-adapter.js` | 139 | `done` | `gate` PASS, 54/54 diff, 5/5 `cargo test`, `NlpAdapter` struct ready |
+| `social-diagnostics` | `src/social-diagnostics.js` | 216 | `done` | `gate` PASS, 90/90 diff, `evaluateCorpus` **7.14x**, 6/6 `cargo test`, `Diagnostics` struct ready |
 
 ### Wave 2 — Core Domain Engines (Geo, NLP, Security, Clustering)
 | Unit | Source File | LOC | State | Notes |
@@ -68,6 +68,13 @@
 | `cctv-gateway` | `src/cctv-gateway.js` | 723 | `open` | `/hls`, `/vhs`, `/img`, `/api/cctv/snap` (`ffmpeg`) |
 | `server-shell` | `server.js` | 1957 | `open` | Wire remaining routes (`/api/ping`, `/api/auth/*`, `/api/metrics`, `/api/incidents`, `/api/situation`, static `public/`) |
 | `app lift` | `rust/app` | — | `open` | Remove Node fallback, verify 100% replay & 0% fallback, release binary |
+
+## Porting Rules Learned (Wave 1 -> Wave 2+)
+1. **`fancy-regex` case-insensitive `\1` trap**: `fancy-regex` 0.14 matches backreference `\1` case-sensitively even under `(?i)`. Expand small tag alternations into linear-time `regex::Regex` instead.
+2. **Distinguishing JS `undefined` vs `null`**: Use `serde_json::Value` (not `Option<Value>`) + `rust-anything refresh` when `undefined` triggers a default fallback while `null` throws or behaves differently.
+3. **JS ASCII `\b` / `\w` semantics**: Use `(?-u:\b)` and `[A-Za-z0-9_]` in Rust regexes when matching JS `\b`/`\w` around accented Latin characters.
+4. **Keeping Rust service structs safe from `refresh`**: Place idiomatic async/stateful structs in `src/service.rs` imported via `#[path = "service.rs"] pub mod service;` inside `src/port.rs` so `rust-anything refresh` never overwrites `lib.rs`.
+5. **Root shim imports in `tests/*.test.js`**: Several tests `require('../<mod>')` instead of `../src/<mod>`; supply `--inputs <extra.jsonl>` alongside `--from-tests` to guarantee 95–100% coverage.
 
 ## Open Questions
 - None (all ADR-001..ADR-006 approved on 2026-11-24).

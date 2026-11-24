@@ -1,0 +1,34 @@
+{"fn":"decodeEntities","args":["kata lain"]}
+{"fn":"decodeEntities","args":[" Halo  dunia    "]}
+{"fn":"htmlToText","args":["Hujan deras picu banjir di Jakarta   ANTARA"]}
+{"fn":"decodeEntities","args":["Hujan deras picu banjir di Jakarta   ANTARA"]}
+{"fn":"htmlToText","args":["Judul Berita Tempo.co"]}
+{"fn":"decodeEntities","args":["Judul Berita Tempo.co"]}
+{"fn":"htmlToText","args":["Hujan deras picu banjir di wilayah Jabodetabek - ANTARA"]}
+{"fn":"decodeEntities","args":["Hujan deras picu banjir di wilayah Jabodetabek - ANTARA"]}
+{"fn":"htmlToText","args":["Presiden mengumumkan kebijakan ekonomi baru — tempo.co"]}
+{"fn":"decodeEntities","args":["Presiden mengumumkan kebijakan ekonomi baru — tempo.co"]}
+{"fn":"htmlToText","args":["Gempa magnitude 5.2 mengguncang wilayah Sumatera. Korban dipastikan aman dan tidak ada kerusakan berarti. (Foto: Antara)"]}
+{"fn":"decodeEntities","args":["Gempa magnitude 5.2 mengguncang wilayah Sumatera. Korban dipastikan aman dan tidak ada kerusakan berarti. (Foto: Antara)"]}
+{"fn":"htmlToText","args":["Sumber: BNPB. Korban dievakuasi dari lokasi banjir dan kini berada di posko pengungsian."]}
+{"fn":"decodeEntities","args":["Sumber: BNPB. Korban dievakuasi dari lokasi banjir dan kini berada di posko pengungsian."]}
+{"fn":"htmlToText","args":["Pemerintah menaikkan anggaran infrastruktur tahun depan. Baca selengkapnya di cnnindonesia.com"]}
+{"fn":"decodeEntities","args":["Pemerintah menaikkan anggaran infrastruktur tahun depan. Baca selengkapnya di cnnindonesia.com"]}
+{"fn":"htmlToText","args":["<p>Paragraf pertama berita <b>penting</b>.</p><figure><img src=\"x.jpg\"><figcaption>Foto: Istimewa</figcaption></figure><p>Paragraf kedua berita.</p>"]}
+{"fn":"decodeEntities","args":[" Paragraf pertama berita  penting .   Paragraf kedua berita. "]}
+{"fn":"htmlToText","args":["Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan."]}
+{"fn":"decodeEntities","args":["Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan."]}
+{"fn":"htmlToText","args":["<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"]}
+{"fn":"decodeEntities","args":[" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx "]}
+{"fn":"htmlToText","args":["ANTARA"]}
+{"fn":"decodeEntities","args":["ANTARA"]}
+{"fn":"htmlToText","args":["<p>Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan.</p>"]}
+{"fn":"decodeEntities","args":[" Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan. "]}
+{"fn":"htmlToText","args":["Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. "]}
+{"fn":"decodeEntities","args":["Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. "]}
+{"fn":"htmlToText","args":["Presiden mengumumkan kebijakan ekonomi baru untuk tahun depan"]}
+{"fn":"decodeEntities","args":["Presiden mengumumkan kebijakan ekonomi baru untuk tahun depan"]}
+{"fn":"htmlToText","args":["Menurut ANTARA, kebijakan baru itu akan berlaku mulai awal tahun depan bagi seluruh sektor usaha."]}
+{"fn":"decodeEntities","args":["Menurut ANTARA, kebijakan baru itu akan berlaku mulai awal tahun depan bagi seluruh sektor usaha."]}
+{"fn":"htmlToText","args":["tempo.co"]}
+{"fn":"decodeEntities","args":["tempo.co"]}

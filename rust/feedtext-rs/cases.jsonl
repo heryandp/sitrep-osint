@@ -1,0 +1,406 @@
+{"fn":"decodeEntities","args":[0],"ok":""}
+{"fn":"decodeEntities","args":[true],"ok":true}
+{"fn":"decodeEntities","args":[{}],"ok":{}}
+{"fn":"decodeEntities","args":[null],"ok":""}
+{"fn":"decodeEntities","args":["x"],"ok":"x"}
+{"fn":"decodeEntities","args":[["a",1]],"ok":["a",1]}
+{"fn":"decodeEntities","args":[{"a":{"b":"c"}}],"ok":{"a":{"b":"c"}}}
+{"fn":"decodeEntities","args":[{"a":"b"}],"ok":{"a":"b"}}
+{"fn":"decodeEntities","args":[[]],"ok":[]}
+{"fn":"decodeEntities","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}}
+{"fn":"decodeEntities","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}}
+{"fn":"decodeEntities","args":[[3,1,2]],"ok":[3,1,2]}
+{"fn":"htmlToText","args":[[]],"ok":""}
+{"fn":"htmlToText","args":[null],"ok":""}
+{"fn":"htmlToText","args":[0],"ok":""}
+{"fn":"htmlToText","args":[{}],"ok":""}
+{"fn":"htmlToText","args":[{"a":{"b":"c"}}],"ok":""}
+{"fn":"htmlToText","args":[["a",1]],"ok":""}
+{"fn":"htmlToText","args":[true],"ok":""}
+{"fn":"htmlToText","args":["x"],"ok":"x"}
+{"fn":"htmlToText","args":[{"a":"b"}],"ok":""}
+{"fn":"htmlToText","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":""}
+{"fn":"htmlToText","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":""}
+{"fn":"htmlToText","args":[[3,1,2]],"ok":""}
+{"fn":"descFrom","args":[[],{}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{"a":{"b":"c"}},["a",1]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[[],["a",1]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[["a",1],["a",1]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[0,0],"ok":""}
+{"fn":"descFrom","args":[0,null],"ok":""}
+{"fn":"descFrom","args":[true,null],"ok":""}
+{"fn":"descFrom","args":[{"a":"b"},{"a":{"b":"c"}}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[true,{"a":{"b":"c"}}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[null,["a",1]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[["a",1],{"a":{"b":"c"}}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{"a":"b"},"x"],"ok":""}
+{"fn":"descFrom","args":[{},"x"],"ok":""}
+{"fn":"descFrom","args":[{"a":{"b":"c"}},{}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{},["a",1]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[0,["a",1]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{"a":"b"},["a",1]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[true,0],"ok":""}
+{"fn":"descFrom","args":[{},{"a":{"b":"c"}}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[["a",1],[]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":["x",{"a":{"b":"c"}}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[0,[]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[0,true],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[true,"x"],"ok":""}
+{"fn":"descFrom","args":[{"a":{"b":"c"}},[]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[true,["a",1]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":["x",[]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[null,null],"ok":""}
+{"fn":"descFrom","args":[0,"x"],"ok":""}
+{"fn":"descFrom","args":[["a",1],true],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{"a":"b"},{"a":"b"}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[[],null],"ok":""}
+{"fn":"descFrom","args":[[],"x"],"ok":""}
+{"fn":"descFrom","args":[{},null],"ok":""}
+{"fn":"descFrom","args":[{"a":"b"},true],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[null,[]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[true,[]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[0,{"a":"b"}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[["a",1],{"a":"b"}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[true,true],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{},true],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":["x",{}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{"a":"b"},[]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[null,{"a":"b"}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[0,{"a":{"b":"c"}}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{"a":"b"},null],"ok":""}
+{"fn":"descFrom","args":["x","x"],"ok":""}
+{"fn":"descFrom","args":["x",{"a":"b"}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{"a":"b"},{}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[null,"x"],"ok":""}
+{"fn":"descFrom","args":[{},[]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{},{}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[true,{"a":"b"}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{"a":{"b":"c"}},0],"ok":""}
+{"fn":"descFrom","args":[{"a":{"b":"c"}},null],"ok":""}
+{"fn":"descFrom","args":[null,true],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[true,{}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[[],[]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":["x",null],"ok":""}
+{"fn":"descFrom","args":[null,{"a":{"b":"c"}}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[null,{}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{},0],"ok":""}
+{"fn":"descFrom","args":[[],{"a":"b"}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[[],true],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":["x",0],"ok":""}
+{"fn":"descFrom","args":[{},{"a":"b"}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[0,{}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[[],0],"ok":""}
+{"fn":"descFrom","args":[{"a":{"b":"c"}},{"a":"b"}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":["x",true],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{"a":{"b":"c"}},true],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[["a",1],0],"ok":""}
+{"fn":"descFrom","args":[{"a":"b"},0],"ok":""}
+{"fn":"descFrom","args":[[],{"a":{"b":"c"}}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":["x",["a",1]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[["a",1],"x"],"ok":""}
+{"fn":"descFrom","args":[{"a":{"b":"c"}},"x"],"ok":""}
+{"fn":"descFrom","args":[null,0],"ok":""}
+{"fn":"descFrom","args":[["a",1],{}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[["a",1],null],"ok":""}
+{"fn":"descFrom","args":["x","X"],"ok":""}
+{"fn":"descFrom","args":["X","x"],"ok":""}
+{"fn":"descFrom","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},{}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},{}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[[3,1,2],{}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[[],{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[[],{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"descFrom","args":[[],[3,1,2]],"error":"(s || \"\").toLowerCase is not a function"}
+{"fn":"newsEnglish","args":[{"a":{"b":"c"}},["a",1]],"ok":false}
+{"fn":"newsEnglish","args":[{"a":"b"},0],"ok":false}
+{"fn":"newsEnglish","args":[0,[]],"ok":false}
+{"fn":"newsEnglish","args":[{"a":{"b":"c"}},{"a":"b"}],"ok":false}
+{"fn":"newsEnglish","args":[{},{"a":"b"}],"ok":false}
+{"fn":"newsEnglish","args":["x",0],"ok":false}
+{"fn":"newsEnglish","args":[{"a":{"b":"c"}},{}],"ok":false}
+{"fn":"newsEnglish","args":["x",[]],"ok":false}
+{"fn":"newsEnglish","args":[["a",1],true],"ok":false}
+{"fn":"newsEnglish","args":[{},{"a":{"b":"c"}}],"ok":false}
+{"fn":"newsEnglish","args":[{},["a",1]],"ok":false}
+{"fn":"newsEnglish","args":[["a",1],null],"ok":false}
+{"fn":"newsEnglish","args":[null,null],"ok":false}
+{"fn":"newsEnglish","args":[{"a":"b"},{"a":{"b":"c"}}],"ok":false}
+{"fn":"newsEnglish","args":[["a",1],0],"ok":false}
+{"fn":"newsEnglish","args":[0,{"a":"b"}],"ok":false}
+{"fn":"newsEnglish","args":[[],{}],"ok":false}
+{"fn":"newsEnglish","args":[true,{"a":{"b":"c"}}],"ok":false}
+{"fn":"newsEnglish","args":[{"a":"b"},null],"ok":false}
+{"fn":"newsEnglish","args":[true,{}],"ok":false}
+{"fn":"newsEnglish","args":[true,null],"ok":false}
+{"fn":"newsEnglish","args":[[],["a",1]],"ok":false}
+{"fn":"newsEnglish","args":["x",{}],"ok":false}
+{"fn":"newsEnglish","args":[{"a":"b"},["a",1]],"ok":false}
+{"fn":"newsEnglish","args":[["a",1],"x"],"ok":false}
+{"fn":"newsEnglish","args":[null,0],"ok":false}
+{"fn":"newsEnglish","args":[[],0],"ok":false}
+{"fn":"newsEnglish","args":[null,"x"],"ok":false}
+{"fn":"newsEnglish","args":[null,{"a":{"b":"c"}}],"ok":false}
+{"fn":"newsEnglish","args":[0,"x"],"ok":false}
+{"fn":"newsEnglish","args":[0,{}],"ok":false}
+{"fn":"newsEnglish","args":["x","x"],"ok":false}
+{"fn":"newsEnglish","args":[true,"x"],"ok":false}
+{"fn":"newsEnglish","args":[null,[]],"ok":false}
+{"fn":"newsEnglish","args":[{},"x"],"ok":false}
+{"fn":"newsEnglish","args":[[],true],"ok":false}
+{"fn":"newsEnglish","args":[["a",1],[]],"ok":false}
+{"fn":"newsEnglish","args":[true,{"a":"b"}],"ok":false}
+{"fn":"newsEnglish","args":[[],{"a":"b"}],"ok":false}
+{"fn":"newsEnglish","args":["x",null],"ok":false}
+{"fn":"newsEnglish","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"ok":false}
+{"fn":"newsEnglish","args":[true,true],"ok":false}
+{"fn":"newsEnglish","args":[{"a":{"b":"c"}},"x"],"ok":false}
+{"fn":"newsEnglish","args":[{},true],"ok":false}
+{"fn":"newsEnglish","args":[null,true],"ok":false}
+{"fn":"newsEnglish","args":[true,["a",1]],"ok":false}
+{"fn":"newsEnglish","args":[[],{"a":{"b":"c"}}],"ok":false}
+{"fn":"newsEnglish","args":["x",{"a":{"b":"c"}}],"ok":false}
+{"fn":"newsEnglish","args":[["a",1],{}],"ok":false}
+{"fn":"newsEnglish","args":[{},0],"ok":false}
+{"fn":"newsEnglish","args":[{"a":"b"},{}],"ok":false}
+{"fn":"newsEnglish","args":[0,["a",1]],"ok":false}
+{"fn":"newsEnglish","args":[{"a":{"b":"c"}},null],"ok":false}
+{"fn":"newsEnglish","args":["x",{"a":"b"}],"ok":false}
+{"fn":"newsEnglish","args":[null,{"a":"b"}],"ok":false}
+{"fn":"newsEnglish","args":[null,["a",1]],"ok":false}
+{"fn":"newsEnglish","args":[["a",1],{"a":"b"}],"ok":false}
+{"fn":"newsEnglish","args":[[],null],"ok":false}
+{"fn":"newsEnglish","args":[{"a":"b"},{"a":"b"}],"ok":false}
+{"fn":"newsEnglish","args":[[],[]],"ok":false}
+{"fn":"newsEnglish","args":[["a",1],{"a":{"b":"c"}}],"ok":false}
+{"fn":"newsEnglish","args":[{},null],"ok":false}
+{"fn":"newsEnglish","args":[{"a":"b"},true],"ok":false}
+{"fn":"newsEnglish","args":[0,true],"ok":false}
+{"fn":"newsEnglish","args":["x",true],"ok":false}
+{"fn":"newsEnglish","args":[{"a":{"b":"c"}},true],"ok":false}
+{"fn":"newsEnglish","args":[true,0],"ok":false}
+{"fn":"newsEnglish","args":[{"a":{"b":"c"}},[]],"ok":false}
+{"fn":"newsEnglish","args":[{"a":"b"},[]],"ok":false}
+{"fn":"newsEnglish","args":[{},{}],"ok":false}
+{"fn":"newsEnglish","args":[["a",1],["a",1]],"ok":false}
+{"fn":"newsEnglish","args":[true,[]],"ok":false}
+{"fn":"newsEnglish","args":[{"a":"b"},"x"],"ok":false}
+{"fn":"newsEnglish","args":[null,{}],"ok":false}
+{"fn":"newsEnglish","args":[[],"x"],"ok":false}
+{"fn":"newsEnglish","args":[0,null],"ok":false}
+{"fn":"newsEnglish","args":["x",["a",1]],"ok":false}
+{"fn":"newsEnglish","args":[0,{"a":{"b":"c"}}],"ok":false}
+{"fn":"newsEnglish","args":[{"a":{"b":"c"}},0],"ok":false}
+{"fn":"newsEnglish","args":[{},[]],"ok":false}
+{"fn":"newsEnglish","args":[0,0],"ok":false}
+{"fn":"newsEnglish","args":["x","X"],"ok":false}
+{"fn":"newsEnglish","args":["X","x"],"ok":false}
+{"fn":"newsEnglish","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},["a",1]],"ok":false}
+{"fn":"newsEnglish","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},["a",1]],"ok":false}
+{"fn":"newsEnglish","args":[[3,1,2],["a",1]],"ok":false}
+{"fn":"newsEnglish","args":[{"a":{"b":"c"}},{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":false}
+{"fn":"newsEnglish","args":[{"a":{"b":"c"}},{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":false}
+{"fn":"newsEnglish","args":[{"a":{"b":"c"}},[3,1,2]],"ok":false}
+{"fn":"cleanTitle","args":["x",["a",1]],"ok":"x"}
+{"fn":"cleanTitle","args":[{"a":"b"},["a",1]],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[[],"x"],"ok":""}
+{"fn":"cleanTitle","args":[{"a":"b"},[]],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[["a",1],["a",1]],"ok":"a,1"}
+{"fn":"cleanTitle","args":[["a",1],[]],"ok":"a,1"}
+{"fn":"cleanTitle","args":[0,true],"ok":""}
+{"fn":"cleanTitle","args":["x",{}],"ok":"x"}
+{"fn":"cleanTitle","args":[0,{}],"ok":""}
+{"fn":"cleanTitle","args":["x",0],"ok":"x"}
+{"fn":"cleanTitle","args":[{"a":{"b":"c"}},{}],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[true,{"a":{"b":"c"}}],"ok":"true"}
+{"fn":"cleanTitle","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":["x",{"a":{"b":"c"}}],"ok":"x"}
+{"fn":"cleanTitle","args":[{"a":{"b":"c"}},["a",1]],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[{},["a",1]],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[[],null],"ok":""}
+{"fn":"cleanTitle","args":[[],[]],"ok":""}
+{"fn":"cleanTitle","args":[{},"x"],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[{"a":{"b":"c"}},0],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[["a",1],0],"ok":"a,1"}
+{"fn":"cleanTitle","args":[{},true],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[[],{}],"ok":""}
+{"fn":"cleanTitle","args":[{"a":"b"},null],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[[],0],"ok":""}
+{"fn":"cleanTitle","args":[["a",1],{"a":"b"}],"ok":"a,1"}
+{"fn":"cleanTitle","args":["x",null],"ok":"x"}
+{"fn":"cleanTitle","args":[null,true],"ok":""}
+{"fn":"cleanTitle","args":[[],{"a":{"b":"c"}}],"ok":""}
+{"fn":"cleanTitle","args":[["a",1],{"a":{"b":"c"}}],"ok":"a,1"}
+{"fn":"cleanTitle","args":[[],{"a":"b"}],"ok":""}
+{"fn":"cleanTitle","args":[[],true],"ok":""}
+{"fn":"cleanTitle","args":[{"a":"b"},"x"],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[true,["a",1]],"ok":"true"}
+{"fn":"cleanTitle","args":[null,{}],"ok":""}
+{"fn":"cleanTitle","args":[{},{"a":{"b":"c"}}],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[["a",1],{}],"ok":"a,1"}
+{"fn":"cleanTitle","args":[{},{"a":"b"}],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[0,[]],"ok":""}
+{"fn":"cleanTitle","args":[{"a":{"b":"c"}},true],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[["a",1],null],"ok":"a,1"}
+{"fn":"cleanTitle","args":[{"a":{"b":"c"}},[]],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":["x","x"],"ok":"x"}
+{"fn":"cleanTitle","args":[{"a":"b"},{"a":{"b":"c"}}],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[null,0],"ok":""}
+{"fn":"cleanTitle","args":[null,[]],"ok":""}
+{"fn":"cleanTitle","args":[0,{"a":"b"}],"ok":""}
+{"fn":"cleanTitle","args":[null,"x"],"ok":""}
+{"fn":"cleanTitle","args":[{},0],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[null,["a",1]],"ok":""}
+{"fn":"cleanTitle","args":[{"a":{"b":"c"}},null],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[0,{"a":{"b":"c"}}],"ok":""}
+{"fn":"cleanTitle","args":[{"a":"b"},{}],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[0,["a",1]],"ok":""}
+{"fn":"cleanTitle","args":[{"a":"b"},0],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[null,{"a":"b"}],"ok":""}
+{"fn":"cleanTitle","args":[true,{"a":"b"}],"ok":"true"}
+{"fn":"cleanTitle","args":[{},null],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[true,{}],"ok":"true"}
+{"fn":"cleanTitle","args":[{"a":{"b":"c"}},"x"],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[true,null],"ok":"true"}
+{"fn":"cleanTitle","args":[{"a":{"b":"c"}},{"a":"b"}],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[null,null],"ok":""}
+{"fn":"cleanTitle","args":[["a",1],true],"ok":"a,1"}
+{"fn":"cleanTitle","args":[["a",1],"x"],"ok":"a,1"}
+{"fn":"cleanTitle","args":[0,null],"ok":""}
+{"fn":"cleanTitle","args":[{},[]],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[[],["a",1]],"ok":""}
+{"fn":"cleanTitle","args":[true,[]],"ok":"true"}
+{"fn":"cleanTitle","args":["x",[]],"ok":"x"}
+{"fn":"cleanTitle","args":["x",true],"ok":"x"}
+{"fn":"cleanTitle","args":[true,true],"ok":"true"}
+{"fn":"cleanTitle","args":[{"a":"b"},true],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[{"a":"b"},{"a":"b"}],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[0,"x"],"ok":""}
+{"fn":"cleanTitle","args":[{},{}],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[true,"x"],"ok":"true"}
+{"fn":"cleanTitle","args":[0,0],"ok":""}
+{"fn":"cleanTitle","args":[true,0],"ok":"true"}
+{"fn":"cleanTitle","args":["x",{"a":"b"}],"ok":"x"}
+{"fn":"cleanTitle","args":["x","X"],"ok":"x"}
+{"fn":"cleanTitle","args":[null,{"a":{"b":"c"}}],"ok":""}
+{"fn":"cleanTitle","args":["X","x"],"ok":"X"}
+{"fn":"cleanTitle","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},["a",1]],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},["a",1]],"ok":"[object Object]"}
+{"fn":"cleanTitle","args":[[3,1,2],["a",1]],"ok":"3,1,2"}
+{"fn":"cleanTitle","args":["x",{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":"x"}
+{"fn":"cleanTitle","args":["x",{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":"x"}
+{"fn":"cleanTitle","args":["x",[3,1,2]],"ok":"x"}
+{"fn":"decodeEntities","args":["&mdash; &uuml; &hellip; &nbsp;x"],"ok":"— ü …  x"}
+{"fn":"decodeEntities","args":["&#8212; &#x2014;"],"ok":"— —"}
+{"fn":"decodeEntities","args":["&#xD800;ok"],"ok":"ok"}
+{"fn":"decodeEntities","args":["&amp;mdash;"],"ok":"&mdash;"}
+{"fn":"decodeEntities","args":["&notanentity;"],"ok":"&notanentity;"}
+{"fn":"decodeEntities","args":["&#0; &#x110000; &#xDFFF; &#x1F600; &#128512; &#8212 &#X2014; &#9999999999999999999999;"],"ok":"   😀 😀 — &#X2014; "}
+{"fn":"decodeEntities","args":["&AMP;mdash; &Amp; &AElig; &OElig; &THORN; &ETH; &Yacute; &szlig; &frac12; &sup3; &euro; &trade; &copy; &reg; &lt; &gt; &quot; &apos;"],"ok":"&mdash; & Æ Œ Þ Ð Ý ß ½ ³ € ™ © ® < > \" '"}
+{"fn":"decodeEntities","args":["&amp;amp; &amp;lt;"],"ok":"&amp; &lt;"}
+{"fn":"decodeEntities","args":[""],"ok":""}
+{"fn":"decodeEntities","args":["plain text without ampersand"],"ok":"plain text without ampersand"}
+{"fn":"htmlToText","args":["kata<br>lain"],"ok":"kata lain"}
+{"fn":"htmlToText","args":["kata<br/>lain<br />lagi"],"ok":"kata lain lagi"}
+{"fn":"htmlToText","args":["<p>Halo <b>dunia</b></p><script>alert(1)</script><style>x{}</style>"],"ok":"Halo dunia"}
+{"fn":"htmlToText","args":["<![CDATA[Halo <b>CDATA</b> &amp; tes]]>"],"ok":"Halo CDATA & tes"}
+{"fn":"htmlToText","args":["<SCRIPT type=\"text/javascript\">var x = 1;</script><figure><img src=\"a.jpg\" alt=\"a > b\"><figcaption>Foto: X</figcaption></figure><p>Isi berita</p>"],"ok":"Isi berita"}
+{"fn":"htmlToText","args":["<a title=\"x > y\" href='a > b'>Tautan</a> <div class=\"unclosed"],"ok":"Tautan"}
+{"fn":"htmlToText","args":["<script>mismatch</style><p>after</p>"],"ok":"mismatch after"}
+{"fn":"htmlToText","args":[""],"ok":""}
+{"fn":"descFrom","args":[{"description":"Hujan deras picu banjir di Jakarta   ANTARA"},"Hujan deras picu banjir di Jakarta"],"ok":""}
+{"fn":"descFrom","args":[{"description":"Judul Berita Tempo.co"},"Judul Berita"],"ok":""}
+{"fn":"descFrom","args":[{"description":"Hujan deras picu banjir di wilayah Jabodetabek - ANTARA"},"Lain"],"ok":"Hujan deras picu banjir di wilayah Jabodetabek"}
+{"fn":"descFrom","args":[{"description":"Presiden mengumumkan kebijakan ekonomi baru — tempo.co"},"Lain"],"ok":"Presiden mengumumkan kebijakan ekonomi baru"}
+{"fn":"descFrom","args":[{"description":"Gempa magnitude 5.2 mengguncang wilayah Sumatera. Korban dipastikan aman dan tidak ada kerusakan berarti. (Foto: Antara)"},"Gempa"],"ok":"Gempa magnitude 5.2 mengguncang wilayah Sumatera. Korban dipastikan aman dan tidak ada kerusakan berarti."}
+{"fn":"descFrom","args":[{"description":"Sumber: BNPB. Korban dievakuasi dari lokasi banjir dan kini berada di posko pengungsian."},"Banjir"],"ok":"Korban dievakuasi dari lokasi banjir dan kini berada di posko pengungsian."}
+{"fn":"descFrom","args":[{"description":"Pemerintah menaikkan anggaran infrastruktur tahun depan. Baca selengkapnya di cnnindonesia.com"},"Anggaran"],"ok":"Pemerintah menaikkan anggaran infrastruktur tahun depan."}
+{"fn":"descFrom","args":[{"contentEncoded":"<p>Paragraf pertama berita <b>penting</b>.</p><figure><img src=\"x.jpg\"><figcaption>Foto: Istimewa</figcaption></figure><p>Paragraf kedua berita.</p>"},"Judul"],"ok":"Paragraf pertama berita penting. Paragraf kedua berita."}
+{"fn":"descFrom","args":[{"description":"Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan.","contentEncoded":"<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"},"T"],"ok":"Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan."}
+{"fn":"descFrom","args":[{"description":"ANTARA","contentEncoded":"<p>Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan.</p>"},"T"],"ok":"Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan."}
+{"fn":"descFrom","args":[{"description":"Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. "},"T"],"ok":"Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus…"}
+{"fn":"descFrom","args":[{"description":"Presiden mengumumkan kebijakan ekonomi baru untuk tahun depan"},"Presiden mengumumkan kebijakan ekonomi baru untuk tahun depan"],"ok":""}
+{"fn":"descFrom","args":[{"description":"Menurut ANTARA, kebijakan baru itu akan berlaku mulai awal tahun depan bagi seluruh sektor usaha."},"Kebijakan"],"ok":"Menurut ANTARA, kebijakan baru itu akan berlaku mulai awal tahun depan bagi seluruh sektor usaha."}
+{"fn":"descFrom","args":[{"description":"ANTARA"},"Apa pun"],"ok":""}
+{"fn":"descFrom","args":[{"description":"tempo.co"},"Apa pun"],"ok":""}
+{"fn":"descFrom","args":[{},"T"],"ok":""}
+{"fn":"descFrom","args":[null,"T"],"ok":""}
+{"fn":"descFrom","args":[{"description":"","contentEncoded":"   "},"T"],"ok":""}
+{"fn":"descFrom","args":[{"description":"JAKARTA, KOMPAS.com — Sumber -- Pemerintah mengumumkan kebijakan ekonomi nasional baru (Reuters) (Foto: Istimewa) Foto: Oleh Budi Santoso Pemerintah daerah siap melaksanakan program tersebut. Hubungi WA: 0812-3456-7890 atau https://example.com - ANTARA - kompas.com... …"},"Lain"],"ok":"JAKARTA, KOMPAS.com — ers Santoso Pemerintah daerah siap melaksanakan program tersebut. Hubungi atau - ANTARA - kompas.com"}
+{"fn":"descFrom","args":[{"description":"SURABAYA - Pemerintah provinsi menetapkan status tanggap darurat banjir di sejumlah kecamatan hari ini yang akan di"},"Lain"],"ok":"Pemerintah provinsi menetapkan status tanggap darurat banjir di sejumlah kecamatan hari ini"}
+{"fn":"descFrom","args":[{"description":"SURABAYA - pemerintah provinsi menetapkan status tanggap darurat banjir di sejumlah kecamatan hari ini."},"Lain"],"ok":"SURABAYA - pemerintah provinsi menetapkan status tanggap darurat banjir di sejumlah kecamatan hari ini."}
+{"fn":"descFrom","args":[{"description":"Kompas.com - Berita penting ) tentang ekonomi nasional , , yang berlaku . . di seluruh daerah (sumber internal"},"Lain"],"ok":"Berita penting tentang ekonomi nasional,, yang berlaku. di seluruh daerah"}
+{"fn":"descFrom","args":[{"description":"Berita penting tentang ekonomi (nasional (2026) yang berlaku di seluruh wilayah Indonesia saat ini"},"Lain"],"ok":"Berita penting tentang ekonomi"}
+{"fn":"descFrom","args":[{"description":"Berita penting - - mengenai kebijakan pajak terbaru () [] ; : yang berlaku tahun depan -"},"Lain"],"ok":"Berita penting — mengenai kebijakan pajak terbaru;: yang berlaku tahun depan"}
+{"fn":"descFrom","args":[{"description":"Checking your browser before accessing the site. Please wait while we verify you are human."},"Bot"],"ok":""}
+{"fn":"descFrom","args":[{"description":"Tag: Ekonomi nasional dan fiskal tahun depan yang sangat penting bagi masyarakat."},"Chrome"],"ok":""}
+{"fn":"descFrom","args":[{"description":"Ringkasan singkat berita hari ini saja.","contentEncoded":"<p>Tag: Ekonomi.</p><p>PENULIS: ANDI.</p><p>HEADER SINGKAT:</p><p>ALL CAPS BANNER</p><p>Dr. Budi Santoso dari PT. Maju Bersama menyampaikan laporan lengkap mengenai pertumbuhan ekonomi nasional di Jl. Sudirman No. 12 hari ini. Pemerintah menargetkan inflasi tetap terkendali pada kisaran tiga persen sepanjang tahun berjalan. Langkah koordinasi lintas kementerian terus diperkuat demi menjaga daya beli masyarakat di seluruh provinsi.</p>"},"Ekonomi"],"ok":"HEADER SINGKAT: ALL CAPS BANNER Dr. Budi Santoso dari PT. Maju Bersama menyampaikan laporan lengkap mengenai pertumbuhan ekonomi nasional di Jl. Sudirman No. 12 hari ini. Pemerintah menargetkan inflasi tetap terkendali pada kisaran tiga persen sepanjang tahun berjalan."}
+{"fn":"descFrom","args":[{"summary":"Ringkasan dari field summary yang cukup panjang untuk diterima oleh parser berita.","mediaDescription":"Media desc fallback."},"Summary"],"ok":"Ringkasan dari field summary yang cukup panjang untuk diterima oleh parser berita."}
+{"fn":"descFrom","args":[{"mediaDescription":"Deskripsi dari mediaDescription yang cukup panjang untuk diterima saat field lain kosong."},"Media"],"ok":"Deskripsi dari mediaDescription yang cukup panjang untuk diterima saat field lain kosong."}
+{"fn":"descFrom","args":[{"description":"🔥 Berita emoji panjang yang terus berlanjut tanpa henti dengan karakter unicode multi-byte. 🔥 Berita emoji panjang yang terus berlanjut tanpa henti dengan karakter unicode multi-byte. 🔥 Berita emoji panjang yang terus berlanjut tanpa henti dengan karakter unicode multi-byte. 🔥 Berita emoji panjang yang terus berlanjut tanpa henti dengan karakter unicode multi-byte. 🔥 Berita emoji panjang yang terus berlanjut tanpa henti dengan karakter unicode multi-byte. 🔥 Berita emoji panjang yang terus berlanjut tanpa henti dengan karakter unicode multi-byte. 🔥 Berita emoji panjang yang terus berlanjut tanpa henti."},"Emoji"],"ok":"🔥 Berita emoji panjang yang terus berlanjut tanpa henti dengan karakter unicode multi-byte. 🔥 Berita emoji panjang yang terus berlanjut tanpa henti dengan karakter unicode multi-byte. 🔥 Berita emoji panjang yang terus berlanjut tanpa henti dengan karakter unicode multi-byte. 🔥 Berita emoji panjang yang terus berlanjut tanpa henti dengan karakter unicode multi-byte. 🔥 Berita emoji panjang yang terus berlanjut tanpa henti dengan karakter unicode multi-byte. 🔥 Berita emoji panjang yang terus berlanjut tanpa henti…"}
+{"fn":"newsEnglish","args":["Couple wants the BOM to replace them with a weather station","After six decades of recording rainfall data, Ernie and Merrillyn Cole want the Bureau of Meteorology to take over."],"ok":true}
+{"fn":"newsEnglish","args":["NSW prisoners made more than 32,000 complaints in past year",""],"ok":true}
+{"fn":"newsEnglish","args":["Heli water bombing jatuh di Sungai Barito, 2 selamat 1 meninggal","Kru helikopter pemadam karhutla..."],"ok":false}
+{"fn":"newsEnglish","args":["Rupiah menguat ke Rp18.250 per dolar AS","Nilai tukar rupiah terhadap dolar Amerika Serikat diprediksi fluktuasi ketat pekan ini."],"ok":false}
+{"fn":"newsEnglish","args":["Gempa M5.2 guncang Maluku, 3 meninggal",""],"ok":false}
+{"fn":"newsEnglish","args":["Earthquake tsunami alert",""],"ok":true}
+{"fn":"newsEnglish","args":["Attack leaves dead",""],"ok":true}
+{"fn":"newsEnglish","args":["Judul singkat","xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx the and for are was were"],"ok":false}
+{"fn":"cleanTitle","args":["Polisi Tangkap Pengedar Narkoba - tribatanews.com","tribatanews.com"],"ok":"Polisi Tangkap Pengedar Narkoba"}
+{"fn":"cleanTitle","args":["Patroli Malam di Wilayah Rawan - tribratanews.com",null],"ok":"Patroli Malam di Wilayah Rawan"}
+{"fn":"cleanTitle","args":["Kecelakaan Tol Cipali, 2 Orang Luka-Luka - tribratanews-polrescirebon.com","tribratanews-polrescirebon.com"],"ok":"Kecelakaan Tol Cipali, 2 Orang Luka-Luka"}
+{"fn":"cleanTitle","args":["Dua Pelaku Curanmor Diamankan – Polresta Cirebon",null],"ok":"Dua Pelaku Curanmor Diamankan"}
+{"fn":"cleanTitle","args":["Waspada Cuaca Ekstrem di Kaltim - Niaga.Asia","Niaga.Asia"],"ok":"Waspada Cuaca Ekstrem di Kaltim"}
+{"fn":"cleanTitle","args":["Harga Kebutuhan Pokok Naik - Jambiupdate.co",null],"ok":"Harga Kebutuhan Pokok Naik"}
+{"fn":"cleanTitle","args":["Penyelundupan Rokok Ilegal Digagalkan - Batamtimes.co",null],"ok":"Penyelundupan Rokok Ilegal Digagalkan"}
+{"fn":"cleanTitle","args":["Pelantikan Pejabat Baru - pemerintah Kabupaten Aceh Barat Daya",null],"ok":"Pelantikan Pejabat Baru"}
+{"fn":"cleanTitle","args":["Anak-anak Korban Bencana Trauma, Mengaku Pura-pura Sakit - Detikcom","detikcom"],"ok":"Anak-anak Korban Bencana Trauma, Mengaku Pura-pura Sakit"}
+{"fn":"cleanTitle","args":["Jalur Tol Pejagan-Pemalang Macet Parah - Radar Tegal","radar tegal"],"ok":"Jalur Tol Pejagan-Pemalang Macet Parah"}
+{"fn":"cleanTitle","args":["Konflik Tambang-Sawit Diselesaikan Warga Kassi-Kassi - Tribunnews","tribunnews"],"ok":"Konflik Tambang-Sawit Diselesaikan Warga Kassi-Kassi"}
+{"fn":"cleanTitle","args":["Berita Video - Evakuasi Korban Longsor Berlanjut - Kompas.com","kompas.com"],"ok":"Evakuasi Korban Longsor Berlanjut"}
+{"fn":"cleanTitle","args":["Breaking News - Gunung Merapi Luncurkan Awan Panas - CNN Indonesia","cnn indonesia"],"ok":"Gunung Merapi Luncurkan Awan Panas"}
+{"fn":"cleanTitle","args":["Cek Jadwal Pemadaman Listrik di Maros Hari Ini, 12 Zona Terdampak hingga Malam - Tribun-timur.com","Tribunnews"],"ok":"Cek Jadwal Pemadaman Listrik di Maros Hari Ini, 12 Zona Terdampak hingga Malam"}
+{"fn":"cleanTitle","args":["Cek Jadwal Pemadaman Listrik di Maros Hari Ini, 12 Zona Terdampak hingga Malam -- Tribun-timur.com","Tribun-timur.com"],"ok":"Cek Jadwal Pemadaman Listrik di Maros Hari Ini, 12 Zona Terdampak hingga Malam"}
+{"fn":"cleanTitle","args":["Judul Berita Panjang Sekali | Kompas.com",null],"ok":"Judul Berita Panjang Sekali"}
+{"fn":"cleanTitle","args":["Judul Singkat | Kompas.com",null],"ok":"Judul Singkat"}
+{"fn":"cleanTitle","args":["Judul Berita Panjang Sekali :: Detikcom",null],"ok":"Judul Berita Panjang Sekali"}
+{"fn":"cleanTitle","args":["Judul Berita Panjang - https://example.com/path",null],"ok":"Judul Berita Panjang"}
+{"fn":"cleanTitle","args":["Judul Berita Panjang - slug-kecil",null],"ok":"Judul Berita Panjang"}
+{"fn":"cleanTitle","args":["Judul Berita Panjang - ini bukan sumber karena terlalu banyak kata di akhir",null],"ok":"Judul Berita Panjang - ini bukan sumber karena terlalu banyak kata di akhir"}
+{"fn":"cleanTitle","args":["Judul Berita Panjang - Sumber (Test)+","Sumber (Test)+"],"ok":"Judul Berita Panjang"}
+{"fn":"cleanTitle","args":["Judul Berita Panjang - ab","ab"],"ok":"Judul Berita Panjang"}
+{"fn":"cleanTitle","args":["Judul Berita Panjang - a.","a."],"ok":"Judul Berita Panjang"}
+{"fn":"cleanTitle","args":["Foto: Live - Eksklusif: Gunung Merapi Erupsi - Media® Satu - Kompas.com",null],"ok":"Gunung Merapi Erupsi"}
+{"fn":"decodeEntities","args":["kata lain"],"ok":"kata lain"}
+{"fn":"decodeEntities","args":[" Halo  dunia    "],"ok":" Halo  dunia    "}
+{"fn":"htmlToText","args":["Hujan deras picu banjir di Jakarta   ANTARA"],"ok":"Hujan deras picu banjir di Jakarta ANTARA"}
+{"fn":"decodeEntities","args":["Hujan deras picu banjir di Jakarta   ANTARA"],"ok":"Hujan deras picu banjir di Jakarta   ANTARA"}
+{"fn":"htmlToText","args":["Judul Berita Tempo.co"],"ok":"Judul Berita Tempo.co"}
+{"fn":"decodeEntities","args":["Judul Berita Tempo.co"],"ok":"Judul Berita Tempo.co"}
+{"fn":"htmlToText","args":["Hujan deras picu banjir di wilayah Jabodetabek - ANTARA"],"ok":"Hujan deras picu banjir di wilayah Jabodetabek - ANTARA"}
+{"fn":"decodeEntities","args":["Hujan deras picu banjir di wilayah Jabodetabek - ANTARA"],"ok":"Hujan deras picu banjir di wilayah Jabodetabek - ANTARA"}
+{"fn":"htmlToText","args":["Presiden mengumumkan kebijakan ekonomi baru — tempo.co"],"ok":"Presiden mengumumkan kebijakan ekonomi baru — tempo.co"}
+{"fn":"decodeEntities","args":["Presiden mengumumkan kebijakan ekonomi baru — tempo.co"],"ok":"Presiden mengumumkan kebijakan ekonomi baru — tempo.co"}
+{"fn":"htmlToText","args":["Gempa magnitude 5.2 mengguncang wilayah Sumatera. Korban dipastikan aman dan tidak ada kerusakan berarti. (Foto: Antara)"],"ok":"Gempa magnitude 5.2 mengguncang wilayah Sumatera. Korban dipastikan aman dan tidak ada kerusakan berarti. (Foto: Antara)"}
+{"fn":"decodeEntities","args":["Gempa magnitude 5.2 mengguncang wilayah Sumatera. Korban dipastikan aman dan tidak ada kerusakan berarti. (Foto: Antara)"],"ok":"Gempa magnitude 5.2 mengguncang wilayah Sumatera. Korban dipastikan aman dan tidak ada kerusakan berarti. (Foto: Antara)"}
+{"fn":"htmlToText","args":["Sumber: BNPB. Korban dievakuasi dari lokasi banjir dan kini berada di posko pengungsian."],"ok":"Sumber: BNPB. Korban dievakuasi dari lokasi banjir dan kini berada di posko pengungsian."}
+{"fn":"decodeEntities","args":["Sumber: BNPB. Korban dievakuasi dari lokasi banjir dan kini berada di posko pengungsian."],"ok":"Sumber: BNPB. Korban dievakuasi dari lokasi banjir dan kini berada di posko pengungsian."}
+{"fn":"htmlToText","args":["Pemerintah menaikkan anggaran infrastruktur tahun depan. Baca selengkapnya di cnnindonesia.com"],"ok":"Pemerintah menaikkan anggaran infrastruktur tahun depan. Baca selengkapnya di cnnindonesia.com"}
+{"fn":"decodeEntities","args":["Pemerintah menaikkan anggaran infrastruktur tahun depan. Baca selengkapnya di cnnindonesia.com"],"ok":"Pemerintah menaikkan anggaran infrastruktur tahun depan. Baca selengkapnya di cnnindonesia.com"}
+{"fn":"htmlToText","args":["<p>Paragraf pertama berita <b>penting</b>.</p><figure><img src=\"x.jpg\"><figcaption>Foto: Istimewa</figcaption></figure><p>Paragraf kedua berita.</p>"],"ok":"Paragraf pertama berita penting . Paragraf kedua berita."}
+{"fn":"decodeEntities","args":[" Paragraf pertama berita  penting .   Paragraf kedua berita. "],"ok":" Paragraf pertama berita  penting .   Paragraf kedua berita. "}
+{"fn":"htmlToText","args":["Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan."],"ok":"Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan."}
+{"fn":"decodeEntities","args":["Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan."],"ok":"Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan."}
+{"fn":"htmlToText","args":["<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>"],"ok":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
+{"fn":"decodeEntities","args":[" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx "],"ok":" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx "}
+{"fn":"htmlToText","args":["ANTARA"],"ok":"ANTARA"}
+{"fn":"decodeEntities","args":["ANTARA"],"ok":"ANTARA"}
+{"fn":"htmlToText","args":["<p>Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan.</p>"],"ok":"Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan."}
+{"fn":"decodeEntities","args":[" Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan. "],"ok":" Pemerintah mengumumkan kebijakan baru untuk mendukung pertumbuhan ekonomi nasional tahun depan. "}
+{"fn":"htmlToText","args":["Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. "],"ok":"Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti."}
+{"fn":"decodeEntities","args":["Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. "],"ok":"Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. Kata berita panjang yang terus berlanjut tanpa henti. "}
+{"fn":"htmlToText","args":["Presiden mengumumkan kebijakan ekonomi baru untuk tahun depan"],"ok":"Presiden mengumumkan kebijakan ekonomi baru untuk tahun depan"}
+{"fn":"decodeEntities","args":["Presiden mengumumkan kebijakan ekonomi baru untuk tahun depan"],"ok":"Presiden mengumumkan kebijakan ekonomi baru untuk tahun depan"}
+{"fn":"htmlToText","args":["Menurut ANTARA, kebijakan baru itu akan berlaku mulai awal tahun depan bagi seluruh sektor usaha."],"ok":"Menurut ANTARA, kebijakan baru itu akan berlaku mulai awal tahun depan bagi seluruh sektor usaha."}
+{"fn":"decodeEntities","args":["Menurut ANTARA, kebijakan baru itu akan berlaku mulai awal tahun depan bagi seluruh sektor usaha."],"ok":"Menurut ANTARA, kebijakan baru itu akan berlaku mulai awal tahun depan bagi seluruh sektor usaha."}
+{"fn":"htmlToText","args":["tempo.co"],"ok":"tempo.co"}
+{"fn":"decodeEntities","args":["tempo.co"],"ok":"tempo.co"}

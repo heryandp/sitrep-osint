@@ -1,0 +1,54 @@
+{"fn":"getConfig","args":["x"],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[["a",1]],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[[]],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[0],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[{"$undefined":true}],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[{"a":{"b":"c"}}],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[null],"error":"Cannot read properties of null (reading 'SITREP_NLP_PROVIDER')"}
+{"fn":"getConfig","args":[true],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[{"a":"b"}],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[{}],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"redactPII","args":[[]],"ok":""}
+{"fn":"redactPII","args":[0],"ok":""}
+{"fn":"redactPII","args":[{}],"ok":"[object Object]"}
+{"fn":"redactPII","args":[{"a":{"b":"c"}}],"ok":"[object Object]"}
+{"fn":"redactPII","args":["x"],"ok":"x"}
+{"fn":"redactPII","args":[["a",1]],"ok":"a,1"}
+{"fn":"redactPII","args":[null],"ok":""}
+{"fn":"redactPII","args":[true],"ok":"true"}
+{"fn":"redactPII","args":[{"a":"b"}],"ok":"[object Object]"}
+{"fn":"redactPII","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":"[object Object]"}
+{"fn":"redactPII","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":"[object Object]"}
+{"fn":"redactPII","args":[[3,1,2]],"ok":"3,1,2"}
+{"fn":"redactPII","args":["Hubungi @admin_budi 081234567890 atau budi@example.com NIK 3275011234567890 https://x.com/a/1"],"ok":"Hubungi [USER] [PHONE] atau [EMAIL] NIK [ID] [URL]"}
+{"fn":"redactPII","args":["WA +628123456789 atau 6281234567890 atau 081234567 atau 0812345678901"],"ok":"WA [PHONE] atau [PHONE] atau [PHONE] atau [PHONE]"}
+{"fn":"redactPII","args":["short 08123456 long 08123456789012 word081234567890 ++628123456789 _081234567890 (+628123456789) tel:081234567890 6281234567890x"],"ok":"short 08123456 long [ID] word081234567890 ++[ID] _081234567890 ([PHONE]) tel:[PHONE] 6281234567890x"}
+{"fn":"redactPII","args":["Email: a.b+c_d%e-f@sub.domain.co.id USER@EXAMPLE.ORG not@an.e .foo@bar.com"],"ok":"Email: [EMAIL] [EMAIL] not[USER] .[EMAIL]"}
+{"fn":"redactPII","args":["URL: http://example.com/a?b=1&c=2 HTTPS://X.COM/u/1 ftp://keep.me"],"ok":"URL: [URL] [URL] ftp://keep.me"}
+{"fn":"redactPII","args":["Handle: @admin_budi @user.name @123 email@host.id"],"ok":"Handle: [USER] [USER] [USER] [EMAIL]"}
+{"fn":"redactPII","args":["IDs: 12345678901 123456789012 3275011234567890 12345678901234567 ID123456789012"],"ok":"IDs: 12345678901 [ID] [ID] 12345678901234567 ID123456789012"}
+{"fn":"redactPII","args":["  ﻿  é081234567890 café123456789012    "],"ok":"é[PHONE] café[ID]"}
+{"fn":"redactPII","args":[""],"ok":""}
+{"fn":"redactPII","args":[null],"ok":""}
+{"fn":"redactPII","args":[123456789012],"ok":"[ID]"}
+{"fn":"getConfig","args":[{}],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[{"SITREP_NLP_PROVIDER":"  OpenAI-Compat  ","SITREP_NLP_ENDPOINT":" https://api.example.com/v1 ","SITREP_NLP_API_KEY":" sk-test-123 ","SITREP_NLP_MODEL":" custom-v2 ","SITREP_NLP_TIMEOUT_MS":"3500"}],"ok":{"enabled":true,"provider":"openai-compat","endpoint":"https://api.example.com/v1","apiKey":"sk-test-123","model":"custom-v2","timeoutMs":3500}}
+{"fn":"getConfig","args":[{"SITREP_NLP_PROVIDER":"openai","SITREP_NLP_ENDPOINT":"https://a.test","SITREP_NLP_API_KEY":"k","SITREP_NLP_TIMEOUT_MS":"100"}],"ok":{"enabled":true,"provider":"openai","endpoint":"https://a.test","apiKey":"k","model":"","timeoutMs":500}}
+{"fn":"getConfig","args":[{"SITREP_NLP_PROVIDER":"openai","SITREP_NLP_ENDPOINT":"https://a.test","SITREP_NLP_API_KEY":"k","SITREP_NLP_TIMEOUT_MS":"500"}],"ok":{"enabled":true,"provider":"openai","endpoint":"https://a.test","apiKey":"k","model":"","timeoutMs":500}}
+{"fn":"getConfig","args":[{"SITREP_NLP_PROVIDER":"openai","SITREP_NLP_ENDPOINT":"https://a.test","SITREP_NLP_API_KEY":"k","SITREP_NLP_TIMEOUT_MS":"10000"}],"ok":{"enabled":true,"provider":"openai","endpoint":"https://a.test","apiKey":"k","model":"","timeoutMs":10000}}
+{"fn":"getConfig","args":[{"SITREP_NLP_PROVIDER":"openai","SITREP_NLP_ENDPOINT":"https://a.test","SITREP_NLP_API_KEY":"k","SITREP_NLP_TIMEOUT_MS":"99999"}],"ok":{"enabled":true,"provider":"openai","endpoint":"https://a.test","apiKey":"k","model":"","timeoutMs":10000}}
+{"fn":"getConfig","args":[{"SITREP_NLP_TIMEOUT_MS":"0"}],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[{"SITREP_NLP_TIMEOUT_MS":"-500"}],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":500}}
+{"fn":"getConfig","args":[{"SITREP_NLP_TIMEOUT_MS":"not-a-number"}],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[{"SITREP_NLP_TIMEOUT_MS":750.5}],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":750.5}}
+{"fn":"getConfig","args":[{"SITREP_NLP_TIMEOUT_MS":true}],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":500}}
+{"fn":"getConfig","args":[{"SITREP_NLP_TIMEOUT_MS":false}],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[{"SITREP_NLP_PROVIDER":"openai","SITREP_NLP_ENDPOINT":"https://a.test"}],"ok":{"enabled":false,"provider":"openai","endpoint":"https://a.test","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[null],"error":"Cannot read properties of null (reading 'SITREP_NLP_PROVIDER')"}
+{"fn":"getConfig","args":[{}],"ok":{"enabled":false,"provider":"","endpoint":"","apiKey":"","model":"","timeoutMs":2500}}
+{"fn":"getConfig","args":[{"SITREP_NLP_PROVIDER":"openai-compat","SITREP_NLP_ENDPOINT":"https://example.invalid/v1/classify","SITREP_NLP_API_KEY":"dummy-test-key","SITREP_NLP_TIMEOUT_MS":"600"}],"ok":{"enabled":true,"provider":"openai-compat","endpoint":"https://example.invalid/v1/classify","apiKey":"dummy-test-key","model":"","timeoutMs":600}}
+{"fn":"redactPII","args":["Pertanyaan warga ke-0 soal Jakarta banjir nggak?"],"ok":"Pertanyaan warga ke-0 soal Jakarta banjir nggak?"}
+{"fn":"redactPII","args":["Pertanyaan warga ke-1 soal Jakarta banjir nggak?"],"ok":"Pertanyaan warga ke-1 soal Jakarta banjir nggak?"}
+{"fn":"redactPII","args":["Pertanyaan warga ke-2 soal Jakarta banjir nggak?"],"ok":"Pertanyaan warga ke-2 soal Jakarta banjir nggak?"}

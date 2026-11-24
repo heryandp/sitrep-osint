@@ -1,0 +1,61 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/home/ditip/Documents/djp-sitrep",
+  "unit": "src/xpool.js",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "xpool-rs",
+  "exports": [
+    {
+      "name": "buildXAccounts",
+      "file": "src/xpool.js",
+      "line": 3,
+      "params": [
+        {
+          "name": "env",
+          "ts_type": "unknown",
+          "optional": true,
+          "rest": false
+        },
+        {
+          "name": "cfgX",
+          "ts_type": "unknown",
+          "optional": true,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "formatWibTime",
+      "file": "src/xpool.js",
+      "line": 114,
+      "params": [
+        {
+          "name": "ms",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [
+    {
+      "name": "createXPool",
+      "file": "src/xpool.js",
+      "line": 48,
+      "reason": "returns stateful closure object; implemented as XPool struct for rust/app"
+    }
+  ]
+}

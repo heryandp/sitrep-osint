@@ -1,0 +1,17 @@
+{
+  "unit": "src/evmerge.js",
+  "files": 1,
+  "fingerprint": "8cd1e9e358c5e1ed",
+  "coverage": {
+    "lines": 176,
+    "reached": 176,
+    "files": [
+      {
+        "file": "src/evmerge.js",
+        "lines": 176,
+        "reached": 176,
+        "missed": ""
+      }
+    ]
+  }
+}

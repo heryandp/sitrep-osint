@@ -1,0 +1,90 @@
+{"fn":"createDiagnostics","args":[],"ok":{"recordRetrieved":{"$function":"recordRetrieved"},"recordClassification":{"$function":"recordClassification"},"recordCache":{"$function":"recordCache"},"snapshot":{"$function":"snapshot"},"reset":{"$function":"reset"}}}
+{"fn":"evaluateCorpus","args":[[],{"a":{"b":"c"}}],"ok":{"total":0,"confusion":{"tp":0,"fp":0,"tn":0,"fn":0},"precision":1,"recall":1,"f1":1,"falsePositiveRate":0,"falseNegativeRate":0,"feedRoutingAccuracy":0,"intentAccuracy":0,"perClass":{},"failures":[]}}
+{"fn":"evaluateCorpus","args":[true,["a",1]],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[null,["a",1]],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{"a":"b"},["a",1]],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{},["a",1]],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[[],"x"],"ok":{"total":0,"confusion":{"tp":0,"fp":0,"tn":0,"fn":0},"precision":1,"recall":1,"f1":1,"falsePositiveRate":0,"falseNegativeRate":0,"feedRoutingAccuracy":0,"intentAccuracy":0,"perClass":{},"failures":[]}}
+{"fn":"evaluateCorpus","args":[{"a":{"b":"c"}},true],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{"a":{"b":"c"}},0],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":["x","x"],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[true,{"a":{"b":"c"}}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[0,true],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[0,{}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[[],{}],"ok":{"total":0,"confusion":{"tp":0,"fp":0,"tn":0,"fn":0},"precision":1,"recall":1,"f1":1,"falsePositiveRate":0,"falseNegativeRate":0,"feedRoutingAccuracy":0,"intentAccuracy":0,"perClass":{},"failures":[]}}
+{"fn":"evaluateCorpus","args":[["a",1],["a",1]],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":["x",{}],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[{},null],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[["a",1],true],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[{"a":"b"},null],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[true,[]],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{"a":{"b":"c"}},"x"],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[null,{"a":{"b":"c"}}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{},{"a":"b"}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[null,0],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{"a":{"b":"c"}},{"a":"b"}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[null,null],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[["a",1],{"a":"b"}],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":["x",{"a":"b"}],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[true,{"a":"b"}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":["x",["a",1]],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[null,true],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{"a":"b"},"x"],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[true,true],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[[],[]],"ok":{"total":0,"confusion":{"tp":0,"fp":0,"tn":0,"fn":0},"precision":1,"recall":1,"f1":1,"falsePositiveRate":0,"falseNegativeRate":0,"feedRoutingAccuracy":0,"intentAccuracy":0,"perClass":{},"failures":[]}}
+{"fn":"evaluateCorpus","args":[0,[]],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[[],["a",1]],"ok":{"total":0,"confusion":{"tp":0,"fp":0,"tn":0,"fn":0},"precision":1,"recall":1,"f1":1,"falsePositiveRate":0,"falseNegativeRate":0,"feedRoutingAccuracy":0,"intentAccuracy":0,"perClass":{},"failures":[]}}
+{"fn":"evaluateCorpus","args":[{"a":"b"},[]],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{},true],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{},"x"],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{"a":{"b":"c"}},null],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{"a":"b"},true],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[[],0],"ok":{"total":0,"confusion":{"tp":0,"fp":0,"tn":0,"fn":0},"precision":1,"recall":1,"f1":1,"falsePositiveRate":0,"falseNegativeRate":0,"feedRoutingAccuracy":0,"intentAccuracy":0,"perClass":{},"failures":[]}}
+{"fn":"evaluateCorpus","args":[{"a":"b"},{}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[["a",1],0],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":["x",0],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[{},0],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":["x",null],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[["a",1],null],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[0,{"a":"b"}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[[],{"a":"b"}],"ok":{"total":0,"confusion":{"tp":0,"fp":0,"tn":0,"fn":0},"precision":1,"recall":1,"f1":1,"falsePositiveRate":0,"falseNegativeRate":0,"feedRoutingAccuracy":0,"intentAccuracy":0,"perClass":{},"failures":[]}}
+{"fn":"evaluateCorpus","args":[{"a":{"b":"c"}},{}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[[],null],"ok":{"total":0,"confusion":{"tp":0,"fp":0,"tn":0,"fn":0},"precision":1,"recall":1,"f1":1,"falsePositiveRate":0,"falseNegativeRate":0,"feedRoutingAccuracy":0,"intentAccuracy":0,"perClass":{},"failures":[]}}
+{"fn":"evaluateCorpus","args":[["a",1],[]],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[null,"x"],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":["x",true],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[{},{"a":{"b":"c"}}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[true,0],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{},[]],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[null,{}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[["a",1],"x"],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[{"a":"b"},0],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[0,["a",1]],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[["a",1],{"a":{"b":"c"}}],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[true,"x"],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[true,{}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[[],true],"ok":{"total":0,"confusion":{"tp":0,"fp":0,"tn":0,"fn":0},"precision":1,"recall":1,"f1":1,"falsePositiveRate":0,"falseNegativeRate":0,"feedRoutingAccuracy":0,"intentAccuracy":0,"perClass":{},"failures":[]}}
+{"fn":"evaluateCorpus","args":[["a",1],{}],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[0,null],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{"a":"b"},{"a":"b"}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[0,0],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[true,null],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[null,{"a":"b"}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[0,"x"],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":["x",{"a":{"b":"c"}}],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[{},{}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[null,[]],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{"a":"b"},{"a":{"b":"c"}}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[0,{"a":{"b":"c"}}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":["x",[]],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[{"a":{"b":"c"}},[]],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{"a":{"b":"c"}},["a",1]],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":["x","X"],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":["X","x"],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},{"a":{"b":"c"}}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},{"a":{"b":"c"}}],"error":"corpus is not iterable"}
+{"fn":"evaluateCorpus","args":[[3,1,2],{"a":{"b":"c"}}],"error":"classifyFn is not a function"}
+{"fn":"evaluateCorpus","args":[[],{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":{"total":0,"confusion":{"tp":0,"fp":0,"tn":0,"fn":0},"precision":1,"recall":1,"f1":1,"falsePositiveRate":0,"falseNegativeRate":0,"feedRoutingAccuracy":0,"intentAccuracy":0,"perClass":{},"failures":[]}}
+{"fn":"evaluateCorpus","args":[[],{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":{"total":0,"confusion":{"tp":0,"fp":0,"tn":0,"fn":0},"precision":1,"recall":1,"f1":1,"falsePositiveRate":0,"falseNegativeRate":0,"feedRoutingAccuracy":0,"intentAccuracy":0,"perClass":{},"failures":[]}}
+{"fn":"evaluateCorpus","args":[[],[3,1,2]],"ok":{"total":0,"confusion":{"tp":0,"fp":0,"tn":0,"fn":0},"precision":1,"recall":1,"f1":1,"falsePositiveRate":0,"falseNegativeRate":0,"feedRoutingAccuracy":0,"intentAccuracy":0,"perClass":{},"failures":[]}}

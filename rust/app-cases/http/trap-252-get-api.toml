@@ -1,0 +1,14 @@
+[request]
+method = "GET"
+path = "/api/read?u=%C4%B1l%C4%B1k%20%C4%B1rmak"
+
+[response]
+status = 403
+
+[response.headers]
+cache-control = "no-store"
+content-type = "application/json"
+referrer-policy = "same-origin"
+x-content-type-options = "nosniff"
+x-ratelimit-limit = "600"
+x-ratelimit-remaining = "577"

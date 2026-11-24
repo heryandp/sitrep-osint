@@ -1,0 +1,38 @@
+{"fn":"breakNorm","args":["Kebakaran Rumah di Bandung - Kompas.com"]}
+{"fn":"breakNorm","args":["  UPDATE: Gempa 5.4 SR!! Guncang Cianjur - DetikNews  "]}
+{"fn":"breakNorm","args":["Banjir\tGenangan\nJakarta   Selatan - CNN Indonesia"]}
+{"fn":"breakNorm","args":["Judul - Tengah - Media Singkat"]}
+{"fn":"breakNorm","args":["A - X"]}
+{"fn":"breakNorm","args":["Test emoji 🔥 dan simbol @#$%^&*()"]}
+{"fn":"breakNorm","args":[""]}
+{"fn":"hazardOf","args":["Gempa magnitudo 5.4 guncang Cianjur"]}
+{"fn":"hazardOf","args":["Gempabumi tektonik susulan di Sulawesi"]}
+{"fn":"hazardOf","args":["Gunung Merapi luncurkan awan panas vulkanik"]}
+{"fn":"hazardOf","args":["Erupsi Gunung Semeru pagi ini"]}
+{"fn":"hazardOf","args":["Banjir dan tanah longsor rendam pemukiman"]}
+{"fn":"hazardOf","args":["Genangan air setinggi 50 cm di jalan"]}
+{"fn":"hazardOf","args":["Kebakaran gudang tekstil di Tangerang"]}
+{"fn":"hazardOf","args":["Gempa memicu erupsi dan banjir"]}
+{"fn":"repScore","args":[{"title":"Kebakaran gudang tekstil tewaskan dua warga"}]}
+{"fn":"repScore","args":[{"title":"Video: Komentar menteri soal kebakaran gudang"}]}
+{"fn":"repScore","args":[{"title":"  FOTO: Simulasi mitigasi bencana banjir"}]}
+{"fn":"repScore","args":[{"name":"Banjir rendam ratusan rumah warga"}]}
+{"fn":"repScore","args":[{"title":"Analisis pengamat terkait cuaca ekstrem"}]}
+{"fn":"repScore","args":[{"title":"Berita biasa tanpa kata kunci"}]}
+{"fn":"evHash","args":[""]}
+{"fn":"evHash","args":["fire|bandung|melati,sariwati"]}
+{"fn":"evHash","args":["disaster|cianjur|magnitudo,selatan"]}
+{"fn":"evHash","args":["🔥 gempa bumi café"]}
+{"fn":"mergeEvents","args":[[{"title":"Kebakaran rumah sariwati melati di Bandung","name":"Bandung","kind":"fire","ts":1699996400000},{"title":"Kebakaran ruko sariwati jebol di Bandung","name":"Bandung","kind":"fire","ts":1699996400000}],[],{}]}
+{"fn":"mergeEvents","args":[[{"title":"Kebakaran rumah sariwati melati di Bandung","name":"Bandung","kind":"fire","ts":1699996400000,"src":"ANTARA"},{"title":"Kebakaran rumah sariwati melati jebol di Bandung","name":"Bandung","kind":"fire","ts":1699997000000,"src":"DETIK"}],[],{}]}
+{"fn":"mergeEvents","args":[[{"title":"Kebakaran rumah senja anggrek di Bandung","name":"Bandung","kind":"fire","ts":1699996400000},{"title":"Kebakaran rumah senja anggrek melati di Bandung","name":"Bandung","kind":"fire","ts":1699996400000},{"title":"Kebakaran rumah melati cempaka di Bandung","name":"Bandung","kind":"fire","ts":1699996400000}],[],{}]}
+{"fn":"mergeEvents","args":[[{"title":"Kebakaran Rumah di Jakarta Selatan","name":"Jakarta Selatan","kind":"fire","ts":1699998200000},{"title":"Kebakaran Pasar di Jakarta Selatan","name":"Jakarta Selatan","kind":"fire","ts":1699999100000}],[],{}]}
+{"fn":"mergeEvents","args":[[{"title":"Kebakaran rumah sariwati mangga malam kemarin di Jakarta Selatan","name":"Jakarta Selatan","kind":"fire","ts":1699996400000},{"title":"Kebakaran ruko sariwati kenanga siang barusan di Jakarta Selatan","name":"Jakarta Selatan","kind":"fire","ts":1699996400000}],[],{}]}
+{"fn":"mergeEvents","args":[[{"title":"Kebakaran gudang tekstil cipondoh merambat ke tiga ruko","name":"Tangerang","kind":"fire","ts":1699998000000,"src":"ANTARA"},{"title":"Gudang tekstil cipondoh terbakar hebat malam ini","name":"Tangerang","kind":"fire","ts":1699999000000,"src":"DETIK"}],[],{}]}
+{"fn":"mergeEvents","args":[[{"title":"Gudang tekstil cipondoh terbakar hebat malam ini","name":"Tangerang","kind":"fire","ts":1699999000000,"src":"DETIK"},{"title":"Kebakaran gudang tekstil cipondoh merambat ke tiga ruko","name":"Tangerang","kind":"fire","ts":1699998000000,"src":"ANTARA"}],[],{}]}
+{"fn":"mergeEvents","args":[[{"title":"Update gempa magnitudo 5.4 Cianjur selatan warga mengungsi","name":"Cianjur","kind":"disaster","ts":1699999400000,"src":"KOMPAS"}],[{"eid":"e_prev_gempa","title":"Gempa magnitudo 5.4 guncang Cianjur selatan","name":"Cianjur","kind":"disaster","ts":1699996400000,"rt":["magnitudo","selatan"],"sources":["BMKG","ANTARA"],"firstSeenTs":1699990000000,"n":2}],{}]}
+{"fn":"mergeEvents","args":[[{"title":"Banjir rendam kawasan kemang pagi ini","name":"Jakarta Selatan","kind":"flood","ts":1699999000000,"src":"DETIK"},{"title":"Longsor tebing kecil di jakarta selatan","name":"Jakarta Selatan","kind":"flood","ts":1699995000000,"src":"CNN"}],[{"eid":"e_prev_flood","title":"Genangan tinggi di selatan","name":"Jakarta Selatan","kind":"flood","ts":1699991000000,"src":"BPBD"}],{}]}
+{"fn":"mergeEvents","args":[[{"title":"Kebakaran rumah di Jakarta Selatan","name":"Jakarta Selatan","kind":"fire","ts":1699999000000},{"title":"Kebakaran gudang cipondoh merambat","name":"Tangerang","kind":"fire","ts":1699999000000}],[{"eid":"e_exact_empty","title":"Kebakaran Rumah di Jakarta Selatan - Detik","name":"Jakarta Selatan","kind":"fire","ts":1699995000000,"rt":[]},{"eid":"e_single_exact","title":"Kebakaran gudang cipondoh hebat","name":"Tangerang","kind":"fire","ts":1699995000000},{"eid":"e_stale","title":"Kebakaran gudang cipondoh lama","name":"Tangerang","kind":"fire","ts":1699800000000},{"eid":"e_carry_ok","title":"Ledakan pipa gas di Bekasi barat","name":"Bekasi","kind":"fire","ts":1699995000000,"src":"ANTARA"},{"eid":"e_carry_node","title":"Node pin","name":"Bekasi","kind":"node","ts":1699995000000},{"eid":"e_carry_fixed","title":"Fixed pin","name":"Bekasi","kind":"fire","fixed":true,"ts":1699995000000},{"eid":"e_carry_old","title":"Old pin","name":"Bekasi","kind":"fire","ts":1699900000000},{"eid":"e_carry_future","title":"Future pin","name":"Bekasi","kind":"fire","ts":1700999000000},{"eid":"e_carry_zero","title":"Zero ts pin","name":"Bekasi","kind":"fire","ts":0}],{"now":1700000000000,"retainPrevMs":14400000}]}
+{"fn":"mergeEvents","args":[[{"title":"Kebakaran pabrik kimia cikarang utara","name":"Bekasi","kind":"fire","ts":1699998000000},{"title":"Kebakaran pabrik tekstil cikarang selatan","name":"Bekasi","kind":"fire","ts":1699997000000}],[{"eid":"e_used_once","title":"Kebakaran pabrik kimia cikarang","name":"Bekasi","kind":"fire","ts":1699996000000,"rt":["kimia","cikarang"]},{"eid":"e_second_prev","title":"Kebakaran pabrik tekstil cikarang","name":"Bekasi","kind":"fire","ts":1699995000000,"rt":["tekstil","cikarang"]}],{}]}
+{"fn":"mergeEvents","args":[[{"title":"Kebakaran megah proyek alfa1 di KotaA","name":"KotaA","kind":"fire","ts":1699998000000},{"title":"Kebakaran megah proyek beta2 di KotaA","name":"KotaA","kind":"fire","ts":1699997500000},{"title":"Kebakaran megah proyek gama3 di KotaA","name":"KotaA","kind":"fire","ts":1699997000000},{"title":"Kebakaran megah proyek delta4 di KotaA","name":"KotaA","kind":"fire","ts":1699996500000},{"title":"Kebakaran megah proyek alfa1 di KotaB","name":"KotaB","kind":"fire","ts":1699998000000},{"title":"Kebakaran megah proyek alfa1 di KotaC","name":"KotaC","kind":"fire","ts":1699998000000},{"title":"Kebakaran megah proyek alfa1 di KotaD","name":"KotaD","kind":"fire","ts":1699998000000}],[],{}]}
+{"fn":"mergeEvents","args":[[{"title":"Video: Komentar soal kebakaran kilang pertamina cilamaya","name":"Karawang","kind":"fire","ts":1699999500000,"src":"YT"},{"title":"Kebakaran kilang pertamina cilamaya meluas","name":"Karawang","kind":"fire","ts":1699998000000,"src":"ANTARA"}],[],{}]}

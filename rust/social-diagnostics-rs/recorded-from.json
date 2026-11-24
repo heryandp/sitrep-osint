@@ -1,0 +1,17 @@
+{
+  "unit": "src/social-diagnostics.js",
+  "files": 1,
+  "fingerprint": "217e0ec196005283",
+  "coverage": {
+    "lines": 216,
+    "reached": 87,
+    "files": [
+      {
+        "file": "src/social-diagnostics.js",
+        "lines": 216,
+        "reached": 87,
+        "missed": "42-46, 48-55, 57-60, 62-63, 65-67, 69-73, 75-92, 94-95, 97-99, 101-105, 107-111, 113-140, 142-157, 185-187, 189-194, 197-199, 201-202, 206-216"
+      }
+    ]
+  }
+}

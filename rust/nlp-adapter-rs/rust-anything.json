@@ -1,0 +1,55 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/home/ditip/Documents/djp-sitrep",
+  "unit": "src/nlp-adapter.js",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "nlp-adapter-rs",
+  "exports": [
+    {
+      "name": "getConfig",
+      "file": "src/nlp-adapter.js",
+      "line": 9,
+      "params": [
+        {
+          "name": "env",
+          "ts_type": "unknown",
+          "optional": true,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "redactPII",
+      "file": "src/nlp-adapter.js",
+      "line": 19,
+      "params": [
+        {
+          "name": "text",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [
+    {
+      "name": "createNlpAdapter",
+      "file": "src/nlp-adapter.js",
+      "line": 29,
+      "reason": "returns stateful async closure object; implemented as NlpAdapter struct for rust/app"
+    }
+  ]
+}

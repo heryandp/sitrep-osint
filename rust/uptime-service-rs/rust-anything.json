@@ -1,0 +1,49 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/home/ditip/Documents/djp-sitrep",
+  "unit": "src/uptime-service.js",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "uptime-service-rs",
+  "exports": [
+    {
+      "name": "normalizeCheckResult",
+      "file": "src/uptime-service.js",
+      "line": 14,
+      "params": [
+        {
+          "name": "portal",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "raw",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "now",
+          "ts_type": "unknown",
+          "optional": true,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [
+    {
+      "name": "createUptimeService",
+      "file": "src/uptime-service.js",
+      "line": 37,
+      "reason": "returns async stateful service object with closures; implemented as UptimeService struct for rust/app"
+    }
+  ]
+}

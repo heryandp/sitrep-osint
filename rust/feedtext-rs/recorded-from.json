@@ -1,0 +1,17 @@
+{
+  "unit": "src/feedtext.js",
+  "files": 1,
+  "fingerprint": "f84605079c6bca55",
+  "coverage": {
+    "lines": 308,
+    "reached": 306,
+    "files": [
+      {
+        "file": "src/feedtext.js",
+        "lines": 308,
+        "reached": 306,
+        "missed": "46-47"
+      }
+    ]
+  }
+}

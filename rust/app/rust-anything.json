@@ -2,7 +2,18 @@
   "schema": "rust-anything/front-door@1",
   "name": "djp-sitrep",
   "commands": [],
-  "units": [],
+  "units": [
+    {
+      "name": "uptime-service",
+      "crate": "uptime-service-rs",
+      "path": "../uptime-service-rs",
+      "commands": [],
+      "routes": [
+        "GET /api/pajak/uptime"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_UPTIME_SERVICE"
+    }
+  ],
   "kind": "http",
   "routes": [
     "POST /api/auth/login",

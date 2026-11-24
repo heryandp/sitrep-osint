@@ -1,0 +1,17 @@
+{
+  "unit": "src/xpool.js",
+  "files": 1,
+  "fingerprint": "7ef026562bae6aad",
+  "coverage": {
+    "lines": 103,
+    "reached": 46,
+    "files": [
+      {
+        "file": "src/xpool.js",
+        "lines": 103,
+        "reached": 46,
+        "missed": "48-50, 52, 54-66, 68, 70-78, 80-84, 86-90, 92-99, 101-112"
+      }
+    ]
+  }
+}

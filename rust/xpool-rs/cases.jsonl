@@ -1,0 +1,150 @@
+{"fn":"buildXAccounts","args":["x"],"ok":[]}
+{"fn":"buildXAccounts","args":[0,null],"ok":[]}
+{"fn":"buildXAccounts","args":[null,["a",1]],"error":"Cannot read properties of null (reading 'X_AUTH_TOKEN')"}
+{"fn":"buildXAccounts","args":[{"a":"b"},"x"],"ok":[]}
+{"fn":"buildXAccounts","args":["x",{"$undefined":true}],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":{"b":"c"}},true],"ok":[]}
+{"fn":"buildXAccounts","args":[true,true],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":"b"},[]],"ok":[]}
+{"fn":"buildXAccounts","args":[0,0],"ok":[]}
+{"fn":"buildXAccounts","args":[true,["a",1]],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":"b"},true],"ok":[]}
+{"fn":"buildXAccounts","args":[null,0],"error":"Cannot read properties of null (reading 'X_AUTH_TOKEN')"}
+{"fn":"buildXAccounts","args":[{"$undefined":true},["a",1]],"ok":[]}
+{"fn":"buildXAccounts","args":["x","x"],"ok":[]}
+{"fn":"buildXAccounts","args":[{"$undefined":true},true],"ok":[]}
+{"fn":"buildXAccounts","args":[null],"error":"Cannot read properties of null (reading 'X_AUTH_TOKEN')"}
+{"fn":"buildXAccounts","args":[0,{"a":{"b":"c"}}],"ok":[]}
+{"fn":"buildXAccounts","args":[null,{}],"error":"Cannot read properties of null (reading 'X_AUTH_TOKEN')"}
+{"fn":"buildXAccounts","args":[["a",1]],"ok":[]}
+{"fn":"buildXAccounts","args":[{},true],"ok":[]}
+{"fn":"buildXAccounts","args":[0,true],"ok":[]}
+{"fn":"buildXAccounts","args":[[],{"a":"b"}],"ok":[]}
+{"fn":"buildXAccounts","args":[[],0],"ok":[]}
+{"fn":"buildXAccounts","args":["x",true],"ok":[]}
+{"fn":"buildXAccounts","args":[[],[]],"ok":[]}
+{"fn":"buildXAccounts","args":[["a",1],{"a":"b"}],"ok":[]}
+{"fn":"buildXAccounts","args":[{"$undefined":true},[]],"ok":[]}
+{"fn":"buildXAccounts","args":[0,["a",1]],"ok":[]}
+{"fn":"buildXAccounts","args":["x",["a",1]],"ok":[]}
+{"fn":"buildXAccounts","args":[true],"ok":[]}
+{"fn":"buildXAccounts","args":[{"$undefined":true},{"$undefined":true}],"ok":[]}
+{"fn":"buildXAccounts","args":[true,{"a":{"b":"c"}}],"ok":[]}
+{"fn":"buildXAccounts","args":[0,{}],"ok":[]}
+{"fn":"buildXAccounts","args":[{},null],"ok":[]}
+{"fn":"buildXAccounts","args":[0],"ok":[]}
+{"fn":"buildXAccounts","args":[[]],"ok":[]}
+{"fn":"buildXAccounts","args":[[],{"a":{"b":"c"}}],"ok":[]}
+{"fn":"buildXAccounts","args":[["a",1],{"$undefined":true}],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":"b"},{}],"ok":[]}
+{"fn":"buildXAccounts","args":[{"$undefined":true},null],"ok":[]}
+{"fn":"buildXAccounts","args":[true,{"a":"b"}],"ok":[]}
+{"fn":"buildXAccounts","args":[[],{}],"ok":[]}
+{"fn":"buildXAccounts","args":[{}],"ok":[]}
+{"fn":"buildXAccounts","args":[{"$undefined":true},0],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":"b"},{"$undefined":true}],"ok":[]}
+{"fn":"buildXAccounts","args":["x",{}],"ok":[]}
+{"fn":"buildXAccounts","args":[null,true],"error":"Cannot read properties of null (reading 'X_AUTH_TOKEN')"}
+{"fn":"buildXAccounts","args":[true,{}],"ok":[]}
+{"fn":"buildXAccounts","args":[{"$undefined":true},{"a":{"b":"c"}}],"ok":[]}
+{"fn":"buildXAccounts","args":[["a",1],{}],"ok":[]}
+{"fn":"buildXAccounts","args":[[],"x"],"ok":[]}
+{"fn":"buildXAccounts","args":[{"$undefined":true},{}],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":{"b":"c"}},{}],"ok":[]}
+{"fn":"buildXAccounts","args":[[],null],"ok":[]}
+{"fn":"buildXAccounts","args":["x",{"a":{"b":"c"}}],"ok":[]}
+{"fn":"buildXAccounts","args":[null,{"a":{"b":"c"}}],"error":"Cannot read properties of null (reading 'X_AUTH_TOKEN')"}
+{"fn":"buildXAccounts","args":[null,{"a":"b"}],"error":"Cannot read properties of null (reading 'X_AUTH_TOKEN')"}
+{"fn":"buildXAccounts","args":[{"a":{"b":"c"}},0],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":{"b":"c"}},["a",1]],"ok":[]}
+{"fn":"buildXAccounts","args":[["a",1],"x"],"ok":[]}
+{"fn":"buildXAccounts","args":[["a",1],["a",1]],"ok":[]}
+{"fn":"buildXAccounts","args":[{},{}],"ok":[]}
+{"fn":"buildXAccounts","args":[[],true],"ok":[]}
+{"fn":"buildXAccounts","args":[{},{"a":{"b":"c"}}],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":"b"},null],"ok":[]}
+{"fn":"buildXAccounts","args":[[],["a",1]],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"ok":[]}
+{"fn":"buildXAccounts","args":[["a",1],0],"ok":[]}
+{"fn":"buildXAccounts","args":["x",[]],"ok":[]}
+{"fn":"buildXAccounts","args":[{"$undefined":true},{"a":"b"}],"ok":[]}
+{"fn":"buildXAccounts","args":[true,null],"ok":[]}
+{"fn":"buildXAccounts","args":["x",0],"ok":[]}
+{"fn":"buildXAccounts","args":[],"ok":[]}
+{"fn":"buildXAccounts","args":[[],{"$undefined":true}],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":{"b":"c"}}],"ok":[]}
+{"fn":"buildXAccounts","args":[0,{"a":"b"}],"ok":[]}
+{"fn":"buildXAccounts","args":[{},["a",1]],"ok":[]}
+{"fn":"buildXAccounts","args":[["a",1],{"a":{"b":"c"}}],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":"b"},0],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":{"b":"c"}},{"a":"b"}],"ok":[]}
+{"fn":"buildXAccounts","args":[["a",1],true],"ok":[]}
+{"fn":"buildXAccounts","args":[0,{"$undefined":true}],"ok":[]}
+{"fn":"buildXAccounts","args":[true,[]],"ok":[]}
+{"fn":"buildXAccounts","args":["x",{"a":"b"}],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":"b"}],"ok":[]}
+{"fn":"buildXAccounts","args":[true,{"$undefined":true}],"ok":[]}
+{"fn":"buildXAccounts","args":[["a",1],null],"ok":[]}
+{"fn":"buildXAccounts","args":[true,0],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":"b"},{"a":"b"}],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":"b"},["a",1]],"ok":[]}
+{"fn":"buildXAccounts","args":[{},{"$undefined":true}],"ok":[]}
+{"fn":"buildXAccounts","args":[null,{"$undefined":true}],"error":"Cannot read properties of null (reading 'X_AUTH_TOKEN')"}
+{"fn":"buildXAccounts","args":[null,null],"error":"Cannot read properties of null (reading 'X_AUTH_TOKEN')"}
+{"fn":"buildXAccounts","args":[{"$undefined":true}],"ok":[]}
+{"fn":"buildXAccounts","args":[["a",1],[]],"ok":[]}
+{"fn":"buildXAccounts","args":[{"$undefined":true},"x"],"ok":[]}
+{"fn":"buildXAccounts","args":[{},{"a":"b"}],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":{"b":"c"}},[]],"ok":[]}
+{"fn":"buildXAccounts","args":[{},0],"ok":[]}
+{"fn":"buildXAccounts","args":[0,[]],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":{"b":"c"}},{"$undefined":true}],"ok":[]}
+{"fn":"buildXAccounts","args":[null,"x"],"error":"Cannot read properties of null (reading 'X_AUTH_TOKEN')"}
+{"fn":"buildXAccounts","args":["x",null],"ok":[]}
+{"fn":"buildXAccounts","args":[{},"x"],"ok":[]}
+{"fn":"buildXAccounts","args":[{},[]],"ok":[]}
+{"fn":"buildXAccounts","args":[true,"x"],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":"b"},{"a":{"b":"c"}}],"ok":[]}
+{"fn":"buildXAccounts","args":[null,[]],"error":"Cannot read properties of null (reading 'X_AUTH_TOKEN')"}
+{"fn":"buildXAccounts","args":[{"a":{"b":"c"}},"x"],"ok":[]}
+{"fn":"buildXAccounts","args":[0,"x"],"ok":[]}
+{"fn":"buildXAccounts","args":[{"a":{"b":"c"}},null],"ok":[]}
+{"fn":"buildXAccounts","args":["X","x"],"ok":[]}
+{"fn":"formatWibTime","args":[["a",1]],"ok":"05:13"}
+{"fn":"formatWibTime","args":["x"],"ok":"05:13"}
+{"fn":"formatWibTime","args":[true],"ok":"07:00"}
+{"fn":"formatWibTime","args":[{"a":{"b":"c"}}],"ok":"05:13"}
+{"fn":"formatWibTime","args":[{}],"ok":"05:13"}
+{"fn":"formatWibTime","args":[[]],"ok":"05:13"}
+{"fn":"formatWibTime","args":[null],"ok":"05:13"}
+{"fn":"formatWibTime","args":[{"a":"b"}],"ok":"05:13"}
+{"fn":"formatWibTime","args":[0],"ok":"05:13"}
+{"fn":"formatWibTime","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":"05:13"}
+{"fn":"formatWibTime","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":"05:13"}
+{"fn":"formatWibTime","args":[[3,1,2]],"ok":"05:13"}
+{"fn":"buildXAccounts","args":[{"X_AUTH_TOKEN":"tok1, tok2","X_CT0":"ct1, ct2","X_AUTH_TOKEN_2":"tok2","X_CT0_2":"ct2","X_AUTH_TOKEN_3":"tok3","X_CT0_3":"ct3","X_AUTH_TOKEN_4":"missing_ct0"},{"accounts":[{"auth_token":"tok4","ct0":"ct4"},{"auth_token":"tok1","ct0":"ct1"}]}],"ok":[{"id":1,"auth_token":"tok1","ct0":"ct1","cooldownUntil":0,"disabledUntil":0},{"id":2,"auth_token":"tok2","ct0":"ct2","cooldownUntil":0,"disabledUntil":0},{"id":3,"auth_token":"tok3","ct0":"ct3","cooldownUntil":0,"disabledUntil":0},{"id":4,"auth_token":"tok4","ct0":"ct4","cooldownUntil":0,"disabledUntil":0}]}
+{"fn":"buildXAccounts","args":[{"X_AUTH_TOKEN":"a1","X_CT0":"c1","X_AUTH_TOKEN_2":"a2","X_CT0_2":"c2"}],"ok":[{"id":1,"auth_token":"a1","ct0":"c1","cooldownUntil":0,"disabledUntil":0},{"id":2,"auth_token":"a2","ct0":"c2","cooldownUntil":0,"disabledUntil":0}]}
+{"fn":"buildXAccounts","args":[{},{"auth_token":"cfgTok","ct0":"cfgCt"}],"ok":[{"id":1,"auth_token":"cfgTok","ct0":"cfgCt","cooldownUntil":0,"disabledUntil":0}]}
+{"fn":"buildXAccounts","args":[{"X_AUTH_TOKEN":"onlyTok"},{"auth_token":"cfgTok","ct0":"cfgCt"}],"ok":[{"id":1,"auth_token":"cfgTok","ct0":"cfgCt","cooldownUntil":0,"disabledUntil":0}]}
+{"fn":"buildXAccounts","args":[{"X_AUTH_TOKEN":"a, b, c","X_CT0":"c1, c2"}],"ok":[{"id":1,"auth_token":"a","ct0":"c1","cooldownUntil":0,"disabledUntil":0},{"id":2,"auth_token":"b","ct0":"c2","cooldownUntil":0,"disabledUntil":0}]}
+{"fn":"buildXAccounts","args":[{"X_AUTH_TOKEN":" , t1 , ","X_CT0":" , c1 , "}],"ok":[{"id":1,"auth_token":"t1","ct0":"c1","cooldownUntil":0,"disabledUntil":0}]}
+{"fn":"buildXAccounts","args":[{"X_AUTH_TOKEN_10":"t10","X_CT0_10":"c10","X_AUTH_TOKEN_11":"t11","X_CT0_11":"c11"}],"ok":[{"id":1,"auth_token":"t10","ct0":"c10","cooldownUntil":0,"disabledUntil":0}]}
+{"fn":"buildXAccounts","args":[{},{"accounts":[null,{},{"auth_token":"  ","ct0":"c"},{"auth_token":123,"ct0":456}]}],"ok":[{"id":1,"auth_token":"123","ct0":"456","cooldownUntil":0,"disabledUntil":0}]}
+{"fn":"buildXAccounts","args":[{"X_AUTH_TOKEN":123,"X_CT0":456}],"ok":[{"id":1,"auth_token":"123","ct0":"456","cooldownUntil":0,"disabledUntil":0}]}
+{"fn":"buildXAccounts","args":[{"X_AUTH_TOKEN":false,"X_CT0":0},{"auth_token":"ok","ct0":"okc"}],"ok":[{"id":1,"auth_token":"ok","ct0":"okc","cooldownUntil":0,"disabledUntil":0}]}
+{"fn":"formatWibTime","args":[1794290040000],"ok":"12:54"}
+{"fn":"formatWibTime","args":[1794330300000],"ok":"00:05"}
+{"fn":"formatWibTime","args":[0],"ok":"05:13"}
+{"fn":"formatWibTime","args":[-1000],"ok":"06:59"}
+{"fn":"formatWibTime","args":[-86400000],"ok":"07:00"}
+{"fn":"formatWibTime","args":[-25200000],"ok":"00:00"}
+{"fn":"formatWibTime","args":["1794290040000"],"ok":"12:54"}
+{"fn":"formatWibTime","args":["not-a-number"],"ok":"05:13"}
+{"fn":"formatWibTime","args":["   "],"ok":"05:13"}
+{"fn":"formatWibTime","args":[false],"ok":"05:13"}
+{"fn":"formatWibTime","args":[true],"ok":"07:00"}
+{"fn":"formatWibTime","args":[100000000000000000000],"ok":"NaN:NaN"}
+{"fn":"formatWibTime","args":[-100000000000000000000],"ok":"NaN:NaN"}
+{"fn":"formatWibTime","args":[1700000000000.9],"ok":"05:13"}
+{"fn":"formatWibTime","args":[[1000]],"ok":"07:00"}
+{"fn":"formatWibTime","args":[[0]],"ok":"05:13"}

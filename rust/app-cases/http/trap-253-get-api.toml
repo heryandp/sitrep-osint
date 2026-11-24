@@ -1,0 +1,14 @@
+[request]
+method = "GET"
+path = "/api/read?u=%F0%9F%91%A8%E2%80%8D%F0%9F%91%A9%E2%80%8D%F0%9F%91%A7%20family"
+
+[response]
+status = 403
+
+[response.headers]
+cache-control = "no-store"
+content-type = "application/json"
+referrer-policy = "same-origin"
+x-content-type-options = "nosniff"
+x-ratelimit-limit = "600"
+x-ratelimit-remaining = "576"

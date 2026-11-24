@@ -1,0 +1,5 @@
+{"fn":"getConfig","args":[{}]}
+{"fn":"getConfig","args":[{"SITREP_NLP_PROVIDER":"openai-compat","SITREP_NLP_ENDPOINT":"https://example.invalid/v1/classify","SITREP_NLP_API_KEY":"dummy-test-key","SITREP_NLP_TIMEOUT_MS":"600"}]}
+{"fn":"redactPII","args":["Pertanyaan warga ke-0 soal Jakarta banjir nggak?"]}
+{"fn":"redactPII","args":["Pertanyaan warga ke-1 soal Jakarta banjir nggak?"]}
+{"fn":"redactPII","args":["Pertanyaan warga ke-2 soal Jakarta banjir nggak?"]}
