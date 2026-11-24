@@ -1,0 +1,17 @@
+{
+  "unit": "src/tomtom.js",
+  "files": 1,
+  "fingerprint": "2b74e0828e4b134a",
+  "coverage": {
+    "lines": 198,
+    "reached": 17,
+    "files": [
+      {
+        "file": "src/tomtom.js",
+        "lines": 198,
+        "reached": 17,
+        "missed": "13-45, 47-78, 80-111, 113-186, 188-197"
+      }
+    ]
+  }
+}

@@ -9,8 +9,13 @@ use axum::routing::{get, post};
 
 use crate::original::{self, Original};
 
+mod copernicus;
+mod exa_summary;
 mod geocode;
+mod market;
+mod news_service;
 mod security;
+mod tomtom;
 mod uptime_service;
 
 /// `RUST_ANYTHING_UNIT_<NAME>=original` sends that unit back to the original.
@@ -18,14 +23,90 @@ fn sent_to_original(unit: &str) -> bool {
     std::env::var(format!("RUST_ANYTHING_UNIT_{unit}")).is_ok_and(|v| v == "original")
 }
 
+/// The parameters of `route` (`/users/{id}`, `/files/{*rest}`) in `path`, percent-decoded; one
+/// whose escapes are not UTF-8 stays as sent.
+fn path_params(route: &str, path: &str) -> HashMap<String, String> {
+    let mut out = HashMap::new();
+    let mut segments = path.trim_start_matches('/').split('/');
+    for part in route.trim_start_matches('/').split('/') {
+        if let Some(name) = part.strip_prefix("{*").and_then(|p| p.strip_suffix('}')) {
+            let rest: Vec<&str> = segments.by_ref().collect();
+            out.insert(name.to_string(), decode(&rest.join("/")));
+            break;
+        }
+        let segment = segments.next().unwrap_or_default();
+        if let Some(name) = part.strip_prefix('{').and_then(|p| p.strip_suffix('}')) {
+            out.insert(name.to_string(), decode(segment));
+        }
+    }
+    out
+}
+
+fn decode(text: &str) -> String {
+    let bytes = text.as_bytes();
+    let mut out = Vec::with_capacity(bytes.len());
+    let mut i = 0;
+    while i < bytes.len() {
+        let hex = |at: usize| bytes.get(at).and_then(|b| char::from(*b).to_digit(16));
+        if bytes[i] == b'%'
+            && let (Some(high), Some(low)) = (hex(i + 1), hex(i + 2))
+        {
+            out.push((high * 16 + low) as u8);
+            i += 3;
+        } else {
+            out.push(bytes[i]);
+            i += 1;
+        }
+    }
+    String::from_utf8(out).unwrap_or_else(|_| text.to_string())
+}
+
 pub fn router() -> Router<Original> {
     Router::new()
         .route("/api/auth/login", post(route_2).fallback(original::proxy))
         .route("/api/auth/logout", post(route_3).fallback(original::proxy))
         .route("/api/auth/me", get(route_1).fallback(original::proxy))
+        .route("/api/breaking", get(route_19).fallback(original::proxy))
+        .route("/api/closes", get(route_17).fallback(original::proxy))
+        .route(
+            "/api/copernicus/status",
+            get(route_9).fallback(original::proxy),
+        )
+        .route(
+            "/api/copernicus/tile/{*path}",
+            get(route_10).fallback(original::proxy),
+        )
+        .route("/api/exa/status", get(route_6).fallback(original::proxy))
         .route("/api/geo/labels", get(route_5).fallback(original::proxy))
+        .route("/api/incidents", get(route_20).fallback(original::proxy))
+        .route("/api/market", get(route_16).fallback(original::proxy))
+        .route("/api/news", get(route_18).fallback(original::proxy))
         .route("/api/nodes", get(route_4).fallback(original::proxy))
+        .route("/api/pajak/brief", post(route_8).fallback(original::proxy))
+        .route(
+            "/api/pajak/clusters",
+            get(route_22).fallback(original::proxy),
+        )
+        .route(
+            "/api/pajak/summarize",
+            post(route_7).fallback(original::proxy),
+        )
         .route("/api/pajak/uptime", get(route_0).fallback(original::proxy))
+        .route("/api/situation", get(route_21).fallback(original::proxy))
+        .route("/api/tomtom/flow", get(route_12).fallback(original::proxy))
+        .route(
+            "/api/tomtom/incidents",
+            get(route_13).fallback(original::proxy),
+        )
+        .route("/api/tomtom/route", get(route_14).fallback(original::proxy))
+        .route(
+            "/api/tomtom/status",
+            get(route_11).fallback(original::proxy),
+        )
+        .route(
+            "/tomtom/tile/{*path}",
+            get(route_15).fallback(original::proxy),
+        )
         .fallback(original::proxy)
 }
 
@@ -69,4 +150,133 @@ async fn route_5(State(original): State<Original>, req: Request) -> Response {
         return original::proxy(State(original), req).await;
     }
     geocode::handle("GET /api/geo/labels", HashMap::new(), req).await
+}
+
+async fn route_6(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("EXA_SUMMARY") {
+        return original::proxy(State(original), req).await;
+    }
+    exa_summary::handle("GET /api/exa/status", HashMap::new(), req).await
+}
+
+async fn route_7(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("EXA_SUMMARY") {
+        return original::proxy(State(original), req).await;
+    }
+    exa_summary::handle("POST /api/pajak/summarize", HashMap::new(), req).await
+}
+
+async fn route_8(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("EXA_SUMMARY") {
+        return original::proxy(State(original), req).await;
+    }
+    exa_summary::handle("POST /api/pajak/brief", HashMap::new(), req).await
+}
+
+async fn route_9(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("COPERNICUS") {
+        return original::proxy(State(original), req).await;
+    }
+    copernicus::handle("GET /api/copernicus/status", HashMap::new(), req).await
+}
+
+async fn route_10(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("COPERNICUS") {
+        return original::proxy(State(original), req).await;
+    }
+    copernicus::handle(
+        "GET /api/copernicus/tile/{*path}",
+        path_params("/api/copernicus/tile/{*path}", req.uri().path()),
+        req,
+    )
+    .await
+}
+
+async fn route_11(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("TOMTOM") {
+        return original::proxy(State(original), req).await;
+    }
+    tomtom::handle("GET /api/tomtom/status", HashMap::new(), req).await
+}
+
+async fn route_12(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("TOMTOM") {
+        return original::proxy(State(original), req).await;
+    }
+    tomtom::handle("GET /api/tomtom/flow", HashMap::new(), req).await
+}
+
+async fn route_13(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("TOMTOM") {
+        return original::proxy(State(original), req).await;
+    }
+    tomtom::handle("GET /api/tomtom/incidents", HashMap::new(), req).await
+}
+
+async fn route_14(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("TOMTOM") {
+        return original::proxy(State(original), req).await;
+    }
+    tomtom::handle("GET /api/tomtom/route", HashMap::new(), req).await
+}
+
+async fn route_15(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("TOMTOM") {
+        return original::proxy(State(original), req).await;
+    }
+    tomtom::handle(
+        "GET /tomtom/tile/{*path}",
+        path_params("/tomtom/tile/{*path}", req.uri().path()),
+        req,
+    )
+    .await
+}
+
+async fn route_16(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("MARKET") {
+        return original::proxy(State(original), req).await;
+    }
+    market::handle("GET /api/market", HashMap::new(), req).await
+}
+
+async fn route_17(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("MARKET") {
+        return original::proxy(State(original), req).await;
+    }
+    market::handle("GET /api/closes", HashMap::new(), req).await
+}
+
+async fn route_18(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("NEWS_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    news_service::handle("GET /api/news", HashMap::new(), req).await
+}
+
+async fn route_19(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("NEWS_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    news_service::handle("GET /api/breaking", HashMap::new(), req).await
+}
+
+async fn route_20(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("NEWS_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    news_service::handle("GET /api/incidents", HashMap::new(), req).await
+}
+
+async fn route_21(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("NEWS_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    news_service::handle("GET /api/situation", HashMap::new(), req).await
+}
+
+async fn route_22(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("NEWS_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    news_service::handle("GET /api/pajak/clusters", HashMap::new(), req).await
 }

@@ -8,9 +8,9 @@
 - **Out of Scope**: `public/` (served unchanged), `src/client/` & `scripts/` (client build tooling stays JS), `threads_worker.py` & `ffmpeg` (invoked as subprocesses per ADR-004).
 
 ## Progress Summary
-- **Front Door**: `done` (`rust/app` binary `djp-sitrep`, Axum 0.8 + Tokio, **272/272** HTTP cases passing; global Rust `AuthManager` + `RateLimiter` middleware + 6 native Rust routes: `GET /api/pajak/uptime`, `GET /api/auth/me`, `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/nodes`, `GET /api/geo/labels`)
-- **Fallback Rate**: **`97.4%` (`265/272`)** — down from `100.0%`
-- **Current Wave**: **Wave 2 complete (13/13 crates gated across Waves 1–2)** -> ready for **Wave 3** (HTTP Services: `exa-summary`, `news-service`, `market`, `tomtom`, `copernicus`)
+- **Front Door**: `done` (`rust/app` binary `djp-sitrep`, Axum 0.8 + Tokio, **272/272** HTTP cases passing; global Rust `AuthManager` + `RateLimiter` middleware + **23 native Rust routes** wired: `GET /api/pajak/uptime`, `GET /api/auth/me`, `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/nodes`, `GET /api/geo/labels`, `GET /api/exa/status`, `POST /api/pajak/summarize`, `POST /api/pajak/brief`, `GET /api/copernicus/status`, `GET /api/copernicus/tile/{*path}`, `GET /api/tomtom/status`, `GET /api/tomtom/flow`, `GET /api/tomtom/incidents`, `GET /api/tomtom/route`, `GET /tomtom/tile/{*path}`, `GET /api/market`, `GET /api/closes`, `GET /api/news`, `GET /api/breaking`, `GET /api/incidents`, `GET /api/situation`, `GET /api/pajak/clusters`)
+- **Fallback Rate**: **`95.2%` (`259/272`)** — down from `97.4%`
+- **Current Wave**: **Wave 3 complete (18/18 crates gated across Waves 1–3, 8,883/8,883 diff cases, 156 cargo tests)** -> ready for **Wave 4** (Reader, Social & Geo-Sensors)
 
 ## Wave Plan & Unit Roster
 
@@ -44,11 +44,11 @@
 ### Wave 3 — HTTP Services (Tax AI, News, Market, Traffic, Satellite)
 | Unit | Source File | LOC | State | Notes |
 | :--- | :--- | ---: | :--- | :--- |
-| `exa-summary` | `src/exa-summary.js` | 480 | `open` | `/api/exa/status`, `/api/pajak/summarize`, `/api/pajak/brief`, disk cache, has tests |
-| `news-service` | `src/news-service.js` | 1153 | `open` | 67 RSS feeds, `/api/news`, `/api/breaking` |
-| `market` | `src/market.js` | 376 | `open` | `/api/market`, `/api/closes` |
-| `tomtom` | `src/tomtom.js` | 206 | `open` | `/api/tomtom/*`, `/tomtom/tile/*` |
-| `copernicus` | `src/copernicus.js` | 421 | `open` | `/api/copernicus/*` |
+| `exa-summary` | `src/exa-summary.js` | 480 | `done` | `gate` PASS, 259/259 diff (100%), `isValidPublicHttpUrl` **10.03x**, 9/9 `cargo test`, full async `ExaSummaryService` in `src/service.rs`, wired to `/api/exa/status`, `/api/pajak/summarize`, `/api/pajak/brief` |
+| `copernicus` | `src/copernicus.js` | 421 | `done` | `gate` PASS, 646/646 diff (100%), 12/12 `cargo test`, Sentinel-2 WGS84/WebMercator bbox & tile proxy in `src/service.rs`, wired to `/api/copernicus/status`, `/api/copernicus/tile/*` |
+| `tomtom` | `src/tomtom.js` | 198 | `done` | `gate` PASS, 420/420 diff (100%), `ttHostOK` **11.93x**, `haversine` **1.43x**, 10/10 `cargo test`, `TomTomService` in `src/service.rs`, wired to `/api/tomtom/status`, `/api/tomtom/flow`, `/api/tomtom/incidents`, `/api/tomtom/route`, `/tomtom/tile/*` |
+| `market` | `src/market.js` | 382 | `done` | `gate` PASS, 248/248 diff (100%), `downsampleCloses` **2.17x**, `cnbcSymbolFor` **1.33x**, 8/8 `cargo test`, `MarketService` in `src/service.rs`, wired to `/api/market`, `/api/closes` |
+| `news-service` | `src/news-service.js` | 1153 | `done` | `gate` PASS, 81/81 diff (100%), `isBannedHostUrl` **4.40x**, 19/19 `cargo test`, `NewsService` in `src/service.rs`, wired to `/api/news`, `/api/breaking`, `/api/incidents`, `/api/situation`, `/api/pajak/clusters` |
 
 ### Wave 4 — Reader, Social & Geo-Sensors
 | Unit | Source File | LOC | State | Notes |

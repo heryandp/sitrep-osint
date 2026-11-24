@@ -1,0 +1,22 @@
+{"fn":"cleanPub","args":["  Kompas.com  "]}
+{"fn":"cleanPub","args":["https://www.detik.com/news/123"]}
+{"fn":"cleanPub","args":["www.antaranews.com"]}
+{"fn":"cleanPub","args":[""]}
+{"fn":"cleanPub","args":[null]}
+{"fn":"isBannedHostUrl","args":["https://infopublik.id/kategori/nusantara"]}
+{"fn":"isBannedHostUrl","args":["https://koran.tempo.co/read/123"]}
+{"fn":"isBannedHostUrl","args":["https://www.instagram.com/p/123"]}
+{"fn":"isBannedHostUrl","args":["https://twitter.com/user/status/1"]}
+{"fn":"isBannedHostUrl","args":["https://www.antaranews.com/berita/1"]}
+{"fn":"isBannedHostUrl","args":[""]}
+{"fn":"isBannedHostUrl","args":[null]}
+{"fn":"isBannedNewsItem","args":[{"pub":"instagram","url":"https://example.com"}]}
+{"fn":"isBannedNewsItem","args":[{"title":"Berita Hoax infopublik","url":"https://example.com"}]}
+{"fn":"isBannedNewsItem","args":[{"title":"Penerimaan Pajak Tumbuh","url":"https://antaranews.com/1","pub":"Antara"}]}
+{"fn":"isBannedNewsItem","args":[null]}
+{"fn":"breakNorm","args":["Banjir Bandang Terjang Semarang - Detik News"]}
+{"fn":"breakNorm","args":["Coretax System Siap Meluncur! - CNBC Indonesia"]}
+{"fn":"breakNorm","args":["  Halo   Dunia   123  "]}
+{"fn":"wibDayStartMs","args":[1700000000000]}
+{"fn":"wibDayStartMs","args":[1732433000000]}
+{"fn":"wibDayStartMs","args":[{"$bigint":"1"}]}

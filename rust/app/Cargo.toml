@@ -17,5 +17,10 @@ tokio = { version = "1", features = ["macros", "net", "rt-multi-thread", "signal
 uptime-service-rs = { path = "../uptime-service-rs" }
 security-rs = { path = "../security-rs" }
 geocode-rs = { path = "../geocode-rs" }
+exa-summary-rs = { path = "../exa-summary-rs" }
+copernicus-rs = { path = "../copernicus-rs" }
+tomtom-rs = { path = "../tomtom-rs" }
+market-rs = { path = "../market-rs" }
+news-service-rs = { path = "../news-service-rs" }
 
 [workspace]

@@ -1,32 +1,65 @@
 'use strict';
 
+const STOCK_BLUE = new Set(['BBCA', 'TLKM', 'GOTO', 'BMRI', 'ASII', 'UNVR', 'KLBF']);
+const FOREX_PAIRS = [['USDIDR', 'USD/IDR']];
+const FX_NAME = Object.fromEntries(FOREX_PAIRS);
+const COMMODITIES = [
+  ['COMEX:GC1!', 'Gold', 'futures', 'GC=F', '@GC.1'],
+  ['COMEX:SI1!', 'Silver', 'futures', 'SI=F', '@SI.1'],
+  ['NYMEX:CL1!', 'WTI Oil', 'futures', 'CL=F', '@CL.1'],
+  ['NYMEX:NG1!', 'Nat Gas', 'futures', 'NG=F', '@NG.1'],
+  ['COMEX:HG1!', 'Copper', 'futures', 'HG=F', '@HG.1'],
+  ['COMEX:ALI1!', 'Aluminum', 'futures', 'ALI=F', '@AL.1'],
+  ['NYMEX:HO1!', 'Heat Oil', 'futures', 'HO=F', '@HO.1'],
+  ['CBOT:ZR1!', 'Rice', 'futures', 'ZR=F', '@RR.1'],
+  ['CBOT:ZW1!', 'Wheat', 'futures', 'ZW=F', '@W.1'],
+  ['CBOT:ZC1!', 'Corn', 'futures', 'ZC=F', '@C.1'],
+  ['CBOT:ZS1!', 'Soybean', 'futures', 'ZS=F', '@S.1'],
+  ['CME:DC1!', 'Milk', 'futures', 'DC=F', '@DA.1'],
+  ['ICEUS:KC1!', 'Coffee', 'futures', 'KC=F', '@KC.1'],
+  ['ICEUS:SB1!', 'Sugar', 'futures', 'SB=F', '@SB.1'],
+  ['ICEUS:CC1!', 'Cocoa', 'futures', 'CC=F', '@CC.1'],
+  ['BINANCE:BTCUSDT', 'Bitcoin', 'crypto', 'BTC-USD', 'BTC.CM=']
+];
+const CMD_YH = Object.fromEntries(COMMODITIES.map(c => [c[0], c[3]]));
+const CMD_CNBC = Object.fromEntries(COMMODITIES.map(c => [c[0], c[4]]));
+
+const WORLD_IDX = [
+  ['^GSPC', 'S&P 500', '.SPX', 'SP:SPX'], ['^NDX', 'NASDAQ 100', '.NDX', 'NASDAQ:NDX'],
+  ['^DJI', 'DOW', '.DJI', 'DJ:DJI'], ['^RUT', 'RUSSELL', '.RUT', 'TVC:RUT'],
+  ['^N225', 'NIKKEI', '.N225', 'TVC:NI225'], ['^KS11', 'KOSPI', '.KS11', 'KRX:KOSPI'],
+  ['^HSI', 'HANG SENG', '.HSI', 'HSI:HSI'], ['^TWII', 'TAIEX', '.TWII', 'TWSE:TAIEX'],
+  ['^GDAXI', 'DAX', '.GDAXI', 'XETR:DAX'], ['^FTSE', 'FTSE 100', '.FTSE', 'FTSE:UKX'],
+  ['^FCHI', 'CAC 40', '.FCHI', 'EURONEXT:PX1'], ['^SSMI', 'SMI', '.SSMI', 'SIX:SMI'],
+  ['^AXJO', 'ASX 200', '.AXJO', 'ASX:XJO'], ['^BSESN', 'SENSEX', '.BSESN', 'BSE:SENSEX'],
+  ['^NSEI', 'NIFTY', '.NSEI', 'NSE:NIFTY'], ['^STI', 'STI', '.STI', 'TVC:STI'],
+  ['000001.SS', 'SSE', '.SSEC', 'SSE:000001'], ['^BVSP', 'IBOVESPA', '.BVSP', 'BMFBOVESPA:IBOV']
+];
+const WORLD_CNBC = Object.fromEntries(WORLD_IDX.map(w => [w[0], w[2]]));
+
+function downsampleCloses(arr, maxPoints = 90) {
+  const clean = (arr || []).map(Number).filter(v => Number.isFinite(v) && v > 0);
+  if (clean.length <= maxPoints) return clean;
+  const out = [];
+  const step = (clean.length - 1) / (maxPoints - 1);
+  for (let i = 0; i < maxPoints - 1; i++) out.push(clean[Math.round(i * step)]);
+  out.push(clean[clean.length - 1]);
+  return out;
+}
+
+function cnbcSymbolFor(k) {
+  if (!k) return '';
+  if (k === 'IDX:COMPOSITE' || k === '^JKSE') return '.JKSE';
+  if (k.startsWith('IDX:')) return k.slice(4) + '-ID';
+  if (k === 'FX_IDC:USDIDR' || k === 'IDR=X') return 'IDR=';
+  if (CMD_CNBC[k]) return CMD_CNBC[k];
+  if (WORLD_CNBC[k]) return WORLD_CNBC[k];
+  return k;
+}
+
 function createMarketService({ fs, path, HIST_DIR, UA, get, memo }) {
   let mktFetch = get;
   function setMarketFetch(fn) { mktFetch = typeof fn === 'function' ? fn : get; }
-
-  const STOCK_BLUE = new Set(['BBCA', 'TLKM', 'GOTO', 'BMRI', 'ASII', 'UNVR', 'KLBF']);
-  const FOREX_PAIRS = [['USDIDR', 'USD/IDR']];
-  const FX_NAME = Object.fromEntries(FOREX_PAIRS);
-  const COMMODITIES = [
-    ['COMEX:GC1!', 'Gold', 'futures', 'GC=F', '@GC.1'],
-    ['COMEX:SI1!', 'Silver', 'futures', 'SI=F', '@SI.1'],
-    ['NYMEX:CL1!', 'WTI Oil', 'futures', 'CL=F', '@CL.1'],
-    ['NYMEX:NG1!', 'Nat Gas', 'futures', 'NG=F', '@NG.1'],
-    ['COMEX:HG1!', 'Copper', 'futures', 'HG=F', '@HG.1'],
-    ['COMEX:ALI1!', 'Aluminum', 'futures', 'ALI=F', '@AL.1'],
-    ['NYMEX:HO1!', 'Heat Oil', 'futures', 'HO=F', '@HO.1'],
-    ['CBOT:ZR1!', 'Rice', 'futures', 'ZR=F', '@RR.1'],
-    ['CBOT:ZW1!', 'Wheat', 'futures', 'ZW=F', '@W.1'],
-    ['CBOT:ZC1!', 'Corn', 'futures', 'ZC=F', '@C.1'],
-    ['CBOT:ZS1!', 'Soybean', 'futures', 'ZS=F', '@S.1'],
-    ['CME:DC1!', 'Milk', 'futures', 'DC=F', '@DA.1'],
-    ['ICEUS:KC1!', 'Coffee', 'futures', 'KC=F', '@KC.1'],
-    ['ICEUS:SB1!', 'Sugar', 'futures', 'SB=F', '@SB.1'],
-    ['ICEUS:CC1!', 'Cocoa', 'futures', 'CC=F', '@CC.1'],
-    ['BINANCE:BTCUSDT', 'Bitcoin', 'crypto', 'BTC-USD', 'BTC.CM=']
-  ];
-  const CMD_YH = Object.fromEntries(COMMODITIES.map(c => [c[0], c[3]]));
-  const CMD_CNBC = Object.fromEntries(COMMODITIES.map(c => [c[0], c[4]]));
   async function tvScan(marketName, body) {
     const r = await mktFetch(`https://scanner.tradingview.com/${marketName}/scan`, {
       method: 'POST', headers: { 'content-type': 'application/json' },
@@ -84,38 +117,6 @@ function createMarketService({ fs, path, HIST_DIR, UA, get, memo }) {
       if (fxhist.length < 25) backfillFx();
       return { price, chg, pct: prev ? chg / prev * 100 : 0, closes: fxhist.slice(-60).map(h => h.v) };
     } catch (e) { return null; }
-  }
-  const WORLD_IDX = [
-    ['^GSPC', 'S&P 500', '.SPX', 'SP:SPX'], ['^NDX', 'NASDAQ 100', '.NDX', 'NASDAQ:NDX'],
-    ['^DJI', 'DOW', '.DJI', 'DJ:DJI'], ['^RUT', 'RUSSELL', '.RUT', 'TVC:RUT'],
-    ['^N225', 'NIKKEI', '.N225', 'TVC:NI225'], ['^KS11', 'KOSPI', '.KS11', 'KRX:KOSPI'],
-    ['^HSI', 'HANG SENG', '.HSI', 'HSI:HSI'], ['^TWII', 'TAIEX', '.TWII', 'TWSE:TAIEX'],
-    ['^GDAXI', 'DAX', '.GDAXI', 'XETR:DAX'], ['^FTSE', 'FTSE 100', '.FTSE', 'FTSE:UKX'],
-    ['^FCHI', 'CAC 40', '.FCHI', 'EURONEXT:PX1'], ['^SSMI', 'SMI', '.SSMI', 'SIX:SMI'],
-    ['^AXJO', 'ASX 200', '.AXJO', 'ASX:XJO'], ['^BSESN', 'SENSEX', '.BSESN', 'BSE:SENSEX'],
-    ['^NSEI', 'NIFTY', '.NSEI', 'NSE:NIFTY'], ['^STI', 'STI', '.STI', 'TVC:STI'],
-    ['000001.SS', 'SSE', '.SSEC', 'SSE:000001'], ['^BVSP', 'IBOVESPA', '.BVSP', 'BMFBOVESPA:IBOV']
-  ];
-  const WORLD_CNBC = Object.fromEntries(WORLD_IDX.map(w => [w[0], w[2]]));
-
-  function downsampleCloses(arr, maxPoints = 90) {
-    const clean = (arr || []).map(Number).filter(v => Number.isFinite(v) && v > 0);
-    if (clean.length <= maxPoints) return clean;
-    const out = [];
-    const step = (clean.length - 1) / (maxPoints - 1);
-    for (let i = 0; i < maxPoints - 1; i++) out.push(clean[Math.round(i * step)]);
-    out.push(clean[clean.length - 1]);
-    return out;
-  }
-
-  function cnbcSymbolFor(k) {
-    if (!k) return '';
-    if (k === 'IDX:COMPOSITE' || k === '^JKSE') return '.JKSE';
-    if (k.startsWith('IDX:')) return k.slice(4) + '-ID';
-    if (k === 'FX_IDC:USDIDR' || k === 'IDR=X') return 'IDR=';
-    if (CMD_CNBC[k]) return CMD_CNBC[k];
-    if (WORLD_CNBC[k]) return WORLD_CNBC[k];
-    return k;
   }
 
   const MKT_CLOSES_F = path.join(HIST_DIR, 'market-closes.json');
@@ -397,4 +398,10 @@ function createMarketService({ fs, path, HIST_DIR, UA, get, memo }) {
   };
 }
 
-module.exports = { createMarketService };
+module.exports = {
+  createMarketService,
+  downsampleCloses,
+  cnbcSymbolFor,
+  COMMODITIES,
+  WORLD_IDX,
+};

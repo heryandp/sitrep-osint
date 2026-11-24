@@ -1,5 +1,15 @@
 'use strict';
 
+const haversine = (a, b) => {
+  const R = 6371, rad = x => x * Math.PI / 180;
+  const dLat = rad(b.lat - a.lat), dLon = rad(b.lon - a.lon);
+  const s = Math.sin(dLat / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(s));
+};
+const ttHostOK = u => { try { const h = new URL(u).hostname; return h === 'api.tomtom.com' || h.endsWith('.api.tomtom.com'); } catch (e) { return false; } };
+const roundGrid = (v, step) => Math.round(Number(v) / step) * step;
+const roundGridStr = (v, step, d = 2) => roundGrid(v, step).toFixed(d);
+
 function createTomTomService({
   crypto,
   TOMTOM_KEY,
@@ -13,29 +23,6 @@ function createTomTomService({
   openCors,
 }) {
   const ttHas = () => !!TOMTOM_KEY;
-  const haversine = (a, b) => {
-    const R = 6371, rad = x => x * Math.PI / 180;
-    const dLat = rad(b.lat - a.lat), dLon = rad(b.lon - a.lon);
-    const s = Math.sin(dLat / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(dLon / 2) ** 2;
-    return 2 * R * Math.asin(Math.sqrt(s));
-  };
-  const ttHostOK = u => { try { const h = new URL(u).hostname; return h === 'api.tomtom.com' || h.endsWith('.api.tomtom.com'); } catch (e) { return false; } };
-  async function ttFetch(url) {
-    const t0 = Date.now();
-    try {
-      const { r } = await mediaGet(url, 12000, { accept: 'application/json' }, ttHostOK);
-      const txt = await mediaText(r, 2 << 20);
-      let data; try { data = JSON.parse(txt); } catch (e) { data = { raw: txt.slice(0, 400) }; }
-      if (!r.ok) { const err = new Error('TomTom ' + r.status + ' ' + (data.detailedError?.message || data.error || txt.slice(0, 120))); err.status = r.status; err.data = data; throw err; }
-      recordUpstream('tomtom', true, Date.now() - t0);
-      return data;
-    } catch (e) {
-      recordUpstream('tomtom', false, Date.now() - t0);
-      throw e;
-    }
-  }
-  const roundGrid = (v, step) => Math.round(Number(v) / step) * step;
-  const roundGridStr = (v, step, d = 2) => roundGrid(v, step).toFixed(d);
   const ttFlow = (lat, lon, zoom = 10) => {
     const gLat = roundGrid(lat, 0.01);
     const gLon = roundGrid(lon, 0.01);
@@ -209,4 +196,10 @@ function createTomTomService({
   };
 }
 
-module.exports = { createTomTomService };
+module.exports = {
+  createTomTomService,
+  haversine,
+  roundGrid,
+  roundGridStr,
+  ttHostOK,
+};

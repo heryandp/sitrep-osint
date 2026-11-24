@@ -1,0 +1,81 @@
+{"fn":"cleanPub","args":[{"a":{"b":"c"}}],"ok":"[object Object]"}
+{"fn":"cleanPub","args":[["a",1]],"ok":"a,1"}
+{"fn":"cleanPub","args":[null],"ok":""}
+{"fn":"cleanPub","args":[{}],"ok":"[object Object]"}
+{"fn":"cleanPub","args":[{"a":"b"}],"ok":"[object Object]"}
+{"fn":"cleanPub","args":["x"],"ok":"x"}
+{"fn":"cleanPub","args":[0],"ok":""}
+{"fn":"cleanPub","args":[true],"ok":"true"}
+{"fn":"cleanPub","args":[[]],"ok":""}
+{"fn":"cleanPub","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":"[object Object]"}
+{"fn":"cleanPub","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":"[object Object]"}
+{"fn":"cleanPub","args":[[3,1,2]],"ok":"3,1,2"}
+{"fn":"isBannedHostUrl","args":[{"a":{"b":"c"}}],"ok":false}
+{"fn":"isBannedHostUrl","args":[null],"ok":false}
+{"fn":"isBannedHostUrl","args":[["a",1]],"ok":false}
+{"fn":"isBannedHostUrl","args":[true],"ok":false}
+{"fn":"isBannedHostUrl","args":[{}],"ok":false}
+{"fn":"isBannedHostUrl","args":[[]],"ok":false}
+{"fn":"isBannedHostUrl","args":["x"],"ok":false}
+{"fn":"isBannedHostUrl","args":[0],"ok":false}
+{"fn":"isBannedHostUrl","args":[{"a":"b"}],"ok":false}
+{"fn":"isBannedHostUrl","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":false}
+{"fn":"isBannedHostUrl","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":false}
+{"fn":"isBannedHostUrl","args":[[3,1,2]],"ok":false}
+{"fn":"isBannedNewsItem","args":[[]],"ok":false}
+{"fn":"isBannedNewsItem","args":[["a",1]],"ok":false}
+{"fn":"isBannedNewsItem","args":[{"a":"b"}],"ok":false}
+{"fn":"isBannedNewsItem","args":[true],"ok":false}
+{"fn":"isBannedNewsItem","args":[{}],"ok":false}
+{"fn":"isBannedNewsItem","args":["x"],"ok":false}
+{"fn":"isBannedNewsItem","args":[null],"ok":false}
+{"fn":"isBannedNewsItem","args":[{"a":{"b":"c"}}],"ok":false}
+{"fn":"isBannedNewsItem","args":[0],"ok":false}
+{"fn":"isBannedNewsItem","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":false}
+{"fn":"isBannedNewsItem","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":false}
+{"fn":"isBannedNewsItem","args":[[3,1,2]],"ok":false}
+{"fn":"breakNorm","args":[true],"ok":"true"}
+{"fn":"breakNorm","args":[0],"ok":"0"}
+{"fn":"breakNorm","args":[{"a":"b"}],"ok":"object object"}
+{"fn":"breakNorm","args":[[]],"ok":""}
+{"fn":"breakNorm","args":["x"],"ok":"x"}
+{"fn":"breakNorm","args":[{}],"ok":"object object"}
+{"fn":"breakNorm","args":[["a",1]],"ok":"a1"}
+{"fn":"breakNorm","args":[null],"ok":"null"}
+{"fn":"breakNorm","args":[{"a":{"b":"c"}}],"ok":"object object"}
+{"fn":"breakNorm","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":"object object"}
+{"fn":"breakNorm","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":"object object"}
+{"fn":"breakNorm","args":[[3,1,2]],"ok":"312"}
+{"fn":"wibDayStartMs","args":[[]],"ok":-25200000}
+{"fn":"wibDayStartMs","args":["x"],"ok":{"$num":"NaN"}}
+{"fn":"wibDayStartMs","args":[true],"ok":-25200000}
+{"fn":"wibDayStartMs","args":[["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"wibDayStartMs","args":[{"$undefined":true}],"ok":1699981200000}
+{"fn":"wibDayStartMs","args":[{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"wibDayStartMs","args":[null],"ok":-25200000}
+{"fn":"wibDayStartMs","args":[{}],"ok":{"$num":"NaN"}}
+{"fn":"wibDayStartMs","args":[0],"ok":-25200000}
+{"fn":"wibDayStartMs","args":[{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"wibDayStartMs","args":[],"ok":1699981200000}
+{"fn":"cleanPub","args":["  Kompas.com  "],"ok":"Kompas.com"}
+{"fn":"cleanPub","args":["https://www.detik.com/news/123"],"ok":"detik.com"}
+{"fn":"cleanPub","args":["www.antaranews.com"],"ok":"antaranews.com"}
+{"fn":"cleanPub","args":[""],"ok":""}
+{"fn":"cleanPub","args":[null],"ok":""}
+{"fn":"isBannedHostUrl","args":["https://infopublik.id/kategori/nusantara"],"ok":true}
+{"fn":"isBannedHostUrl","args":["https://koran.tempo.co/read/123"],"ok":true}
+{"fn":"isBannedHostUrl","args":["https://www.instagram.com/p/123"],"ok":true}
+{"fn":"isBannedHostUrl","args":["https://twitter.com/user/status/1"],"ok":true}
+{"fn":"isBannedHostUrl","args":["https://www.antaranews.com/berita/1"],"ok":false}
+{"fn":"isBannedHostUrl","args":[""],"ok":false}
+{"fn":"isBannedHostUrl","args":[null],"ok":false}
+{"fn":"isBannedNewsItem","args":[{"pub":"instagram","url":"https://example.com"}],"ok":true}
+{"fn":"isBannedNewsItem","args":[{"title":"Berita Hoax infopublik","url":"https://example.com"}],"ok":true}
+{"fn":"isBannedNewsItem","args":[{"title":"Penerimaan Pajak Tumbuh","url":"https://antaranews.com/1","pub":"Antara"}],"ok":false}
+{"fn":"isBannedNewsItem","args":[null],"ok":false}
+{"fn":"breakNorm","args":["Banjir Bandang Terjang Semarang - Detik News"],"ok":"banjir bandang terjang semarang"}
+{"fn":"breakNorm","args":["Coretax System Siap Meluncur! - CNBC Indonesia"],"ok":"coretax system siap meluncur"}
+{"fn":"breakNorm","args":["  Halo   Dunia   123  "],"ok":"halo dunia 123"}
+{"fn":"wibDayStartMs","args":[1700000000000],"ok":1699981200000}
+{"fn":"wibDayStartMs","args":[1732433000000],"ok":1732381200000}
+{"fn":"wibDayStartMs","args":[{"$bigint":"1"}],"error":"Cannot mix BigInt and other types, use explicit conversions"}

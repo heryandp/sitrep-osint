@@ -1,0 +1,115 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/home/ditip/Documents/djp-sitrep",
+  "unit": "src/tomtom.js",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "tomtom-rs",
+  "exports": [
+    {
+      "name": "haversine",
+      "file": "src/tomtom.js",
+      "line": 3,
+      "params": [
+        {
+          "name": "a",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "b",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "roundGrid",
+      "file": "src/tomtom.js",
+      "line": 10,
+      "params": [
+        {
+          "name": "v",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "step",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "roundGridStr",
+      "file": "src/tomtom.js",
+      "line": 11,
+      "params": [
+        {
+          "name": "v",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "step",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "d",
+          "ts_type": "number",
+          "optional": true,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "ttHostOK",
+      "file": "src/tomtom.js",
+      "line": 9,
+      "params": [
+        {
+          "name": "u",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [
+    {
+      "name": "createTomTomService",
+      "file": "src/tomtom.js",
+      "line": 13,
+      "reason": "async service factory"
+    }
+  ]
+}

@@ -1,0 +1,420 @@
+{"fn":"haversine","args":[{"a":"b"},[]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{},0],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[["a",1],"x"],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":["x","x"],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[null,null],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":["x",[]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[["a",1],true],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[null,true],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[null,{"a":{"b":"c"}}],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[[],0],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[[],"x"],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[["a",1],["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":{"b":"c"}},["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":["x",null],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":["x",{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":"b"},{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":["x",{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":"b"},"x"],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[null,[]],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":["x",0],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{},{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":{"b":"c"}},[]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[["a",1],{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":{"b":"c"}},0],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[null,0],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[0,{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[true,0],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":{"b":"c"}},{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[[],{}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[0,{}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":{"b":"c"}},{}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[true,[]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[true,["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":"b"},true],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{},null],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[[],[]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{},{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[0,[]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[[],{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[null,{"a":"b"}],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[["a",1],0],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":{"b":"c"}},"x"],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":["x",{}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{},{}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[[],null],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[["a",1],[]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":"b"},{}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[["a",1],null],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[{"a":"b"},["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[null,{}],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[0,null],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[0,["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{},[]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[true,"x"],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[true,true],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{},"x"],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[0,0],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[null,"x"],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[[],["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":"b"},null],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[0,true],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":"b"},0],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":["x",["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[0,"x"],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":["x",true],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":"b"},{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[0,{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[true,{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[true,{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[[],true],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[[],{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[["a",1],{}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{},["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":{"b":"c"}},null],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[true,{}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[null,["a",1]],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[{"a":{"b":"c"}},true],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[true,null],"error":"Cannot read properties of null (reading 'lat')"}
+{"fn":"haversine","args":[{},true],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[["a",1],{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":["X","x"],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},[]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},[]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[[3,1,2],[]],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":"b"},{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":"b"},{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":{"$num":"NaN"}}
+{"fn":"haversine","args":[{"a":"b"},[3,1,2]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[null,{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{},["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":{"b":"c"}},"x"],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[true,null],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[true,{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[[],"x"],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[0,{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":"b"},null],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[null,true],"ok":0}
+{"fn":"roundGrid","args":[{"a":{"b":"c"}},{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[["a",1],{}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[0,0],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[null,{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":["x",{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[0,true],"ok":0}
+{"fn":"roundGrid","args":[["a",1],null],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":["x",null],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":{"b":"c"}},null],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":{"b":"c"}},{}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[["a",1],0],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[["a",1],"x"],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[0,{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[[],0],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[[],{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{},"x"],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[null,[]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":{"b":"c"}},0],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":["x",{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[true,0],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[[],[]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[0,[]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":["x",{}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":{"b":"c"}},true],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[null,0],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{},{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":"b"},{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{},null],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[true,{}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{},0],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[true,{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":"b"},0],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{},true],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[0,{}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[[],{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[true,"x"],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":"b"},["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":"b"},{}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[null,null],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[["a",1],true],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[[],null],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":["x",["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":"b"},true],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":{"b":"c"}},[]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[[],["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":{"b":"c"}},["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":["x",true],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[0,"x"],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[["a",1],["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[0,null],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":"b"},"x"],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{},{}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[["a",1],{"a":"b"}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[true,true],"ok":1}
+{"fn":"roundGrid","args":[true,[]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[null,"x"],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":"b"},[]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[true,["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[0,["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[null,["a",1]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[[],{}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"a":"b"},{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[["a",1],[]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{},[]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[["a",1],{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":["x",0],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[[],true],"ok":0}
+{"fn":"roundGrid","args":["x","x"],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[null,{}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{},{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":["x",[]],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":["x","X"],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":["X","x"],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[[3,1,2],{"a":{"b":"c"}}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[null,{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[null,{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":{"$num":"NaN"}}
+{"fn":"roundGrid","args":[null,[3,1,2]],"ok":{"$num":"NaN"}}
+{"fn":"roundGridStr","args":["x",["a",1],2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{},{"a":"b"},{"$num":"-Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":"b"},["a",1],-2.5],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[["a",1],null,10],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],true,1000000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},"x",0],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,null,2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[[],{},0.5],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],{"a":"b"},{"$num":"NaN"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{},"x",1000000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":"b"},{},{"$num":"Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},true,1000000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,true,{"$num":"Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{},{"a":{"b":"c"}},{"$num":"Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{},{"a":"b"},{"$num":"NaN"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[0,{"a":"b"},9007199254740992],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},true,2147483648],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[[],{"a":{"b":"c"}},1000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[null,null,{"$num":"NaN"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},{},2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[[],true,-1],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},3],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,null,{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,"x",3],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,{"a":{"b":"c"}},{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,true,{"$num":"-Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[["a",1],{},{"$num":"-Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},100],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],null],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,0,1000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},-1],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[0,[],{"$num":"-0"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],null,{"$num":"-0"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],[],{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],null,100],"ok":"NaN"}
+{"fn":"roundGridStr","args":[0,{"a":{"b":"c"}},{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,"x",-1],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{},{"a":{"b":"c"}},9007199254740992],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":["x",[],{"$num":"NaN"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[0,["a",1],{"$num":"-Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,{"a":"b"},9007199254740992],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},true,9007199254740992],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},"x",1000000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,"x"],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,["a",1],{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":"b"},{"a":{"b":"c"}},{"$num":"-Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},[],2147483648],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[0,0,1000000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[null,true,100],"ok":"0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"}
+{"fn":"roundGridStr","args":[["a",1],{"a":{"b":"c"}},{"$num":"-Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,null,{"$num":"-0"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],null,2],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",{"a":"b"},3],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,true],"ok":"1.00"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},["a",1],{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{},null,0.5],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":"b"},0,{"$num":"-0"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,[],2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,["a",1],{"$num":"NaN"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[0,{"a":{"b":"c"}},{"$num":"Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":"b"},["a",1],{"$num":"NaN"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[[],[],-1],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{},["a",1],42],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{},null,-2.5],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[[],"x",{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,{"a":"b"},{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":"b"},null,1],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{},{},1],"ok":"NaN"}
+{"fn":"roundGridStr","args":[0,{},1000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{},{"a":"b"},0],"ok":"NaN"}
+{"fn":"roundGridStr","args":[[],true,{"$undefined":true}],"ok":"0.00"}
+{"fn":"roundGridStr","args":[[],{"a":{"b":"c"}}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,{"a":{"b":"c"}},-2.5],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,["a",1],2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{},"x",{"$num":"-0"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{},null,42],"ok":"NaN"}
+{"fn":"roundGridStr","args":[0,true,1000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":"b"},["a",1],100],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],{"a":{"b":"c"}},2147483648],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":["x",{"a":{"b":"c"}},0],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",null,2147483648],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[null,0,{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},null,9007199254740992],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":["x",0,9007199254740992],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,{"a":{"b":"c"}}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,null,{"$num":"Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{},{}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],"x",0.5],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",0,2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,[],-1],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},["a",1],{"$num":"NaN"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,true,{"$undefined":true}],"ok":"0.00"}
+{"fn":"roundGridStr","args":[["a",1],[],-2.5],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[null,"x",{"$num":"NaN"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{},"x",{"$num":"-Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[["a",1],null,-1],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":["x",true,0.5],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,{},{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":"b"},0,1000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,["a",1]],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{},true,1000000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":["x",0,{"$num":"-Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{},[],2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":"b"},0,9007199254740992],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[["a",1],0,1000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,[],42],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,0],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],{"a":{"b":"c"}},1000000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[[],{"a":"b"},100],"ok":"NaN"}
+{"fn":"roundGridStr","args":[[],true,0],"ok":"0"}
+{"fn":"roundGridStr","args":["x",["a",1],10],"ok":"NaN"}
+{"fn":"roundGridStr","args":[0,0,10],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},null,10],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},{},{"$num":"NaN"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,{"a":{"b":"c"}},1000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,{"a":{"b":"c"}},100],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},0,-1],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[[],{},{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":"b"},[],{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{},0,1000000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{},[],1000000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{},true,{"$num":"Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":"b"},{"a":"b"},3],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{},{"a":{"b":"c"}},1000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":"b"},true,2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],{},0.5],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},[],-1],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[null,{}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[[],["a",1],-2.5],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,{"a":{"b":"c"}},{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,"x",0.5],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,true,1],"ok":"0.0"}
+{"fn":"roundGridStr","args":[["a",1],true,2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[0,[]],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},0,1000000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[["a",1],"x",{"$num":"Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[0,[],{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{},[],100],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],["a",1],{"$num":"-0"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],{},1],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,{},{"$num":"-0"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[[],{"a":"b"},3],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,"x",1000000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},null,{"$num":"-Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,true,{"$undefined":true}],"ok":"1.00"}
+{"fn":"roundGridStr","args":[["a",1],"x",{"$num":"-0"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,["a",1],{"$num":"Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,[],0.5],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",{},1000000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[[],["a",1],100],"ok":"NaN"}
+{"fn":"roundGridStr","args":[0,null,100],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,[]],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],{},{"$num":"-0"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":"b"},null,10],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x","x",2147483648],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{},null,{"$num":"-Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,{"a":{"b":"c"}},{"$num":"NaN"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},null,2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},1],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x","x",42],"ok":"NaN"}
+{"fn":"roundGridStr","args":[[],{},2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[[],{},1000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":["x",0,{"$num":"NaN"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],{"a":{"b":"c"}},-1],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,"x",{"$num":"-0"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],"x",3],"ok":"NaN"}
+{"fn":"roundGridStr","args":[0,["a",1],{"$num":"-0"}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[null,[],{"$num":"Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":"b"},null,{"$num":"-Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[null,true,{"$num":"Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":["x",{"a":{"b":"c"}},2147483648],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{},0,0.5],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,{"a":"b"},10],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",null],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,{}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[0,true,9007199254740992],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[null,null],"ok":"NaN"}
+{"fn":"roundGridStr","args":[0,true,{"$undefined":true}],"ok":"0.00"}
+{"fn":"roundGridStr","args":[{"a":"b"},null,-2.5],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[null,true],"ok":"0.00"}
+{"fn":"roundGridStr","args":["x","x",0.5],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},"x",1],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,0,10],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",{"a":"b"},2147483648],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":["x",0,1000000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":["x",{"a":"b"},{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},true,{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],{},3],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},{}],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,null,3],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],null,0.5],"ok":"NaN"}
+{"fn":"roundGridStr","args":[["a",1],"x",42],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"a":{"b":"c"}},"x"],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,{},2147483648],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"a":"b"},true],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",0],"ok":"NaN"}
+{"fn":"roundGridStr","args":[true,{"a":"b"},{"$num":"Infinity"}],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[[],null,-1],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[true,"x",1000],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},["a",1],2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},["a",1],2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[[3,1,2],["a",1],2],"ok":"NaN"}
+{"fn":"roundGridStr","args":[{},["a",1],2],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},2],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},2],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",[3,1,2],2],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",{},2],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",["a",1],{"$undefined":true}],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",["a",1],-7.5],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":["x",["a",1],0.1],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",["a",1],0.30000000000000004],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",["a",1],1e+21],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":["x",["a",1],1e-7],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",["a",1],5e-324],"ok":"NaN"}
+{"fn":"roundGridStr","args":["x",["a",1],1.7976931348623157e+308],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":["x",["a",1],9007199254740992],"error":"toFixed() digits argument must be between 0 and 100"}
+{"fn":"roundGridStr","args":["x",["a",1],{"$num":"-0"}],"ok":"NaN"}
+{"fn":"ttHostOK","args":[true],"ok":false}
+{"fn":"ttHostOK","args":[{}],"ok":false}
+{"fn":"ttHostOK","args":[{"a":"b"}],"ok":false}
+{"fn":"ttHostOK","args":[{"a":{"b":"c"}}],"ok":false}
+{"fn":"ttHostOK","args":[null],"ok":false}
+{"fn":"ttHostOK","args":[0],"ok":false}
+{"fn":"ttHostOK","args":[[]],"ok":false}
+{"fn":"ttHostOK","args":["x"],"ok":false}
+{"fn":"ttHostOK","args":[["a",1]],"ok":false}
+{"fn":"ttHostOK","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":false}
+{"fn":"ttHostOK","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":false}
+{"fn":"ttHostOK","args":[[3,1,2]],"ok":false}
+{"fn":"haversine","args":[{"lat":-6.2088,"lon":106.8456},{"lat":-7.2575,"lon":112.7521}],"ok":662.5717832724156}
+{"fn":"haversine","args":[{"lat":0,"lon":0},{"lat":0,"lon":0}],"ok":0}
+{"fn":"haversine","args":[{"lat":10,"lon":20},{"lat":-10,"lon":-20}],"ok":4952.342821241915}
+{"fn":"roundGrid","args":[-6.2088,0.01],"ok":-6.21}
+{"fn":"roundGrid","args":[106.8456,0.05],"ok":106.85000000000001}
+{"fn":"roundGridStr","args":[-6.2088,0.01,2],"ok":"-6.21"}
+{"fn":"roundGridStr","args":[106.8456,0.05,4],"ok":"106.8500"}
+{"fn":"ttHostOK","args":["https://api.tomtom.com/traffic/services/4/flow"],"ok":true}
+{"fn":"ttHostOK","args":["https://api.tomtom.com"],"ok":true}
+{"fn":"ttHostOK","args":["https://sub.api.tomtom.com/path"],"ok":true}
+{"fn":"ttHostOK","args":["https://evil.com"],"ok":false}
+{"fn":"ttHostOK","args":["not a url"],"ok":false}
+{"fn":"roundGrid","args":[10,{"$bigint":"10"}],"error":"Cannot mix BigInt and other types, use explicit conversions"}

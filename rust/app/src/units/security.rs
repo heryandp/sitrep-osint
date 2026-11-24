@@ -8,7 +8,9 @@ use axum::response::{IntoResponse, Response};
 use security_rs::port::service::{AuthManager, AuthMode};
 use serde_json::json;
 
-use crate::middleware::{apply_rl_headers, auth, auth_context_from_req, client_ip_from_req, limiter};
+use crate::middleware::{
+    apply_rl_headers, auth, auth_context_from_req, client_ip_from_req, limiter,
+};
 
 fn json_response(status: StatusCode, body: String) -> Response {
     (

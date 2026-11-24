@@ -1,0 +1,12 @@
+{"fn":"tileToBbox4326","args":[8,203,132]}
+{"fn":"tileToBbox4326","args":[8,221,137]}
+{"fn":"tileToBbox4326","args":[8,127,85]}
+{"fn":"tileIntersectsBounds","args":[8,203,132]}
+{"fn":"tileIntersectsBounds","args":[8,127,85]}
+{"fn":"tileToBbox3857","args":[8,203,132]}
+{"fn":"tileIntersectsBounds","args":[8,204,132]}
+{"fn":"tileToBbox4326","args":[8,204,132]}
+{"fn":"tileIntersectsBounds","args":[8,203,133]}
+{"fn":"tileToBbox4326","args":[8,203,133]}
+{"fn":"tileIntersectsBounds","args":[8,202,132]}
+{"fn":"tileToBbox4326","args":[8,202,132]}

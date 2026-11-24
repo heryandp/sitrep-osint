@@ -1,0 +1,61 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/home/ditip/Documents/djp-sitrep",
+  "unit": "src/market.js",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "market-rs",
+  "exports": [
+    {
+      "name": "downsampleCloses",
+      "file": "src/market.js",
+      "line": 40,
+      "params": [
+        {
+          "name": "arr",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "maxPoints",
+          "ts_type": "number",
+          "optional": true,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "cnbcSymbolFor",
+      "file": "src/market.js",
+      "line": 50,
+      "params": [
+        {
+          "name": "k",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [
+    {
+      "name": "createMarketService",
+      "file": "src/market.js",
+      "line": 60,
+      "reason": "async service factory"
+    }
+  ]
+}

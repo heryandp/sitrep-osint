@@ -7,8 +7,35 @@ use std::net::SocketAddr;
 use axum::serve::ListenerExt;
 use original::shutdown_signal;
 
+fn load_dotenv() {
+    if let Ok(content) = std::fs::read_to_string(".env") {
+        for line in content.lines() {
+            let line = line.trim();
+            if line.is_empty() || line.starts_with('#') {
+                continue;
+            }
+            if let Some((k, v)) = line.split_once('=') {
+                let key = k.trim();
+                let mut val = v.trim();
+                if (val.starts_with('"') && val.ends_with('"'))
+                    || (val.starts_with('\'') && val.ends_with('\''))
+                {
+                    val = &val[1..val.len() - 1];
+                }
+                if std::env::var(key).is_err() {
+                    // SAFETY: Single-threaded initialization before any thread or Tokio runtime starts.
+                    unsafe {
+                        std::env::set_var(key, val);
+                    }
+                }
+            }
+        }
+    }
+}
+
 #[tokio::main]
 async fn main() {
+    load_dotenv();
     original::report_fallbacks();
     let original = original::Original::start().await;
     let app = units::router()

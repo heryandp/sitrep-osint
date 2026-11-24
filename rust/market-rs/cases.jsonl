@@ -1,0 +1,248 @@
+{"fn":"downsampleCloses","args":[null,10],"ok":[]}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},42],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[["a",1],42],"ok":[1]}
+{"fn":"downsampleCloses","args":[{"a":"b"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[null,-1],"ok":[{"$undefined":true}]}
+{"fn":"downsampleCloses","args":[0,0],"ok":[]}
+{"fn":"downsampleCloses","args":[0,{"$undefined":true}],"ok":[]}
+{"fn":"downsampleCloses","args":[{"a":"b"},{"$num":"Infinity"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":"b"},100],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[null,1000],"ok":[]}
+{"fn":"downsampleCloses","args":[["a",1],1000],"ok":[1]}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},3],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[true],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{},42],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[0],"ok":[]}
+{"fn":"downsampleCloses","args":[[],-1],"ok":[{"$undefined":true}]}
+{"fn":"downsampleCloses","args":[["a",1],{"$num":"-0"}],"ok":[1]}
+{"fn":"downsampleCloses","args":[[]],"ok":[]}
+{"fn":"downsampleCloses","args":[{},100],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[null,0],"ok":[]}
+{"fn":"downsampleCloses","args":[{"a":"b"},10],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[["a",1],10],"ok":[1]}
+{"fn":"downsampleCloses","args":[[],10],"ok":[]}
+{"fn":"downsampleCloses","args":[[],-2.5],"ok":[{"$undefined":true}]}
+{"fn":"downsampleCloses","args":[{}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":["x",-2.5],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[[],{"$undefined":true}],"ok":[]}
+{"fn":"downsampleCloses","args":[null],"ok":[]}
+{"fn":"downsampleCloses","args":[true,100],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[true,2147483648],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{},9007199254740992],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[0,-2.5],"ok":[{"$undefined":true}]}
+{"fn":"downsampleCloses","args":[{"a":"b"},-2.5],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":["x",0],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{},1000000],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":["x",-1],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":["x",{"$num":"-0"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[true,{"$num":"-0"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{},2],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},9007199254740992],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[true,1],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":"b"},{"$num":"NaN"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":"b"},3],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},{"$undefined":true}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{},10],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":["x",{"$num":"-Infinity"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[0,0.5],"ok":[]}
+{"fn":"downsampleCloses","args":[{"a":"b"},42],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[null,3],"ok":[]}
+{"fn":"downsampleCloses","args":[true,{"$undefined":true}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[["a",1],{"$num":"NaN"}],"ok":[1]}
+{"fn":"downsampleCloses","args":["x",{"$undefined":true}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[["a",1],1],"ok":[1]}
+{"fn":"downsampleCloses","args":[["a",1],{"$num":"Infinity"}],"ok":[1]}
+{"fn":"downsampleCloses","args":[{},-1],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[null,0.5],"ok":[]}
+{"fn":"downsampleCloses","args":[true,1000000],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":"b"},1000],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[[],0.5],"ok":[]}
+{"fn":"downsampleCloses","args":["x",100],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},-1],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},10],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[true,9007199254740992],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":"b"},1000000],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[[],1000000],"ok":[]}
+{"fn":"downsampleCloses","args":[{"a":"b"},9007199254740992],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":"b"},{"$num":"-0"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},1000000],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":["x",1],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[["a",1],{"$num":"-Infinity"}],"ok":[1]}
+{"fn":"downsampleCloses","args":[[],{"$num":"-Infinity"}],"ok":[{"$undefined":true}]}
+{"fn":"downsampleCloses","args":[null,42],"ok":[]}
+{"fn":"downsampleCloses","args":[{},{"$undefined":true}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[["a",1],{"$undefined":true}],"ok":[1]}
+{"fn":"downsampleCloses","args":[true,1000],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":["x"],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[null,{"$undefined":true}],"ok":[]}
+{"fn":"downsampleCloses","args":[0,{"$num":"-Infinity"}],"ok":[{"$undefined":true}]}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[0,10],"ok":[]}
+{"fn":"downsampleCloses","args":[{"a":"b"},-1],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[["a",1],9007199254740992],"ok":[1]}
+{"fn":"downsampleCloses","args":[["a",1]],"ok":[1]}
+{"fn":"downsampleCloses","args":[0,42],"ok":[]}
+{"fn":"downsampleCloses","args":[0,1000],"ok":[]}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},{"$num":"-0"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[null,1],"ok":[]}
+{"fn":"downsampleCloses","args":["x",0.5],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},100],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[true,42],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[true,-1],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":["x",9007199254740992],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[0,-1],"ok":[{"$undefined":true}]}
+{"fn":"downsampleCloses","args":[[],100],"ok":[]}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},1],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[["a",1],0],"ok":[1]}
+{"fn":"downsampleCloses","args":[{"a":"b"},{"$undefined":true}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{},{"$num":"Infinity"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[true,3],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{},-2.5],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[[],2147483648],"ok":[]}
+{"fn":"downsampleCloses","args":["x",10],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},-2.5],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":"b"},0.5],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[["a",1],1000000],"ok":[1]}
+{"fn":"downsampleCloses","args":[0,100],"ok":[]}
+{"fn":"downsampleCloses","args":[true,{"$num":"-Infinity"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},0.5],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[0,{"$num":"-0"}],"ok":[]}
+{"fn":"downsampleCloses","args":[{},2147483648],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[["a",1],100],"ok":[1]}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},2147483648],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},1000],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":["x",1000000],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[null,2],"ok":[]}
+{"fn":"downsampleCloses","args":[[],9007199254740992],"ok":[]}
+{"fn":"downsampleCloses","args":[null,{"$num":"Infinity"}],"ok":[]}
+{"fn":"downsampleCloses","args":[{},{"$num":"NaN"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[true,0],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[0,1000000],"ok":[]}
+{"fn":"downsampleCloses","args":["x",1000],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},0],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[["a",1],2147483648],"ok":[1]}
+{"fn":"downsampleCloses","args":[null,1000000],"ok":[]}
+{"fn":"downsampleCloses","args":[true,0.5],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[null,100],"ok":[]}
+{"fn":"downsampleCloses","args":[{"a":"b"},2147483648],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[0,{"$num":"Infinity"}],"ok":[]}
+{"fn":"downsampleCloses","args":[["a",1],0.5],"ok":[1]}
+{"fn":"downsampleCloses","args":[null,2147483648],"ok":[]}
+{"fn":"downsampleCloses","args":[true,{"$num":"Infinity"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{},0.5],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":["x",2147483648],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":["x",42],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[true,10],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[null,{"$num":"NaN"}],"ok":[{"$undefined":true}]}
+{"fn":"downsampleCloses","args":[[],1000],"ok":[]}
+{"fn":"downsampleCloses","args":[true,2],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[[],{"$num":"NaN"}],"ok":[{"$undefined":true}]}
+{"fn":"downsampleCloses","args":[[],2],"ok":[]}
+{"fn":"downsampleCloses","args":[[],42],"ok":[]}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},{"$num":"-Infinity"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{},{"$num":"-0"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":["x",3],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[["a",1],-1],"ok":[1]}
+{"fn":"downsampleCloses","args":[0,2147483648],"ok":[]}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},{"$num":"Infinity"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":"b"},{"$num":"-Infinity"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[[],3],"ok":[]}
+{"fn":"downsampleCloses","args":["x",{"$num":"NaN"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":"b"},1],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{},0],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[[],{"$num":"Infinity"}],"ok":[]}
+{"fn":"downsampleCloses","args":["x",2],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[true,{"$num":"NaN"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[null,9007199254740992],"ok":[]}
+{"fn":"downsampleCloses","args":[null,-2.5],"ok":[{"$undefined":true}]}
+{"fn":"downsampleCloses","args":[0,{"$num":"NaN"}],"ok":[{"$undefined":true}]}
+{"fn":"downsampleCloses","args":[{},1000],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},{"$num":"NaN"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[[],0],"ok":[]}
+{"fn":"downsampleCloses","args":[null,{"$num":"-0"}],"ok":[]}
+{"fn":"downsampleCloses","args":[{},3],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[true,-2.5],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[0,9007199254740992],"ok":[]}
+{"fn":"downsampleCloses","args":[["a",1],-2.5],"ok":[1]}
+{"fn":"downsampleCloses","args":[["a",1],2],"ok":[1]}
+{"fn":"downsampleCloses","args":[0,2],"ok":[]}
+{"fn":"downsampleCloses","args":[0,3],"ok":[]}
+{"fn":"downsampleCloses","args":["x",{"$num":"Infinity"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[[],{"$num":"-0"}],"ok":[]}
+{"fn":"downsampleCloses","args":[[],1],"ok":[]}
+{"fn":"downsampleCloses","args":[null,{"$num":"-Infinity"}],"ok":[{"$undefined":true}]}
+{"fn":"downsampleCloses","args":[{},{"$num":"-Infinity"}],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{},1],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"a":"b"},2],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[0,1],"ok":[]}
+{"fn":"downsampleCloses","args":[{"a":{"b":"c"}},2],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[["a",1],3],"ok":[1]}
+{"fn":"downsampleCloses","args":[{"a":"b"},0],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},10],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},10],"error":"(arr || []).map is not a function"}
+{"fn":"downsampleCloses","args":[[3,1,2],10],"ok":[3,1,2]}
+{"fn":"downsampleCloses","args":[null,-7.5],"ok":[{"$undefined":true}]}
+{"fn":"downsampleCloses","args":[null,0.1],"ok":[]}
+{"fn":"downsampleCloses","args":[null,0.30000000000000004],"ok":[]}
+{"fn":"downsampleCloses","args":[null,1e+21],"ok":[]}
+{"fn":"downsampleCloses","args":[null,1e-7],"ok":[]}
+{"fn":"downsampleCloses","args":[null,5e-324],"ok":[]}
+{"fn":"downsampleCloses","args":[null,1.7976931348623157e+308],"ok":[]}
+{"fn":"cnbcSymbolFor","args":["x"],"ok":"x"}
+{"fn":"cnbcSymbolFor","args":[0],"ok":""}
+{"fn":"cnbcSymbolFor","args":[[]],"error":"k.startsWith is not a function"}
+{"fn":"cnbcSymbolFor","args":[null],"ok":""}
+{"fn":"cnbcSymbolFor","args":[{"a":"b"}],"error":"k.startsWith is not a function"}
+{"fn":"cnbcSymbolFor","args":[{}],"error":"k.startsWith is not a function"}
+{"fn":"cnbcSymbolFor","args":[true],"error":"k.startsWith is not a function"}
+{"fn":"cnbcSymbolFor","args":[{"a":{"b":"c"}}],"error":"k.startsWith is not a function"}
+{"fn":"cnbcSymbolFor","args":[["a",1]],"error":"k.startsWith is not a function"}
+{"fn":"cnbcSymbolFor","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"error":"k.startsWith is not a function"}
+{"fn":"cnbcSymbolFor","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"error":"k.startsWith is not a function"}
+{"fn":"cnbcSymbolFor","args":[[3,1,2]],"error":"k.startsWith is not a function"}
+{"fn":"cnbcSymbolFor","args":["IDX:COMPOSITE"],"ok":".JKSE"}
+{"fn":"cnbcSymbolFor","args":["^JKSE"],"ok":".JKSE"}
+{"fn":"cnbcSymbolFor","args":["IDX:BBCA"],"ok":"BBCA-ID"}
+{"fn":"cnbcSymbolFor","args":["IDX:TLKM"],"ok":"TLKM-ID"}
+{"fn":"cnbcSymbolFor","args":["IDX:BMRI"],"ok":"BMRI-ID"}
+{"fn":"cnbcSymbolFor","args":["IDX:GOTO"],"ok":"GOTO-ID"}
+{"fn":"cnbcSymbolFor","args":["FX_IDC:USDIDR"],"ok":"IDR="}
+{"fn":"cnbcSymbolFor","args":["IDR=X"],"ok":"IDR="}
+{"fn":"cnbcSymbolFor","args":["COMEX:GC1!"],"ok":"@GC.1"}
+{"fn":"cnbcSymbolFor","args":["COMEX:SI1!"],"ok":"@SI.1"}
+{"fn":"cnbcSymbolFor","args":["NYMEX:CL1!"],"ok":"@CL.1"}
+{"fn":"cnbcSymbolFor","args":["NYMEX:NG1!"],"ok":"@NG.1"}
+{"fn":"cnbcSymbolFor","args":["COMEX:HG1!"],"ok":"@HG.1"}
+{"fn":"cnbcSymbolFor","args":["COMEX:ALI1!"],"ok":"@AL.1"}
+{"fn":"cnbcSymbolFor","args":["NYMEX:HO1!"],"ok":"@HO.1"}
+{"fn":"cnbcSymbolFor","args":["CBOT:ZR1!"],"ok":"@RR.1"}
+{"fn":"cnbcSymbolFor","args":["CBOT:ZW1!"],"ok":"@W.1"}
+{"fn":"cnbcSymbolFor","args":["CBOT:ZC1!"],"ok":"@C.1"}
+{"fn":"cnbcSymbolFor","args":["CBOT:ZS1!"],"ok":"@S.1"}
+{"fn":"cnbcSymbolFor","args":["CME:DC1!"],"ok":"@DA.1"}
+{"fn":"cnbcSymbolFor","args":["ICEUS:KC1!"],"ok":"@KC.1"}
+{"fn":"cnbcSymbolFor","args":["ICEUS:SB1!"],"ok":"@SB.1"}
+{"fn":"cnbcSymbolFor","args":["ICEUS:CC1!"],"ok":"@CC.1"}
+{"fn":"cnbcSymbolFor","args":["BINANCE:BTCUSDT"],"ok":"BTC.CM="}
+{"fn":"cnbcSymbolFor","args":["^GSPC"],"ok":".SPX"}
+{"fn":"cnbcSymbolFor","args":["^NDX"],"ok":".NDX"}
+{"fn":"cnbcSymbolFor","args":["^DJI"],"ok":".DJI"}
+{"fn":"cnbcSymbolFor","args":["^RUT"],"ok":".RUT"}
+{"fn":"cnbcSymbolFor","args":["^N225"],"ok":".N225"}
+{"fn":"cnbcSymbolFor","args":["^KS11"],"ok":".KS11"}
+{"fn":"cnbcSymbolFor","args":["^HSI"],"ok":".HSI"}
+{"fn":"cnbcSymbolFor","args":["^TWII"],"ok":".TWII"}
+{"fn":"cnbcSymbolFor","args":["^GDAXI"],"ok":".GDAXI"}
+{"fn":"cnbcSymbolFor","args":["^FTSE"],"ok":".FTSE"}
+{"fn":"cnbcSymbolFor","args":["^FCHI"],"ok":".FCHI"}
+{"fn":"cnbcSymbolFor","args":["^SSMI"],"ok":".SSMI"}
+{"fn":"cnbcSymbolFor","args":["^AXJO"],"ok":".AXJO"}
+{"fn":"cnbcSymbolFor","args":["^BSESN"],"ok":".BSESN"}
+{"fn":"cnbcSymbolFor","args":["^NSEI"],"ok":".NSEI"}
+{"fn":"cnbcSymbolFor","args":["^STI"],"ok":".STI"}
+{"fn":"cnbcSymbolFor","args":["000001.SS"],"ok":".SSEC"}
+{"fn":"cnbcSymbolFor","args":["^BVSP"],"ok":".BVSP"}
+{"fn":"cnbcSymbolFor","args":[""],"ok":""}
+{"fn":"cnbcSymbolFor","args":[null],"ok":""}
+{"fn":"cnbcSymbolFor","args":[null],"ok":""}
+{"fn":"cnbcSymbolFor","args":["UNKNOWN:SYM"],"ok":"UNKNOWN:SYM"}

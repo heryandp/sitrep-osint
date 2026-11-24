@@ -1,0 +1,109 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/home/ditip/Documents/djp-sitrep",
+  "unit": "src/news-service.js",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "news-service-rs",
+  "exports": [
+    {
+      "name": "cleanPub",
+      "file": "src/news-service.js",
+      "line": 9,
+      "params": [
+        {
+          "name": "v",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "isBannedHostUrl",
+      "file": "src/news-service.js",
+      "line": 15,
+      "params": [
+        {
+          "name": "u",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "isBannedNewsItem",
+      "file": "src/news-service.js",
+      "line": 26,
+      "params": [
+        {
+          "name": "it",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "breakNorm",
+      "file": "src/news-service.js",
+      "line": 35,
+      "params": [
+        {
+          "name": "t",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "wibDayStartMs",
+      "file": "src/news-service.js",
+      "line": 37,
+      "params": [
+        {
+          "name": "now",
+          "ts_type": "unknown",
+          "optional": true,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [
+    {
+      "name": "createNewsService",
+      "file": "src/news-service.js",
+      "line": 40,
+      "reason": "async service factory"
+    }
+  ]
+}

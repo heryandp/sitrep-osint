@@ -1,0 +1,103 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/home/ditip/Documents/djp-sitrep",
+  "unit": "src/exa-summary.js",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "exa-summary-rs",
+  "exports": [
+    {
+      "name": "isValidPublicHttpUrl",
+      "file": "src/exa-summary.js",
+      "line": 26,
+      "params": [
+        {
+          "name": "raw",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "extractKeyEntities",
+      "file": "src/exa-summary.js",
+      "line": 47,
+      "params": [
+        {
+          "name": "text",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "buildFallbackSummary",
+      "file": "src/exa-summary.js",
+      "line": 70,
+      "params": [
+        {
+          "name": "arg0",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "parseExaSummaryObject",
+      "file": "src/exa-summary.js",
+      "line": 96,
+      "params": [
+        {
+          "name": "rawSummary",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "fallbackTitle",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "fallbackDesc",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [
+    {
+      "name": "createExaSummaryService",
+      "file": "src/exa-summary.js",
+      "line": 129,
+      "reason": "async service factory"
+    }
+  ]
+}

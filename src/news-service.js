@@ -2,6 +2,41 @@
 
 const PAJAK_CLUSTER = require('./pajak-cluster');
 
+const BANNED_SRC = /infopublik\.id|infopublik|kompasiana|koran\.tempo\.co|majalah\.tempo\.co|plus\.tempo\.co|tempo\.co\/(?:plus|langganan|subscribe)\b|mozaik\.inilah\.com|mediacenter\.palangkaraya\.go\.id|viva\.co\.id\/foto|nokenlive|polreskedirikota|korankaltim|pelakita|cilegon\.go\.id|twaslnews|kilangbara\.com|klikmu\.co|aboutcirebon\.id|about\s*cirebon/i;
+const BANNED_SOCIAL_HOST_RE = /(?:^|\.)(?:instagram\.com|instagr\.am|tiktok\.com|vt\.tiktok\.com|vm\.tiktok\.com|facebook\.com|fb\.com|fb\.watch|threads\.net|threads\.com|x\.com|twitter\.com)$/i;
+const BANNED_SOCIAL_PUB_RE = /^(?:instagram|tiktok|facebook|threads|x|twitter)$/i;
+
+const cleanPub = v => {
+  v = String(v || '').trim();
+  if (/^(https?:)?\/\//i.test(v) || /^www\./i.test(v)) { try { return new URL(/^www\./i.test(v) ? 'https://' + v : v).hostname.replace(/^www\./i, ''); } catch (e) { return ''; } }
+  return v;
+};
+
+function isBannedHostUrl(u) {
+  if (!u) return false;
+  const s = String(u);
+  if (BANNED_SRC.test(s)) return true;
+  try {
+    const h = new URL(s).hostname.replace(/^www\./i, '');
+    if (BANNED_SOCIAL_HOST_RE.test(h)) return true;
+  } catch (e) {}
+  return false;
+}
+
+function isBannedNewsItem(it) {
+  if (!it) return false;
+  const pub = String(it.pub || '').trim();
+  if (pub && BANNED_SOCIAL_PUB_RE.test(pub)) return true;
+  if (isBannedHostUrl(it.url) || isBannedHostUrl(it.srcUrl) || isBannedHostUrl(it.final)) return true;
+  const bid = (it.title || '') + ' ' + (it.url || '') + ' ' + pub + ' ' + (it.srcUrl || '');
+  return BANNED_SRC.test(bid);
+}
+
+const breakNorm = t => String(t).toLowerCase().replace(/\s+-\s+[^-]{2,45}$/, '').replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
+
+const wibDayStartMs = (now = Date.now()) =>
+  Math.floor((now + 7 * 3600e3) / 86400e3) * 86400e3 - 7 * 3600e3;
+
 function createNewsService({
   fs,
   path,
@@ -117,34 +152,6 @@ function createNewsService({
     mediaDescription: tagRaw(b, 'media:description'),
   }, title || '');
 
-  const cleanPub = v => {
-    v = String(v || '').trim();
-    if (/^(https?:)?\/\//i.test(v) || /^www\./i.test(v)) { try { return new URL(/^www\./i.test(v) ? 'https://' + v : v).hostname.replace(/^www\./i, ''); } catch (e) { return ''; } }
-    return v;
-  };
-
-  const BANNED_SRC = /infopublik\.id|infopublik|kompasiana|koran\.tempo\.co|majalah\.tempo\.co|plus\.tempo\.co|tempo\.co\/(?:plus|langganan|subscribe)\b|mozaik\.inilah\.com|mediacenter\.palangkaraya\.go\.id|viva\.co\.id\/foto|nokenlive|polreskedirikota|korankaltim|pelakita|cilegon\.go\.id|twaslnews|kilangbara\.com|klikmu\.co|aboutcirebon\.id|about\s*cirebon/i;
-  const BANNED_SOCIAL_HOST_RE = /(?:^|\.)(?:instagram\.com|instagr\.am|tiktok\.com|vt\.tiktok\.com|vm\.tiktok\.com|facebook\.com|fb\.com|fb\.watch|threads\.net|threads\.com|x\.com|twitter\.com)$/i;
-  const BANNED_SOCIAL_PUB_RE = /^(?:instagram|tiktok|facebook|threads|x|twitter)$/i;
-
-  function isBannedHostUrl(u) {
-    if (!u) return false;
-    const s = String(u);
-    if (BANNED_SRC.test(s)) return true;
-    try {
-      const h = new URL(s).hostname.replace(/^www\./i, '');
-      if (BANNED_SOCIAL_HOST_RE.test(h)) return true;
-    } catch (e) {}
-    return false;
-  }
-  function isBannedNewsItem(it) {
-    if (!it) return false;
-    const pub = String(it.pub || '').trim();
-    if (pub && BANNED_SOCIAL_PUB_RE.test(pub)) return true;
-    if (isBannedHostUrl(it.url) || isBannedHostUrl(it.srcUrl) || isBannedHostUrl(it.final)) return true;
-    const bid = (it.title || '') + ' ' + (it.url || '') + ' ' + pub + ' ' + (it.srcUrl || '');
-    return BANNED_SRC.test(bid);
-  }
   function parseFeed(xml, feedUrl = 'https://localhost/') {
     const out = [];
     for (const m of xml.matchAll(/<item[\s>]([\s\S]*?)<\/item>/gi)) {
@@ -199,7 +206,6 @@ function createNewsService({
     return out;
   }
 
-  const breakNorm = t => String(t).toLowerCase().replace(/\s+-\s+[^-]{2,45}$/, '').replace(/[^a-z0-9 ]/g, '').replace(/\s+/g, ' ').trim();
   const feedSigMap = new Map();
   const feedSig = items => {
     let h = 5381;
@@ -224,9 +230,6 @@ function createNewsService({
   const incidentHistByEid = new Map();
   let newsHistDirty = false, newsHistSaveAt = 0, newsHistInflight = false;
   let incHistDirty = false, incHistSaveAt = 0, incHistInflight = false;
-
-  const wibDayStartMs = (now = Date.now()) =>
-    Math.floor((now + 7 * 3600e3) / 86400e3) * 86400e3 - 7 * 3600e3;
 
   function writeHistAtomicSync(file, payload) {
     try {
@@ -1200,4 +1203,11 @@ function createNewsService({
   };
 }
 
-module.exports = { createNewsService };
+module.exports = {
+  createNewsService,
+  cleanPub,
+  isBannedHostUrl,
+  isBannedNewsItem,
+  breakNorm,
+  wibDayStartMs,
+};

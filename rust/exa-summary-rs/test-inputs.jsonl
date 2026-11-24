@@ -1,0 +1,12 @@
+{"fn":"isValidPublicHttpUrl","args":["https://news.ddtc.co.id/coretax-update"]}
+{"fn":"parseExaSummaryObject","args":["{\"ringkasan\":\"DJP melakukan pembaruan kapasitas server Coretax menjelang batas pelaporan SPT.\",\"dampak_djp\":\"Menurunkan risiko gagal login dan mempercepat penerbitan faktur pajak.\",\"entitas_kunci\":[\"DJP\",\"Coretax\",\"SPT\"],\"atensi\":\"Pantau tren keluhan wajib pajak pada jam puncak.\"}","DJP Optimalisasi Coretax",""]}
+{"fn":"parseExaSummaryObject","args":[{"ringkasan":"DJP melakukan pembaruan kapasitas server Coretax menjelang batas pelaporan SPT.","dampak_djp":"Menurunkan risiko gagal login dan mempercepat penerbitan faktur pajak.","entitas_kunci":["DJP","Coretax","SPT"],"atensi":"Pantau tren keluhan wajib pajak pada jam puncak."},"DJP Optimalisasi Coretax",""]}
+{"fn":"isValidPublicHttpUrl","args":["https://finance.detik.com/pajak-digital"]}
+{"fn":"buildFallbackSummary","args":[{"title":"Setoran Pajak Digital Tembus Rp60,1 Triliun","desc":"Direktorat Jenderal Pajak mencatat penerimaan pajak usaha ekonomi digital mencapai Rp60,1 triliun hingga akhir kuartal.","themeLabel":"","urls":["https://finance.detik.com/pajak-digital"],"reason":"no_exa_key"}]}
+{"fn":"extractKeyEntities","args":["Setoran Pajak Digital Tembus Rp60,1 Triliun Direktorat Jenderal Pajak mencatat penerimaan pajak usaha ekonomi digital mencapai Rp60,1 triliun hingga akhir kuartal."]}
+{"fn":"isValidPublicHttpUrl","args":["https://kontan.co.id/a"]}
+{"fn":"parseExaSummaryObject","args":["{\"ringkasan\":\"OK A\",\"dampak_djp\":\"D\",\"entitas_kunci\":[\"APBN\"],\"atensi\":\"P\"}","A",""]}
+{"fn":"parseExaSummaryObject","args":[{"ringkasan":"OK A","dampak_djp":"D","entitas_kunci":["APBN"],"atensi":"P"},"A",""]}
+{"fn":"isValidPublicHttpUrl","args":["https://kontan.co.id/b"]}
+{"fn":"buildFallbackSummary","args":[{"title":"B","desc":"Realisasi APBN dan penerimaan negara naik 8 persen.","themeLabel":"","urls":["https://kontan.co.id/b"],"reason":"DAILY_CAP"}]}
+{"fn":"extractKeyEntities","args":["B Realisasi APBN dan penerimaan negara naik 8 persen."]}

@@ -35,6 +35,68 @@
         "GET /api/geo/labels"
       ],
       "switch": "RUST_ANYTHING_UNIT_GEOCODE"
+    },
+    {
+      "name": "exa-summary",
+      "crate": "exa-summary-rs",
+      "path": "../exa-summary-rs",
+      "commands": [],
+      "routes": [
+        "GET /api/exa/status",
+        "POST /api/pajak/summarize",
+        "POST /api/pajak/brief"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_EXA_SUMMARY"
+    },
+    {
+      "name": "copernicus",
+      "crate": "copernicus-rs",
+      "path": "../copernicus-rs",
+      "commands": [],
+      "routes": [
+        "GET /api/copernicus/status",
+        "GET /api/copernicus/tile/{*path}"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_COPERNICUS"
+    },
+    {
+      "name": "tomtom",
+      "crate": "tomtom-rs",
+      "path": "../tomtom-rs",
+      "commands": [],
+      "routes": [
+        "GET /api/tomtom/status",
+        "GET /api/tomtom/flow",
+        "GET /api/tomtom/incidents",
+        "GET /api/tomtom/route",
+        "GET /tomtom/tile/{*path}"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_TOMTOM"
+    },
+    {
+      "name": "market",
+      "crate": "market-rs",
+      "path": "../market-rs",
+      "commands": [],
+      "routes": [
+        "GET /api/market",
+        "GET /api/closes"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_MARKET"
+    },
+    {
+      "name": "news-service",
+      "crate": "news-service-rs",
+      "path": "../news-service-rs",
+      "commands": [],
+      "routes": [
+        "GET /api/news",
+        "GET /api/breaking",
+        "GET /api/incidents",
+        "GET /api/situation",
+        "GET /api/pajak/clusters"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_NEWS_SERVICE"
     }
   ],
   "kind": "http",

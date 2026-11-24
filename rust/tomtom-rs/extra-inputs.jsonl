@@ -1,0 +1,13 @@
+{"fn":"haversine","args":[{"lat":-6.2088,"lon":106.8456},{"lat":-7.2575,"lon":112.7521}]}
+{"fn":"haversine","args":[{"lat":0,"lon":0},{"lat":0,"lon":0}]}
+{"fn":"haversine","args":[{"lat":10,"lon":20},{"lat":-10,"lon":-20}]}
+{"fn":"roundGrid","args":[-6.2088,0.01]}
+{"fn":"roundGrid","args":[106.8456,0.05]}
+{"fn":"roundGridStr","args":[-6.2088,0.01,2]}
+{"fn":"roundGridStr","args":[106.8456,0.05,4]}
+{"fn":"ttHostOK","args":["https://api.tomtom.com/traffic/services/4/flow"]}
+{"fn":"ttHostOK","args":["https://api.tomtom.com"]}
+{"fn":"ttHostOK","args":["https://sub.api.tomtom.com/path"]}
+{"fn":"ttHostOK","args":["https://evil.com"]}
+{"fn":"ttHostOK","args":["not a url"]}
+{"fn":"roundGrid","args":[10,{"$bigint":"10"}]}

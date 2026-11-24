@@ -1,0 +1,115 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/home/ditip/Documents/djp-sitrep",
+  "unit": "src/copernicus.js",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "copernicus-rs",
+  "exports": [
+    {
+      "name": "tileToBbox3857",
+      "file": "src/copernicus.js",
+      "line": 27,
+      "params": [
+        {
+          "name": "z",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "x",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "y",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "tileToBbox4326",
+      "file": "src/copernicus.js",
+      "line": 37,
+      "params": [
+        {
+          "name": "z",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "x",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "y",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "tileIntersectsBounds",
+      "file": "src/copernicus.js",
+      "line": 44,
+      "params": [
+        {
+          "name": "z",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "x",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "y",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "bounds",
+          "ts_type": "unknown",
+          "optional": true,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [
+    {
+      "name": "createCopernicusProxy",
+      "file": "src/copernicus.js",
+      "line": 69,
+      "reason": "async service factory"
+    }
+  ]
+}
