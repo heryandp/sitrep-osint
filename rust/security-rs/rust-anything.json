@@ -1,0 +1,289 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/home/ditip/Documents/djp-sitrep",
+  "unit": "src/security.js",
+  "language": "ts",
+  "kind": "napi",
+  "crate_name": "security-rs",
+  "exports": [
+    {
+      "name": "rdIPv4Bytes",
+      "file": "src/security.js",
+      "line": 17,
+      "params": [
+        {
+          "name": "ip",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "rdPrivateBytes",
+      "file": "src/security.js",
+      "line": 24,
+      "params": [
+        {
+          "name": "b",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "rdPrivateIP",
+      "file": "src/security.js",
+      "line": 72,
+      "params": [
+        {
+          "name": "ip",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "publicURL",
+      "file": "src/security.js",
+      "line": 114,
+      "params": [
+        {
+          "name": "raw",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "verifyPassword",
+      "file": "src/security.js",
+      "line": 907,
+      "params": [
+        {
+          "name": "password",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "stored",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": true,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "parseUsersSpec",
+      "file": "src/security.js",
+      "line": 921,
+      "params": [
+        {
+          "name": "spec",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "hasRole",
+      "file": "src/security.js",
+      "line": 952,
+      "params": [
+        {
+          "name": "principal",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "minRole",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "rateKey",
+      "file": "src/security.js",
+      "line": 1005,
+      "params": [
+        {
+          "name": "ip",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "getClientIp",
+      "file": "src/security.js",
+      "line": 980,
+      "params": [
+        {
+          "name": "req",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "trustProxy",
+          "ts_type": "boolean",
+          "optional": true,
+          "rest": false
+        },
+        {
+          "name": "trustedHops",
+          "ts_type": "unknown",
+          "optional": true,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "isHttpsReq",
+      "file": "src/security.js",
+      "line": 1016,
+      "params": [
+        {
+          "name": "req",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "trustProxy",
+          "ts_type": "boolean",
+          "optional": true,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "isSameOriginPost",
+      "file": "src/security.js",
+      "line": 1033,
+      "params": [
+        {
+          "name": "req",
+          "ts_type": "unknown",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "trustProxy",
+          "ts_type": "boolean",
+          "optional": true,
+          "rest": false
+        }
+      ],
+      "returns": "unknown",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [
+    {
+      "name": "createHttpClient",
+      "file": "src/security.js",
+      "line": 381,
+      "reason": "Node http/https/tls agent pool factory; ported as Rust reqwest client in service.rs"
+    },
+    {
+      "name": "loadTrustedRoots",
+      "file": "src/security.js",
+      "line": 136,
+      "reason": "Node tls root certificate loader"
+    },
+    {
+      "name": "hashPassword",
+      "file": "src/security.js",
+      "line": 901,
+      "reason": "uses crypto.randomBytes(16) non-deterministic salt; implemented in Rust service.rs with scrypt crate and verified against verifyPassword"
+    },
+    {
+      "name": "createAuthManager",
+      "file": "src/security.js",
+      "line": 1054,
+      "reason": "stateful closure manager; ported as Rust AuthManager struct in service.rs"
+    },
+    {
+      "name": "createRateLimiter",
+      "file": "src/security.js",
+      "line": 1252,
+      "reason": "stateful closure limiter; ported as Rust RateLimiter struct in service.rs"
+    },
+    {
+      "name": "runIsolated",
+      "file": "src/security.js",
+      "line": 1299,
+      "reason": "Node worker/isolation wrapper"
+    },
+    {
+      "name": "createFatalGuard",
+      "file": "src/security.js",
+      "line": 1308,
+      "reason": "Node process signal/exception handler"
+    }
+  ]
+}

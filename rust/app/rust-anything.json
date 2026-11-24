@@ -12,6 +12,29 @@
         "GET /api/pajak/uptime"
       ],
       "switch": "RUST_ANYTHING_UNIT_UPTIME_SERVICE"
+    },
+    {
+      "name": "security",
+      "crate": "security-rs",
+      "path": "../security-rs",
+      "commands": [],
+      "routes": [
+        "GET /api/auth/me",
+        "POST /api/auth/login",
+        "POST /api/auth/logout"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_SECURITY"
+    },
+    {
+      "name": "geocode",
+      "crate": "geocode-rs",
+      "path": "../geocode-rs",
+      "commands": [],
+      "routes": [
+        "GET /api/nodes",
+        "GET /api/geo/labels"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_GEOCODE"
     }
   ],
   "kind": "http",

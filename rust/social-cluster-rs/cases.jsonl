@@ -1,0 +1,978 @@
+{"fn":"classifySourceProvenance","args":[{"a":{"b":"c"}},null],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[["a",1],"x"],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[0,[]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[[],{}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":{"b":"c"}},["a",1]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[["a",1],null],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":"b"},"x"],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[null,0],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":"b"},null],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[[],true],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":["x",0],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[[],[]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[["a",1],true],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[null,"x"],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":{"b":"c"}},[]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[["a",1],{}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[[],{"a":{"b":"c"}}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":["x",{"a":"b"}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[null,{}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":"b"},true],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":["x",null],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{},0],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":["x",{}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[true,{"a":"b"}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":["x",true],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[0,null],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[null,{"a":"b"}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[["a",1],{"a":{"b":"c"}}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[true,["a",1]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[0,{"a":"b"}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[true,[]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":["x",["a",1]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[["a",1],["a",1]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{},{}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{},[]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{},{"a":"b"}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":["x",{"a":{"b":"c"}}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{},null],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[null,true],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":{"b":"c"}},0],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[null,["a",1]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[0,true],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[0,["a",1]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[["a",1],0],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":{"b":"c"}},"x"],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{},true],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[true,{}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":{"b":"c"}},true],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[null,null],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[0,"x"],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[["a",1],[]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[[],"x"],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{},["a",1]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":{"b":"c"}},{"a":"b"}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[true,0],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[null,[]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":"b"},{"a":"b"}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":["x",[]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[0,0],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":"b"},[]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[[],0],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":"b"},["a",1]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":"b"},0],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":["x","x"],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[null,{"a":{"b":"c"}}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[[],null],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[0,{"a":{"b":"c"}}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[true,{"a":{"b":"c"}}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[true,true],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":{"b":"c"}},{}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[[],["a",1]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{},"x"],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[true,"x"],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[["a",1],{"a":"b"}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[[],{"a":"b"}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":"b"},{"a":{"b":"c"}}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[true,null],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{},{"a":{"b":"c"}}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":["x","X"],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":"b"},{}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[0,{}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},null],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},null],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[[3,1,2],null],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":{"b":"c"}},{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":{"b":"c"}},{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"a":{"b":"c"}},[3,1,2]],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"stripBoilerplateForSimilarity","args":["x"],"ok":"x"}
+{"fn":"stripBoilerplateForSimilarity","args":[true],"ok":"true"}
+{"fn":"stripBoilerplateForSimilarity","args":[{}],"ok":"object object"}
+{"fn":"stripBoilerplateForSimilarity","args":[["a",1]],"ok":"a 1"}
+{"fn":"stripBoilerplateForSimilarity","args":[0],"ok":""}
+{"fn":"stripBoilerplateForSimilarity","args":[{"a":"b"}],"ok":"object object"}
+{"fn":"stripBoilerplateForSimilarity","args":[{"a":{"b":"c"}}],"ok":"object object"}
+{"fn":"stripBoilerplateForSimilarity","args":[[]],"ok":""}
+{"fn":"stripBoilerplateForSimilarity","args":[null],"ok":""}
+{"fn":"stripBoilerplateForSimilarity","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":"object object"}
+{"fn":"stripBoilerplateForSimilarity","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":"object object"}
+{"fn":"stripBoilerplateForSimilarity","args":[[3,1,2]],"ok":"3 1 2"}
+{"fn":"similarityTokens","args":[true],"ok":["true"]}
+{"fn":"similarityTokens","args":[{"a":{"b":"c"}}],"ok":["object"]}
+{"fn":"similarityTokens","args":[0],"ok":[]}
+{"fn":"similarityTokens","args":[null],"ok":[]}
+{"fn":"similarityTokens","args":[{"a":"b"}],"ok":["object"]}
+{"fn":"similarityTokens","args":[[]],"ok":[]}
+{"fn":"similarityTokens","args":[["a",1]],"ok":[]}
+{"fn":"similarityTokens","args":["x"],"ok":[]}
+{"fn":"similarityTokens","args":[{}],"ok":["object"]}
+{"fn":"similarityTokens","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":["object"]}
+{"fn":"similarityTokens","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":["object"]}
+{"fn":"similarityTokens","args":[[3,1,2]],"ok":[]}
+{"fn":"isNearDuplicate","args":[["a",1],true,3],"ok":false}
+{"fn":"isNearDuplicate","args":["x",true],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},["a",1],1000],"ok":false}
+{"fn":"isNearDuplicate","args":[true,["a",1],0],"ok":false}
+{"fn":"isNearDuplicate","args":[null,["a",1],1000],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},{"a":{"b":"c"}}],"ok":true}
+{"fn":"isNearDuplicate","args":[{},[],42],"ok":false}
+{"fn":"isNearDuplicate","args":["x",{},1000000],"ok":false}
+{"fn":"isNearDuplicate","args":["x",["a",1],42],"ok":false}
+{"fn":"isNearDuplicate","args":[0,["a",1],1000],"ok":false}
+{"fn":"isNearDuplicate","args":[null,["a",1],1000000],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},true,0],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},[],{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[{},null,{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[null,{},-1],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],0,1],"ok":false}
+{"fn":"isNearDuplicate","args":[{},0,{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[null,{"a":"b"},100],"ok":false}
+{"fn":"isNearDuplicate","args":[0,{"a":{"b":"c"}},1000000],"ok":false}
+{"fn":"isNearDuplicate","args":[[],{"a":{"b":"c"}}],"ok":false}
+{"fn":"isNearDuplicate","args":[0,["a",1],0],"ok":false}
+{"fn":"isNearDuplicate","args":["x",[],{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[[],{"a":"b"},{"$num":"Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":[null,0,0],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},null,{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[[],["a",1],0],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},"x"],"ok":false}
+{"fn":"isNearDuplicate","args":[0,{}],"ok":false}
+{"fn":"isNearDuplicate","args":[true,true,{"$undefined":true}],"ok":true}
+{"fn":"isNearDuplicate","args":[[],true],"ok":false}
+{"fn":"isNearDuplicate","args":[[],{"a":"b"},9007199254740992],"ok":false}
+{"fn":"isNearDuplicate","args":[0,{},{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[{},[],1000000],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],{},10],"ok":false}
+{"fn":"isNearDuplicate","args":[{},[]],"ok":false}
+{"fn":"isNearDuplicate","args":[[],[],2],"ok":false}
+{"fn":"isNearDuplicate","args":[0,[],1],"ok":false}
+{"fn":"isNearDuplicate","args":[true,[]],"ok":false}
+{"fn":"isNearDuplicate","args":[null,{"a":"b"},-2.5],"ok":false}
+{"fn":"isNearDuplicate","args":[{},{},42],"ok":true}
+{"fn":"isNearDuplicate","args":[0,[],{"$num":"Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":[[],0,{"$num":"-Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},"x",{"$num":"NaN"}],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},0,1],"ok":false}
+{"fn":"isNearDuplicate","args":[[],{"a":{"b":"c"}},1000],"ok":false}
+{"fn":"isNearDuplicate","args":["x",{},3],"ok":false}
+{"fn":"isNearDuplicate","args":[null,true,2147483648],"ok":false}
+{"fn":"isNearDuplicate","args":[null,[],{"$num":"Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":["x",{},{"$num":"Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":[{},"x",2],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},"x",2147483648],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},["a",1],{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[null,[],100],"ok":false}
+{"fn":"isNearDuplicate","args":[null,{},100],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},[],0.5],"ok":false}
+{"fn":"isNearDuplicate","args":[{},["a",1],{"$num":"-Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":[{},null,9007199254740992],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},true,9007199254740992],"ok":false}
+{"fn":"isNearDuplicate","args":[{},"x",{"$num":"-Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},{"$num":"Infinity"}],"ok":true}
+{"fn":"isNearDuplicate","args":[{"a":"b"},["a",1],{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[0,["a",1],100],"ok":false}
+{"fn":"isNearDuplicate","args":[[],{"a":"b"},-1],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],0,9007199254740992],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},0,0.5],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},null,{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[null,[],{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[[],"x",-1],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},null],"ok":false}
+{"fn":"isNearDuplicate","args":[null,{"a":{"b":"c"}},9007199254740992],"ok":false}
+{"fn":"isNearDuplicate","args":["x",{"a":"b"},10],"ok":false}
+{"fn":"isNearDuplicate","args":[null,["a",1],2147483648],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},["a",1],1000000],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},{}],"ok":true}
+{"fn":"isNearDuplicate","args":[{"a":"b"},[],1000000],"ok":false}
+{"fn":"isNearDuplicate","args":["x",[],42],"ok":false}
+{"fn":"isNearDuplicate","args":[true,{"a":{"b":"c"}},{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[0,0,{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[true,{"a":"b"},1000000],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],["a",1],42],"ok":true}
+{"fn":"isNearDuplicate","args":[null,null,1000],"ok":false}
+{"fn":"isNearDuplicate","args":[{},[],2147483648],"ok":false}
+{"fn":"isNearDuplicate","args":[true,[],{"$num":"-Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},1],"ok":true}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},["a",1]],"ok":false}
+{"fn":"isNearDuplicate","args":["x","x",0.5],"ok":true}
+{"fn":"isNearDuplicate","args":[null,["a",1],{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":["x","x",{"$num":"-0"}],"ok":true}
+{"fn":"isNearDuplicate","args":[true,{},0.5],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],0,{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[[],["a",1],-2.5],"ok":false}
+{"fn":"isNearDuplicate","args":[[],0,0],"ok":false}
+{"fn":"isNearDuplicate","args":[true,{},3],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},[],0.5],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},0,100],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],{},1],"ok":false}
+{"fn":"isNearDuplicate","args":[true,true,1000000],"ok":true}
+{"fn":"isNearDuplicate","args":[0,["a",1],{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[{},["a",1],{"$num":"Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],{"a":{"b":"c"}},1000],"ok":false}
+{"fn":"isNearDuplicate","args":[true,true,-2.5],"ok":true}
+{"fn":"isNearDuplicate","args":[{},{"a":"b"},42],"ok":true}
+{"fn":"isNearDuplicate","args":[{"a":"b"},[],{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[true,[],1],"ok":false}
+{"fn":"isNearDuplicate","args":["x","x",9007199254740992],"ok":true}
+{"fn":"isNearDuplicate","args":[null,null,{"$num":"Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":[null,0,{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[true,{},1000000],"ok":false}
+{"fn":"isNearDuplicate","args":[true,true,-1],"ok":true}
+{"fn":"isNearDuplicate","args":[{},true,3],"ok":false}
+{"fn":"isNearDuplicate","args":[[],true,0.5],"ok":false}
+{"fn":"isNearDuplicate","args":[[],null,{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":["x",0,{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},0,-2.5],"ok":false}
+{"fn":"isNearDuplicate","args":[[],{"a":{"b":"c"}},100],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},true,{"$num":"NaN"}],"ok":false}
+{"fn":"isNearDuplicate","args":["x","x"],"ok":true}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},{"a":"b"},9007199254740992],"ok":true}
+{"fn":"isNearDuplicate","args":[{"a":"b"},["a",1],{"$num":"NaN"}],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],[],2],"ok":false}
+{"fn":"isNearDuplicate","args":[null,{},42],"ok":false}
+{"fn":"isNearDuplicate","args":[0,{},{"$num":"NaN"}],"ok":false}
+{"fn":"isNearDuplicate","args":[[],[],3],"ok":false}
+{"fn":"isNearDuplicate","args":[{},null,{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[null,{"a":"b"}],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],["a",1],9007199254740992],"ok":true}
+{"fn":"isNearDuplicate","args":[true,{"a":{"b":"c"}},3],"ok":false}
+{"fn":"isNearDuplicate","args":[null,0,1000000],"ok":false}
+{"fn":"isNearDuplicate","args":[{},[],100],"ok":false}
+{"fn":"isNearDuplicate","args":[null,true],"ok":false}
+{"fn":"isNearDuplicate","args":[{},["a",1],0.5],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},"x",{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":["x",{},0.5],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},{"a":{"b":"c"}},{"$num":"Infinity"}],"ok":true}
+{"fn":"isNearDuplicate","args":[["a",1],"x",0.5],"ok":false}
+{"fn":"isNearDuplicate","args":["x",true,{"$num":"NaN"}],"ok":false}
+{"fn":"isNearDuplicate","args":[true,{},2],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},null,42],"ok":false}
+{"fn":"isNearDuplicate","args":[[],[],1000],"ok":false}
+{"fn":"isNearDuplicate","args":[null,[],9007199254740992],"ok":false}
+{"fn":"isNearDuplicate","args":[0,{},1000000],"ok":false}
+{"fn":"isNearDuplicate","args":[0,["a",1],{"$num":"-Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],[],{"$num":"Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":[{},{},2],"ok":true}
+{"fn":"isNearDuplicate","args":[0,{"a":"b"},-2.5],"ok":false}
+{"fn":"isNearDuplicate","args":[null,{"a":"b"},{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[{},null,2],"ok":false}
+{"fn":"isNearDuplicate","args":["x",0],"ok":false}
+{"fn":"isNearDuplicate","args":["x",{"a":"b"},{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":["x",null,{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[true,["a",1],-1],"ok":false}
+{"fn":"isNearDuplicate","args":[0,{},0],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},[],{"$num":"NaN"}],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},0,{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[[],{},{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],{},{"$num":"NaN"}],"ok":false}
+{"fn":"isNearDuplicate","args":[{},{"a":{"b":"c"}},1000],"ok":true}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},{},{"$num":"NaN"}],"ok":true}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},{"a":"b"},{"$undefined":true}],"ok":true}
+{"fn":"isNearDuplicate","args":[0,{"a":"b"},{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[0,"x",0],"ok":false}
+{"fn":"isNearDuplicate","args":[null,{"a":{"b":"c"}},-2.5],"ok":false}
+{"fn":"isNearDuplicate","args":[true,"x",1000000],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},0,42],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],[],42],"ok":false}
+{"fn":"isNearDuplicate","args":[true,{"a":{"b":"c"}},1000000],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],true,{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},{"a":"b"},{"$num":"-Infinity"}],"ok":true}
+{"fn":"isNearDuplicate","args":[true,"x",2147483648],"ok":false}
+{"fn":"isNearDuplicate","args":[null,["a",1],1],"ok":false}
+{"fn":"isNearDuplicate","args":[0,null,1],"ok":false}
+{"fn":"isNearDuplicate","args":[0,null,{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[0,{"a":"b"},1],"ok":false}
+{"fn":"isNearDuplicate","args":[{},"x",100],"ok":false}
+{"fn":"isNearDuplicate","args":[[],"x",3],"ok":false}
+{"fn":"isNearDuplicate","args":[0,{},0.5],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],true,0.5],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],null,2],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},{"a":{"b":"c"}},{"$undefined":true}],"ok":true}
+{"fn":"isNearDuplicate","args":[["a",1],true,1000],"ok":false}
+{"fn":"isNearDuplicate","args":[true,{"a":{"b":"c"}}],"ok":false}
+{"fn":"isNearDuplicate","args":[0,["a",1],{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},{},100],"ok":true}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},1000],"ok":true}
+{"fn":"isNearDuplicate","args":[true,{"a":"b"},{"$num":"-0"}],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],0,0.5],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},null,1000000],"ok":false}
+{"fn":"isNearDuplicate","args":["x",{},1000],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":"b"},{"a":{"b":"c"}},{"$num":"NaN"}],"ok":true}
+{"fn":"isNearDuplicate","args":[{"a":"b"},"x",{"$num":"Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":[{"a":{"b":"c"}},{},100],"ok":true}
+{"fn":"isNearDuplicate","args":[[],{"a":"b"},{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[true,null,{"$num":"NaN"}],"ok":false}
+{"fn":"isNearDuplicate","args":["x",[],1000000],"ok":false}
+{"fn":"isNearDuplicate","args":[[],{"a":{"b":"c"}},{"$num":"Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":["x",null,{"$num":"-Infinity"}],"ok":false}
+{"fn":"isNearDuplicate","args":[true,0,2147483648],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],true,9007199254740992],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],["a",1],3],"ok":true}
+{"fn":"isNearDuplicate","args":[{},true,0],"ok":false}
+{"fn":"isNearDuplicate","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},true,3],"ok":false}
+{"fn":"isNearDuplicate","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},true,3],"ok":false}
+{"fn":"isNearDuplicate","args":[[3,1,2],true,3],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},3],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},3],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],[3,1,2],3],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],{},3],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],true,{"$undefined":true}],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],true,-7.5],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],true,0.1],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],true,0.30000000000000004],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],true,1e+21],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],true,1e-7],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],true,5e-324],"ok":false}
+{"fn":"isNearDuplicate","args":[["a",1],true,1.7976931348623157e+308],"ok":false}
+{"fn":"deduplicatePosts","args":[{"a":"b"}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[{"a":"b"},{"a":{"b":"c"}}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[{"a":"b"},[]],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":["x",{"a":{"b":"c"}}],"error":"(posts || []).slice(...).sort is not a function"}
+{"fn":"deduplicatePosts","args":[{},{"$undefined":true}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[0],"ok":[]}
+{"fn":"deduplicatePosts","args":[0,{"$undefined":true}],"ok":[]}
+{"fn":"deduplicatePosts","args":[{"a":{"b":"c"}},{"a":"b"}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[{},[]],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[["a",1],null],"error":"Cannot read properties of null (reading 'threshold')"}
+{"fn":"deduplicatePosts","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[[],"x"],"ok":[]}
+{"fn":"deduplicatePosts","args":[[],{}],"ok":[]}
+{"fn":"deduplicatePosts","args":[[],0],"ok":[]}
+{"fn":"deduplicatePosts","args":[{"a":{"b":"c"}},[]],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[[],true],"ok":[]}
+{"fn":"deduplicatePosts","args":["x",{}],"error":"(posts || []).slice(...).sort is not a function"}
+{"fn":"deduplicatePosts","args":["x",0],"error":"(posts || []).slice(...).sort is not a function"}
+{"fn":"deduplicatePosts","args":["x",null],"error":"Cannot read properties of null (reading 'threshold')"}
+{"fn":"deduplicatePosts","args":[["a",1],["a",1]],"ok":[]}
+{"fn":"deduplicatePosts","args":[null,0],"ok":[]}
+{"fn":"deduplicatePosts","args":[0,{}],"ok":[]}
+{"fn":"deduplicatePosts","args":[{"a":{"b":"c"}},0],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[{},null],"error":"Cannot read properties of null (reading 'threshold')"}
+{"fn":"deduplicatePosts","args":[{"a":{"b":"c"}}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[[]],"ok":[]}
+{"fn":"deduplicatePosts","args":[true,null],"error":"Cannot read properties of null (reading 'threshold')"}
+{"fn":"deduplicatePosts","args":[0,0],"ok":[]}
+{"fn":"deduplicatePosts","args":[true,{"a":"b"}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[{},["a",1]],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[{"a":"b"},null],"error":"Cannot read properties of null (reading 'threshold')"}
+{"fn":"deduplicatePosts","args":[null,null],"error":"Cannot read properties of null (reading 'threshold')"}
+{"fn":"deduplicatePosts","args":[{"a":"b"},{"a":"b"}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[{"a":"b"},true],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[["a",1],[]],"ok":[]}
+{"fn":"deduplicatePosts","args":[{"a":{"b":"c"}},["a",1]],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[{"a":{"b":"c"}},{"$undefined":true}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":["x",true],"error":"(posts || []).slice(...).sort is not a function"}
+{"fn":"deduplicatePosts","args":[null,{"a":{"b":"c"}}],"ok":[]}
+{"fn":"deduplicatePosts","args":[[],{"a":"b"}],"ok":[]}
+{"fn":"deduplicatePosts","args":[{"a":{"b":"c"}},null],"error":"Cannot read properties of null (reading 'threshold')"}
+{"fn":"deduplicatePosts","args":[0,{"a":"b"}],"ok":[]}
+{"fn":"deduplicatePosts","args":[null,"x"],"ok":[]}
+{"fn":"deduplicatePosts","args":[[],{"$undefined":true}],"ok":[]}
+{"fn":"deduplicatePosts","args":[null],"ok":[]}
+{"fn":"deduplicatePosts","args":["x",{"$undefined":true}],"error":"(posts || []).slice(...).sort is not a function"}
+{"fn":"deduplicatePosts","args":["x"],"error":"(posts || []).slice(...).sort is not a function"}
+{"fn":"deduplicatePosts","args":[["a",1],{}],"ok":[]}
+{"fn":"deduplicatePosts","args":[["a",1],0],"ok":[]}
+{"fn":"deduplicatePosts","args":["x",[]],"error":"(posts || []).slice(...).sort is not a function"}
+{"fn":"deduplicatePosts","args":[{"a":{"b":"c"}},"x"],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[null,true],"ok":[]}
+{"fn":"deduplicatePosts","args":[0,"x"],"ok":[]}
+{"fn":"deduplicatePosts","args":[{"a":{"b":"c"}},{}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[null,{"a":"b"}],"ok":[]}
+{"fn":"deduplicatePosts","args":[{"a":"b"},["a",1]],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[{"a":"b"},"x"],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[[],{"a":{"b":"c"}}],"ok":[]}
+{"fn":"deduplicatePosts","args":[0,{"a":{"b":"c"}}],"ok":[]}
+{"fn":"deduplicatePosts","args":[true,[]],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[true],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[true,true],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[true,{"a":{"b":"c"}}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":["x",["a",1]],"error":"(posts || []).slice(...).sort is not a function"}
+{"fn":"deduplicatePosts","args":[{"a":"b"},{}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[{},{"a":"b"}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[[],[]],"ok":[]}
+{"fn":"deduplicatePosts","args":["x",{"a":"b"}],"error":"(posts || []).slice(...).sort is not a function"}
+{"fn":"deduplicatePosts","args":[[],null],"error":"Cannot read properties of null (reading 'threshold')"}
+{"fn":"deduplicatePosts","args":[null,["a",1]],"ok":[]}
+{"fn":"deduplicatePosts","args":[["a",1],"x"],"ok":[]}
+{"fn":"deduplicatePosts","args":[["a",1],{"$undefined":true}],"ok":[]}
+{"fn":"deduplicatePosts","args":[true,0],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[{"a":"b"},0],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[true,"x"],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[0,true],"ok":[]}
+{"fn":"deduplicatePosts","args":[{},{}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[null,{"$undefined":true}],"ok":[]}
+{"fn":"deduplicatePosts","args":[["a",1],{"a":"b"}],"ok":[]}
+{"fn":"deduplicatePosts","args":[{},"x"],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[true,{}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[true,["a",1]],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[["a",1],{"a":{"b":"c"}}],"ok":[]}
+{"fn":"deduplicatePosts","args":[0,null],"error":"Cannot read properties of null (reading 'threshold')"}
+{"fn":"deduplicatePosts","args":[{},0],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[[],["a",1]],"ok":[]}
+{"fn":"deduplicatePosts","args":[null,[]],"ok":[]}
+{"fn":"deduplicatePosts","args":["x","x"],"error":"(posts || []).slice(...).sort is not a function"}
+{"fn":"deduplicatePosts","args":[{"a":"b"},{"$undefined":true}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[{},{"a":{"b":"c"}}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[0,["a",1]],"ok":[]}
+{"fn":"deduplicatePosts","args":[{},true],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[0,[]],"ok":[]}
+{"fn":"deduplicatePosts","args":[{"a":{"b":"c"}},true],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[["a",1],true],"ok":[]}
+{"fn":"deduplicatePosts","args":[["a",1]],"ok":[]}
+{"fn":"deduplicatePosts","args":[{}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":[null,{}],"ok":[]}
+{"fn":"deduplicatePosts","args":[true,{"$undefined":true}],"error":"(posts || []).slice is not a function"}
+{"fn":"deduplicatePosts","args":["x","X"],"error":"(posts || []).slice(...).sort is not a function"}
+{"fn":"clusterIncidents","args":[0,0],"ok":[]}
+{"fn":"clusterIncidents","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[null,[]],"ok":[]}
+{"fn":"clusterIncidents","args":[{},[]],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[["a",1],[]],"ok":[]}
+{"fn":"clusterIncidents","args":[[],["a",1]],"ok":[]}
+{"fn":"clusterIncidents","args":[{"a":"b"},{"a":{"b":"c"}}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{"a":{"b":"c"}}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[[],{}],"ok":[]}
+{"fn":"clusterIncidents","args":[true,{"a":"b"}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[0,"x"],"ok":[]}
+{"fn":"clusterIncidents","args":[0,{}],"ok":[]}
+{"fn":"clusterIncidents","args":[["a",1],"x"],"ok":[]}
+{"fn":"clusterIncidents","args":[["a",1],null],"error":"Cannot read properties of null (reading 'timeWindowMs')"}
+{"fn":"clusterIncidents","args":["x","x"],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[null,["a",1]],"ok":[]}
+{"fn":"clusterIncidents","args":[0,true],"ok":[]}
+{"fn":"clusterIncidents","args":[{"a":{"b":"c"}},{"a":"b"}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{"a":"b"},"x"],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[["a",1],["a",1]],"ok":[]}
+{"fn":"clusterIncidents","args":[null,null],"error":"Cannot read properties of null (reading 'timeWindowMs')"}
+{"fn":"clusterIncidents","args":[{"a":"b"},["a",1]],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{"a":"b"},{"$undefined":true}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":["x",true],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[true,{"$undefined":true}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[null,{"a":{"b":"c"}}],"ok":[]}
+{"fn":"clusterIncidents","args":[{"a":{"b":"c"}},{"$undefined":true}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[true,0],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{},"x"],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{},null],"error":"Cannot read properties of null (reading 'timeWindowMs')"}
+{"fn":"clusterIncidents","args":[[],null],"error":"Cannot read properties of null (reading 'timeWindowMs')"}
+{"fn":"clusterIncidents","args":[{},true],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{},["a",1]],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[0,{"$undefined":true}],"ok":[]}
+{"fn":"clusterIncidents","args":[{"a":{"b":"c"}},[]],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[0,["a",1]],"ok":[]}
+{"fn":"clusterIncidents","args":[{"a":"b"},{"a":"b"}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":["x",{"a":"b"}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[true],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[["a",1]],"ok":[]}
+{"fn":"clusterIncidents","args":[[],"x"],"ok":[]}
+{"fn":"clusterIncidents","args":[{},{"$undefined":true}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[0],"ok":[]}
+{"fn":"clusterIncidents","args":[null,"x"],"ok":[]}
+{"fn":"clusterIncidents","args":[{}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{"a":"b"},0],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[[],{"$undefined":true}],"ok":[]}
+{"fn":"clusterIncidents","args":[[],{"a":{"b":"c"}}],"ok":[]}
+{"fn":"clusterIncidents","args":[null,true],"ok":[]}
+{"fn":"clusterIncidents","args":[{"a":{"b":"c"}},null],"error":"Cannot read properties of null (reading 'timeWindowMs')"}
+{"fn":"clusterIncidents","args":[{"a":"b"},{}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[[],true],"ok":[]}
+{"fn":"clusterIncidents","args":["x",[]],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{},0],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[0,null],"error":"Cannot read properties of null (reading 'timeWindowMs')"}
+{"fn":"clusterIncidents","args":[[]],"ok":[]}
+{"fn":"clusterIncidents","args":[["a",1],{"a":"b"}],"ok":[]}
+{"fn":"clusterIncidents","args":[0,{"a":"b"}],"ok":[]}
+{"fn":"clusterIncidents","args":[[],0],"ok":[]}
+{"fn":"clusterIncidents","args":["x",["a",1]],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[["a",1],{"$undefined":true}],"ok":[]}
+{"fn":"clusterIncidents","args":[{},{"a":"b"}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{"a":"b"}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{"a":"b"},[]],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[["a",1],{}],"ok":[]}
+{"fn":"clusterIncidents","args":[{},{}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":["x",0],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[true,"x"],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[true,null],"error":"Cannot read properties of null (reading 'timeWindowMs')"}
+{"fn":"clusterIncidents","args":[true,{"a":{"b":"c"}}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{"a":{"b":"c"}},"x"],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":["x",{"a":{"b":"c"}}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[null],"ok":[]}
+{"fn":"clusterIncidents","args":[0,{"a":{"b":"c"}}],"ok":[]}
+{"fn":"clusterIncidents","args":["x",{}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[[],{"a":"b"}],"ok":[]}
+{"fn":"clusterIncidents","args":[["a",1],0],"ok":[]}
+{"fn":"clusterIncidents","args":[{"a":{"b":"c"}},true],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":["x"],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[true,{}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{"a":{"b":"c"}},["a",1]],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[["a",1],true],"ok":[]}
+{"fn":"clusterIncidents","args":[0,[]],"ok":[]}
+{"fn":"clusterIncidents","args":[true,true],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[null,{}],"ok":[]}
+{"fn":"clusterIncidents","args":[["a",1],{"a":{"b":"c"}}],"ok":[]}
+{"fn":"clusterIncidents","args":["x",{"$undefined":true}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[null,{"a":"b"}],"ok":[]}
+{"fn":"clusterIncidents","args":[null,{"$undefined":true}],"ok":[]}
+{"fn":"clusterIncidents","args":[true,[]],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{"a":"b"},null],"error":"Cannot read properties of null (reading 'timeWindowMs')"}
+{"fn":"clusterIncidents","args":[{},{"a":{"b":"c"}}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{"a":{"b":"c"}},0],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[null,0],"ok":[]}
+{"fn":"clusterIncidents","args":[{"a":"b"},true],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":["x",null],"error":"Cannot read properties of null (reading 'timeWindowMs')"}
+{"fn":"clusterIncidents","args":[[],[]],"ok":[]}
+{"fn":"clusterIncidents","args":[true,["a",1]],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{"a":{"b":"c"}},{}],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":["X","x"],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},0],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},0],"error":"(posts || []).filter is not a function"}
+{"fn":"clusterIncidents","args":[[3,1,2],0],"ok":[]}
+{"fn":"matchPostToNews","args":[[],true,{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],[],"x"],"ok":null}
+{"fn":"matchPostToNews","args":[null,["a",1],"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},null,"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{},"x","X"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},{"a":"b"},[]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},{"a":"b"},null],"ok":null}
+{"fn":"matchPostToNews","args":["x",null,["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[true,true,["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},true,{}],"ok":null}
+{"fn":"matchPostToNews","args":[null,true,0],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},0,[]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},0],"ok":null}
+{"fn":"matchPostToNews","args":["x",null,{}],"ok":null}
+{"fn":"matchPostToNews","args":[0,true,null],"ok":null}
+{"fn":"matchPostToNews","args":[{},[],"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{},["a",1],true],"ok":null}
+{"fn":"matchPostToNews","args":["x",[],{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],{"a":"b"},"x"],"ok":null}
+{"fn":"matchPostToNews","args":[[],[],["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[null,null,"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},{"a":"b"},0],"ok":null}
+{"fn":"matchPostToNews","args":[null,[],{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[{},true,[]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},"x",{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],{},null],"ok":null}
+{"fn":"matchPostToNews","args":[0,null,{}],"ok":null}
+{"fn":"matchPostToNews","args":[[],null,["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],0,"x"],"ok":null}
+{"fn":"matchPostToNews","args":[true,{},{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[0,{},true],"ok":null}
+{"fn":"matchPostToNews","args":["x",{},null],"ok":null}
+{"fn":"matchPostToNews","args":[0,[],0],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},{"a":"b"},"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{},"x",{}],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},0,[]],"ok":null}
+{"fn":"matchPostToNews","args":[true,["a",1],null],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},null,["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[0,[],null],"ok":null}
+{"fn":"matchPostToNews","args":[true,"x",[]],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],"x",["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[true,{"a":"b"},[]],"ok":null}
+{"fn":"matchPostToNews","args":[null,0,[]],"ok":null}
+{"fn":"matchPostToNews","args":[null,[],{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":["x",["a",1],0],"ok":null}
+{"fn":"matchPostToNews","args":[null,null,{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[null,"x",{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},{"a":{"b":"c"}},{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":["x",["a",1],true],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},[],true],"ok":null}
+{"fn":"matchPostToNews","args":["x",0,null],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],null,true],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},"x",[]],"ok":null}
+{"fn":"matchPostToNews","args":[0,0,true],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},["a",1],{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":["x",null,{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[0,"x","x"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},"x",[]],"ok":null}
+{"fn":"matchPostToNews","args":[null,["a",1],[]],"ok":null}
+{"fn":"matchPostToNews","args":[{},true,"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},{},true],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},null,{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],true,{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[0,["a",1],{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[true,["a",1],[]],"ok":null}
+{"fn":"matchPostToNews","args":[{},{"a":{"b":"c"}},"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},{"a":"b"},{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[[],null,{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},{},null],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},[],null],"ok":null}
+{"fn":"matchPostToNews","args":["x",["a",1],{}],"ok":null}
+{"fn":"matchPostToNews","args":[{},null,true],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},true,true],"ok":null}
+{"fn":"matchPostToNews","args":["x",{"a":{"b":"c"}},true],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},true],"ok":null}
+{"fn":"matchPostToNews","args":[{},"x",0],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},null,[]],"ok":null}
+{"fn":"matchPostToNews","args":[{},0,{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[[],"x",[]],"ok":null}
+{"fn":"matchPostToNews","args":["x",0,{}],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],"x",0],"ok":null}
+{"fn":"matchPostToNews","args":["x",{},true],"ok":null}
+{"fn":"matchPostToNews","args":["x",["a",1],null],"ok":null}
+{"fn":"matchPostToNews","args":[[],[],0],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},[],[]],"ok":null}
+{"fn":"matchPostToNews","args":[[],null,true],"ok":null}
+{"fn":"matchPostToNews","args":["x","x",true],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},["a",1],"x"],"ok":null}
+{"fn":"matchPostToNews","args":[null,"x",0],"ok":null}
+{"fn":"matchPostToNews","args":[[],true,"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},[]],"ok":null}
+{"fn":"matchPostToNews","args":[{},null,[]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},null,null],"ok":null}
+{"fn":"matchPostToNews","args":[{},"x","x"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},null,["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[true,null,{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[{},{},null],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},{"a":"b"},true],"ok":null}
+{"fn":"matchPostToNews","args":[null,{"a":{"b":"c"}},{}],"ok":null}
+{"fn":"matchPostToNews","args":[[],["a",1],"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},null,{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[true,true,null],"ok":null}
+{"fn":"matchPostToNews","args":[true,null,[]],"ok":null}
+{"fn":"matchPostToNews","args":[0,"x",0],"ok":null}
+{"fn":"matchPostToNews","args":[null,null,null],"ok":null}
+{"fn":"matchPostToNews","args":[[],"x",0],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],{"a":{"b":"c"}},{}],"ok":null}
+{"fn":"matchPostToNews","args":[{},0,"x"],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],null,{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},"x",{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},null,true],"ok":null}
+{"fn":"matchPostToNews","args":["x",{"a":{"b":"c"}},0],"ok":null}
+{"fn":"matchPostToNews","args":["x",{},["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},null],"ok":null}
+{"fn":"matchPostToNews","args":[null,[],{}],"ok":null}
+{"fn":"matchPostToNews","args":[[],{"a":"b"},"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},{},["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],["a",1],{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[null,{"a":"b"},true],"ok":null}
+{"fn":"matchPostToNews","args":[{},0,["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[[],{"a":{"b":"c"}},0],"ok":null}
+{"fn":"matchPostToNews","args":[{},[],["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},{"a":"b"},["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},"x",["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},[],"x"],"ok":null}
+{"fn":"matchPostToNews","args":[true,true,"x"],"ok":null}
+{"fn":"matchPostToNews","args":["x",null,null],"ok":null}
+{"fn":"matchPostToNews","args":[{},{"a":"b"},0],"ok":null}
+{"fn":"matchPostToNews","args":[true,null,["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[[],"x",{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[0,{"a":"b"},{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[[],{"a":{"b":"c"}},{}],"ok":null}
+{"fn":"matchPostToNews","args":[{},[],null],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],0,{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":["x",{"a":{"b":"c"}},{}],"ok":null}
+{"fn":"matchPostToNews","args":[true,0,{}],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},0,true],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},{"a":"b"},[]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},[],{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},["a",1],{}],"ok":null}
+{"fn":"matchPostToNews","args":["x",{"a":"b"},["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},{"a":{"b":"c"}},[]],"ok":null}
+{"fn":"matchPostToNews","args":[[],[],null],"ok":null}
+{"fn":"matchPostToNews","args":[null,{},"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},0,"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},{"a":{"b":"c"}},{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[true,{"a":"b"},{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[true,0,0],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},{"a":"b"},true],"ok":null}
+{"fn":"matchPostToNews","args":[0,["a",1],[]],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],{"a":{"b":"c"}},true],"ok":null}
+{"fn":"matchPostToNews","args":[[],[],{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":["x",[],{}],"ok":null}
+{"fn":"matchPostToNews","args":[null,0,{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},[],{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},["a",1],"x"],"ok":null}
+{"fn":"matchPostToNews","args":[[],null,{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[{},{"a":"b"},null],"ok":null}
+{"fn":"matchPostToNews","args":[null,["a",1],{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[true,{},0],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},0,0],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},{"a":"b"},null],"ok":null}
+{"fn":"matchPostToNews","args":[0,{"a":"b"},["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},null,{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[0,null,[]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},[],"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{},null,null],"ok":null}
+{"fn":"matchPostToNews","args":[[],true,{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],null,{}],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],null,[]],"ok":null}
+{"fn":"matchPostToNews","args":[null,0,0],"ok":null}
+{"fn":"matchPostToNews","args":["x","x","x"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},{"a":{"b":"c"}},["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":["x",0,"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{},{"a":{"b":"c"}},[]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},0,{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[null,{"a":"b"},"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},0,"x"],"ok":null}
+{"fn":"matchPostToNews","args":[true,true,true],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},{"a":{"b":"c"}},0],"ok":null}
+{"fn":"matchPostToNews","args":[null,"x",true],"ok":null}
+{"fn":"matchPostToNews","args":[{},{},0],"ok":null}
+{"fn":"matchPostToNews","args":[0,[],["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[0,"x",["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[{},["a",1],["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],{"a":"b"},0],"ok":null}
+{"fn":"matchPostToNews","args":[true,["a",1],0],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],{},true],"ok":null}
+{"fn":"matchPostToNews","args":[null,["a",1],{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[{},true,null],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],["a",1],"x"],"ok":null}
+{"fn":"matchPostToNews","args":[{},"x",["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},"x",{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":{"b":"c"}},"x","x"],"ok":null}
+{"fn":"matchPostToNews","args":[0,null,true],"ok":null}
+{"fn":"matchPostToNews","args":[null,true,{"a":{"b":"c"}}],"ok":null}
+{"fn":"matchPostToNews","args":[["a",1],{"a":"b"},[]],"ok":null}
+{"fn":"matchPostToNews","args":[{"a":"b"},true,["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":["x",{},"x"],"ok":null}
+{"fn":"matchPostToNews","args":[[],{"a":{"b":"c"}},["a",1]],"ok":null}
+{"fn":"matchPostToNews","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},true,{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},true,{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[[3,1,2],true,{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[{},true,{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[[],{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[[],{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[[],[3,1,2],{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[[],{},{"a":"b"}],"ok":null}
+{"fn":"matchPostToNews","args":[[],true,{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":null}
+{"fn":"matchPostToNews","args":[[],true,{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":null}
+{"fn":"matchPostToNews","args":[[],true,[3,1,2]],"ok":null}
+{"fn":"matchPostToNews","args":[[],true,{}],"ok":null}
+{"fn":"eventSpecificTokens","args":[0,{"a":"b"}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[[],null],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[["a",1],["a",1]],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[[],{"a":"b"}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[["a",1],{}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[true,[]],"ok":{"$set":["true"]}}
+{"fn":"eventSpecificTokens","args":[true,0],"ok":{"$set":["true"]}}
+{"fn":"eventSpecificTokens","args":[{"a":{"b":"c"}},true],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[[],"x"],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[0,{"a":{"b":"c"}}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[null,[]],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[["a",1],true],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":["x",0],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":["x","x"],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[true,"x"],"ok":{"$set":["true"]}}
+{"fn":"eventSpecificTokens","args":[[],["a",1]],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[null,true],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[true,{"a":"b"}],"ok":{"$set":["true"]}}
+{"fn":"eventSpecificTokens","args":["x",{}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[0,true],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[true,{"a":{"b":"c"}}],"ok":{"$set":["true"]}}
+{"fn":"eventSpecificTokens","args":[{},"x"],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[[],true],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{"a":"b"},true],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[0,null],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[null,["a",1]],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[0,["a",1]],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[0,{}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":["x",true],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":["x",[]],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{},{}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[null,null],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{"a":"b"},[]],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[["a",1],null],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{"a":"b"},["a",1]],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[null,{}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{},[]],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[{"a":"b"},{"a":{"b":"c"}}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[["a",1],{"a":{"b":"c"}}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[[],[]],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{"a":{"b":"c"}},0],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[true,true],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{"a":"b"},null],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[{"a":"b"},{}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[0,"x"],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[true,["a",1]],"ok":{"$set":["true"]}}
+{"fn":"eventSpecificTokens","args":[null,{"a":"b"}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[["a",1],"x"],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[[],{}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[true,{}],"ok":{"$set":["true"]}}
+{"fn":"eventSpecificTokens","args":[{"a":{"b":"c"}},["a",1]],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[null,0],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[["a",1],{"a":"b"}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":["x",["a",1]],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{"a":{"b":"c"}},{}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":["x",null],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{},{"a":"b"}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{},{"a":{"b":"c"}}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[0,0],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{},null],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[{},0],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[{},["a",1]],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[{"a":{"b":"c"}},{"a":"b"}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{"a":"b"},"x"],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[[],0],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":["x",{"a":{"b":"c"}}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{"a":{"b":"c"}},"x"],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[["a",1],[]],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{},true],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[0,[]],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[["a",1],0],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{"a":"b"},0],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[{"a":"b"},{"a":"b"}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{"a":{"b":"c"}},null],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[{"a":{"b":"c"}},[]],"ok":{"$set":["object"]}}
+{"fn":"eventSpecificTokens","args":[null,{"a":{"b":"c"}}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":["x",{"a":"b"}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[true,null],"ok":{"$set":["true"]}}
+{"fn":"eventSpecificTokens","args":[null,"x"],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[[],{"a":{"b":"c"}}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":["X","x"],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":["x","X"],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},{"a":"b"}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},{"a":"b"}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[[3,1,2],{"a":"b"}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[0,{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[0,{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":{"$set":[]}}
+{"fn":"eventSpecificTokens","args":[0,[3,1,2]],"ok":{"$set":[]}}
+{"fn":"collapseSocialFeed","args":[{}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[true,{"a":"b"}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[["a",1],0],"ok":[]}
+{"fn":"collapseSocialFeed","args":[true,[]],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[[],0],"ok":[]}
+{"fn":"collapseSocialFeed","args":[[],{}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[{"a":{"b":"c"}},[]],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{"a":{"b":"c"}},true],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[["a",1],{"$undefined":true}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[{"a":"b"}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[[],null],"error":"Cannot read properties of null (reading 'now')"}
+{"fn":"collapseSocialFeed","args":[{"a":{"b":"c"}},null],"error":"Cannot read properties of null (reading 'now')"}
+{"fn":"collapseSocialFeed","args":[[],["a",1]],"ok":[]}
+{"fn":"collapseSocialFeed","args":[null,true],"ok":[]}
+{"fn":"collapseSocialFeed","args":[null,{"a":{"b":"c"}}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[["a",1]],"ok":[]}
+{"fn":"collapseSocialFeed","args":[[],[]],"ok":[]}
+{"fn":"collapseSocialFeed","args":[{"a":{"b":"c"}},{}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[0],"ok":[]}
+{"fn":"collapseSocialFeed","args":[0,{"a":"b"}],"ok":[]}
+{"fn":"collapseSocialFeed","args":["x",{"a":"b"}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[0,[]],"ok":[]}
+{"fn":"collapseSocialFeed","args":["x",null],"error":"Cannot read properties of null (reading 'now')"}
+{"fn":"collapseSocialFeed","args":[{},null],"error":"Cannot read properties of null (reading 'now')"}
+{"fn":"collapseSocialFeed","args":[{"a":"b"},{"a":{"b":"c"}}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{"a":{"b":"c"}}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{"a":{"b":"c"}},{"$undefined":true}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{"a":"b"},{"a":"b"}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[[],{"a":"b"}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[{"a":{"b":"c"}},"x"],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[null,["a",1]],"ok":[]}
+{"fn":"collapseSocialFeed","args":[true,"x"],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{},[]],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{},true],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[true,0],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[[],"x"],"ok":[]}
+{"fn":"collapseSocialFeed","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{"a":{"b":"c"}},["a",1]],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{"a":"b"},{"$undefined":true}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[0,{"a":{"b":"c"}}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[["a",1],{"a":{"b":"c"}}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[null,"x"],"ok":[]}
+{"fn":"collapseSocialFeed","args":[["a",1],[]],"ok":[]}
+{"fn":"collapseSocialFeed","args":[{"a":"b"},{}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":["x",{}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{},{"a":{"b":"c"}}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{"a":"b"},["a",1]],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[null,{}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[true,true],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[["a",1],null],"error":"Cannot read properties of null (reading 'now')"}
+{"fn":"collapseSocialFeed","args":["x",true],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[true,{"$undefined":true}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[null,[]],"ok":[]}
+{"fn":"collapseSocialFeed","args":[{"a":{"b":"c"}},0],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{},"x"],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{},0],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{"a":"b"},[]],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[0,"x"],"ok":[]}
+{"fn":"collapseSocialFeed","args":[0,{"$undefined":true}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[["a",1],{"a":"b"}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[[],true],"ok":[]}
+{"fn":"collapseSocialFeed","args":["x",{"a":{"b":"c"}}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[[]],"ok":[]}
+{"fn":"collapseSocialFeed","args":[{"a":"b"},null],"error":"Cannot read properties of null (reading 'now')"}
+{"fn":"collapseSocialFeed","args":[null,{"$undefined":true}],"ok":[]}
+{"fn":"collapseSocialFeed","args":["x",0],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[["a",1],{}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[{},{"a":"b"}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{"a":"b"},"x"],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[true,null],"error":"Cannot read properties of null (reading 'now')"}
+{"fn":"collapseSocialFeed","args":["x","x"],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[[],{"$undefined":true}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[0,true],"ok":[]}
+{"fn":"collapseSocialFeed","args":[null,{"a":"b"}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[{"a":"b"},true],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[null],"ok":[]}
+{"fn":"collapseSocialFeed","args":[0,0],"ok":[]}
+{"fn":"collapseSocialFeed","args":["x",["a",1]],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[true,{"a":{"b":"c"}}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[null,0],"ok":[]}
+{"fn":"collapseSocialFeed","args":[["a",1],"x"],"ok":[]}
+{"fn":"collapseSocialFeed","args":[true],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[["a",1],true],"ok":[]}
+{"fn":"collapseSocialFeed","args":[{},{"$undefined":true}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":["x",{"$undefined":true}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":["x"],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[true,{}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[0,["a",1]],"ok":[]}
+{"fn":"collapseSocialFeed","args":["x",[]],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{},["a",1]],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[[],{"a":{"b":"c"}}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[{"a":"b"},0],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[{},{}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[0,null],"error":"Cannot read properties of null (reading 'now')"}
+{"fn":"collapseSocialFeed","args":[["a",1],["a",1]],"ok":[]}
+{"fn":"collapseSocialFeed","args":[true,["a",1]],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":[null,null],"error":"Cannot read properties of null (reading 'now')"}
+{"fn":"collapseSocialFeed","args":[0,{}],"ok":[]}
+{"fn":"collapseSocialFeed","args":[{"a":{"b":"c"}},{"a":"b"}],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":["x","X"],"error":"(posts || []).filter is not a function"}
+{"fn":"collapseSocialFeed","args":["X","x"],"error":"(posts || []).filter is not a function"}
+{"fn":"classifySourceProvenance","args":[{"handle":"@DitjenPajakRI","text":"Info pemeliharaan Coretax DJP"}],"ok":{"sourceType":"official_agency","authorityWeight":1,"handle":"@ditjenpajakri","reason":"verified_official_handle","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"handle":"kring_pajak","text":"Layanan pajak"}],"ok":{"sourceType":"official_agency","authorityWeight":1,"handle":"@kring_pajak","reason":"verified_official_handle","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"handle":"@KemenkeuRI","text":"Siaran pers APBN"}],"ok":{"sourceType":"official_agency","authorityWeight":1,"handle":"@kemenkeuri","reason":"verified_official_handle","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"handle":"@infoBMKG","text":"Info Gempa"}],"ok":{"sourceType":"official_agency","authorityWeight":1,"handle":"@infobmkg","reason":"verified_official_handle","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"handle":"@kanwildjp_jaksel","text":"Pengumuman KPP"}],"ok":{"sourceType":"official_agency","authorityWeight":1,"handle":"@kanwildjp_jaksel","reason":"verified_official_handle","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"handle":"@kpp.pratama","text":"Layanan SPT"}],"ok":{"sourceType":"official_agency","authorityWeight":1,"handle":"@kpp.pratama","reason":"verified_official_handle","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"handle":"@polres_bekasi","text":"Info lalu lintas"}],"ok":{"sourceType":"official_agency","authorityWeight":1,"handle":"@polres_bekasi","reason":"verified_official_handle","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"handle":"@ddtcnews","text":"Berita pajak terbaru"}],"ok":{"sourceType":"news_outlet","authorityWeight":0.85,"handle":"@ddtcnews","reason":"recognized_news_handle","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"handle":"@ortaxid","text":"Update aturan PPN"}],"ok":{"sourceType":"news_outlet","authorityWeight":0.85,"handle":"@ortaxid","reason":"recognized_news_handle","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"handle":"@detikcom","text":"Breaking news"}],"ok":{"sourceType":"news_outlet","authorityWeight":0.85,"handle":"@detikcom","reason":"recognized_news_handle","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"handle":"@berita_kompastv","text":"Liputan khusus"}],"ok":{"sourceType":"news_outlet","authorityWeight":0.85,"handle":"@berita_kompastv","reason":"recognized_news_handle","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"username":"warga_kemang","text":"Air sudah masuk rumah saya sekarang"},{"intent":"eyewitness_report"}],"ok":{"sourceType":"eyewitness","authorityWeight":0.72,"handle":"@warga_kemang","reason":"firsthand_eyewitness_markers","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"username":"warga_kemang","text":"RT @other: Air sudah masuk rumah"},{"intent":"eyewitness_report"}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"@warga_kemang","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"user":"saksi_api","text":"Saya melihat asap tebal di gudang"},{"event":{"sourceType":"eyewitness"}}],"ok":{"sourceType":"eyewitness","authorityWeight":0.72,"handle":"@saksi_api","reason":"eyewitness_event_framing","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"user":"saksi_api","text":"  rt @other: Saya melihat asap tebal"},{"event":{"sourceType":"eyewitness"}}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"@saksi_api","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"author":"@anon_biasa","text":"Berita biasa","assessment":{"intent":"eyewitness_report"}}],"ok":{"sourceType":"eyewitness","authorityWeight":0.72,"handle":"@anon_biasa","reason":"firsthand_eyewitness_markers","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[{"author":"@anon_biasa","text":"Berita biasa"}],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"@anon_biasa","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"classifySourceProvenance","args":[null,null],"ok":{"sourceType":"anonymous","authorityWeight":0.35,"handle":"","reason":"unverified_social_account","engagementExcludedFromCredibility":true}}
+{"fn":"stripBoilerplateForSimilarity","args":["RT @detikcom: Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini https://t.co/abc #viral via @detikcom"],"ok":"kebakaran hebat melalap 20 kios di pasar baru bekasi pagi ini"}
+{"fn":"stripBoilerplateForSimilarity","args":["repost @berita.id: Banjir di Kemang sumber: @warga_jkt credit @info cc: admin www.detik.com/banjir #BanjirJakarta"],"ok":"banjir di kemang"}
+{"fn":"stripBoilerplateForSimilarity","args":["Ｆｕｌｌｗｉｄｔｈ ②⓪②⑤ café résumé naïve"],"ok":"fullwidth 2025 café résumé naïve"}
+{"fn":"stripBoilerplateForSimilarity","args":["https://t.co/onlyurl @onlymention #onlytag"],"ok":""}
+{"fn":"stripBoilerplateForSimilarity","args":[""],"ok":""}
+{"fn":"similarityTokens","args":["Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini dan warga evakuasi kios"],"ok":["kebakaran","hebat","melalap","kios","pasar","bekasi","pagi","warga","evakuasi"]}
+{"fn":"similarityTokens","args":["yang dan di ke dari untuk ini itu RT via"],"ok":[]}
+{"fn":"isNearDuplicate","args":["Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api","Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api #viral via @detikcom"],"ok":true}
+{"fn":"isNearDuplicate","args":["Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api","RT @detikcom: Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api https://t.co/abc"],"ok":true}
+{"fn":"isNearDuplicate","args":["Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini","Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi siang ini",0.5],"ok":true}
+{"fn":"isNearDuplicate","args":["Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini","Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi siang ini",0.99],"ok":false}
+{"fn":"isNearDuplicate","args":["Banjir Kemang","Banjir Depok"],"ok":false}
+{"fn":"isNearDuplicate","args":["https://t.co/a","Banjir Kemang"],"ok":false}
+{"fn":"isNearDuplicate","args":["Banjir merendam kemang selatan","Banjir merendam kemang selatan",null],"ok":true}
+{"fn":"eventSpecificTokens","args":["Banjir Merendam Jalan Kemang Raya Jakarta Selatan Pagi Ini","jakarta selatan"],"ok":{"$set":["kemang","raya","pagi"]}}
+{"fn":"eventSpecificTokens","args":["Kebakaran Pabrik Tekstil Cakung Bekasi Utara Sejak Malam","bekasi"],"ok":{"$set":["pabrik","tekstil","cakung","utara","sejak","malam"]}}
+{"fn":"eventSpecificTokens","args":["Coretax error gagal login faktur pajak massal di seluruh KPP",""],"ok":{"$set":["coretax","error","gagal","login","faktur","pajak","massal","seluruh"]}}
+{"fn":"deduplicatePosts","args":[[{"url":"https://x.com/a/status/1?s=20","from":"X","handle":"@reposter","ts":1700000000000,"text":"Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api"},{"url":"https://x.com/a/status/1/","from":"X","handle":"@reposter","ts":1700000000000,"text":"Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api"},{"url":"https://x.com/b/status/2","from":"X","handle":"@detikcom","ts":1699999900000,"text":"RT @detikcom: Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api https://t.co/abc","media":["img1.jpg"],"assessment":{"signalEligible":true}},{"code":"TH1","handle":"@ditjenpajakri","ts":1699999800000,"text":"Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi siang ini, tim damkar berjibaku padamkan api #viral","has_media":true},{"url":"https://x.com/c/status/3","from":"X","handle":"@anon","ts":1699999700000,"text":"https://t.co/onlyurl @onlymention"},null,{"text":""}],{"threshold":0.7,"windowSize":10}],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"deduplicatePosts","args":[[{"handle":"@infoBMKG","platform":"x","ts":1700000000000,"text":"Info Gempa Mag:3.1, 13-Nov-26 04:10:00 WIB, Lok:7.12 LS,106.45 BT (35 km Tenggara Kab Sukabumi), Kedlmn:10 Km #BMKG"},{"handle":"@infoBMKG","platform":"x","created_at":"2023-11-14T22:00:00.000Z","text":"Info Gempa Mag:3,4, 13-Nov-26 04:05:00 WIB, Lok:7.20 LS,106.50 BT (40 km Tenggara Kab Garut), Kedlmn:12 Km #BMKG"},{"handle":"@infoBMKG","platform":"x","ts":1699999500000,"text":"Info Gempa Mag:5.8, 13-Nov-26 04:05:00 WIB, Lok:7.15 LS,106.48 BT (32 km Tenggara Kab Sukabumi), Kedlmn:12 Km, Dirasakan III MMI Sukabumi #BMKG"},{"handle":"@infoBMKG","platform":"x","ts":1699999400000,"text":"Info Gempa Mag:5.9, 13-Nov-26 04:05:00 WIB, Lok:7.15 LS,106.48 BT (32 km Tenggara Kab Sukabumi), Kedlmn:12 Km, Dirasakan III MMI Sukabumi #BMKG"},{"handle":"@infoBMKG","platform":"x","ts":1699999300000,"text":"Info Gempa Mag:4.5, 13-Nov-26 04:05:00 WIB, Lok:7.15 LS,106.48 BT (32 km Tenggara Kab Sukabumi), Kedlmn:12 Km, Dirasakan III MMI Sukabumi #BMKG"},{"handle":"@infoBMKG","platform":"x","ts":1699998000000,"text":"Info Gempa Mag:5.8, 13-Nov-26 04:05:00 WIB, Lok:7.15 LS,106.48 BT (32 km Tenggara Kab Sukabumi), Kedlmn:12 Km, Dirasakan III MMI Sukabumi #BMKG"},{"handle":"@warga1","platform":"x","ts":1699999200000,"text":"Gempa 5.2 SR mengguncang hebat kota Bandung selatan warga panik berhamburan keluar"},{"handle":"@warga2","platform":"x","ts":1699999100000,"text":"Info gempa kecil saja tanpa magnitudo terasa bergetar di rumah warga selatan"},{"handle":"@warga3","platform":"x","ts":1699999000000,"text":"Peringatan hujan deras di kawasan Sukabumi dan Garut malam ini waspada longsor"}],{"foldMicroQuakes":true,"threshold":0.6}],"ok":[{"post":{"handle":"@infoBMKG","platform":"x","ts":1700000000000,"text":"Info Gempa Mag:3.1, 13-Nov-26 04:10:00 WIB, Lok:7.12 LS,106.45 BT (35 km Tenggara Kab Sukabumi), Kedlmn:10 Km #BMKG"},"norm":"info gempa mag 3 1 13 nov 26 04 10 00 wib lok 7 12 ls 106 45 bt 35 km tenggara kab sukabumi kedlmn 10 km","duplicateCount":2,"repostVariants":[{"platform":"x","handle":"infobmkg","url":""},{"platform":"x","handle":"infobmkg","url":""}],"memberKeys":["info gempa mag 3 1 13 nov 26 04 10 00 wib lok 7 12 ls 106 45 bt 35 km tenggara kab sukabumi kedlmn 10 km","info gempa mag 3 4 13 nov 26 04 05 00 wib lok 7 20 ls 106 50 bt 40 km tenggara kab garut kedlmn 12 km"]},{"post":{"handle":"@infoBMKG","platform":"x","ts":1699999500000,"text":"Info Gempa Mag:5.8, 13-Nov-26 04:05:00 WIB, Lok:7.15 LS,106.48 BT (32 km Tenggara Kab Sukabumi), Kedlmn:12 Km, Dirasakan III MMI Sukabumi #BMKG"},"norm":"info gempa mag 5 8 13 nov 26 04 05 00 wib lok 7 15 ls 106 48 bt 32 km tenggara kab sukabumi kedlmn 12 km dirasakan iii mmi sukabumi","duplicateCount":3,"repostVariants":[{"platform":"x","handle":"infobmkg","url":""},{"platform":"x","handle":"infobmkg","url":""},{"platform":"x","handle":"infobmkg","url":""}],"memberKeys":["info gempa mag 5 8 13 nov 26 04 05 00 wib lok 7 15 ls 106 48 bt 32 km tenggara kab sukabumi kedlmn 12 km dirasakan iii mmi sukabumi","info gempa mag 5 9 13 nov 26 04 05 00 wib lok 7 15 ls 106 48 bt 32 km tenggara kab sukabumi kedlmn 12 km dirasakan iii mmi sukabumi"]},{"post":{"handle":"@infoBMKG","platform":"x","ts":1699999300000,"text":"Info Gempa Mag:4.5, 13-Nov-26 04:05:00 WIB, Lok:7.15 LS,106.48 BT (32 km Tenggara Kab Sukabumi), Kedlmn:12 Km, Dirasakan III MMI Sukabumi #BMKG"},"norm":"info gempa mag 4 5 13 nov 26 04 05 00 wib lok 7 15 ls 106 48 bt 32 km tenggara kab sukabumi kedlmn 12 km dirasakan iii mmi sukabumi","duplicateCount":1,"repostVariants":[{"platform":"x","handle":"infobmkg","url":""}],"memberKeys":["info gempa mag 4 5 13 nov 26 04 05 00 wib lok 7 15 ls 106 48 bt 32 km tenggara kab sukabumi kedlmn 12 km dirasakan iii mmi sukabumi"]},{"post":{"handle":"@warga1","platform":"x","ts":1699999200000,"text":"Gempa 5.2 SR mengguncang hebat kota Bandung selatan warga panik berhamburan keluar"},"norm":"gempa 5 2 sr mengguncang hebat kota bandung selatan warga panik berhamburan keluar","duplicateCount":1,"repostVariants":[{"platform":"x","handle":"warga1","url":""}],"memberKeys":["gempa 5 2 sr mengguncang hebat kota bandung selatan warga panik berhamburan keluar"]},{"post":{"handle":"@warga2","platform":"x","ts":1699999100000,"text":"Info gempa kecil saja tanpa magnitudo terasa bergetar di rumah warga selatan"},"norm":"info gempa kecil saja tanpa magnitudo terasa bergetar di rumah warga selatan","duplicateCount":1,"repostVariants":[{"platform":"x","handle":"warga2","url":""}],"memberKeys":["info gempa kecil saja tanpa magnitudo terasa bergetar di rumah warga selatan"]},{"post":{"handle":"@warga3","platform":"x","ts":1699999000000,"text":"Peringatan hujan deras di kawasan Sukabumi dan Garut malam ini waspada longsor"},"norm":"peringatan hujan deras di kawasan sukabumi dan garut malam ini waspada longsor","duplicateCount":1,"repostVariants":[{"platform":"x","handle":"warga3","url":""}],"memberKeys":["peringatan hujan deras di kawasan sukabumi dan garut malam ini waspada longsor"]}]}
+{"fn":"clusterIncidents","args":[[{"from":"X","handle":"@detikcom","ts":1700000000000,"text":"Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api","assessment":{"signalEligible":true,"events":[{"category":"fire","type":"fire","location":{"name":"Bekasi","prov":"Jawa Barat"},"evidence":"Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api"}]}},{"from":"X","handle":"@reposter","ts":1699999900000,"text":"RT @detikcom: Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api https://t.co/abc","assessment":{"signalEligible":true,"events":[{"category":"fire","type":"fire","location":{"name":"Bekasi","prov":"Jawa Barat"},"evidence":"Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api"}]}},{"from":"X","handle":"@warga_pondok","ts":1699999800000,"text":"Air udah masuk rumah gue di Pondok Gede Bekasi setelah tanggul jebol meluap","assessment":{"signalEligible":true,"intent":"eyewitness_report","events":[{"category":"flood","type":"flood","location":{"name":"Bekasi","prov":"Jawa Barat"},"evidence":"Air masuk rumah Pondok Gede Bekasi setelah tanggul meluap"}]}},{"from":"Threads","handle":"@detikcom","ts":1699999700000,"text":"Tanggul Kali Bekasi jebol di Pondok Gede Bekasi, puluhan rumah warga terendam banjir meluap","assessment":{"signalEligible":true,"events":[{"category":"flood","type":"flood","location":{"name":"Bekasi","prov":"Jawa Barat"},"evidence":"Tanggul Kali Bekasi jebol di Pondok Gede Bekasi meluap"}]}},{"from":"X","handle":"@ditjenpajakri","ts":1699999600000,"text":"Pemeliharaan server Coretax e-Faktur sedang berlangsung nasional","assessment":{"signalEligible":true,"events":[{"category":"pajak","type":"coretax_outage","target":"coretax","evidence":"Pemeliharaan server Coretax e-Faktur sedang berlangsung nasional"}]}},{"from":"X","handle":"@ddtcnews","ts":1699999500000,"text":"Layanan server Coretax e-Faktur mengalami pemeliharaan nasional hari ini","assessment":{"signalEligible":true,"events":[{"category":"pajak","type":"coretax_outage","target":"coretax","evidence":"Layanan server Coretax e-Faktur mengalami pemeliharaan nasional"}]}},{"from":"X","handle":"@anon1","ts":1699999400000,"text":"Serangan ransomware mengunci sistem database layanan rumah sakit daerah","assessment":{"signalEligible":true,"events":[{"category":"cyber","type":"ransomware","location":{"name":"Surabaya","prov":"Jawa Timur"},"evidence":"Serangan ransomware mengunci sistem database layanan rumah sakit"}]}},{"from":"X","handle":"@anon2","ts":1699999300000,"text":"Pelaku ransomware meminta tebusan dari sistem database rumah sakit tersebut","assessment":{"signalEligible":true,"events":[{"category":"cyber","type":"ransomware","location":{"name":"Surabaya","prov":"Jawa Timur"},"evidence":"Pelaku ransomware meminta tebusan sistem database rumah sakit"}]}},{"from":"X","handle":"@anon3","ts":1699999200000,"text":"Serangan ransomware melumpuhkan kantor di Medan Sumatera Utara","assessment":{"signalEligible":true,"events":[{"category":"cyber","type":"ransomware","location":{"name":"Medan","prov":"Sumatera Utara"},"evidence":"Serangan ransomware melumpuhkan kantor Medan"}]}},{"from":"X","handle":"@anon4","ts":1699999100000,"text":"Serangan ransomware mengunci database rumah sakit di provinsi lain","assessment":{"signalEligible":true,"events":[{"category":"cyber","type":"ransomware","location":{"name":"Surabaya","prov":"Bali"},"evidence":"Serangan ransomware mengunci database rumah sakit"}]}},{"from":"X","handle":"@anon5","ts":1699990000000,"text":"Serangan ransomware mengunci sistem database layanan rumah sakit lama","assessment":{"signalEligible":true,"events":[{"category":"cyber","type":"ransomware","location":{"name":"Surabaya","prov":"Jawa Timur"},"evidence":"Serangan ransomware mengunci sistem database layanan rumah sakit"}]}},{"from":"X","handle":"@warga_saksi","ts":1699999000000,"text":"Saya melihat kebakaran ruko Margonda Depok","assessment":{"signalEligible":true,"intent":"eyewitness_report","events":[{"category":"fire","type":"fire","location":{"name":"Depok","prov":"Jawa Barat"},"evidence":"kebakaran ruko Margonda Depok"}]}},{"from":"X","handle":"@anon_single","ts":1699998900000,"text":"Ada tanah longsor di puncak bogor sore ini","assessment":{"signalEligible":true,"events":[{"category":"landslide","type":"landslide","location":{"name":"Bogor","prov":"Jawa Barat"},"evidence":"tanah longsor puncak bogor"}]}},{"from":"X","handle":"@anon_not_sig","ts":1699998800000,"text":"Banjir nggak sih?","assessment":{"signalEligible":false,"events":[{"category":"flood","type":"flood"}]}}],{"timeWindowMs":5400000}],"ok":[{"category":"pajak","eventType":"coretax_outage","location":"coretax","latestTs":1699999600000,"independentClaims":2,"independentAccounts":2,"totalCopiesWithDuplicates":2,"platforms":["x"],"corroborationLevel":"official_confirmed","hasOfficialSource":true,"hasNewsOutlet":true,"hasEyewitness":false,"authorityScore":1,"representative":{"from":"X","handle":"@ditjenpajakri","ts":1699999600000,"text":"Pemeliharaan server Coretax e-Faktur sedang berlangsung nasional","assessment":{"signalEligible":true,"events":[{"category":"pajak","type":"coretax_outage","target":"coretax","evidence":"Pemeliharaan server Coretax e-Faktur sedang berlangsung nasional"}]}},"posts":[{"from":"X","handle":"@ditjenpajakri","ts":1699999600000,"text":"Pemeliharaan server Coretax e-Faktur sedang berlangsung nasional","assessment":{"signalEligible":true,"events":[{"category":"pajak","type":"coretax_outage","target":"coretax","evidence":"Pemeliharaan server Coretax e-Faktur sedang berlangsung nasional"}]}},{"from":"X","handle":"@ddtcnews","ts":1699999500000,"text":"Layanan server Coretax e-Faktur mengalami pemeliharaan nasional hari ini","assessment":{"signalEligible":true,"events":[{"category":"pajak","type":"coretax_outage","target":"coretax","evidence":"Layanan server Coretax e-Faktur mengalami pemeliharaan nasional"}]}}],"memberKeys":["pemeliharaan server coretax e faktur sedang berlangsung nasional","layanan server coretax e faktur mengalami pemeliharaan nasional hari ini"]},{"category":"fire","eventType":"fire","location":"Bekasi","latestTs":1700000000000,"independentClaims":1,"independentAccounts":1,"totalCopiesWithDuplicates":2,"platforms":["x"],"corroborationLevel":"uncorroborated","hasOfficialSource":false,"hasNewsOutlet":true,"hasEyewitness":false,"authorityScore":0.85,"representative":{"from":"X","handle":"@detikcom","ts":1700000000000,"text":"Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api","assessment":{"signalEligible":true,"events":[{"category":"fire","type":"fire","location":{"name":"Bekasi","prov":"Jawa Barat"},"evidence":"Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api"}]}},"posts":[{"from":"X","handle":"@detikcom","ts":1700000000000,"text":"Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api","assessment":{"signalEligible":true,"events":[{"category":"fire","type":"fire","location":{"name":"Bekasi","prov":"Jawa Barat"},"evidence":"Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api"}]}}],"memberKeys":["kebakaran hebat melalap 20 kios di pasar baru bekasi pagi ini tim damkar berjibaku padamkan api"]},{"category":"flood","eventType":"flood","location":"Bekasi","latestTs":1699999800000,"independentClaims":2,"independentAccounts":2,"totalCopiesWithDuplicates":2,"platforms":["x","threads"],"corroborationLevel":"multi_source_corroborated","hasOfficialSource":false,"hasNewsOutlet":true,"hasEyewitness":true,"authorityScore":0.85,"representative":{"from":"Threads","handle":"@detikcom","ts":1699999700000,"text":"Tanggul Kali Bekasi jebol di Pondok Gede Bekasi, puluhan rumah warga terendam banjir meluap","assessment":{"signalEligible":true,"events":[{"category":"flood","type":"flood","location":{"name":"Bekasi","prov":"Jawa Barat"},"evidence":"Tanggul Kali Bekasi jebol di Pondok Gede Bekasi meluap"}]}},"posts":[{"from":"Threads","handle":"@detikcom","ts":1699999700000,"text":"Tanggul Kali Bekasi jebol di Pondok Gede Bekasi, puluhan rumah warga terendam banjir meluap","assessment":{"signalEligible":true,"events":[{"category":"flood","type":"flood","location":{"name":"Bekasi","prov":"Jawa Barat"},"evidence":"Tanggul Kali Bekasi jebol di Pondok Gede Bekasi meluap"}]}},{"from":"X","handle":"@warga_pondok","ts":1699999800000,"text":"Air udah masuk rumah gue di Pondok Gede Bekasi setelah tanggul jebol meluap","assessment":{"signalEligible":true,"intent":"eyewitness_report","events":[{"category":"flood","type":"flood","location":{"name":"Bekasi","prov":"Jawa Barat"},"evidence":"Air masuk rumah Pondok Gede Bekasi setelah tanggul meluap"}]}}],"memberKeys":["air udah masuk rumah gue di pondok gede bekasi setelah tanggul jebol meluap","tanggul kali bekasi jebol di pondok gede bekasi puluhan rumah warga terendam banjir meluap"]},{"category":"fire","eventType":"fire","location":"Depok","latestTs":1699999000000,"independentClaims":1,"independentAccounts":1,"totalCopiesWithDuplicates":1,"platforms":["x"],"corroborationLevel":"single_source_eyewitness","hasOfficialSource":false,"hasNewsOutlet":false,"hasEyewitness":true,"authorityScore":0.72,"representative":{"from":"X","handle":"@warga_saksi","ts":1699999000000,"text":"Saya melihat kebakaran ruko Margonda Depok","assessment":{"signalEligible":true,"intent":"eyewitness_report","events":[{"category":"fire","type":"fire","location":{"name":"Depok","prov":"Jawa Barat"},"evidence":"kebakaran ruko Margonda Depok"}]}},"posts":[{"from":"X","handle":"@warga_saksi","ts":1699999000000,"text":"Saya melihat kebakaran ruko Margonda Depok","assessment":{"signalEligible":true,"intent":"eyewitness_report","events":[{"category":"fire","type":"fire","location":{"name":"Depok","prov":"Jawa Barat"},"evidence":"kebakaran ruko Margonda Depok"}]}}],"memberKeys":["saya melihat kebakaran ruko margonda depok"]},{"category":"cyber","eventType":"ransomware","location":"Surabaya","latestTs":1699999400000,"independentClaims":2,"independentAccounts":2,"totalCopiesWithDuplicates":3,"platforms":["x"],"corroborationLevel":"multi_source_corroborated","hasOfficialSource":false,"hasNewsOutlet":false,"hasEyewitness":false,"authorityScore":0.35,"representative":{"from":"X","handle":"@anon1","ts":1699999400000,"text":"Serangan ransomware mengunci sistem database layanan rumah sakit daerah","assessment":{"signalEligible":true,"events":[{"category":"cyber","type":"ransomware","location":{"name":"Surabaya","prov":"Jawa Timur"},"evidence":"Serangan ransomware mengunci sistem database layanan rumah sakit"}]}},"posts":[{"from":"X","handle":"@anon1","ts":1699999400000,"text":"Serangan ransomware mengunci sistem database layanan rumah sakit daerah","assessment":{"signalEligible":true,"events":[{"category":"cyber","type":"ransomware","location":{"name":"Surabaya","prov":"Jawa Timur"},"evidence":"Serangan ransomware mengunci sistem database layanan rumah sakit"}]}},{"from":"X","handle":"@anon2","ts":1699999300000,"text":"Pelaku ransomware meminta tebusan dari sistem database rumah sakit tersebut","assessment":{"signalEligible":true,"events":[{"category":"cyber","type":"ransomware","location":{"name":"Surabaya","prov":"Jawa Timur"},"evidence":"Pelaku ransomware meminta tebusan sistem database rumah sakit"}]}}],"memberKeys":["serangan ransomware mengunci sistem database layanan rumah sakit daerah","serangan ransomware mengunci sistem database layanan rumah sakit lama","pelaku ransomware meminta tebusan dari sistem database rumah sakit tersebut"]},{"category":"cyber","eventType":"ransomware","location":"Medan","latestTs":1699999200000,"independentClaims":1,"independentAccounts":1,"totalCopiesWithDuplicates":1,"platforms":["x"],"corroborationLevel":"uncorroborated","hasOfficialSource":false,"hasNewsOutlet":false,"hasEyewitness":false,"authorityScore":0.35,"representative":{"from":"X","handle":"@anon3","ts":1699999200000,"text":"Serangan ransomware melumpuhkan kantor di Medan Sumatera Utara","assessment":{"signalEligible":true,"events":[{"category":"cyber","type":"ransomware","location":{"name":"Medan","prov":"Sumatera Utara"},"evidence":"Serangan ransomware melumpuhkan kantor Medan"}]}},"posts":[{"from":"X","handle":"@anon3","ts":1699999200000,"text":"Serangan ransomware melumpuhkan kantor di Medan Sumatera Utara","assessment":{"signalEligible":true,"events":[{"category":"cyber","type":"ransomware","location":{"name":"Medan","prov":"Sumatera Utara"},"evidence":"Serangan ransomware melumpuhkan kantor Medan"}]}}],"memberKeys":["serangan ransomware melumpuhkan kantor di medan sumatera utara"]},{"category":"cyber","eventType":"ransomware","location":"Surabaya","latestTs":1699999100000,"independentClaims":1,"independentAccounts":1,"totalCopiesWithDuplicates":1,"platforms":["x"],"corroborationLevel":"uncorroborated","hasOfficialSource":false,"hasNewsOutlet":false,"hasEyewitness":false,"authorityScore":0.35,"representative":{"from":"X","handle":"@anon4","ts":1699999100000,"text":"Serangan ransomware mengunci database rumah sakit di provinsi lain","assessment":{"signalEligible":true,"events":[{"category":"cyber","type":"ransomware","location":{"name":"Surabaya","prov":"Bali"},"evidence":"Serangan ransomware mengunci database rumah sakit"}]}},"posts":[{"from":"X","handle":"@anon4","ts":1699999100000,"text":"Serangan ransomware mengunci database rumah sakit di provinsi lain","assessment":{"signalEligible":true,"events":[{"category":"cyber","type":"ransomware","location":{"name":"Surabaya","prov":"Bali"},"evidence":"Serangan ransomware mengunci database rumah sakit"}]}}],"memberKeys":["serangan ransomware mengunci database rumah sakit di provinsi lain"]},{"category":"landslide","eventType":"landslide","location":"Bogor","latestTs":1699998900000,"independentClaims":1,"independentAccounts":1,"totalCopiesWithDuplicates":1,"platforms":["x"],"corroborationLevel":"uncorroborated","hasOfficialSource":false,"hasNewsOutlet":false,"hasEyewitness":false,"authorityScore":0.35,"representative":{"from":"X","handle":"@anon_single","ts":1699998900000,"text":"Ada tanah longsor di puncak bogor sore ini","assessment":{"signalEligible":true,"events":[{"category":"landslide","type":"landslide","location":{"name":"Bogor","prov":"Jawa Barat"},"evidence":"tanah longsor puncak bogor"}]}},"posts":[{"from":"X","handle":"@anon_single","ts":1699998900000,"text":"Ada tanah longsor di puncak bogor sore ini","assessment":{"signalEligible":true,"events":[{"category":"landslide","type":"landslide","location":{"name":"Bogor","prov":"Jawa Barat"},"evidence":"tanah longsor puncak bogor"}]}}],"memberKeys":["ada tanah longsor di puncak bogor sore ini"]}]}
+{"fn":"clusterIncidents","args":[[{"from":"X","handle":"@u1","ts":1700000000000,"text":"Gangguan layanan sistem perbankan nasional error","assessment":{"signalEligible":true,"events":[{"category":"infra","type":"outage","target":"","evidence":"Gangguan layanan sistem perbankan nasional error"}]}},{"from":"X","handle":"@u2","ts":1699999900000,"text":"Gangguan layanan sistem perbankan nasional error massal","assessment":{"signalEligible":true,"events":[{"category":"infra","type":"outage","target":"bank_x","evidence":"Gangguan layanan sistem perbankan nasional error massal"}]}}]],"ok":[{"category":"infra","eventType":"outage","location":"unknown","latestTs":1700000000000,"independentClaims":1,"independentAccounts":1,"totalCopiesWithDuplicates":2,"platforms":["x"],"corroborationLevel":"uncorroborated","hasOfficialSource":false,"hasNewsOutlet":false,"hasEyewitness":false,"authorityScore":0.35,"representative":{"from":"X","handle":"@u1","ts":1700000000000,"text":"Gangguan layanan sistem perbankan nasional error","assessment":{"signalEligible":true,"events":[{"category":"infra","type":"outage","target":"","evidence":"Gangguan layanan sistem perbankan nasional error"}]}},"posts":[{"from":"X","handle":"@u1","ts":1700000000000,"text":"Gangguan layanan sistem perbankan nasional error","assessment":{"signalEligible":true,"events":[{"category":"infra","type":"outage","target":"","evidence":"Gangguan layanan sistem perbankan nasional error"}]}}],"memberKeys":["gangguan layanan sistem perbankan nasional error","gangguan layanan sistem perbankan nasional error massal"]}]}
+{"fn":"matchPostToNews","args":[{"ts":1700000000000,"text":"Banjir merendam Jalan Kemang Raya Jakarta Selatan pagi ini","topics":["banjir"],"assessment":{"events":[{"category":"flood","location":{"name":"Jakarta Selatan","kabCode":"31.74"},"evidence":"Banjir merendam Jalan Kemang Raya Jakarta Selatan"}]}},[{"ts":1699999400000,"loc":"jakarta selatan","kabCode":"31.74","cat":"flood","topic":"banjir","count":3,"title":"Banjir Kemang Raya","url":"https://news.example/kemang","tokens":["merendam","kemang","raya","selatan","pagi"]},{"ts":1699900000000,"loc":"jakarta selatan","kabCode":"31.74","cat":"flood","topic":"banjir","count":5,"title":"Berita Lama","url":"https://news.example/old","tokens":["merendam","kemang","raya"]}],1700000000000],"ok":{"status":"confirmed","count":3,"title":"Banjir Kemang Raya","url":"https://news.example/kemang"}}
+{"fn":"matchPostToNews","args":[{"created_at":"2023-11-14T22:13:20.000Z","text":"Banjir merendam kawasan Kemang Raya pagi ini sangat parah","assessment":{"geographicContext":{"name":"Jakarta Selatan","kabCode":"31.74"}}},[{"ts":1699999400000,"loc":"jakarta","cat":"flood","count":1,"title":"Banjir Jakarta Kemang","url":"https://news.example/jkt","tokens":["kemang","raya"]}],1700000000000],"ok":{"status":"confirmed","count":1,"title":"Banjir Jakarta Kemang","url":"https://news.example/jkt"}}
+{"fn":"matchPostToNews","args":[{"text":"Coretax gagal login faktur pajak elektronik gangguan nasional","topics":["pajak"],"assessment":{"events":[{"category":"pajak","evidence":"Coretax gagal login faktur pajak elektronik gangguan nasional"}]}},[{"ts":1699999400000,"loc":"","cat":"pajak","count":2,"title":"Coretax Gangguan","url":"https://news.example/coretax","tokens":["coretax","faktur","pajak","gangguan"]},{"ts":1699999400000,"loc":"","cat":"","count":1,"title":"Generic Match","url":"https://news.example/gen","tokens":["coretax","faktur","pajak","elektronik","gangguan"]}],1700000000000],"ok":{"status":"confirmed","count":2,"title":"Coretax Gangguan","url":"https://news.example/coretax"}}
+{"fn":"matchPostToNews","args":[{"text":"Coretax gagal login faktur pajak elektronik gangguan nasional","topics":[]},[{"ts":1699999400000,"loc":"","cat":"","count":1,"title":"Shared 3+ Match","url":"https://news.example/shared3","tokens":["coretax","faktur","pajak","elektronik"]}],1700000000000],"ok":{"status":"confirmed","count":1,"title":"Shared 3+ Match","url":"https://news.example/shared3"}}
+{"fn":"matchPostToNews","args":[{"ts":1700000000000,"text":"Banjir Bekasi Utara rumah terendam","topics":["banjir"],"assessment":{"events":[{"category":"flood","location":{"name":"Bekasi"},"evidence":"Banjir Bekasi Utara rumah terendam"}]}},[{"ts":1699999400000,"loc":"surabaya","cat":"flood","count":4,"title":"Banjir Surabaya","url":"https://news.example/sby","tokens":["utara","terendam"]},{"ts":1699999400000,"loc":"bekasi","cat":"fire","count":2,"title":"Kebakaran Bekasi","url":"https://news.example/fire","tokens":["utara","terendam"]},null],1700000000000],"ok":null}
+{"fn":"collapseSocialFeed","args":[[{"handle":"@reposter_x","platform":"x","ts":1699999700000,"url":"https://x.com/reposter_x/status/1","text":"Banjir merendam Jl Kemang Raya Jakarta Selatan setinggi 60 cm pagi ini, warga evakuasi","topics":["banjir"],"assessment":{"signalEligible":true,"geographicContext":{"name":"Jakarta Selatan","kabCode":"31.74","role":"event_location"},"events":[{"category":"flood","type":"flood","location":{"name":"Jakarta Selatan","kabCode":"31.74","prov":"DKI Jakarta"},"evidence":"Banjir merendam Jl Kemang Raya Jakarta Selatan setinggi 60 cm"}]}},{"handle":"@BNPB_Indonesia","platform":"x","ts":1699999100000,"url":"https://x.com/bnpb/status/2","text":"BNPB melaporkan banjir merendam Jl Kemang Raya Jakarta Selatan setinggi 60 cm pagi ini, tim evakuasi warga","topics":["banjir"],"media":["photo.jpg"],"assessment":{"signalEligible":true,"geographicContext":{"name":"Jakarta Selatan","kabCode":"31.74","role":"event_location"},"events":[{"category":"flood","type":"flood","location":{"name":"Jakarta Selatan","kabCode":"31.74","prov":"DKI Jakarta"},"evidence":"BNPB melaporkan banjir merendam Jl Kemang Raya Jakarta Selatan setinggi 60 cm"}]}},{"username":"saksi_kemang","platform":"th","code":"TH99","ts":1699999400000,"text":"Banjir di Jl Kemang Raya Jakarta Selatan makin tinggi 60 cm pagi ini, air masuk rumah warga","topics":["banjir"],"assessment":{"signalEligible":true,"intent":"eyewitness_report","events":[{"category":"flood","type":"flood","location":{"name":"Jakarta Selatan","kabCode":"31.74","prov":"DKI Jakarta"},"evidence":"Banjir di Jl Kemang Raya Jakarta Selatan makin tinggi 60 cm"}]}},{"handle":"@infoBMKG","platform":"x","ts":1699998800000,"text":"Info Gempa Mag:3.1, 13-Nov-26 04:10:00 WIB, Lok:7.12 LS,106.45 BT (35 km Tenggara Kab Sukabumi), Kedlmn:10 Km #BMKG","topics":["gempa"],"assessment":{"signalEligible":false}},{"handle":"@infoBMKG","platform":"x","ts":1699998500000,"text":"Info Gempa Mag:3.4, 13-Nov-26 04:05:00 WIB, Lok:7.20 LS,106.50 BT (40 km Tenggara Kab Garut), Kedlmn:12 Km #BMKG","topics":["gempa"],"assessment":{"signalEligible":false}},{"handle":"@infoBMKG","platform":"x","ts":1699998200000,"text":"Gempa Magnitudo 5.2 dirasakan kuat di Bandung Selatan warga berhamburan keluar rumah","topics":["gempa"],"assessment":{"signalEligible":true,"events":[{"category":"earthquake","type":"earthquake","location":{"name":"Bandung","prov":"Jawa Barat"}}]}},{"handle":"@warga_saksi","platform":"x","ts":1699999880000,"text":"Kebakaran hebat gudang di Bekasi Timur barusan, asap hitam membubung dan damkar meluncur","topics":["kebakaran"],"images":["a.jpg"],"assessment":{"signalEligible":true,"intent":"eyewitness_report","events":[{"category":"fire","type":"fire","location":{"name":"Bekasi","prov":"Jawa Barat"}}]}},{"handle":"@spammer","platform":"x","ts":1699999800000,"text":"Info cuaca mendung pertama di kawasan utara hari ini","assessment":{"signalEligible":false}},{"handle":"@spammer","platform":"x","ts":1699999750000,"text":"Info cuaca mendung kedua di kawasan selatan hari ini","assessment":{"signalEligible":false}},{"handle":"@spammer","platform":"x","ts":1699999700000,"text":"Info cuaca mendung ketiga di kawasan barat hari ini harus kena cap","assessment":{"signalEligible":false}}],{"now":1700000000000,"newsEvents":[{"ts":1699999400000,"loc":"jakarta selatan","kabCode":"31.74","cat":"flood","topic":"banjir","count":3,"title":"Banjir Kemang Raya","url":"https://news.example/kemang","tokens":["kemang","raya","selatan","setinggi"]}]}],"ok":[{"handle":"@BNPB_Indonesia","platform":"x","ts":1699999100000,"url":"https://x.com/bnpb/status/2","text":"BNPB melaporkan banjir merendam Jl Kemang Raya Jakarta Selatan setinggi 60 cm pagi ini, tim evakuasi warga","topics":["banjir"],"media":["photo.jpg"],"assessment":{"signalEligible":true,"geographicContext":{"name":"Jakarta Selatan","kabCode":"31.74","role":"event_location"},"events":[{"category":"flood","type":"flood","location":{"name":"Jakarta Selatan","kabCode":"31.74","prov":"DKI Jakarta"},"evidence":"BNPB melaporkan banjir merendam Jl Kemang Raya Jakarta Selatan setinggi 60 cm"}]},"intel":{"dupCount":2,"foldedHandles":["reposter_x"],"crossPlatforms":["x","th"],"sourceType":"official_agency","corroboration":"official_confirmed","independentClaims":2,"newsMatch":{"status":"confirmed","count":3,"title":"Banjir Kemang Raya","url":"https://news.example/kemang"},"score":2.217}},{"username":"saksi_kemang","platform":"th","code":"TH99","ts":1699999400000,"text":"Banjir di Jl Kemang Raya Jakarta Selatan makin tinggi 60 cm pagi ini, air masuk rumah warga","topics":["banjir"],"assessment":{"signalEligible":true,"intent":"eyewitness_report","events":[{"category":"flood","type":"flood","location":{"name":"Jakarta Selatan","kabCode":"31.74","prov":"DKI Jakarta"},"evidence":"Banjir di Jl Kemang Raya Jakarta Selatan makin tinggi 60 cm"}]},"intel":{"dupCount":1,"foldedHandles":[],"crossPlatforms":["th","x"],"sourceType":"eyewitness","corroboration":"official_confirmed","independentClaims":2,"newsMatch":{"status":"confirmed","count":3,"title":"Banjir Kemang Raya","url":"https://news.example/kemang"},"score":1.841}},{"handle":"@infoBMKG","platform":"x","ts":1699998200000,"text":"Gempa Magnitudo 5.2 dirasakan kuat di Bandung Selatan warga berhamburan keluar rumah","topics":["gempa"],"assessment":{"signalEligible":true,"events":[{"category":"earthquake","type":"earthquake","location":{"name":"Bandung","prov":"Jawa Barat"}}]},"intel":{"dupCount":1,"foldedHandles":[],"crossPlatforms":["x"],"sourceType":"official_agency","corroboration":"official_confirmed","independentClaims":1,"newsMatch":{"status":"early_warning","count":0},"score":1.752}},{"handle":"@warga_saksi","platform":"x","ts":1699999880000,"text":"Kebakaran hebat gudang di Bekasi Timur barusan, asap hitam membubung dan damkar meluncur","topics":["kebakaran"],"images":["a.jpg"],"assessment":{"signalEligible":true,"intent":"eyewitness_report","events":[{"category":"fire","type":"fire","location":{"name":"Bekasi","prov":"Jawa Barat"}}]},"intel":{"dupCount":1,"foldedHandles":[],"crossPlatforms":["x"],"sourceType":"eyewitness","corroboration":"single_source_eyewitness","independentClaims":1,"newsMatch":{"status":"early_warning","count":0},"score":1.686}},{"handle":"@infoBMKG","platform":"x","ts":1699998800000,"text":"Info Gempa Mag:3.1, 13-Nov-26 04:10:00 WIB, Lok:7.12 LS,106.45 BT (35 km Tenggara Kab Sukabumi), Kedlmn:10 Km #BMKG","topics":["gempa"],"assessment":{"signalEligible":false},"intel":{"dupCount":2,"foldedHandles":[],"crossPlatforms":["x"],"sourceType":"official_agency","corroboration":"official_confirmed","independentClaims":1,"score":1.184}},{"handle":"@spammer","platform":"x","ts":1699999800000,"text":"Info cuaca mendung pertama di kawasan utara hari ini","assessment":{"signalEligible":false},"intel":{"dupCount":1,"foldedHandles":[],"crossPlatforms":["x"],"sourceType":"anonymous","corroboration":"uncorroborated","independentClaims":1,"score":0.342}},{"handle":"@spammer","platform":"x","ts":1699999750000,"text":"Info cuaca mendung kedua di kawasan selatan hari ini","assessment":{"signalEligible":false},"intel":{"dupCount":1,"foldedHandles":[],"crossPlatforms":["x"],"sourceType":"anonymous","corroboration":"uncorroborated","independentClaims":1,"score":0.34}}]}
+{"fn":"collapseSocialFeed","args":[[{"handle":"@ditjenpajakri","platform":"x","created_at":"2023-11-14T22:10:00.000Z","text":"Pengumuman layanan Coretax DJP pemeliharaan sistem faktur pajak nasional","topics":["coretax"],"assessment":{"signalEligible":true,"events":[{"category":"pajak","type":"coretax_outage","target":"coretax"}]}}],{}],"ok":[{"handle":"@ditjenpajakri","platform":"x","created_at":"2023-11-14T22:10:00.000Z","text":"Pengumuman layanan Coretax DJP pemeliharaan sistem faktur pajak nasional","topics":["coretax"],"assessment":{"signalEligible":true,"events":[{"category":"pajak","type":"coretax_outage","target":"coretax"}]},"intel":{"dupCount":1,"foldedHandles":[],"crossPlatforms":["x"],"sourceType":"official_agency","corroboration":"official_confirmed","independentClaims":1,"newsMatch":{"status":"early_warning","count":0},"score":2.072}}]}

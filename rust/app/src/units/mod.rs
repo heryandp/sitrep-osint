@@ -5,10 +5,12 @@ use std::collections::HashMap;
 use axum::Router;
 use axum::extract::{Request, State};
 use axum::response::Response;
-use axum::routing::get;
+use axum::routing::{get, post};
 
 use crate::original::{self, Original};
 
+mod geocode;
+mod security;
 mod uptime_service;
 
 /// `RUST_ANYTHING_UNIT_<NAME>=original` sends that unit back to the original.
@@ -18,6 +20,11 @@ fn sent_to_original(unit: &str) -> bool {
 
 pub fn router() -> Router<Original> {
     Router::new()
+        .route("/api/auth/login", post(route_2).fallback(original::proxy))
+        .route("/api/auth/logout", post(route_3).fallback(original::proxy))
+        .route("/api/auth/me", get(route_1).fallback(original::proxy))
+        .route("/api/geo/labels", get(route_5).fallback(original::proxy))
+        .route("/api/nodes", get(route_4).fallback(original::proxy))
         .route("/api/pajak/uptime", get(route_0).fallback(original::proxy))
         .fallback(original::proxy)
 }
@@ -27,4 +34,39 @@ async fn route_0(State(original): State<Original>, req: Request) -> Response {
         return original::proxy(State(original), req).await;
     }
     uptime_service::handle("GET /api/pajak/uptime", HashMap::new(), req).await
+}
+
+async fn route_1(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("SECURITY") {
+        return original::proxy(State(original), req).await;
+    }
+    security::handle("GET /api/auth/me", HashMap::new(), req).await
+}
+
+async fn route_2(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("SECURITY") {
+        return original::proxy(State(original), req).await;
+    }
+    security::handle("POST /api/auth/login", HashMap::new(), req).await
+}
+
+async fn route_3(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("SECURITY") {
+        return original::proxy(State(original), req).await;
+    }
+    security::handle("POST /api/auth/logout", HashMap::new(), req).await
+}
+
+async fn route_4(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEOCODE") {
+        return original::proxy(State(original), req).await;
+    }
+    geocode::handle("GET /api/nodes", HashMap::new(), req).await
+}
+
+async fn route_5(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEOCODE") {
+        return original::proxy(State(original), req).await;
+    }
+    geocode::handle("GET /api/geo/labels", HashMap::new(), req).await
 }

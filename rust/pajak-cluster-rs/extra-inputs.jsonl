@@ -1,0 +1,33 @@
+{"fn":"isTaxText","args":["Coretax DJP mengalami gangguan login hari ini"]}
+{"fn":"isTaxText","args":["Wajib pajak lapor SPT Tahunan PPh 21 melalui e-Filing"]}
+{"fn":"isTaxText","args":["Kemenkeu terbitkan PMK No. 71 tentang tarif PPN 12%"]}
+{"fn":"isTaxText","args":["Pajak jadian makan bareng sambil nonton drakor dan k-pop"]}
+{"fn":"isTaxText","args":["Slot gacor judi online pajak nikah"]}
+{"fn":"isTaxText","args":["Cuaca cerah di Jakarta hari ini"]}
+{"fn":"isTaxText","args":[""]}
+{"fn":"isTaxText","args":["Bea dan cukai serta PNBP menopang APBN 2026"]}
+{"fn":"isTaxText","args":["Pengadilan pajak tangani sengketa restitusi pajak"]}
+{"fn":"isTaxText","args":["KPP Pratama Jakarta Selatan sosialisasi NIK jadi NPWP"]}
+{"fn":"classifyTaxScope","args":["DJP catat penerimaan PPh 21 dan PPN 12% naik signifikan"]}
+{"fn":"classifyTaxScope","args":["Pemprov Jawa Barat gelar pemutihan pajak kendaraan bermotor PKB dan BBNKB di Samsat"]}
+{"fn":"classifyTaxScope","args":["Bapenda kejar PAD dari PBB-P2, BPHTB, pajak restoran dan PBJT"]}
+{"fn":"classifyTaxScope","args":["Gubernur dan Pemprov bahas opsen PKB dan pajak daerah bersama DJP dan KPP Pratama"]}
+{"fn":"classifyTaxScope","args":["Pemprov, Bupati, Gubernur, Samsat, Bapenda bahas pajak daerah dan kebijakan fiskal"]}
+{"fn":"classifyTaxScope","args":["Kebijakan fiskal, APBN, rasio pajak dan pajak daerah dibahas bersama"]}
+{"fn":"classifyTaxScope","args":["Berita umum tanpa kata kunci pajak"]}
+{"fn":"classifyPajakThemes","args":["Seruan boikot pajak, tolak bayar pajak, dan debat keadilan fiskal Pasal 23A untuk rakyat kecil"]}
+{"fn":"classifyPajakThemes","args":["Komisi XI DPR, Menkeu, dan fraksi bahas PMK 71/2026 serta RUU pajak dan kebijakan fiskal"]}
+{"fn":"classifyPajakThemes","args":["Kanwil DJP gandeng kampus bangun Tax Center, literasi pajak, edukasi pajak, dan kepatuhan wajib pajak UMKM"]}
+{"fn":"classifyPajakThemes","args":["Penerimaan pajak, tax ratio, dinamisasi, restitusi pajak, dan tarif PPN 12% dorong pertumbuhan ekonomi APBN"]}
+{"fn":"classifyPajakThemes","args":["PPATK usut pidana pajak, penggelapan pajak, faktur fiktif, sita aset, gijzeling, dan sengketa di Pengadilan Pajak"]}
+{"fn":"classifyPajakThemes","args":["Coretax DJP error gagal login OTP, e-Faktur dan e-Bupot down, NIK jadi NPWP 16 digit bermasalah"]}
+{"fn":"classifyPajakThemes","args":["Boikot pajak dan keadilan fiskal dikritik Komisi XI DPR saat bahas tarif PPN 12% dan Coretax error"]}
+{"fn":"classifyPajakThemes","args":["Nomor NPWP terdaftar"]}
+{"fn":"classifyPajakThemes","args":["Pengurusan berkas di KPP"]}
+{"fn":"classifyPajakThemes","args":["Informasi umum tanpa kata kunci tema"]}
+{"fn":"buildPajakClusters","args":[]}
+{"fn":"buildPajakClusters","args":[{}]}
+{"fn":"buildPajakClusters","args":[{"now":1700000000000,"win":"2h","newsItems":[{"title":"Coretax DJP error gagal login e-Faktur di Bandung","desc":"Gangguan login Coretax terjadi sejak pagi di Bandung.","url":"https://news.id/1","pub":"DDTCNews","cat":"pajak","ts":1699999000000},{"title":"Berita lama di luar jendela 2 jam tentang Coretax","url":"https://news.id/old","pub":"MediaOld","cat":"pajak","ts":1699990000000},{"title":"Berita masa depan Coretax","url":"https://news.id/future","pub":"MediaFut","cat":"pajak","ts":1700001000000}],"socialPosts":[{"text":"Coretax error gagal login e-Faktur di Bandung hari ini","url":"https://x.com/u1/1","username":"@wp_bdg","from":"X","created_at":"2023-11-14T22:00:00Z","assessment":{"topics":["coretax"],"provenance":{"sourceType":"citizen"}}}]}]}
+{"fn":"buildPajakClusters","args":[{"now":1700000000000,"win":"today","scope":"daerah","newsItems":[{"title":"Pemprov Jabar gelar pemutihan pajak kendaraan bermotor Samsat Bandung","desc":"Keringanan pokok PKB dan BBNKB berlaku di seluruh Samsat.","url":"https://news.id/d1","pub":"Pikiran Rakyat","ts":1699995000000},{"title":"Bapenda Bandung targetkan PAD dari pemutihan pajak kendaraan Samsat","desc":"Program pemutihan pajak kendaraan bermotor di Samsat.","url":"https://news.id/d2","pub":"Detik Jabar","ts":1699994000000},{"title":"DJP catat penerimaan pajak Rp500 triliun dari sektor industri","url":"https://news.id/n1","pub":"Kontan","ts":1699996000000}],"socialPosts":[{"text":"Antrean panjang di Samsat Bandung untuk pemutihan pajak kendaraan bermotor","username":"warga_bdg","code":"abc123","ts":1699993000000,"topics":["pajak"]}]}]}
+{"fn":"buildPajakClusters","args":[{"now":1700000000000,"win":"24h","theme":"politik","newsItems":[{"title":"Komisi XI DPR dan Menkeu bahas tarif PPN 12% dan boikot pajak keadilan fiskal","desc":"Polemik kenaikan tarif PPN 12% memicu protes dan debat keadilan fiskal di DPR.","url":"https://news.id/p1","pub":"Kompas","ts":1699990000000,"la":-6.2185,"lo":106.8002,"name":"DPR / MPR Senayan","prov":"DKI Jakarta"},{"title":"PPATK temukan pidana pajak dan faktur fiktif Rp122 triliun","desc":"Sita aset dan gijzeling disiapkan untuk pengemplang pajak.","url":"https://news.id/h1","pub":"Tempo","ts":1699985000000},{"title":"PPATK dan kejaksaan usut faktur fiktif pidana pajak triliunan","url":"https://news.id/h2","pub":"CNN Indonesia","ts":1699984000000},{"title":"Pengadilan pajak sidangkan sengketa faktur fiktif pidana pajak","url":"https://news.id/h3","pub":"Bisnis","ts":1699983000000},{"title":"KPK pantau kasus pidana pajak dan faktur fiktif di Jakarta","url":"https://news.id/h4","pub":"Republika","ts":1699982000000},{"title":"Pajak jadian makan bareng drakor","url":"https://news.id/noise","pub":"Spam","cat":"pajak","ts":1699999000000}],"socialPosts":[{"text":"Protes tarif PPN 12% di DPR, rakyat minta keadilan fiskal dan tolak kenaikan pajak","username":"aktivis_pajak","author":"Aktivis Pajak","ts":1699989000000}]}]}
+{"fn":"buildPajakClusters","args":[{"now":1700000000000,"win":"invalid","theme":"unknown","scope":"all","newsItems":[{"title":"DJP sosialisasi literasi pajak di Surabaya","desc":"DJP sosialisasi literasi pajak di Surabaya","url":"https://news.id/s1","src":"Antara","ts":0},{"title":"DJP sosialisasi literasi pajak di Surabaya","url":"https://news.id/s1","src":"Antara","ts":0},{"title":"Kanwil DJP buka Tax Center untuk mahasiswa di Surabaya","desc":"Edukasi pajak untuk mahasiswa dan pelaku UMKM.","url":"https://news.id/s2","pub":"Surya","ts":1699990000000},{"title":"Layanan KPP Pratama Surabaya gelar seminar pajak untuk masyarakat","desc":"Seminar kepatuhan wajib pajak dan sosialisasi SPT Tahunan.","url":"https://news.id/s3","pub":"Jawa Pos","ts":1699920000000}]}]}

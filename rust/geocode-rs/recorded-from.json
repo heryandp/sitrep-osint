@@ -1,0 +1,17 @@
+{
+  "unit": "src/geocode.js",
+  "files": 1,
+  "fingerprint": "b2a36877440be362",
+  "coverage": {
+    "lines": 649,
+    "reached": 648,
+    "files": [
+      {
+        "file": "src/geocode.js",
+        "lines": 649,
+        "reached": 648,
+        "missed": "694"
+      }
+    ]
+  }
+}

@@ -1,0 +1,125 @@
+{"fn":"decodeBasicEntities","args":["Banjir &amp; Longsor di &quot;Jakarta&quot; &lt;2026&gt; &mdash; &ndash; &hellip; &apos;ok&apos; &nbsp; &#65; &#x42; &#x1F525; &#99999999; &#0; &#55296;"]}
+{"fn":"decodeBasicEntities","args":[""]}
+{"fn":"decodeBasicEntities","args":[null]}
+{"fn":"decodeBasicEntities","args":["&AMP; &LT; &GT; &QUOT; &APOS; &NBSP;"]}
+{"fn":"decodeBasicEntities","args":["&#169; &#x2014; &#x0041"]}
+{"fn":"segmentHashtag","args":["#BanjirJakartaSelatan"]}
+{"fn":"segmentHashtag","args":["#banjirbandanggarut"]}
+{"fn":"segmentHashtag","args":["#kebakaranhutanriau2026"]}
+{"fn":"segmentHashtag","args":["#CoretaxError"]}
+{"fn":"segmentHashtag","args":["#ditjenpajak_laporpajak"]}
+{"fn":"segmentHashtag","args":["#putingbeliungbekasi"]}
+{"fn":"segmentHashtag","args":["#GempaCianjur56"]}
+{"fn":"segmentHashtag","args":["#info"]}
+{"fn":"segmentHashtag","args":[""]}
+{"fn":"segmentHashtag","args":["###"]}
+{"fn":"segmentHashtag","args":["#serangansiberkebocorandata"]}
+{"fn":"segmentHashtag","args":["#xyzbanjirabc"]}
+{"fn":"normalizePhraseText","args":["Gue gak bisa jalan-jalan di Jaksel krn ujan bgt https://t.co/abc @user.1",true]}
+{"fn":"normalizePhraseText","args":["Gue gak bisa jalan-jalan di Jaksel krn ujan bgt",false]}
+{"fn":"normalizePhraseText","args":["Rumah-rumah warga di Bdg kebanjiran bangeeeet",true]}
+{"fn":"normalizePhraseText","args":["CVE-2024-1234 menyerang server",false]}
+{"fn":"normalizePhraseText","args":["Jkt Sby Smg Bks Bgr Tgr Tangsel Mks Mdn Dps Plg Jogja Yogya",true]}
+{"fn":"normalizePhraseText","args":["flooding earthquake landslide wildfire collapsed evacuation explosion shooting robbery blackout",false]}
+{"fn":"normalizePhraseText","args":["",true]}
+{"fn":"normalizeIndonesian","args":["🚨 Banjir di #JakartaSelatan! Air sudah masuk rumah-rumah warga di Kemang https://t.co/123 @BPBDJakarta"]}
+{"fn":"normalizeIndonesian","args":["PT. Maju Jaya Jl. Sudirman No. 10 terbakar. Api besar, tapi warga selamat! Apakah ada korban? https://x.com?a=1"]}
+{"fn":"normalizeIndonesian","args":["Jalan-jalan sore di Bandung 😂🔥🌊🛒😭💜"]}
+{"fn":"normalizeIndonesian","args":["Bukan gempa, tapi ledakan tabung gas di ruko."]}
+{"fn":"normalizeIndonesian","args":[""]}
+{"fn":"isHistoricalClause","args":["Banjir besar tahun 2018 di Jakarta",2026]}
+{"fn":"isHistoricalClause","args":["Banjir besar hari ini pukul 08.00 WIB di Jakarta, gedung dibangun tahun 2010",2026]}
+{"fn":"isHistoricalClause","args":["Mengenang gempa 2018 hari ini",2026]}
+{"fn":"isHistoricalClause","args":["Acara yang sudah berjalan sejak tahun 2019",2026]}
+{"fn":"isHistoricalClause","args":["Dulu waktu pandemi covid-19 semua lockdown",2026]}
+{"fn":"isHistoricalClause","args":["Banjir pada tahun 2026 di Bekasi",2026]}
+{"fn":"isHistoricalClause","args":["Kilas balik tragedi 1998 di Jakarta"]}
+{"fn":"isGenericLocationPhrase","args":["Jakarta"]}
+{"fn":"isGenericLocationPhrase","args":["Jakarta Selatan"]}
+{"fn":"isGenericLocationPhrase","args":["Indonesia"]}
+{"fn":"isGenericLocationPhrase","args":["Jaksel"]}
+{"fn":"isGenericLocationPhrase","args":["Banjir di Jakarta Selatan"]}
+{"fn":"isGenericLocationPhrase","args":["Kecamatan Kemang"]}
+{"fn":"isGenericLocationPhrase","args":[""]}
+{"fn":"isGenericLocationPhrase","args":["Bandung Raya"]}
+{"fn":"isGenericLocationPhrase","args":["Coretax DJP"]}
+{"fn":"extractImpact","args":["5 orang tewas, 12 warga luka berat, 200 warga mengungsi, dan 15 rumah terendam banjir"]}
+{"fn":"extractImpact","args":["Tidak ada laporan korban jiwa, puluhan rumah rusak akibat gempa"]}
+{"fn":"extractImpact","args":["Tewas sebanyak 3 orang dan dua warga luka-luka"]}
+{"fn":"extractImpact","args":["Seorang pria tewas dan ratusan warga terdampak"]}
+{"fn":"extractImpact","args":["Dua orang tewas dan ribuan rumah terendam"]}
+{"fn":"extractImpact","args":["Tiga warga meninggal dunia"]}
+{"fn":"extractImpact","args":["Tidak ada informasi dampak"]}
+{"fn":"extractAffectedEntity","args":["Rumah warga terendam banjir"]}
+{"fn":"extractAffectedEntity","args":["Kebakaran melanda ruko dan pasar"]}
+{"fn":"extractAffectedEntity","args":["Pabrik tekstil dan gudang terbakar"]}
+{"fn":"extractAffectedEntity","args":["Siswa SMA keracunan makanan di sekolah"]}
+{"fn":"extractAffectedEntity","args":["Pasien RSUD dievakuasi akibat gempa"]}
+{"fn":"extractAffectedEntity","args":["Kecelakaan beruntun di jalan tol"]}
+{"fn":"extractAffectedEntity","args":["Kapal feri tenggelam di pelabuhan"]}
+{"fn":"extractAffectedEntity","args":["Gardu PLN meledak listrik padam"]}
+{"fn":"extractAffectedEntity","args":["Server PDN diretas ransomware"]}
+{"fn":"extractAffectedEntity","args":["Kebakaran hutan lahan gambut"]}
+{"fn":"extractAffectedEntity","args":["Cuaca cerah berawan"]}
+{"fn":"extractEventTime","args":["Gempa terjadi tahun 2018 di Palu",true]}
+{"fn":"extractEventTime","args":["BMKG keluarkan peringatan dini hujan ekstrem hingga malam",false]}
+{"fn":"extractEventTime","args":["Banjir terjadi barusan di Kemang",false]}
+{"fn":"extractEventTime","args":["Kebakaran pukul 14.30 WIB di Pasar Senen",false]}
+{"fn":"extractEventTime","args":["Gempa terasa tadi pagi di Cianjur",false]}
+{"fn":"extractEventTime","args":["Tidak ada keterangan waktu",false]}
+{"fn":"metaphorBlocksTopic","args":[["metaphor_banjir"],"banjir"]}
+{"fn":"metaphorBlocksTopic","args":[["metaphor_banjir"],"gempa"]}
+{"fn":"metaphorBlocksTopic","args":[["metaphor_ledakan"],"gempa"]}
+{"fn":"metaphorBlocksTopic","args":[["nonincident_sport_entertainment"],"kesehatan"]}
+{"fn":"metaphorBlocksTopic","args":[[],"banjir"]}
+{"fn":"metaphorBlocksTopic","args":[null,"banjir"]}
+{"fn":"analyzePost","args":["🚨 Banjir bandang merendam ratusan rumah warga di Garut pagi ini, BPBD mengevakuasi korban. #BanjirGarut"]}
+{"fn":"analyzePost","args":["Gempa M5.6 mengguncang Cianjur pukul 13.21 WIB, terasa kencang sampai rumah saya bergetar!"]}
+{"fn":"analyzePost","args":["Kebakaran hebat melalap 10 ruko di Pasar Senen Jakarta Pusat, damkar kerahkan 12 unit."]}
+{"fn":"analyzePost","args":["Karhutla meluas di lahan gambut Riau, kabut asap tebal terpantau satelit Sipongi."]}
+{"fn":"analyzePost","args":["BMKG mengeluarkan peringatan dini tsunami dan gelombang tinggi di pesisir Banten hingga malam."]}
+{"fn":"analyzePost","args":["Puting beliung menerjang pemukiman warga di Bekasi, puluhan atap rumah beterbangan."]}
+{"fn":"analyzePost","args":["Kecelakaan beruntun di Tol Cipularang melibatkan bus dan truk, 3 orang tewas dan 8 luka-luka."]}
+{"fn":"analyzePost","args":["Pohon tumbang menimpa mobil di Jalan Sudirman Bandung akibat angin kencang."]}
+{"fn":"analyzePost","args":["Mahasiswa gelar aksi demonstrasi menolak kenaikan pajak di depan gedung DPR RI Jakarta."]}
+{"fn":"analyzePost","args":["Penembakan oleh OTK di Papua melukai 2 anggota polisi, aparat lakukan pengejaran."]}
+{"fn":"analyzePost","args":["Pencurian motor curanmor di parkiran minimarket Depok terekam CCTV, pelaku ditangkap polisi."]}
+{"fn":"analyzePost","args":["KPK lakukan OTT penangkapan tersangka suap di Semarang."]}
+{"fn":"analyzePost","args":["Keracunan massal menimpa puluhan siswa SD di Cianjur, korban dilarikan ke RSUD."]}
+{"fn":"analyzePost","args":["Listrik padam di sebagian wilayah Tangerang Selatan sejak pukul 10.00 WIB karena gardu PLN terganggu."]}
+{"fn":"analyzePost","args":["Server PDN dan database layanan pemerintah diserang ransomware LockBit, sistem lumpuh."]}
+{"fn":"analyzePost","args":["Coretax DJP mengalami gangguan dan error, wajib pajak kesulitan lapor SPT dan faktur pajak di seluruh Indonesia."]}
+{"fn":"analyzePost","args":["Bursa Efek Indonesia melakukan trading halt setelah IHSG anjlok tajam hari ini."]}
+{"fn":"analyzePost","args":["Pabrik tekstil di Solo tutup dan lakukan PHK terhadap ratusan buruh."]}
+{"fn":"analyzePost","args":["Banjir orderan dan banjir cuan di toko online hari ini!"]}
+{"fn":"analyzePost","args":["Harga tiket pesawat meledak menjelang lebaran."]}
+{"fn":"analyzePost","args":["IHSG kebakaran dan saham ambruk lagi hari ini."]}
+{"fn":"analyzePost","args":["Main DBD bareng teman game crashed terus di lobby steam."]}
+{"fn":"analyzePost","args":["Bentrok sama jadwal kuliah dan rapat zoom besok."]}
+{"fn":"analyzePost","args":["Banjir di Jakarta wkwkwk kocak banget"]}
+{"fn":"analyzePost","args":["Bukan banjir, tapi kebakaran ruko di Surabaya."]}
+{"fn":"analyzePost","args":["Hoaks! Kabar tsunami di Lampung dibantah oleh BMKG, tidak terjadi tsunami."]}
+{"fn":"analyzePost","args":["Dijual rumah siap huni SHM bebas banjir di Bekasi, DP 0 nego KPR."]}
+{"fn":"analyzePost","args":["Promo diskon cashback 50% cek link di bio order via WhatsApp!"]}
+{"fn":"analyzePost","args":["Capek banget kerja di Jakarta pengen resign gaji kecil bikin stres."]}
+{"fn":"analyzePost","args":["Menurut saya Bandung selalu punya tempat di hati, kota terindah."]}
+{"fn":"analyzePost","args":["Follow @akun1 + follow @akun2 giveaway saldo dana klik link!"]}
+{"fn":"analyzePost","args":["Apakah benar ada banjir di Kemang sekarang?"]}
+{"fn":"analyzePost","args":["Katanya di Depok ada kebakaran gudang, rumornya besar."]}
+{"fn":"analyzePost","args":["Saya lagi di Surabaya baca berita banjir Jakarta."]}
+{"fn":"analyzePost","args":["Banjir besar tahun 2018 di Jakarta dulu sangat parah.",{"year":2026}]}
+{"fn":"analyzePost","args":["Apa itu gempa bumi? Simak tips edukasi mitigasi dan kesiapsiagaan bencana."]}
+{"fn":"analyzePost","args":["Hukum syariat Islam dan fatwa tentang sholat jumat dan zakat fitrah."]}
+{"fn":"analyzePost","args":["De regering in Den Haag heeft vandaag een nieuwe coalitie gevormd na de verkiezingen."]}
+{"fn":"analyzePost","args":["Die deutsche Regierung und der Bundestag haben heute neue Gesetze beschlossen."]}
+{"fn":"analyzePost","args":["Le gouvernement français et le ministre ont annoncé de nouvelles mesures à Paris."]}
+{"fn":"analyzePost","args":["El gobierno de España anunció nuevas elecciones y medidas económicas para el país."]}
+{"fn":"analyzePost","args":["Banjir kilat melanda Selangor dan Kuala Lumpur, Jabatan Bomba dan PDRM bertindak."]}
+{"fn":"analyzePost","args":["JAKARTA — Gempa bumi M5.1 mengguncang wilayah Sukabumi, Jawa Barat."]}
+{"fn":"analyzePost","args":["Air hujan sudah mulai naik masuk kamar kosan saya di Tebet, setinggi lutut!"]}
+{"fn":"analyzePost","args":["Genangan air di depan stasiun Manggarai pagi ini."]}
+{"fn":"analyzePost","args":["Antrean panjang BBM di SPBU Makassar dan harga beras melonjak mahal."]}
+{"fn":"analyzePost","args":["Saya kerja di Bandung dan asli Yogyakarta, lagi santai."]}
+{"fn":"analyzePost","args":["Gempa di Bekasi. Rumah warga banyak yang retak."]}
+{"fn":"analyzePost","args":["Komdigi lakukan takedown konten kritis di media sosial."]}
+{"fn":"analyzePost","args":["OK"]}

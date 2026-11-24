@@ -8,9 +8,9 @@
 - **Out of Scope**: `public/` (served unchanged), `src/client/` & `scripts/` (client build tooling stays JS), `threads_worker.py` & `ffmpeg` (invoked as subprocesses per ADR-004).
 
 ## Progress Summary
-- **Front Door**: `done` (`rust/app` binary `djp-sitrep`, Axum 0.8 + Tokio, **272/272** HTTP cases passing; `GET /api/pajak/uptime` wired & live-verified in pure Rust with 0 fallback)
-- **Fallback Rate**: `100.0%` on recorded static/deterministic baseline (`GET /api/pajak/uptime` now served natively by Rust; fallback drops as Wave 2–5 routes wire in)
-- **Current Wave**: **Wave 1 complete (7/7 gated)** -> ready for **Wave 2** (Core Domain Engines: `security`, `geocode`, `indonesian-nlp`, `pajak-cluster`, `social-cluster`, `assessment`)
+- **Front Door**: `done` (`rust/app` binary `djp-sitrep`, Axum 0.8 + Tokio, **272/272** HTTP cases passing; global Rust `AuthManager` + `RateLimiter` middleware + 6 native Rust routes: `GET /api/pajak/uptime`, `GET /api/auth/me`, `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/nodes`, `GET /api/geo/labels`)
+- **Fallback Rate**: **`97.4%` (`265/272`)** — down from `100.0%`
+- **Current Wave**: **Wave 2 complete (13/13 crates gated across Waves 1–2)** -> ready for **Wave 3** (HTTP Services: `exa-summary`, `news-service`, `market`, `tomtom`, `copernicus`)
 
 ## Wave Plan & Unit Roster
 
@@ -34,12 +34,12 @@
 ### Wave 2 — Core Domain Engines (Geo, NLP, Security, Clustering)
 | Unit | Source File | LOC | State | Notes |
 | :--- | :--- | ---: | :--- | :--- |
-| `security` | `src/security.js` | 1254 | `open` | `scrypt` auth, HMAC sessions, DNS-pinned SSRF `safeFetch` |
-| `geocode` | `src/geocode.js` | 649 | `open` | Loads `geo/gazetteer.json` & `geo/coord-fixes.json` |
-| `indonesian-nlp` | `src/indonesian-nlp.js` | 1413 | `open` | Uses `whatlang` (ADR-003) + `geocode` |
-| `pajak-cluster` | `src/pajak-cluster.js` | 428 | `open` | 6-dimension tax clustering (`nasional`/`daerah`), has tests |
-| `social-cluster` | `src/social-cluster.js` | 501 | `open` | Social topic clustering, has tests |
-| `assessment` | `src/assessment.js` | 553 | `open` | Incident & situation scoring |
+| `security` | `src/security.js` | 1254 | `done` | `gate` PASS, 782/782 diff, `rdPrivateIP` **3.09x**, `publicURL` **1.69x**, 9/9 `cargo test`, **wired** (Axum middleware + `/api/auth/*`) |
+| `geocode` | `src/geocode.js` | 649 | `done` | `gate` PASS, 264/264 diff (99% cov), `locate` **3.72x**, 6/6 `cargo test`, **wired** (`/api/nodes`, `/api/geo/labels`) |
+| `indonesian-nlp` | `src/indonesian-nlp.js` | 1413 | `done` | `gate` PASS, 3,475/3,475 diff (94% cov, `whatlang` ADR-003), `isGenericLocationPhrase` **10.21x**, 8/8 `cargo test` |
+| `pajak-cluster` | `src/pajak-cluster.js` | 428 | `done` | `gate` PASS, 91/91 diff (100% cov), `classifyTaxScope` **2.67x**, `classifyPajakThemes` **1.68x**, 7/7 `cargo test` |
+| `social-cluster` | `src/social-cluster.js` | 501 | `done` | `gate` PASS, 978/978 diff (100% cov), `deduplicatePosts` **2.75x**, `collapseSocialFeed` **2.64x**, 7/7 `cargo test` |
+| `assessment` | `src/assessment.js` | 553 | `done` | `gate` PASS, 429/429 diff, `classifyScope` **4.30x**, 9/9 `cargo test`, `assess_item` in `service.rs` |
 
 ### Wave 3 — HTTP Services (Tax AI, News, Market, Traffic, Satellite)
 | Unit | Source File | LOC | State | Notes |
@@ -75,6 +75,8 @@
 3. **JS ASCII `\b` / `\w` semantics**: Use `(?-u:\b)` and `[A-Za-z0-9_]` in Rust regexes when matching JS `\b`/`\w` around accented Latin characters.
 4. **Keeping Rust service structs safe from `refresh`**: Place idiomatic async/stateful structs in `src/service.rs` imported via `#[path = "service.rs"] pub mod service;` inside `src/port.rs` so `rust-anything refresh` never overwrites `lib.rs`.
 5. **Root shim imports in `tests/*.test.js`**: Several tests `require('../<mod>')` instead of `../src/<mod>`; supply `--inputs <extra.jsonl>` alongside `--from-tests` to guarantee 95–100% coverage.
+6. **Avoid `rustAnythingWireInit` `ctor` collision between sibling N-API crates**: Never add one `rust-anything` cdylib crate as a Cargo path dep inside another `rust-anything` cdylib crate; mount sibling pure-Rust modules directly via `#[path = "../../<crate>/src/service.rs"] mod ...;` instead. (Inside the pure binary `rust/app`, Cargo path deps work cleanly without collision.)
+7. **Authoritative Rate Limiter in Axum Middleware**: `rust/app/src/middleware.rs` owns the single `RateLimiter` + `AuthManager` layer so native Rust routes and proxied Node routes share identical `x-ratelimit-remaining` counters.
 
 ## Open Questions
 - None (all ADR-001..ADR-006 approved on 2026-11-24).

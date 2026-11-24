@@ -1,0 +1,60 @@
+{"fn":"isHistorical","args":["Banjir besar melanda Jakarta pada tahun 2020"]}
+{"fn":"isHistorical","args":["Banjir besar melanda Jakarta pada tahun 2020",2026]}
+{"fn":"isHistorical","args":["Banjir besar melanda Jakarta pada tahun 2026",2026]}
+{"fn":"isHistorical","args":["Banjir besar melanda Jakarta pada tahun 2027",2026]}
+{"fn":"isHistorical","args":["Gempa hari ini mengguncang Cianjur pukul 14:30 WIB, mirip gempa tahun 2022",2026]}
+{"fn":"isHistorical","args":["Hari ini mengenang gempa Aceh tahun 2004",2026]}
+{"fn":"isHistorical","args":["Kilas balik pagi ini tentang kerusuhan tahun 1998",2026]}
+{"fn":"isHistorical","args":["Program yang sudah berjalan sejak tahun 2020 di Jakarta",2026]}
+{"fn":"isHistorical","args":["Gedung yang dibangun pada tahun 2015 ambruk",2026]}
+{"fn":"isHistorical","args":["Pabrik didirikan tahun lalu terbakar",2026]}
+{"fn":"isHistorical","args":["Dulu waktu pandemi covid-19 semua kantor tutup",2026]}
+{"fn":"isHistorical","args":["Sejarah pajak di Indonesia era Orde Baru",2026]}
+{"fn":"isHistorical","args":["Coretax DJP mengalami gangguan sekarang pukul 09.15 WIB",2026]}
+{"fn":"isHistorical","args":["Kebakaran pasar terjadi barusan di Bandung",2026]}
+{"fn":"isHistorical","args":["Tahun lalu banjir merendam Bekasi",2026]}
+{"fn":"isHistorical","args":["Last year a major earthquake struck the region",2026]}
+{"fn":"isHistorical","args":["2020 masa lockdown covid sangat berat",2026]}
+{"fn":"isHistorical","args":["",2026]}
+{"fn":"isHistorical","args":[null,2026]}
+{"fn":"isHistorical","args":["Banjir merendam Surabaya"]}
+{"fn":"isHistorical","args":["Era 1998 penuh gejolak politik",2026]}
+{"fn":"isHistorical","args":["Masjid berdiri sejak 1980 mengalami kerusakan",2026]}
+{"fn":"isHistorical","args":["Nostalgia malam ini soal banjir tempo dulu",2026]}
+{"fn":"norm","args":["Banjir di JAKARTA!! https://t.co/abc123   parah banget"]}
+{"fn":"norm","args":["CoreTax DJP\t\n  Error   http://example.com/path?a=1&b=2  lagi"]}
+{"fn":"norm","args":["Ｆｕｌｌｗｉｄｔｈ　Ｔｅｘｔ ①②③"]}
+{"fn":"norm","args":[""]}
+{"fn":"norm","args":[null]}
+{"fn":"norm","args":[12345]}
+{"fn":"norm","args":["   Spasi   berlebih\r\ndan\nbaris baru   "]}
+{"fn":"clauses","args":["Banjir melanda Jl. Sudirman No. 10 Jakarta. Warga dievakuasi ke posko!"]}
+{"fn":"clauses","args":["PT. Telekomunikasi Indonesia Tbk. mengumumkan gangguan. Pelanggan diminta bersabar?"]}
+{"fn":"clauses","args":["Dr. Budi dari Prof. Andi melaporkan gempa di Kab. Cianjur.\n\nKorban jiwa nihil; kerusakan sedang didata."]}
+{"fn":"clauses","args":["Info pajak &amp; coretax: Rp. 500.000 &mdash; lihat https://pajak.go.id/info. Segera lapor SPT!"]}
+{"fn":"clauses","args":["Kombes Pol. Andi dan Brigjen TNI Budi hadir di Kec. Coblong, Kel. Dago. Situasi aman."]}
+{"fn":"clauses","args":["KM. 42 tol Cikampek macet total; kecelakaan beruntun terjadi! Apakah ada korban?"]}
+{"fn":"clauses","args":["Baris satu\n\nBaris dua!!! Baris tiga??? Baris empat;;;"]}
+{"fn":"clauses","args":["Nilai 3.14 tidak memecah klausa. Sedangkan ini memecah. À bientôt."]}
+{"fn":"clauses","args":[""]}
+{"fn":"clauses","args":[null]}
+{"fn":"clauses","args":["H. Ahmad dan Hj. Siti di Ds. Sukamaju RT. 01 RW. 02 melaporkan kebakaran."]}
+{"fn":"classifyScope","args":["Banjir merendam pemukiman warga di Bekasi Jawa Barat",null]}
+{"fn":"classifyScope","args":["Coretax DJP mengalami gangguan akses pelaporan SPT hari ini",null]}
+{"fn":"classifyScope","args":["IHSG anjlok dan rupiah melemah tajam hari ini",null]}
+{"fn":"classifyScope","args":["Earthquake hits Tokyo Japan causing tsunami alert",null]}
+{"fn":"classifyScope","args":["Wildfire spreads across California United States",null]}
+{"fn":"classifyScope","args":["Banjir melanda Jakarta dan Tokyo secara bersamaan",null]}
+{"fn":"classifyScope","args":["DJP dan Kemenkeu menghadiri pertemuan di Washington DC",null]}
+{"fn":"classifyScope","args":["Serangan udara terjadi di Gaza Palestina hari ini",null]}
+{"fn":"classifyScope","args":["Baku tembak terjadi di Intan Jaya Papua",null]}
+{"fn":"classifyScope","args":["Kebakaran melanda pasar di Kota Bandung",null]}
+{"fn":"classifyScope","args":["Cuaca cerah sekali hari ini tanpa nama tempat",null]}
+{"fn":"classifyScope","args":["Desa Sukamaju dilanda banjir bersama berita dari Malaysia",null]}
+{"fn":"classifyScope","args":["Peringatan dini BMKG soal hujan ekstrem",null]}
+{"fn":"classifyScope","args":["São Paulo dan París mengalami banjir besar",null]}
+{"fn":"classifyScope","args":["KPP Pratama Jakarta Selatan melakukan sosialisasi Coretax",null]}
+{"fn":"classifyScope","args":["Gempa magnitudo 5.2 mengguncang Cianjur Jawa Barat",null]}
+{"fn":"classifyScope","args":["Demo buruh berlangsung di depan Gedung DPR Jakarta",null]}
+{"fn":"classifyScope","args":["Serangan siber ransomware menyerang server rumah sakit di Surabaya",null]}
+{"fn":"classifyScope","args":["",null]}

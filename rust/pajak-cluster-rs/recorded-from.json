@@ -1,0 +1,23 @@
+{
+  "unit": "src/pajak-cluster.js",
+  "files": 1,
+  "fingerprint": "21e79035e274446d",
+  "coverage": {
+    "lines": 1077,
+    "reached": 1007,
+    "files": [
+      {
+        "file": "src/geocode.js",
+        "lines": 649,
+        "reached": 579,
+        "missed": "531, 554-558, 560-565, 601-604, 606-608, 611-613, 624-626, 629-630, 639-648, 658-689, 694"
+      },
+      {
+        "file": "src/pajak-cluster.js",
+        "lines": 428,
+        "reached": 428,
+        "missed": ""
+      }
+    ]
+  }
+}

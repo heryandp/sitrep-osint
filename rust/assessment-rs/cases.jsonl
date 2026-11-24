@@ -1,0 +1,429 @@
+{"fn":"isHistorical","args":[{"a":{"b":"c"}},"x"],"ok":false}
+{"fn":"isHistorical","args":[["a",1],{"a":{"b":"c"}}],"ok":false}
+{"fn":"isHistorical","args":[{"a":"b"},["a",1]],"ok":false}
+{"fn":"isHistorical","args":["x",{"a":{"b":"c"}}],"ok":false}
+{"fn":"isHistorical","args":["x",["a",1]],"ok":false}
+{"fn":"isHistorical","args":[{},["a",1]],"ok":false}
+{"fn":"isHistorical","args":[0,"x"],"ok":false}
+{"fn":"isHistorical","args":[{},"x"],"ok":false}
+{"fn":"isHistorical","args":["x",{}],"ok":false}
+{"fn":"isHistorical","args":[["a",1]],"ok":false}
+{"fn":"isHistorical","args":[{},{}],"ok":false}
+{"fn":"isHistorical","args":[{}],"ok":false}
+{"fn":"isHistorical","args":[{"a":{"b":"c"}},0],"ok":false}
+{"fn":"isHistorical","args":[{"a":{"b":"c"}},{}],"ok":false}
+{"fn":"isHistorical","args":[0,{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":[true,{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":[{"a":{"b":"c"}}],"ok":false}
+{"fn":"isHistorical","args":[{"a":"b"},{}],"ok":false}
+{"fn":"isHistorical","args":[{"a":{"b":"c"}},{"a":"b"}],"ok":false}
+{"fn":"isHistorical","args":[0,{"a":{"b":"c"}}],"ok":false}
+{"fn":"isHistorical","args":[null,"x"],"ok":false}
+{"fn":"isHistorical","args":[{"a":{"b":"c"}},null],"ok":false}
+{"fn":"isHistorical","args":[0,{}],"ok":false}
+{"fn":"isHistorical","args":[{"a":{"b":"c"}},[]],"ok":false}
+{"fn":"isHistorical","args":[0,["a",1]],"ok":false}
+{"fn":"isHistorical","args":[["a",1],true],"ok":false}
+{"fn":"isHistorical","args":["x",null],"ok":false}
+{"fn":"isHistorical","args":[null,{}],"ok":false}
+{"fn":"isHistorical","args":[["a",1],0],"ok":false}
+{"fn":"isHistorical","args":[[],{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["x","x"],"ok":false}
+{"fn":"isHistorical","args":[0,0],"ok":false}
+{"fn":"isHistorical","args":[{"a":"b"},{"a":{"b":"c"}}],"ok":false}
+{"fn":"isHistorical","args":[{},{"a":"b"}],"ok":false}
+{"fn":"isHistorical","args":[["a",1],[]],"ok":false}
+{"fn":"isHistorical","args":[null,{"a":"b"}],"ok":false}
+{"fn":"isHistorical","args":[null,{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":[true,"x"],"ok":false}
+{"fn":"isHistorical","args":[true,{"a":{"b":"c"}}],"ok":false}
+{"fn":"isHistorical","args":[true,true],"ok":false}
+{"fn":"isHistorical","args":["x"],"ok":false}
+{"fn":"isHistorical","args":[0,[]],"ok":false}
+{"fn":"isHistorical","args":[null,null],"ok":false}
+{"fn":"isHistorical","args":[{},null],"ok":false}
+{"fn":"isHistorical","args":[{},true],"ok":false}
+{"fn":"isHistorical","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"ok":false}
+{"fn":"isHistorical","args":[{"a":"b"},{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":[null,[]],"ok":false}
+{"fn":"isHistorical","args":[[],{"a":"b"}],"ok":false}
+{"fn":"isHistorical","args":[0],"ok":false}
+{"fn":"isHistorical","args":[[],{}],"ok":false}
+{"fn":"isHistorical","args":[["a",1],["a",1]],"ok":false}
+{"fn":"isHistorical","args":[[]],"ok":false}
+{"fn":"isHistorical","args":[true,[]],"ok":false}
+{"fn":"isHistorical","args":[true,["a",1]],"ok":false}
+{"fn":"isHistorical","args":["x",0],"ok":false}
+{"fn":"isHistorical","args":[[],"x"],"ok":false}
+{"fn":"isHistorical","args":[[],0],"ok":false}
+{"fn":"isHistorical","args":[{"a":"b"},null],"ok":false}
+{"fn":"isHistorical","args":[{"a":"b"},true],"ok":false}
+{"fn":"isHistorical","args":[["a",1],"x"],"ok":false}
+{"fn":"isHistorical","args":[null],"ok":false}
+{"fn":"isHistorical","args":[true,{"a":"b"}],"ok":false}
+{"fn":"isHistorical","args":[true,0],"ok":false}
+{"fn":"isHistorical","args":[null,["a",1]],"ok":false}
+{"fn":"isHistorical","args":[{"a":"b"},[]],"ok":false}
+{"fn":"isHistorical","args":[["a",1],{"a":"b"}],"ok":false}
+{"fn":"isHistorical","args":[{"a":"b"}],"ok":false}
+{"fn":"isHistorical","args":[{},[]],"ok":false}
+{"fn":"isHistorical","args":[[],[]],"ok":false}
+{"fn":"isHistorical","args":[{},{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":[null,true],"ok":false}
+{"fn":"isHistorical","args":[["a",1],null],"ok":false}
+{"fn":"isHistorical","args":[["a",1],{}],"ok":false}
+{"fn":"isHistorical","args":[0,null],"ok":false}
+{"fn":"isHistorical","args":[["a",1],{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":[{"a":{"b":"c"}},{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":[0,true],"ok":false}
+{"fn":"isHistorical","args":[{"a":{"b":"c"}},["a",1]],"ok":false}
+{"fn":"isHistorical","args":["x",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":[null,{"a":{"b":"c"}}],"ok":false}
+{"fn":"isHistorical","args":[{"a":"b"},{"a":"b"}],"ok":false}
+{"fn":"isHistorical","args":[{"a":{"b":"c"}},true],"ok":false}
+{"fn":"isHistorical","args":[{"a":"b"},0],"ok":false}
+{"fn":"isHistorical","args":[null,0],"ok":false}
+{"fn":"isHistorical","args":[[],["a",1]],"ok":false}
+{"fn":"isHistorical","args":[[],{"a":{"b":"c"}}],"ok":false}
+{"fn":"isHistorical","args":[{"a":"b"},"x"],"ok":false}
+{"fn":"isHistorical","args":["x",true],"ok":false}
+{"fn":"isHistorical","args":[true],"ok":false}
+{"fn":"isHistorical","args":[true,{}],"ok":false}
+{"fn":"isHistorical","args":[[],true],"ok":false}
+{"fn":"isHistorical","args":[0,{"a":"b"}],"ok":false}
+{"fn":"isHistorical","args":[[],null],"ok":false}
+{"fn":"isHistorical","args":[true,null],"ok":false}
+{"fn":"isHistorical","args":[{},0],"ok":false}
+{"fn":"isHistorical","args":["x",{"a":"b"}],"ok":false}
+{"fn":"isHistorical","args":["x",[]],"ok":false}
+{"fn":"isHistorical","args":[{},{"a":{"b":"c"}}],"ok":false}
+{"fn":"isHistorical","args":["x","X"],"ok":false}
+{"fn":"isHistorical","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},"x"],"ok":false}
+{"fn":"isHistorical","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},"x"],"ok":false}
+{"fn":"isHistorical","args":[[3,1,2],"x"],"ok":false}
+{"fn":"norm","args":[true],"ok":"true"}
+{"fn":"norm","args":[null],"ok":""}
+{"fn":"norm","args":[{"a":"b"}],"ok":"[object object]"}
+{"fn":"norm","args":[["a",1]],"ok":"a,1"}
+{"fn":"norm","args":["x"],"ok":"x"}
+{"fn":"norm","args":[0],"ok":""}
+{"fn":"norm","args":[{}],"ok":"[object object]"}
+{"fn":"norm","args":[{"a":{"b":"c"}}],"ok":"[object object]"}
+{"fn":"norm","args":[[]],"ok":""}
+{"fn":"norm","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":"[object object]"}
+{"fn":"norm","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":"[object object]"}
+{"fn":"norm","args":[[3,1,2]],"ok":"3,1,2"}
+{"fn":"clauses","args":[null],"ok":[]}
+{"fn":"clauses","args":[{"a":"b"}],"ok":["[object Object]"]}
+{"fn":"clauses","args":[0],"ok":[]}
+{"fn":"clauses","args":[{"a":{"b":"c"}}],"ok":["[object Object]"]}
+{"fn":"clauses","args":[true],"ok":["true"]}
+{"fn":"clauses","args":[{}],"ok":["[object Object]"]}
+{"fn":"clauses","args":["x"],"ok":["x"]}
+{"fn":"clauses","args":[[]],"ok":[]}
+{"fn":"clauses","args":[["a",1]],"ok":["a,1"]}
+{"fn":"clauses","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":["[object Object]"]}
+{"fn":"clauses","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":["[object Object]"]}
+{"fn":"clauses","args":[[3,1,2]],"ok":["3,1,2"]}
+{"fn":"classifyScope","args":[{},{"a":"b"}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[null,"x"],"error":"Cannot read properties of null (reading 'normalize')"}
+{"fn":"classifyScope","args":[0,["a",1]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[[],0],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[[],["a",1]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[null,["a",1]],"error":"Cannot read properties of null (reading 'normalize')"}
+{"fn":"classifyScope","args":[true,{}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[["a",1],true],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[true,[]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":{"b":"c"}},0],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":{"b":"c"}},{"a":"b"}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":["x",{}],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":[null,0],"error":"Cannot read properties of null (reading 'normalize')"}
+{"fn":"classifyScope","args":[["a",1],{"a":{"b":"c"}}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":"b"},[]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":["x",["a",1]],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":[{},{}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":["x",[]],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":[null,true],"error":"Cannot read properties of null (reading 'normalize')"}
+{"fn":"classifyScope","args":[{},true],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[[],true],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[true,["a",1]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":"b"},{}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{},0],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[[],"x"],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":"b"},0],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":"b"},{"a":{"b":"c"}}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":{"b":"c"}},{}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":["X","x"],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":[0,{"a":{"b":"c"}}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[[],{"a":"b"}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[["a",1],null],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[[],null],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":["x","x"],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":[{},null],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[0,{}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":{"b":"c"}},["a",1]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[0,{"a":"b"}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[["a",1],{}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[true,{"a":"b"}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{},["a",1]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[true,0],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":{"b":"c"}},[]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[null,null],"error":"Cannot read properties of null (reading 'normalize')"}
+{"fn":"classifyScope","args":[0,"x"],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":"b"},{"a":"b"}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":"b"},true],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":{"b":"c"}},"x"],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":"b"},["a",1]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[["a",1],"x"],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[0,true],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[["a",1],0],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":"b"},"x"],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[["a",1],["a",1]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":{"b":"c"}},null],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":["x",{"a":"b"}],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":[true,{"a":{"b":"c"}}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[true,true],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[true,null],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[null,{}],"error":"Cannot read properties of null (reading 'normalize')"}
+{"fn":"classifyScope","args":[{},[]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":["x",null],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":[{},"x"],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[0,0],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":["x",0],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":["x",true],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":[null,{"a":{"b":"c"}}],"error":"Cannot read properties of null (reading 'normalize')"}
+{"fn":"classifyScope","args":[[],[]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[0,null],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[[],{"a":{"b":"c"}}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[["a",1],{"a":"b"}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":["x",{"a":{"b":"c"}}],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":[[],{}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[true,"x"],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[null,{"a":"b"}],"error":"Cannot read properties of null (reading 'normalize')"}
+{"fn":"classifyScope","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":{"b":"c"}},true],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[0,[]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[null,[]],"error":"Cannot read properties of null (reading 'normalize')"}
+{"fn":"classifyScope","args":[["a",1],[]],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{},{"a":{"b":"c"}}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"a":"b"},null],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":["x","X"],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},{"a":"b"}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},{"a":"b"}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[[3,1,2],{"a":"b"}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{},{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{},{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"error":"span.normalize is not a function"}
+{"fn":"classifyScope","args":[{},[3,1,2]],"error":"span.normalize is not a function"}
+{"fn":"isHistorical","args":["Banjir besar melanda Jakarta pada tahun 2020"],"ok":true}
+{"fn":"isHistorical","args":["Banjir besar melanda Jakarta pada tahun 2020",2026],"ok":true}
+{"fn":"isHistorical","args":["Banjir besar melanda Jakarta pada tahun 2026",2026],"ok":false}
+{"fn":"isHistorical","args":["Banjir besar melanda Jakarta pada tahun 2027",2026],"ok":false}
+{"fn":"isHistorical","args":["Gempa hari ini mengguncang Cianjur pukul 14:30 WIB, mirip gempa tahun 2022",2026],"ok":false}
+{"fn":"isHistorical","args":["Hari ini mengenang gempa Aceh tahun 2004",2026],"ok":true}
+{"fn":"isHistorical","args":["Kilas balik pagi ini tentang kerusuhan tahun 1998",2026],"ok":true}
+{"fn":"isHistorical","args":["Program yang sudah berjalan sejak tahun 2020 di Jakarta",2026],"ok":false}
+{"fn":"isHistorical","args":["Gedung yang dibangun pada tahun 2015 ambruk",2026],"ok":false}
+{"fn":"isHistorical","args":["Pabrik didirikan tahun lalu terbakar",2026],"ok":false}
+{"fn":"isHistorical","args":["Dulu waktu pandemi covid-19 semua kantor tutup",2026],"ok":true}
+{"fn":"isHistorical","args":["Sejarah pajak di Indonesia era Orde Baru",2026],"ok":true}
+{"fn":"isHistorical","args":["Coretax DJP mengalami gangguan sekarang pukul 09.15 WIB",2026],"ok":false}
+{"fn":"isHistorical","args":["Kebakaran pasar terjadi barusan di Bandung",2026],"ok":false}
+{"fn":"isHistorical","args":["Tahun lalu banjir merendam Bekasi",2026],"ok":true}
+{"fn":"isHistorical","args":["Last year a major earthquake struck the region",2026],"ok":true}
+{"fn":"isHistorical","args":["2020 masa lockdown covid sangat berat",2026],"ok":true}
+{"fn":"isHistorical","args":["",2026],"ok":false}
+{"fn":"isHistorical","args":[null,2026],"ok":false}
+{"fn":"isHistorical","args":["Banjir merendam Surabaya"],"ok":false}
+{"fn":"isHistorical","args":["Era 1998 penuh gejolak politik",2026],"ok":true}
+{"fn":"isHistorical","args":["Masjid berdiri sejak 1980 mengalami kerusakan",2026],"ok":true}
+{"fn":"isHistorical","args":["Nostalgia malam ini soal banjir tempo dulu",2026],"ok":true}
+{"fn":"norm","args":["Banjir di JAKARTA!! https://t.co/abc123   parah banget"],"ok":"banjir di jakarta!! parah banget"}
+{"fn":"norm","args":["CoreTax DJP\t\n  Error   http://example.com/path?a=1&b=2  lagi"],"ok":"coretax djp error lagi"}
+{"fn":"norm","args":["Ｆｕｌｌｗｉｄｔｈ　Ｔｅｘｔ ①②③"],"ok":"fullwidth text 123"}
+{"fn":"norm","args":[""],"ok":""}
+{"fn":"norm","args":[null],"ok":""}
+{"fn":"norm","args":[12345],"ok":"12345"}
+{"fn":"norm","args":["   Spasi   berlebih\r\ndan\nbaris baru   "],"ok":"spasi berlebih dan baris baru"}
+{"fn":"clauses","args":["Banjir melanda Jl. Sudirman No. 10 Jakarta. Warga dievakuasi ke posko!"],"ok":["Banjir melanda Jl. Sudirman No. 10 Jakarta","Warga dievakuasi ke posko"]}
+{"fn":"clauses","args":["PT. Telekomunikasi Indonesia Tbk. mengumumkan gangguan. Pelanggan diminta bersabar?"],"ok":["PT. Telekomunikasi Indonesia Tbk. mengumumkan gangguan","Pelanggan diminta bersabar"]}
+{"fn":"clauses","args":["Dr. Budi dari Prof. Andi melaporkan gempa di Kab. Cianjur.\n\nKorban jiwa nihil; kerusakan sedang didata."],"ok":["Dr. Budi dari Prof. Andi melaporkan gempa di Kab. Cianjur","Korban jiwa nihil","kerusakan sedang didata."]}
+{"fn":"clauses","args":["Info pajak &amp; coretax: Rp. 500.000 &mdash; lihat https://pajak.go.id/info. Segera lapor SPT!"],"ok":["Info pajak & coretax: Rp. 500.000 — lihat   Segera lapor SPT"]}
+{"fn":"clauses","args":["Kombes Pol. Andi dan Brigjen TNI Budi hadir di Kec. Coblong, Kel. Dago. Situasi aman."],"ok":["Kombes Pol. Andi dan Brigjen TNI Budi hadir di Kec. Coblong, Kel. Dago","Situasi aman."]}
+{"fn":"clauses","args":["KM. 42 tol Cikampek macet total; kecelakaan beruntun terjadi! Apakah ada korban?"],"ok":["KM. 42 tol Cikampek macet total","kecelakaan beruntun terjadi","Apakah ada korban"]}
+{"fn":"clauses","args":["Baris satu\n\nBaris dua!!! Baris tiga??? Baris empat;;;"],"ok":["Baris satu","Baris dua","Baris tiga","Baris empat"]}
+{"fn":"clauses","args":["Nilai 3.14 tidak memecah klausa. Sedangkan ini memecah. À bientôt."],"ok":["Nilai 3.14 tidak memecah klausa","Sedangkan ini memecah","À bientôt."]}
+{"fn":"clauses","args":[""],"ok":[]}
+{"fn":"clauses","args":[null],"ok":[]}
+{"fn":"clauses","args":["H. Ahmad dan Hj. Siti di Ds. Sukamaju RT. 01 RW. 02 melaporkan kebakaran."],"ok":["H. Ahmad dan Hj. Siti di Ds. Sukamaju RT. 01 RW. 02 melaporkan kebakaran."]}
+{"fn":"classifyScope","args":["Banjir merendam pemukiman warga di Bekasi Jawa Barat",null],"ok":{"scope":"Indonesia","location":{"name":"Bekasi","prov":"Jawa Barat","prec":"kab","la":-6.2360139577925855,"lo":106.9942480407117,"provCode":"32","kabCode":"32.75"}}}
+{"fn":"classifyScope","args":["Coretax DJP mengalami gangguan akses pelaporan SPT hari ini",null],"ok":{"scope":"Indonesia","location":null}}
+{"fn":"classifyScope","args":["IHSG anjlok dan rupiah melemah tajam hari ini",null],"ok":{"scope":"Indonesia","location":null}}
+{"fn":"classifyScope","args":["Earthquake hits Tokyo Japan causing tsunami alert",null],"ok":{"scope":"foreign","location":null}}
+{"fn":"classifyScope","args":["Wildfire spreads across California United States",null],"ok":{"scope":"foreign","location":null}}
+{"fn":"classifyScope","args":["Banjir melanda Jakarta dan Tokyo secara bersamaan",null],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":["DJP dan Kemenkeu menghadiri pertemuan di Washington DC",null],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":["Serangan udara terjadi di Gaza Palestina hari ini",null],"ok":{"scope":"foreign","location":null}}
+{"fn":"classifyScope","args":["Baku tembak terjadi di Intan Jaya Papua",null],"ok":{"scope":"Indonesia","location":{"name":"Intan Jaya","prov":"Papua Tengah","prec":"kab","la":-3.7405289181387547,"lo":137.04395179418287,"provCode":"94","kabCode":"94.07"}}}
+{"fn":"classifyScope","args":["Kebakaran melanda pasar di Kota Bandung",null],"ok":{"scope":"Indonesia","location":{"name":"Bandung","prov":"Jawa Barat","prec":"kab","la":-6.910655826355507,"lo":107.60986952537303,"provCode":"32","kabCode":"32.73"}}}
+{"fn":"classifyScope","args":["Cuaca cerah sekali hari ini tanpa nama tempat",null],"ok":{"scope":"unknown","location":null}}
+{"fn":"classifyScope","args":["Desa Sukamaju dilanda banjir bersama berita dari Malaysia",null],"ok":{"scope":"foreign","location":null}}
+{"fn":"classifyScope","args":["Peringatan dini BMKG soal hujan ekstrem",null],"ok":{"scope":"Indonesia","location":null}}
+{"fn":"classifyScope","args":["São Paulo dan París mengalami banjir besar",null],"ok":{"scope":"foreign","location":null}}
+{"fn":"classifyScope","args":["KPP Pratama Jakarta Selatan melakukan sosialisasi Coretax",null],"ok":{"scope":"Indonesia","location":{"name":"Jakarta Selatan","prov":"Daerah Khusus Ibukota Jakarta","prec":"kab","la":-6.247775007302514,"lo":106.80763679653259,"provCode":"31","kabCode":"31.74"}}}
+{"fn":"classifyScope","args":["Gempa magnitudo 5.2 mengguncang Cianjur Jawa Barat",null],"ok":{"scope":"Indonesia","location":{"name":"Cianjur","prov":"Jawa Barat","prec":"kab","la":-6.822746173673224,"lo":107.1394835830441,"provCode":"32","kabCode":"32.03"}}}
+{"fn":"classifyScope","args":["Demo buruh berlangsung di depan Gedung DPR Jakarta",null],"ok":{"scope":"Indonesia","location":{"name":"DPR / MPR Senayan","prov":"DKI Jakarta","prec":"poi","la":-6.2185,"lo":106.8002}}}
+{"fn":"classifyScope","args":["Serangan siber ransomware menyerang server rumah sakit di Surabaya",null],"ok":{"scope":"Indonesia","location":{"name":"Surabaya","prov":"Jawa Timur","prec":"kab","la":-7.258891323638141,"lo":112.74703888119626,"provCode":"35","kabCode":"35.78"}}}
+{"fn":"classifyScope","args":["",null],"ok":{"scope":"unknown","location":null}}
+{"fn":"isHistorical","args":["Banjir merendam rumah warga di Bekasi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["BMKG keluarkan peringatan hujan ekstrem untuk Jakarta",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Saya baca berita banjir Jakarta dari Bandung",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kebakaran rumah warga di Depok, 3 orang luka",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kebakaran rumah di Bekasi menewaskan dua warga.",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Jakarta banjir nggak sih?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Air udah masuk rumah gue di Bekasi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Jalan ambruk di Bogor, kendaraan terjebak",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Gempa M5.2 dirasakan warga di Bandung",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Gempa di Jepang.",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Ada yang dengar ledakan di daerah Jakarta?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kebakaran hebat melalap puluhan kios di Pasar Minggu Jakarta Selatan, petugas damkar berusaha padamkan api",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Apa itu ransomware?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Tutorial menghapus malware",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Tanggul Kali Bekasi jebol, permukiman warga terendam air setinggi pinggang orang dewasa",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Tanah longsor menutup jalan utama di Sukabumi, dua rumah warga rusak tertimbun",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["PDN diserang ransomware, server terenkripsi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Karhutla meluas di lahan gambut Palangka Raya, kabut asap pekat menyelimuti kota",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["malware",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Gunung Marapi erupsi pagi ini, hujan abu mengguyur wilayah Agam Sumatera Barat",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Ransomware hits hospital in London",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Angin puting beliung menerjang kawasan Rancaekek Bandung, puluhan atap rumah beterbangan",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Gempa magnitudo 5 mengguncang Aceh, warga waspada",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kecelakaan beruntun di Tol Cipularang KM 92 arah Bandung, tiga orang luka dievakuasi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["BMKG: peringatan dini tsunami di Aceh",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kapal feri tenggelam di perairan Selat Bali, tim Basarnas evakuasi penumpang",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Gunung Marapi erupsi, hujan abu guyur Agam",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Baku tembak antara aparat TNI Polri dan KKB terjadi di Intan Jaya Papua",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Pelaku begal bersenjata tajam ditangkap polisi di Tambora Jakarta Barat",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Seorang pria tewas tertembak pelaku curanmor di Bekasi Timur",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Gedung ambruk di Bandung menimpa warga",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Pembunuhan terjadi di Bekasi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Ratusan mahasiswa dan buruh menggelar aksi unjuk rasa di depan Gedung DPR RI Senayan",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kasus DBD bertambah di Depok",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Puluhan siswa SDN di Cirebon diduga keracunan makanan MBG dan dilarikan ke puskesmas",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kapal tenggelam di perairan Aceh",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Listrik padam total melanda sebagian besar wilayah Sleman Yogyakarta sejak sore tadi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Server layanan publik PDN lumpuh diserang ransomware dan data terenkripsi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Belasan siswa SDN di Cirebon diduga keracunan MBG, dilarikan ke rumah sakit",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Pohon tumbang menimpa mobil yang melintas di Jalan Sudirman Depok akibat angin kencang",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Atap bangunan sekolah di Garut ambruk saat hujan deras mengguyur",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Warga di Kebumen keracunan massal usai santap makanan resepsi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Tiga warga tewas usai pesta miras oplosan di Tasikmalaya",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kasus DBD melonjak di Kota Bogor, puluhan pasien anak dirawat di RSUD",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["The rest will be a Tsunami.",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Bentrok massa pecah di depan kantor DPRD Makassar saat aksi demonstrasi berlangsung",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["BMKG keluarkan peringatan dini tsunami untuk wilayah pesisir Aceh pascagempa M7.1",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["BPBD DKI Jakarta mengeluarkan status siaga banjir di bantaran Sungai Ciliwung malam ini",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["BMKG rilis peringatan dini cuaca ekstrem dan angin kencang untuk wilayah Jawa Timur hingga malam",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["BNPB imbau warga pesisir Padang waspada gelombang pasang akibat bibit siklon tropis",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Polda Metro Jaya kerahkan personel siapkan pengamanan aksi unjuk rasa di Patung Kuda Jakarta",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["#Gempa Info Gempa Mag:4.8, 10-Nov-26 11:20:15 WIB, Lok: 7.45 LS - 107.12 BT (Kab. Cianjur-Jabar), Kedlmn: 10 km #BMKG",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["PLN umumkan pemadaman listrik darurat akibat trafo gardu induk terbakar di Semarang",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["air sudah selutut masuk kamar kosan gue di jaktim tolong",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["barusan kerasa lindhu gede banget di jogja, rumah pada bergetar",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["caah gede pisan di bandung selatan, caina geus asup ka imah warga",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["banyu kali wis mlebu omah nang semarang timur, warga mulai ngungsi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["ruko sebelah kebakar gede bgt di cengkareng, asap item membumbung tinggi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Jakarta flooding parah banget malam ini, mobil pada kejebak di Kemang",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Road collapsed di daerah Bogor, banyak kendaraan terjebak macet total",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Mass evacuation after banjir bandang melanda pemukiman warga di Garut",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["mati lampu massal di daerah bekasi barat udah dua jam gardu meledak barusan",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["banjiiir masuk ke rumah-rumah warga di dayeuhkolot bandung #BanjirBandung",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["cộng đồng crypto membahas ransomware dan hacker.",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Politik di Senayan Jakarta lagi panas menjelang rapat paripurna",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Dokumen rahasia film baru bocor di media sosial setelah akun penggemar diretas?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Belum ada laporan korban jiwa akibat gempa yang terasa di Garut tadi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Apa itu ransomware dan bagaimana cara mencegah kebocoran data perusahaan?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Tips kesiapsiagaan gempa bumi dan isi tas bencana keluarga untuk warga Jakarta",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Seandainya besok banjir besar melanda Bekasi lagi, bagaimana skema evakuasinya?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Anyone tahu kondisi Semarang sekarang apakah masih banjir?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Di daerah Tebet Jakarta Selatan lagi mati lampu juga nggak sih?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Tol Cipularang masih macet gara-gara kecelakaan tadi atau udah lancar?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Katanya di Bekasi tanggul kali ada yang jebol lagi ya barusan?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Denger-denger ada kebakaran pabrik di kawasan industri Cikarang katanya",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Saya lagi di Bandung, baca berita banjir parah di Jakarta hari ini",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Update demo mahasiswa di depan Gedung DPRD Jawa Timur masih berlangsung tertib",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Ramai dibahas netizen soal dampak kebijakan terhadap aksi demo buruh di Jakarta pekan ini",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["BMKG: Gempa magnitudo 5.2 guncang Sukabumi, getaran terasa hingga Bandung",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Gempa terasa kencang banget di Garut barusan, warga berhamburan keluar rumah",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Antrean BBM Pertalite di SPBU wilayah Bandung makin panjang sejak pagi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Harga beras medium di pasar tradisional Jakarta kembali merangkak naik pekan ini",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Gunung Semeru meletus lagi pagi ini, semburkan awan panas guguran sejauh 3 km",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Gempa bumi M6.0 mengguncang Chiba Jepang tadi malam, saya membacanya dari Jakarta",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kebakaran besar melanda kawasan perumahan di Kelantan Malaysia petang tadi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["tapi kebakaran hebat melanda pasar di Depok",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Puting beliung terjang pemukiman warga di Ciamis, puluhan atap rumah rusak",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Tapi beneran terjadi kebakaran ruko di Bekasi menewaskan dua warga.",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Mahasiswa BEM gelar aksi tolak kebijakan di Tugu Tani Jakarta #karhutla #kebakaranhutan",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Polres Metro Bekasi Kota evakuasi korban kecelakaan lalu lintas di Jalan Cut Mutia Bekasi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Gibran dan Prabowo hadir dalam rapat paripurna di Jakarta membahas APBN",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Korban berjatuhan dan kendaraan berserakan akibat tabrakan beruntun di Tol Semarang",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Rumah-rumah warga di Kampung Melayu Jakarta Timur terendam banjir luapan Ciliwung",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Pelaku pembunuhan warga di Karawang berhasil diringkus aparat Polres Karawang",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Pabrik tekstil di Bandung tutup dan lakukan PHK ratusan buruh minggu ini",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Bursa Efek Indonesia memberlakukan trading halt setelah IHSG anjlok tajam",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Tiga warga tewas akibat keracunan miras oplosan di Tasikmalaya Jawa Barat",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Situs layanan RSUD di Surabaya diretas kelompok hacker dan database pasien dibocorkan",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Jembatan penghubung antar kecamatan di Lebak Banten putus diterjang banjir bandang",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Banjir bandang di Texas Amerika Serikat merendam ratusan mobil di jalan raya",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Menteri keuangan baru dilantik oleh Presiden di Istana Negara Jakarta",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["KPU menetapkan jadwal pemungutan suara ulang di Kabupaten Serang akibat pelanggaran",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["barusan kerasa lindhu gede banget di jogja",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["caah gede pisan di bandung selatan caina geus asup ka imah",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["banyu kali wis mlebu omah nang semarang timur",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Gudang tekstil di Bandung terbakar hebat malam ini",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Pelaku curanmor diamankan polisi di Polsek Bekasi Timur",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Database pasien RSUD Surabaya bocor dan dijual di forum hacker",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kebakaran ruko di Depok, 3 orang luka dibawa ke RS",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Saya membaca berita banjir Jakarta dari Bandung",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Banjir merendam permukiman warga di Bekasi Barat malam ini",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Air udah masuk rumah gue di Bekasi Barat malam ini tolong",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["BMKG keluarkan peringatan hujan ekstrem untuk Jakarta Selatan malam ini",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["RT @detikcom: Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kebakaran hebat melalap 20 kios di Pasar Baru Bekasi pagi ini, tim damkar berjibaku padamkan api #viral via @detikcom",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Air udah masuk rumah gue di Pondok Gede Bekasi setelah tanggul jebol",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Tanggul Kali Bekasi jebol di Pondok Gede Bekasi, puluhan rumah warga terendam banjir",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Banjir merendam puluhan rumah warga di Bekasi Timur pagi ini",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Banjir!",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["BMKG keluarkan peringatan hujan ekstrem disertai angin kencang untuk wilayah Jakarta Selatan",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Air udah masuk rumah gue di Bekasi setelah hujan deras sejam",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Ada yang dengar suara ledakan keras di daerah Jakarta barusan?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kebakaran melalap 4 ruko di Jalan Margonda Depok malam ini petugas damkar sudah di lokasi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Me habrá dado covid?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["L’INFIDÉLITÉ : un nouveau Covid ?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Nouveau variant du COVID @grok ?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["o covid assusta o povo, né?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Varian Baharu COVID-19 PJ.2.1 Dikesan Di Beberapa Negara, Sejauh Mana Bahayanya?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Nationwide blackout?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["So apparently there’s gonna be a blackout?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["What happens if tsunami comes ?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Who Runs the Ransomware Group Qilin?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["COVID :Cancer?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["IHSG Kebakaran +0,21%",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Apakah vaksin covid aman untuk ibu hamil?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kenapa harga beras mahal?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Ada yang tau kenapa bbm langka?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Jujurly agak parno covid lagi naik ya di Jaksel, ada yg ngerasa badan meriang juga ga sih guys?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Literally di Kemang blackout parah bgt udah 2 jam, PLN ada info kapan nyala ga sih?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Guys ada yg ngerasa gempa barusan di Jakarta Selatan ga sih?",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["PIM MATI LAMPU?????",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kebakaran ruko di Bandung saat jemaah salat jumat, damkar evakuasi warga",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Banjir merendam Jl Kemang Raya Jakarta Selatan setinggi 60 cm pagi ini, warga evakuasi",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["BNPB melaporkan banjir merendam Jl Kemang Raya Jakarta Selatan setinggi 60 cm pagi ini, tim evakuasi warga",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Banjir di Jl Kemang Raya Jakarta Selatan makin tinggi 60 cm pagi ini, air masuk rumah warga",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Info Gempa Mag:3.1, 13-Nov-26 04:10:00 WIB, Lok:7.12 LS,106.45 BT (35 km Tenggara Kab Sukabumi), Kedlmn:10 Km #BMKG Disclaimer: informasi mengutamakan kecepatan",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Info Gempa Mag:3.4, 13-Nov-26 04:05:00 WIB, Lok:7.20 LS,106.50 BT (40 km Tenggara Kab Garut), Kedlmn:12 Km #BMKG",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Gempa Magnitudo 5.2 dirasakan kuat di Bandung Selatan warga berhamburan keluar rumah",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Kebakaran hebat gudang di Bekasi Timur barusan, asap hitam membubung dan damkar meluncur",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Info Gempa Mag:3.1, 13-Nov-26 04:10:00 WIB, Lok:7.12 LS,106.45 BT (35 km Tenggara Kab Sukabumi), Kedlmn:10 Km #BMKG",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Info Gempa Mag:5.8, 13-Nov-26 04:05:00 WIB, Lok:7.15 LS,106.48 BT (32 km Tenggara Kab Sukabumi), Kedlmn:12 Km, Dirasakan III MMI Sukabumi #BMKG",{"$undefined":true}],"ok":false}
+{"fn":"isHistorical","args":["Banjir puluhan rumah warga terendam hujan deras sejak malam di Bekasi Utara",{"$undefined":true}],"ok":false}

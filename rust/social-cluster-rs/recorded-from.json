@@ -1,0 +1,17 @@
+{
+  "unit": "src/social-cluster.js",
+  "files": 1,
+  "fingerprint": "df94052cdc35c376",
+  "coverage": {
+    "lines": 501,
+    "reached": 501,
+    "files": [
+      {
+        "file": "src/social-cluster.js",
+        "lines": 501,
+        "reached": 501,
+        "missed": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "unit": "src/indonesian-nlp.js",
+  "files": 1,
+  "fingerprint": "666e9715b9f60d90",
+  "coverage": {
+    "lines": 2062,
+    "reached": 1939,
+    "files": [
+      {
+        "file": "src/geocode.js",
+        "lines": 649,
+        "reached": 603,
+        "missed": "601-604, 606-608, 611-613, 629-630, 643, 658-689, 694"
+      },
+      {
+        "file": "src/indonesian-nlp.js",
+        "lines": 1413,
+        "reached": 1336,
+        "missed": "478-480, 538-540, 571-574, 593-597, 655-657, 713, 933-934, 1128-1136, 1264-1266, 1269, 1271-1277, 1319-1350, 1396-1397, 1409-1410"
+      }
+    ]
+  }
+}

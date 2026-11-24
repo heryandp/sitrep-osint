@@ -4,6 +4,6 @@ Build: `rust/app/target/debug/djp-sitrep`
 
 Passed: 272/272
 
-Fallback rate: 100.0% (272/272 cases answered by the original)
+Fallback rate: 97.4% (265/272 cases answered by the original)
 
 Every case matches.

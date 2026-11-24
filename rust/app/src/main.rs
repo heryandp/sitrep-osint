@@ -1,3 +1,4 @@
+mod middleware;
 mod original;
 mod units;
 
@@ -10,7 +11,9 @@ use original::shutdown_signal;
 async fn main() {
     original::report_fallbacks();
     let original = original::Original::start().await;
-    let app = units::router().with_state(original.clone());
+    let app = units::router()
+        .layer(axum::middleware::from_fn(middleware::rate_limit_middleware))
+        .with_state(original.clone());
     let port = std::env::var("PORT")
         .ok()
         .and_then(|p| p.parse().ok())
