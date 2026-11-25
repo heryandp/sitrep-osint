@@ -301,6 +301,7 @@ function renderX(){
     }, 850);
   }
   updateDistress();
+  renderStreams();
 }
 $('#xlist').addEventListener('click', e => {
   if (e.target.closest('.xmore')) { xShown += 30; renderX(); }
@@ -314,7 +315,7 @@ $('#qchips').addEventListener('click', e => {
 });
 $('#xq').addEventListener('input', debounce(() => { xShown = 30; renderX(); }, 140));
 
-let tPosts = [], tAt = 0, tBusy = false, socTab = 'threads';
+let tPosts = [], tAt = 0, tBusy = false, socTab = 'streams';
 let tQuery = '', tQueries = [], tTrending = [], tErrs = [], tNewestTs = 0;
 const tAll = new Map(); let tShown = 30;
 let tCold = false, tEmptyStreak = 0, tErrStreak = 0, tLastErr = '';
@@ -403,6 +404,7 @@ function renderThreads(){
     : `<div class="empty${tWait ? ' wait' : ''}">${tMsg}</div>`) +
     (list.length > tShown ? `<button class="xmore" type="button">Muat ${Math.min(30, list.length - tShown)} lagi · ${list.length - tShown} tersisa</button>` : '');
   updateDistress();
+  renderStreams();
 }
 $('#tlist').addEventListener('click', e => {
   if (e.target.closest('.xmore')) { tShown += 30; renderThreads(); }
@@ -468,18 +470,152 @@ async function pullThreads(){
   } finally { tBusy = false; }
 }
 schedulePoll(() => pullThreads(), 90000, { dedupGlobalMs: 20000 });
-function setSocTab(t){
-  socTab = t;
-  $$('.soc-tab').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === t ? 'true' : 'false'));
-  $('#pane-x').hidden = t !== 'x';
-  $('#pane-th').hidden = t !== 'threads';
-  $('#xmeta').hidden = t !== 'x';
-  $('#tmeta').hidden = t !== 'threads';
-  if (t === 'threads' && !tPosts.length) pullThreads();
+const STREAM_KW = {
+  coretax: ['coretax', 'djp online', 'ebupot', 'efaktur', 'e-faktur', 'sertel', 'sertifikat', 'gagal bayar', 'billing', 'error', 'eror', 'down', 'gangguan', 'maintenance', 'antre', 'antrean', 'server down', 'susah login', 'spt'],
+  regulasi: ['pajak', 'ppn', 'pph', 'tarif', 'ter', 'tax amnesty', 'amnesti', 'restitusi', 'dividen', 'fiskal', 'kemenkeu', 'menkeu', 'sri mulyani', 'anggaran', 'apbn', 'target pajak', 'wajib pajak', 'npwp', 'nik', 'pemadanan', 'fiskus'],
+  kritis: ['faktur fiktif', 'penipuan', 'korupsi', 'suap', 'calo', 'pemerasan', 'viral', 'boikot', 'demo', 'protes', 'kpk', 'kejaksaan', 'tersangka', 'ditangkap', 'gadungan', 'kebocoran data', 'hacker', 'breach', 'rugikan negara', 'gratifikasi']
+};
+
+const streamQ = { coretax: '', regulasi: '', kritis: '' };
+
+function assessSentiment(text){
+  const t = (text || '').toLowerCase();
+  const critWords = ['faktur fiktif', 'penipuan', 'korupsi', 'suap', 'calo', 'pemerasan', 'viral', 'boikot', 'tersangka', 'kejaksaan', 'ditangkap', 'bocor', 'hacker', 'breach', 'rugikan negara'];
+  const warnWords = ['eror', 'error', 'down', 'gangguan', 'susah login', 'lambat', 'gagal', 'keluhan', 'kecewa', 'ribet', 'antre', 'tidak bisa', 'server down'];
+  const posWords = ['mudah', 'cepat', 'lancar', 'terima kasih', 'bagus', 'solutif', 'apresiasi', 'sukses', 'berhasil', 'membantu', 'mantap', 'keren', 'jempol'];
+
+  if (critWords.some(w => t.includes(w))) return { label: 'Kritis', cls: 'sent-crit', score: -2 };
+  if (warnWords.some(w => t.includes(w))) return { label: 'Keluhan', cls: 'sent-warn', score: -1 };
+  if (posWords.some(w => t.includes(w))) return { label: 'Positif', cls: 'sent-pos', score: 1 };
+  return { label: 'Netral', cls: 'sent-neu', score: 0 };
 }
+
+function allSocialPosts(){
+  const res = [];
+  const seen = new Set();
+  const add = (p, plat) => {
+    if (!p) return;
+    const id = (plat || 'th') + '_' + (p.id || p.post_id || p.uri || (p.text || '').slice(0, 24));
+    if (seen.has(id)) return;
+    seen.add(id);
+    res.push(Object.assign({}, p, { _plat: plat }));
+  };
+  (tPosts || []).forEach(p => add(p, 'th'));
+  (xPosts || []).forEach(p => add(p, 'x'));
+  return res;
+}
+
+function postStreamMatch(p, streamKey){
+  const txt = ((p.text || '') + ' ' + (p.full_name || p.name || '') + ' ' + (p.username || p.handle || '')).toLowerCase();
+  const kw = STREAM_KW[streamKey] || [];
+  return kw.some(k => txt.includes(k));
+}
+
+function updateSocTelemetry(posts){
+  if (!posts || !posts.length) return;
+  let pos = 0, neu = 0, neg = 0;
+  posts.forEach(p => {
+    const s = assessSentiment(p.text);
+    if (s.cls === 'sent-pos') pos++;
+    else if (s.cls === 'sent-crit' || s.cls === 'sent-warn') neg++;
+    else neu++;
+  });
+  const tot = posts.length || 1;
+  const pPos = $('#tel-pos-val'); if (pPos) pPos.textContent = Math.round((pos / tot) * 100) + '%';
+  const pNeu = $('#tel-neu-val'); if (pNeu) pNeu.textContent = Math.round((neu / tot) * 100) + '%';
+  const pNeg = $('#tel-neg-val'); if (pNeg) pNeg.textContent = Math.round((neg / tot) * 100) + '%';
+}
+
+function streamCard(p, streamType){
+  const text = p.text || '';
+  const author = p.full_name || p.name || p.username || p.handle || 'Anonim';
+  const handle = p.username || p.handle || '';
+  const timeStr = p.ts && typeof formatWibTime === 'function' ? formatWibTime(p.ts) : p.created_at ? esc(p.created_at).slice(0, 16) : '';
+  const sent = assessSentiment(text);
+  const plat = p._plat === 'x' ? 'x' : 'threads';
+  const platIcon = plat === 'x' ? ic('x') : ic('threads');
+  const link = p.url || (plat === 'x' ? (handle ? `https://x.com/${handle}/status/${p.id}` : '#') : (p.code ? `https://www.threads.net/t/${p.code}` : '#'));
+
+  let hlText = linkify(text);
+  const hlKw = ['coretax', 'djp', 'pajak', 'ppn', 'pph', 'faktur fiktif', 'spt', 'ebupot', 'efaktur', 'sertel'];
+  hlKw.forEach(kw => {
+    const re = new RegExp(`(^|\\s)(${kw})([\\s.,!?]|$)`, 'gi');
+    hlText = hlText.replace(re, `$1<span class="sc-kw-hl">$2</span>$3`);
+  });
+
+  return `<article class="sc-card" data-plat="${plat}">
+    <div class="sc-card-top">
+      ${avatar(p)}
+      <div class="sc-user">
+        <span class="sc-author">${esc(author)}</span>
+        <span class="sc-handle">@${esc(handle)}</span>
+      </div>
+      <span class="sc-tag-sent ${sent.cls}">${sent.label}</span>
+    </div>
+    <div class="sc-text">${hlText}</div>
+    <div class="sc-foot">
+      <div class="sc-kpis">
+        <span class="sc-kpi-item" title="Suka">${ic('heart')} ${num(p.like_count || p.likes || 0)}</span>
+        <span class="sc-kpi-item" title="Balasan">${ic('reply')} ${num(p.reply_count || p.replies || 0)}</span>
+        <span class="sc-kpi-item" title="Platform">${platIcon}</span>
+      </div>
+      <a class="sc-origin" href="${escUrl(link)}" target="_blank" rel="noopener noreferrer" title="Buka tautan asli">${timeStr ? esc(timeStr) : 'Tautan'} ${ic('out')}</a>
+    </div>
+  </article>`;
+}
+
+function renderStreamColumn(streamKey){
+  const el = $('#sc-list-' + streamKey);
+  const cntEl = $('#sc-cnt-' + streamKey);
+  if (!el) return;
+  const all = allSocialPosts();
+  const q = (streamQ[streamKey] || '').toLowerCase().trim();
+  let list = all.filter(p => postStreamMatch(p, streamKey));
+  if (!list.length && all.length) {
+    list = all.slice(0, 15);
+  }
+  if (q) {
+    list = list.filter(p => ((p.text || '') + ' ' + (p.username || p.handle || '')).toLowerCase().includes(q));
+  }
+  if (cntEl) cntEl.textContent = list.length + ' post';
+  if (!list.length) {
+    el.innerHTML = '<div class="empty">Menghubungkan aliran ' + esc(streamKey) + '…</div>';
+    return;
+  }
+  el.innerHTML = list.slice(0, 40).map(p => streamCard(p, streamKey)).join('');
+}
+
+function renderStreams(){
+  renderStreamColumn('coretax');
+  renderStreamColumn('regulasi');
+  renderStreamColumn('kritis');
+  updateSocTelemetry(allSocialPosts());
+}
+
+function setSocTab(t){
+  socTab = t || 'streams';
+  $$('.soc-tab').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === socTab ? 'true' : 'false'));
+  const pStreams = $('#pane-streams');
+  const pX = $('#pane-x');
+  const pTh = $('#pane-th');
+  if (pStreams) pStreams.hidden = socTab !== 'streams';
+  if (pX) pX.hidden = socTab !== 'x';
+  if (pTh) pTh.hidden = socTab !== 'threads';
+  if ($('#xmeta')) $('#xmeta').hidden = socTab !== 'x';
+  if ($('#tmeta')) $('#tmeta').hidden = socTab !== 'threads';
+  if (socTab === 'streams') {
+    renderStreams();
+    if (!tPosts.length) pullThreads();
+    if (!xPosts.length) pullX();
+  } else if (socTab === 'threads' && !tPosts.length) {
+    pullThreads();
+  } else if (socTab === 'x' && !xPosts.length) {
+    pullX();
+  }
+}
+
 $$('.soc-tab').forEach(b => {
   b.addEventListener('click', () => {
-
     const pane = b.closest('.pane');
     if (pane && !pane.classList.contains('open')) pane.classList.add('open');
     setSocTab(b.dataset.tab);
@@ -487,9 +623,25 @@ $$('.soc-tab').forEach(b => {
   b.addEventListener('keydown', e => {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
     e.preventDefault();
-    setSocTab(b.dataset.tab === 'x' ? 'threads' : 'x');
-    $('.soc-tab[aria-selected="true"]').focus();
+    const cur = b.dataset.tab;
+    const next = cur === 'streams' ? (e.key === 'ArrowRight' ? 'threads' : 'x') : cur === 'threads' ? (e.key === 'ArrowRight' ? 'x' : 'streams') : (e.key === 'ArrowRight' ? 'streams' : 'threads');
+    setSocTab(next);
+    const target = $('.soc-tab[data-tab="' + next + '"]');
+    if (target) target.focus();
   });
 });
+
 $('#tq').addEventListener('input', debounce(() => { tShown = 30; renderThreads(); }, 140));
+
+['coretax', 'regulasi', 'kritis'].forEach(k => {
+  const inp = $('#sc-q-' + k);
+  if (inp) {
+    inp.addEventListener('input', debounce(() => {
+      streamQ[k] = inp.value;
+      renderStreamColumn(k);
+    }, 120));
+  }
+});
+
+setSocTab('streams');
 

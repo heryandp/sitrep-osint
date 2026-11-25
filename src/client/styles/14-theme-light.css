@@ -717,6 +717,36 @@ html[data-theme="light"] .gold-meta{color:#716d63}
 html[data-theme="light"] .gold-src{color:#44403c;font-weight:600}
 html[data-theme="light"] .gold-date{color:#716d63}
 
+html[data-theme="light"] .soc-deck{background:#f3f1ec}
+html[data-theme="light"] .soc-col{
+  background:#faf9f6;border-color:#d5d1c7;box-shadow:0 2px 6px rgba(15,23,42,.06);
+}
+html[data-theme="light"] .sc-hdr{background:#ece9e1;border-bottom-color:#d5d1c7}
+html[data-theme="light"] .sc-name{color:#161618}
+html[data-theme="light"] .sc-filter-bar{background:#f4f1ea;border-bottom-color:#e0dcd3}
+html[data-theme="light"] .sc-search{
+  background:#ffffff;border-color:#d0ccc1;color:#161618;
+}
+html[data-theme="light"] .sc-list{background:#faf9f6}
+html[data-theme="light"] .sc-card{background:#ffffff;border-bottom-color:#ece9e1}
+html[data-theme="light"] .sc-card:hover{background:#f8f7f4}
+html[data-theme="light"] .sc-author{color:#161618}
+html[data-theme="light"] .sc-handle{color:#64748b}
+html[data-theme="light"] .sc-text{color:#1e293b}
+html[data-theme="light"] .sc-text a{color:#0284c7}
+html[data-theme="light"] .sc-kw-hl{background:#fef3c7;color:#854d0e}
+html[data-theme="light"] .sc-foot{color:#64748b}
+html[data-theme="light"] .sc-badge-coretax{background:#e0f2fe;color:#0369a1;border-color:#7dd3fc}
+html[data-theme="light"] .sc-badge-regulasi{background:#fef9c3;color:#854d0e;border-color:#fde047}
+html[data-theme="light"] .sc-badge-kritis{background:#fee2e2;color:#b91c1c;border-color:#fca5a5}
+html[data-theme="light"] .sent-pos{background:#dcfce7;color:#15803d;border-color:#86efac}
+html[data-theme="light"] .sent-neu{background:#f1f5f9;color:#475569;border-color:#cbd5e1}
+html[data-theme="light"] .sent-warn{background:#fef3c7;color:#92400e;border-color:#fcd34d}
+html[data-theme="light"] .sent-crit{background:#fee2e2;color:#991b1b;border-color:#fca5a5}
+html[data-theme="light"] .soc-tel-chip.tel-pos{background:#dcfce7;color:#15803d}
+html[data-theme="light"] .soc-tel-chip.tel-neu{background:#f1f5f9;color:#475569}
+html[data-theme="light"] .soc-tel-chip.tel-neg{background:#fee2e2;color:#b91c1c}
+
 html[data-theme="light"] .foot-src{color:#161618;text-decoration-color:rgba(22,22,24,.35)}
 html[data-theme="light"] .foot-src:hover{color:#0b637c;text-decoration-color:#0b637c}
 html[data-theme="light"] .foot-mod b{color:#161618}
