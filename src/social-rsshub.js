@@ -15,8 +15,12 @@ const DEFAULT_FEEDS = [
   { route: 'threads/search/efin', platform: 'threads', topic: 'coretax', stream: 'coretax' },
   { route: 'threads/search/efaktur', platform: 'threads', topic: 'coretax', stream: 'coretax' },
   { route: 'threads/search/ebupot', platform: 'threads', topic: 'coretax', stream: 'coretax' },
+  { route: 'threads/search/kode+billing', platform: 'threads', topic: 'coretax', stream: 'coretax' },
   { route: 'bsky/keyword/coretax', platform: 'bsky', topic: 'coretax', stream: 'coretax' },
+  { route: 'bsky/keyword/efaktur', platform: 'bsky', topic: 'coretax', stream: 'coretax' },
   { route: 'youtube/user/DitjenPajakRI', platform: 'youtube', topic: 'coretax', stream: 'coretax', official: true },
+  { url: 'https://news.google.com/rss/search?q=site:x.com+coretax&hl=id&gl=ID&ceid=ID:id', platform: 'x', topic: 'coretax', stream: 'coretax' },
+  { url: 'https://news.google.com/rss/search?q=site:x.com+efin&hl=id&gl=ID&ceid=ID:id', platform: 'x', topic: 'coretax', stream: 'coretax' },
 
   // [S2] Kebijakan & Regulasi
   { route: 'threads/search/pajak', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
@@ -25,16 +29,24 @@ const DEFAULT_FEEDS = [
   { route: 'threads/search/wajib+pajak', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
   { route: 'threads/search/ppn', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
   { route: 'threads/search/pph+21', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
+  { route: 'threads/search/faktur+pajak', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
   { route: 'bsky/keyword/pajak', platform: 'bsky', topic: 'pajak', stream: 'regulasi' },
   { route: 'bsky/keyword/spt+tahunan', platform: 'bsky', topic: 'pajak', stream: 'regulasi' },
+  { url: 'https://news.google.com/rss/search?q=site:x.com+pajak&hl=id&gl=ID&ceid=ID:id', platform: 'x', topic: 'pajak', stream: 'regulasi' },
+  { url: 'https://news.google.com/rss/search?q=site:x.com+spt+tahunan&hl=id&gl=ID&ceid=ID:id', platform: 'x', topic: 'pajak', stream: 'regulasi' },
 
   // [S3] Kritis & Akun Otoritas
   { route: 'threads/search/sp2dk', platform: 'threads', topic: 'pajak', stream: 'kritis' },
+  { route: 'threads/search/bukti+permulaan', platform: 'threads', topic: 'pajak', stream: 'kritis' },
+  { route: 'threads/search/faktur+fiktif', platform: 'threads', topic: 'pajak', stream: 'kritis' },
   { route: 'bsky/keyword/sp2dk', platform: 'bsky', topic: 'pajak', stream: 'kritis' },
+  { route: 'bsky/keyword/djp', platform: 'bsky', topic: 'pajak', stream: 'kritis' },
   { route: 'threads/ditjenpajakri', platform: 'threads', topic: 'pajak', stream: 'kritis', official: true },
   { route: 'twitter/user/ditjenpajakri', platform: 'x', topic: 'pajak', stream: 'kritis', official: true },
   { route: 'twitter/user/kring_pajak', platform: 'x', topic: 'pajak', stream: 'kritis', official: true },
   { route: 'twitter/user/kemenkeuri', platform: 'x', topic: 'pajak', stream: 'kritis', official: true },
+  { url: 'https://news.google.com/rss/search?q=site:x.com+sp2dk&hl=id&gl=ID&ceid=ID:id', platform: 'x', topic: 'pajak', stream: 'kritis' },
+  { url: 'https://news.google.com/rss/search?q=site:x.com+faktur+fiktif&hl=id&gl=ID&ceid=ID:id', platform: 'x', topic: 'pajak', stream: 'kritis' },
 ];
 
 function decodeHtmlEntities(str) {
@@ -45,6 +57,7 @@ function decodeHtmlEntities(str) {
     .replace(/&gt;/gi, '>')
     .replace(/&quot;/gi, '"')
     .replace(/&#0*39;|&apos;/gi, "'")
+    .replace(/&nbsp;/gi, ' ')
     .replace(/&#(\d+);/g, (_, dec) => {
       try { return String.fromCharCode(parseInt(dec, 10)); } catch { return ''; }
     });
@@ -53,7 +66,7 @@ function decodeHtmlEntities(str) {
 function stripHtml(html) {
   if (!html || typeof html !== 'string') return '';
   return decodeHtmlEntities(
-    html
+    decodeHtmlEntities(html)
       .replace(/<br\s*\/?>/gi, '\n')
       .replace(/<\/p>/gi, '\n')
       .replace(/<[^>]+>/g, ' ')
@@ -225,6 +238,112 @@ function fetchJsonFeed(feedUrl, timeoutMs = 8000) {
   });
 }
 
+function fetchXmlFeed(feedUrl, timeoutMs = 8000, redirects = 0) {
+  return new Promise((resolve, reject) => {
+    if (redirects > 3) return reject(new Error('Too many redirects for ' + feedUrl));
+    try {
+      const u = new URL(feedUrl);
+      const isHttps = u.protocol === 'https:';
+      const client = isHttps ? https : http;
+
+      const req = client.get(feedUrl, {
+        timeout: timeoutMs,
+        headers: {
+          'Accept': 'application/rss+xml, application/xml, text/xml, */*',
+          'User-Agent': 'SITREP-DJP/2.0 (+http://pajak.go.id)',
+        },
+      }, (res) => {
+        if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+          res.resume();
+          const nextUrl = new URL(res.headers.location, feedUrl).href;
+          return fetchXmlFeed(nextUrl, timeoutMs, redirects + 1).then(resolve, reject);
+        }
+        if (res.statusCode < 200 || res.statusCode >= 300) {
+          res.resume();
+          return reject(new Error(`HTTP ${res.statusCode} from ${feedUrl}`));
+        }
+        let data = '';
+        res.setEncoding('utf8');
+        res.on('data', chunk => { data += chunk; });
+        res.on('end', () => resolve(data));
+      });
+
+      req.on('timeout', () => {
+        req.destroy(new Error(`Timeout fetching ${feedUrl}`));
+      });
+      req.on('error', (err) => {
+        reject(err);
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+
+function parseXmlRssFeed(xml, feedMeta = {}) {
+  if (!xml || typeof xml !== 'string') return [];
+  const items = [];
+  const itemMatches = xml.matchAll(/<item[\s>]([\s\S]*?)<\/item>/gi);
+  for (const m of itemMatches) {
+    const b = m[1];
+    const titleMatch = b.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+    const linkMatch = b.match(/<link[^>]*>([\s\S]*?)<\/link>/i);
+    const guidMatch = b.match(/<guid[^>]*>([\s\S]*?)<\/guid>/i);
+    const descMatch = b.match(/<description[^>]*>([\s\S]*?)<\/description>/i);
+    const pubDateMatch = b.match(/<pubDate[^>]*>([\s\S]*?)<\/pubDate>/i);
+
+    const title = decodeHtmlEntities(titleMatch ? titleMatch[1] : '');
+    const rawLink = decodeHtmlEntities(linkMatch ? linkMatch[1] : (guidMatch ? guidMatch[1] : ''));
+    const rawGuid = decodeHtmlEntities(guidMatch ? guidMatch[1] : '');
+    const rawDesc = descMatch ? descMatch[1] : '';
+    const descText = stripHtml(rawDesc);
+
+    let cleanText = (descText || title).replace(/\s*-\s*X\s*$/i, '').trim();
+    if (!cleanText) continue;
+
+    let username = '';
+    let author = '';
+    const userMatch = cleanText.match(/^@([A-Za-z0-9_]+)/);
+    if (userMatch) {
+      username = userMatch[1].toLowerCase();
+      author = userMatch[1];
+      cleanText = cleanText.slice(userMatch[0].length).replace(/^[:\s-]+/, '').trim();
+    } else {
+      username = 'x_publik';
+      author = 'Publik X';
+    }
+
+    const code = extractCode(rawLink, rawGuid);
+    const ts = pubDateMatch ? (Date.parse(pubDateMatch[1]) || Date.now()) : Date.now();
+    const platform = feedMeta.platform || 'x';
+
+    items.push({
+      id: String(rawGuid || ('x_' + code)),
+      code,
+      url: rawLink,
+      text: cleanText,
+      author,
+      username,
+      handle: username,
+      avatar: '',
+      created_at: new Date(ts).toISOString(),
+      ts,
+      platform,
+      from: platform === 'x' ? 'X' : (platform === 'bsky' ? 'Bluesky' : 'Threads'),
+      media: [],
+      images: [],
+      like_count: 0,
+      likes: 0,
+      metrics: { views: 0, likes: 0, reposts: 0, replies: 0 },
+      q: feedMeta.route || feedMeta.url || '',
+      stream: feedMeta.stream || 'coretax',
+      topic: feedMeta.topic || 'pajak',
+      official: Boolean(feedMeta.official || ['ditjenpajakri', 'kring_pajak', 'kemenkeuri'].includes(username)),
+    });
+  }
+  return items;
+}
+
 async function pollRsshubFeeds(options = {}) {
   const baseUrl = (options.baseUrl || DEFAULT_RSSHUB_URL).replace(/\/+$/, '');
   const feeds = options.feeds || DEFAULT_FEEDS;
@@ -234,6 +353,19 @@ async function pollRsshubFeeds(options = {}) {
   const errs = [];
 
   for (const feed of feeds) {
+    if (feed.url) {
+      try {
+        const xml = await fetchXmlFeed(feed.url, timeoutMs);
+        const posts = parseXmlRssFeed(xml, feed);
+        for (const p of posts) {
+          if (p && p.text) results.push(p);
+        }
+      } catch (err) {
+        errs.push({ route: feed.url, err: err.message });
+      }
+      continue;
+    }
+
     const routeUrl = `${baseUrl}/${feed.route.replace(/^\/+/, '')}?format=json`;
     try {
       const json = await fetchJsonFeed(routeUrl, timeoutMs);
@@ -259,7 +391,7 @@ function createRsshubConnector(deps = {}) {
   const xHist = deps.xHist;
   const histMerge = deps.histMerge;
   const histDir = deps.histDir;
-  const pollIntervalMs = deps.pollIntervalMs || 180000;
+  const pollIntervalMs = deps.pollIntervalMs || 60000;
 
   let timer = null;
   let running = false;
@@ -360,6 +492,8 @@ module.exports = {
   extractCode,
   parseRsshubItem,
   fetchJsonFeed,
+  fetchXmlFeed,
+  parseXmlRssFeed,
   pollRsshubFeeds,
   createRsshubConnector,
 };

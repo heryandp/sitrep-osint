@@ -190,3 +190,45 @@ test('social-rsshub: createRsshubConnector lifecycle', () => {
 
   connector.stop();
 });
+
+test('social-rsshub: parseXmlRssFeed parses direct XML RSS items', () => {
+  const xmlSample = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Google News - site:x.com coretax</title>
+    <item>
+      <title>Hai, Kak. Di Coretax tidak ada pengecekan NTPN - X</title>
+      <link>https://news.google.com/rss/articles/CBMiYkFVX3lxTFBTcXlGaDFlUTBuS3kxajlOZVNXbjVBTElJU1J1NDFtQ18xUQ?oc=5</link>
+      <guid isPermaLink="false">CBMiYkFVX3lxTFBTcXlGaDFlUTBuS3kxajlOZVNXbjVBTElJU1J1NDFtQ18xUQ</guid>
+      <pubDate>Wed, 25 Nov 2026 05:00:00 GMT</pubDate>
+      <description>&lt;a href="https://news.google.com/rss/articles/..." target="_blank"&gt;@kring_pajak Hai, Kak. Di Coretax tidak ada pengecekan NTPN seperti rumah konfirmasi dokumen&lt;/a&gt;&amp;nbsp;&amp;nbsp;&lt;font color="#6f6f6f"&gt;X&lt;/font&gt;</description>
+      <source url="https://x.com">X</source>
+    </item>
+  </channel>
+</rss>`;
+
+  const posts = RSSHUB.parseXmlRssFeed(xmlSample, {
+    platform: 'x',
+    topic: 'coretax',
+    stream: 'coretax',
+  });
+
+  assert.equal(posts.length, 1);
+  const p = posts[0];
+  assert.equal(p.platform, 'x');
+  assert.equal(p.from, 'X');
+  assert.equal(p.username, 'kring_pajak');
+  assert.equal(p.official, true);
+  assert.equal(p.stream, 'coretax');
+  assert.ok(p.text.includes('Di Coretax tidak ada pengecekan NTPN'));
+  assert.ok(!p.text.includes('<a href'));
+
+  const tagged = HISTORY.tag(p, [], Date.now(), {
+    platform: p.platform,
+    discoverySource: 'direct_rss',
+    isOfficial: p.official,
+    topic: p.topic,
+  });
+  assert.equal(tagged, true);
+  assert.ok(p.topics.includes('coretax'));
+});

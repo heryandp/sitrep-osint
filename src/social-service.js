@@ -158,6 +158,8 @@ function createSocialService({
     } catch (e) {}
   }
 
+  const FULL_RSS = process.env.FULL_RSS !== 'false';
+
   fs.mkdirSync(HIST_DIR, { recursive: true });
   histLoad(path.join(HIST_DIR, 'x-history.json'), xHist);
   histLoad(path.join(HIST_DIR, 'threads-history.json'), tHist);
@@ -173,7 +175,7 @@ function createSocialService({
     xHist,
     histMerge,
     histDir: HIST_DIR,
-    pollIntervalMs: 180000,
+    pollIntervalMs: parseInt(process.env.RSSHUB_POLL_MS, 10) || 60000,
   });
   rsshub.start();
 
@@ -890,8 +892,22 @@ function createSocialService({
 
   const xSeen = new Map(), xYield = new Map();
   let xTick = 0;
-  const xposts = () => memo('x', 300000, async () => {
+  const xposts = () => memo('x', 60000, async () => {
     await adhocRefresh();
+    if (FULL_RSS) {
+      const posts = [...xHist.values()].sort((a, b) => histTs(b) - histTs(a));
+      const newestTs = posts.length ? histTs(posts[0]) : 0;
+      return {
+        ok: true,
+        posts,
+        newestTs,
+        ...socMeta(),
+        at: Date.now(),
+        ingested: posts.length,
+        errs: [],
+        dropped: {},
+      };
+    }
     const meta0 = socMeta();
     if (!xHas()) return { ok: false, err: 'auth_token / ct0 belum diisi di config.json', posts: [], ...meta0 };
     if (xCooling()) {
@@ -999,7 +1015,14 @@ function createSocialService({
     return { ok: errs.length < queries.length, err, posts, ...socMeta(), at: Date.now(), partial: errs.length > 0 };
   }, v => (v.posts || []).length > 0);
 
-  const xqLazy = q => memo('xq:' + String(q).toLowerCase(), 600000, async () => {
+  const xqLazy = q => memo('xq:' + String(q).toLowerCase(), 60000, async () => {
+    if (FULL_RSS) {
+      await adhocRefresh();
+      const norm = String(q || '').toLowerCase();
+      return [...xHist.values()]
+        .filter(p => !norm || String(p.text || '').toLowerCase().includes(norm) || (p.assessment?.topics || []).includes(norm))
+        .sort((a, b) => histTs(b) - histTs(a));
+    }
     if (!xHas()) throw new Error('auth_token / ct0 belum diisi');
     const tp = topicOf(q), extra = ADHOC;
     const qs = tp ? tp.x : ['"' + q + '" -filter:replies'];
@@ -1106,9 +1129,23 @@ function createSocialService({
   };
   const thSeen = new Map(), thYield = new Map(), thTopicOff = new Map();
   let thTick = 0;
-  const threads = () => memo('threads', 240000, async () => {
-    if (!PY_BIN) throw new Error('Python tidak ditemukan. Jalankan: python3 -m venv .venv && .venv/bin/pip install curl_cffi');
+  const threads = () => memo('threads', 60000, async () => {
     await adhocRefresh();
+    if (FULL_RSS) {
+      const posts = [...tHist.values()].sort((a, b) => histTs(b) - histTs(a));
+      const newestTs = posts.length ? histTs(posts[0]) : 0;
+      return {
+        ok: true,
+        posts,
+        newestTs,
+        ...socMeta(),
+        at: Date.now(),
+        ingested: posts.length,
+        errs: [],
+        dropped: {},
+      };
+    }
+    if (!PY_BIN) throw new Error('Python tidak ditemukan. Jalankan: python3 -m venv .venv && .venv/bin/pip install curl_cffi');
     const meta0 = socMeta(), now = Date.now();
     thTick++;
 
@@ -1238,7 +1275,14 @@ function createSocialService({
     return { ok: rs.some(r => r.status === 'fulfilled' && (r.value.posts?.length > 0 || !r.value.errs?.length)), posts, errs, ingested: batch.length, newestTs, dropped, ...socMeta(), at: Date.now(), partial: errs.length > 0 };
   }, v => (v.posts || []).length > 0);
 
-  const thqLazy = q => memo('thq:' + String(q).toLowerCase(), 600000, async () => {
+  const thqLazy = q => memo('thq:' + String(q).toLowerCase(), 60000, async () => {
+    if (FULL_RSS) {
+      await adhocRefresh();
+      const norm = String(q || '').toLowerCase();
+      return [...tHist.values()]
+        .filter(p => !norm || String(p.text || '').toLowerCase().includes(norm) || (p.assessment?.topics || []).includes(norm))
+        .sort((a, b) => histTs(b) - histTs(a));
+    }
     if (!PY_BIN) throw new Error('Python tidak ditemukan');
     const tp = topicOf(q), extra = ADHOC;
     const spec0 = tp ? tp.th : [String(q)];
@@ -1427,6 +1471,13 @@ function createSocialService({
     const x = publicURL(raw);
     if (!x) throw new Error('URL tidak valid');
     const id = tweetId(x.href);
+    if (FULL_RSS) {
+      const matchX = [...xHist.values()].find(p => p.url === x.href || (id && (p.code === id || p.id === id)));
+      if (matchX) return Promise.resolve({ ok: true, kind: 'x', post: matchX, replies: matchX.replies || [], count: 0 });
+      const slug = x.pathname.split('/').filter(Boolean).pop();
+      const matchTh = [...tHist.values()].find(p => p.url === x.href || (slug && (p.code === slug || p.id === slug)));
+      if (matchTh) return Promise.resolve({ ok: true, kind: 'threads', post: matchTh, replies: matchTh.replies || [], count: 0 });
+    }
     if (id && /(^|\.)(x|twitter)\.com$/i.test(x.hostname)) return xThread(id);
     if (/(^|\.)threads\.(com|net)$/i.test(x.hostname) && /\/post\//.test(x.pathname)) return thThread(x.href);
     throw new Error('bukan tautan post X/Threads');
@@ -1436,6 +1487,11 @@ function createSocialService({
     const x = publicURL(raw);
     if (!x) return false;
     const id = tweetId(x.href);
+    if (FULL_RSS) {
+      if ([...xHist.values()].some(p => p.url === x.href || (id && (p.code === id || p.id === id)))) return true;
+      const slug = x.pathname.split('/').filter(Boolean).pop();
+      if ([...tHist.values()].some(p => p.url === x.href || (slug && (p.code === slug || p.id === slug)))) return true;
+    }
     if (id && /(^|\.)(x|twitter)\.com$/i.test(x.hostname)) {
       if ((userQueryCache && userQueryCache.has('xth:' + id)) || cache.has('xth:' + id)) return true;
       for (const p of xHist.values()) {
