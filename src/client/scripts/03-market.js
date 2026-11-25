@@ -173,15 +173,17 @@ function repaintAllSparks(){
     });
   }
 }
-let STK = null, FX = null, IHSG = null, WORLD = [], MKT_AT = 0;
-const STK_VIEW = [], FX_VIEW = [], CLOSES = {}, CLOSES_TRY_AT = {}, HERO_SYMS = ['IDX:COMPOSITE', 'FX_IDC:USDIDR'];
+let STK = null, FX = null, CRYPTO = null, IHSG = null, WORLD = [], MKT_AT = 0;
+const STK_VIEW = [], FX_VIEW = [], CRYPTO_VIEW = [], CLOSES = {}, CLOSES_TRY_AT = {}, HERO_SYMS = ['IDX:COMPOSITE', 'FX_IDC:USDIDR', 'BINANCE:BTCUSDT'];
 let closesInFlight = null, closesQueued = false;
 function chipHtml(x){
   const up = x.pct >= 0;
+  const isCryptoUsd = x.mkt === 'CRYPTO' && !String(x.sym || '').includes('IDR');
+  const priceStr = isCryptoUsd ? ('$' + fmtIDR(x.price, x.price >= 100 ? (x.price % 1 ? 2 : 0) : 2)) : fmtIDR(x.price, x.price % 1 ? 2 : 0);
   return `<div class="stk-chip">
     <div class="stk-top">
       <span class="n">${esc(x.name)}</span>
-      <span class="p">${fmtIDR(x.price, x.price % 1 ? 2 : 0)}</span>
+      <span class="p">${priceStr}</span>
     </div>
     <div class="stk-sub">
       <span class="c ${up ? 'up' : 'dn'}">${up ? '▲' : '▼'} ${Math.abs(x.pct).toFixed(2)}%</span>
@@ -212,6 +214,14 @@ function paintHeroes(){
     if (rw && cv2.width !== rw) cv2.width = rw;
     const cl2 = (Array.isArray(idr.closes) && idr.closes.length >= 2) ? idr.closes : CLOSES['FX_IDC:USDIDR'];
     drawSpark(cv2, cl2, idr.pct >= 0);
+  }
+  const cv3 = $('#crypto-spark');
+  const btc = (CRYPTO && (CRYPTO.items || []).find(x => x.sym === 'BINANCE:BTCUSDT')) || (FX && (FX.items || []).find(x => x.sym === 'BINANCE:BTCUSDT'));
+  if (cv3 && btc) {
+    const rw = cv3.clientWidth || cv3.width || 180;
+    if (rw && cv3.width !== rw) cv3.width = rw;
+    const cl3 = (Array.isArray(btc.closes) && btc.closes.length >= 2) ? btc.closes : CLOSES['BINANCE:BTCUSDT'];
+    drawSpark(cv3, cl3, btc.pct >= 0);
   }
 }
 function hasValidCloses(s){ return Array.isArray(CLOSES[s]) && CLOSES[s].length >= 2; }
@@ -244,6 +254,7 @@ async function loadCloses(){
     }
     paintSparks(document.getElementById('stk-chips'), STK_VIEW);
     paintSparks(document.getElementById('fx-chips'), FX_VIEW);
+    paintSparks(document.getElementById('crypto-chips'), CRYPTO_VIEW);
     paintHeroes();
   })().finally(() => {
     closesInFlight = null;
@@ -299,16 +310,34 @@ function renderFx(){
   } else { dEl.textContent = '—'; dEl.className = 'stk-d'; }
   drawChips(document.getElementById('fx-chips'), items.filter(x => x !== idr), FX_VIEW);
 }
+function renderCrypto(){
+  if (!CRYPTO) return;
+  const items = CRYPTO.items || [];
+  const btc = items.find(x => x.sym === 'BINANCE:BTCUSDT') || items[0];
+  const btcEl = $('#crypto-btc');
+  if (btcEl) btcEl.textContent = btc ? ('$' + fmtIDR(btc.price, btc.price % 1 ? 2 : 0)) : '—';
+  const dEl = $('#crypto-btc-d');
+  if (dEl) {
+    if (btc) {
+      const up = btc.pct >= 0;
+      dEl.textContent = (up ? '▲ +' : '▼ ') + '$' + fmtIDR(Math.abs(btc.chg), 2) + ' · ' + Math.abs(btc.pct).toFixed(2) + '%';
+      dEl.className = 'stk-d ' + (up ? 'up' : 'dn');
+    } else { dEl.textContent = '—'; dEl.className = 'stk-d'; }
+  }
+  const el = document.getElementById('crypto-chips');
+  if (el) drawChips(el, items.filter(x => x !== btc), CRYPTO_VIEW);
+}
 function renderStocks(d){
   STK = d.stocks || null;
   FX = d.forex || null;
+  CRYPTO = d.crypto || null;
   WORLD = d.world || [];
   IHSG = d.ihsg || null;
   MKT_AT = d.at || Date.now();
   if (IHSG && Array.isArray(IHSG.closes) && IHSG.closes.length >= 2) {
     CLOSES['IDX:COMPOSITE'] = IHSG.closes;
   }
-  for (const it of [...((STK && STK.items) || []), ...((FX && FX.items) || [])]) {
+  for (const it of [...((STK && STK.items) || []), ...((FX && FX.items) || []), ...((CRYPTO && CRYPTO.items) || [])]) {
     if (it && it.sym && Array.isArray(it.closes) && it.closes.length >= 2) CLOSES[it.sym] = it.closes;
   }
   if (IHSG) {
@@ -321,6 +350,7 @@ function renderStocks(d){
   if (d.gold) renderGold(d.gold);
   renderChips();
   renderFx();
+  renderCrypto();
   paintHeroes();
   loadCloses();
   initTvTape();
@@ -357,7 +387,7 @@ async function pullGold(){
     if (d && d.ok) renderGold(d);
   } catch (_) {}
 }
-window.addEventListener('resize', () => { if (IHSG || FX) requestAnimationFrame(paintHeroes); });
+window.addEventListener('resize', () => { if (IHSG || FX || CRYPTO) requestAnimationFrame(paintHeroes); });
 async function initTvTape(){
   const all = [...WORLD];
   if (!all.length) return;

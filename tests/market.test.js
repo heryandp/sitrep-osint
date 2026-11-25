@@ -202,3 +202,47 @@ test('7. market() integrates gold prices from Logam Mulia and exports gold endpo
   assert.equal(gold.chg, 5000, 'gold change must match 5000');
   assert.equal(gold.pct, 0.2, 'gold pct must match 0.2%');
 });
+
+test('8. market() returns crypto assets and expanded forex pairs for Indonesian tax intelligence', async () => {
+  SRV.setMarketFetch(async (url) => {
+    if (url.includes('scanner.tradingview.com/indonesia/scan')) {
+      return { ok: true, status: 200, json: async () => ({ data: [{ s: 'IDX:BBCA', d: ['BBCA', 10100, 0.5, 50, 500000] }] }) };
+    }
+    if (url.includes('scanner.tradingview.com/forex/scan')) {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          data: [
+            { s: 'FX_IDC:USDIDR', d: ['USDIDR', 18300, 0.2, 35, 0] },
+            { s: 'FX_IDC:SGDIDR', d: ['SGDIDR', 14180, 0.1, 14, 0] },
+            { s: 'FX_IDC:CNYIDR', d: ['CNYIDR', 2740, 0.05, 1.3, 0] }
+          ]
+        })
+      };
+    }
+    if (url.includes('scanner.tradingview.com/crypto/scan')) {
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          data: [
+            { s: 'BINANCE:BTCUSDT', d: ['BTCUSDT', 92500, 2.5, 2250, 1000] },
+            { s: 'BINANCE:ETHUSDT', d: ['ETHUSDT', 3450, 1.8, 62, 500] },
+            { s: 'BINANCE:USDTIDR', d: ['USDTIDR', 18350, 0.05, 9, 200] }
+          ]
+        })
+      };
+    }
+    return { ok: true, status: 200, json: async () => ({ data: [] }), text: async () => '' };
+  });
+
+  const mkt = await SRV.market();
+  assert.equal(mkt.ok, true);
+  assert.ok(mkt.crypto && Array.isArray(mkt.crypto.items), 'mkt.crypto.items must be an array');
+  assert.ok(mkt.crypto.items.some(c => c.sym === 'BINANCE:BTCUSDT'), 'Must contain BTCUSDT');
+  assert.ok(mkt.crypto.items.some(c => c.sym === 'BINANCE:ETHUSDT'), 'Must contain ETHUSDT');
+  assert.ok(mkt.forex && Array.isArray(mkt.forex.items), 'mkt.forex.items must be an array');
+  assert.ok(mkt.forex.items.some(f => f.ticker === 'SGDIDR'), 'Must contain SGDIDR');
+  assert.ok(mkt.forex.items.some(f => f.ticker === 'CNYIDR'), 'Must contain CNYIDR');
+});

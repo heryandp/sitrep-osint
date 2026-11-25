@@ -1,7 +1,15 @@
 'use strict';
 
 const STOCK_BLUE = new Set(['BBCA', 'TLKM', 'GOTO', 'BMRI', 'ASII', 'UNVR', 'KLBF']);
-const FOREX_PAIRS = [['USDIDR', 'USD/IDR']];
+const FOREX_PAIRS = [
+  ['USDIDR', 'USD/IDR'],
+  ['SGDIDR', 'SGD/IDR'],
+  ['CNYIDR', 'CNY/IDR'],
+  ['EURIDR', 'EUR/IDR'],
+  ['JPYIDR', 'JPY/IDR'],
+  ['MYRIDR', 'MYR/IDR'],
+  ['AUDIDR', 'AUD/IDR'],
+];
 const FX_NAME = Object.fromEntries(FOREX_PAIRS);
 const COMMODITIES = [
   ['COMEX:GC1!', 'Gold', 'futures', 'GC=F', '@GC.1'],
@@ -23,6 +31,17 @@ const COMMODITIES = [
 ];
 const CMD_YH = Object.fromEntries(COMMODITIES.map(c => [c[0], c[3]]));
 const CMD_CNBC = Object.fromEntries(COMMODITIES.map(c => [c[0], c[4]]));
+
+const CRYPTO_ASSETS = [
+  ['BINANCE:BTCUSDT', 'Bitcoin', 'BTC', 'BTC-USD', 'BTC.CM='],
+  ['BINANCE:USDTIDR', 'Tether IDR', 'USDT', 'USDT-IDR', 'USDTIDR='],
+  ['BINANCE:ETHUSDT', 'Ethereum', 'ETH', 'ETH-USD', 'ETH.CM='],
+  ['BINANCE:SOLUSDT', 'Solana', 'SOL', 'SOL-USD', 'SOL.CM='],
+  ['BINANCE:BNBUSDT', 'BNB', 'BNB', 'BNB-USD', 'BNB.CM='],
+  ['BINANCE:XRPUSDT', 'XRP', 'XRP', 'XRP-USD', 'XRP.CM=']
+];
+const CRYPTO_CNBC = Object.fromEntries(CRYPTO_ASSETS.map(c => [c[0], c[4]]));
+const CRYPTO_YH = Object.fromEntries(CRYPTO_ASSETS.map(c => [c[0], c[3]]));
 
 const WORLD_IDX = [
   ['^GSPC', 'S&P 500', '.SPX', 'SP:SPX'], ['^NDX', 'NASDAQ 100', '.NDX', 'NASDAQ:NDX'],
@@ -53,6 +72,7 @@ function cnbcSymbolFor(k) {
   if (k.startsWith('IDX:')) return k.slice(4) + '-ID';
   if (k === 'FX_IDC:USDIDR' || k === 'IDR=X') return 'IDR=';
   if (CMD_CNBC[k]) return CMD_CNBC[k];
+  if (CRYPTO_CNBC[k]) return CRYPTO_CNBC[k];
   if (WORLD_CNBC[k]) return WORLD_CNBC[k];
   return k;
 }
@@ -256,10 +276,12 @@ function createMarketService({ fs, path, HIST_DIR, UA, get, memo }) {
         const yh = k.slice(4) + '.JK';
         series = await cnbcCloses(cnbcSym, '1M', 40);
         if (series.length < 2) series = await yahooCloses(yh, 'interval=1d&range=1mo');
-      } else if (k === 'BINANCE:BTCUSDT') {
-        series = await cnbcCloses('BTC.CM=', '5D', 90);
-        if (series.length < 2) series = await binanceCloses('BTCUSDT');
-        if (series.length < 2) series = await yahooCloses('BTC-USD', 'interval=1m&range=1d');
+      } else if (k === 'BINANCE:BTCUSDT' || k.startsWith('BINANCE:')) {
+        const binSym = k.slice(8);
+        const cnbcSym = CRYPTO_CNBC[k] || CMD_CNBC[k] || (binSym.replace('USDT', '') + '.CM=');
+        series = await cnbcCloses(cnbcSym, '5D', 90);
+        if (series.length < 2) series = await binanceCloses(binSym);
+        if (series.length < 2) series = await yahooCloses(CRYPTO_YH[k] || (binSym.replace('USDT', '-USD')), 'interval=1m&range=1d');
       } else {
         series = await cnbcCloses(cnbcSym, '5D', 90);
         if (series.length < 2) series = await cnbcCloses(cnbcSym, '1M', 45);
@@ -415,7 +437,8 @@ function createMarketService({ fs, path, HIST_DIR, UA, get, memo }) {
 
   const market = () => memo('market', 45000, async () => {
     const cmdTick = m => COMMODITIES.filter(c => c[2] === m).map(c => c[0]);
-    const [idx, fx, cmdF, cmdC, ihsgR, idrQ, world, ihsgCloses, goldData] = await Promise.all([
+    const cryptoTickers = CRYPTO_ASSETS.map(c => c[0]);
+    const [idx, fx, cmdF, cmdC, ihsgR, idrQ, world, ihsgCloses, goldData, crScan] = await Promise.all([
       tvScan('indonesia', { columns: COLS, range: [0, 900],
         symbols: { query: { types: ['stock'] }, tickers: [] } }),
       tvScan('forex', { columns: COLS.slice(0, 4),
@@ -429,7 +452,9 @@ function createMarketService({ fs, path, HIST_DIR, UA, get, memo }) {
       usdidr(),
       worldIndex().catch(() => []),
       fetchSymbolCloses('IDX:COMPOSITE').catch(() => []),
-      fetchGold().catch(() => null)
+      fetchGold().catch(() => null),
+      tvScan('crypto', { columns: COLS.slice(0, 4),
+        symbols: { query: { types: [] }, tickers: cryptoTickers } }).catch(() => [])
     ]);
     const stocks = idx.map(s => {
       const it = row('IDX', s);
@@ -472,9 +497,22 @@ function createMarketService({ fs, path, HIST_DIR, UA, get, memo }) {
       });
       knownMarketSyms.add('EMAS:ANTAM');
     }
+    const cryptoItems = [];
+    const crCombined = [...cmdC, ...(crScan || [])];
+    for (const [sym, name, ticker] of CRYPTO_ASSETS) {
+      const s = crCombined.find(x => x.s === sym);
+      if (!s) continue;
+      const it = row('CRYPTO', s);
+      it.name = name;
+      it.ticker = ticker || it.ticker;
+      const cached = closeMemo.get(sym);
+      if (cached && cached.closes && cached.closes.length >= 2) it.closes = cached.closes;
+      if (isFinite(it.price) && !cryptoItems.some(c => c.sym === sym)) cryptoItems.push(it);
+    }
     for (const s of stocks) if (s && s.sym) knownMarketSyms.add(s.sym);
     for (const f of forex) if (f && f.sym) knownMarketSyms.add(f.sym);
-    return { ok: true, ihsg, stocks: { ok: true, items: stocks }, forex: { ok: true, items: forex }, world, gold: goldData, at: Date.now() };
+    for (const c of cryptoItems) if (c && c.sym) knownMarketSyms.add(c.sym);
+    return { ok: true, ihsg, stocks: { ok: true, items: stocks }, forex: { ok: true, items: forex }, crypto: { ok: true, items: cryptoItems }, world, gold: goldData, at: Date.now() };
   });
 
   async function closes(list) {
@@ -502,6 +540,7 @@ function createMarketService({ fs, path, HIST_DIR, UA, get, memo }) {
     closeMemo,
     saveMktCloses,
     knownMarketSyms,
+    CRYPTO_ASSETS,
   };
 }
 
@@ -510,5 +549,6 @@ module.exports = {
   downsampleCloses,
   cnbcSymbolFor,
   COMMODITIES,
+  CRYPTO_ASSETS,
   WORLD_IDX,
 };

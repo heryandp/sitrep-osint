@@ -17,7 +17,24 @@ use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use tokio::sync::Mutex;
 
 pub const STOCK_BLUE: &[&str] = &["BBCA", "TLKM", "GOTO", "BMRI", "ASII", "UNVR", "KLBF"];
-pub const FOREX_PAIRS: &[(&str, &str)] = &[("USDIDR", "USD/IDR")];
+pub const FOREX_PAIRS: &[(&str, &str)] = &[
+    ("USDIDR", "USD/IDR"),
+    ("SGDIDR", "SGD/IDR"),
+    ("CNYIDR", "CNY/IDR"),
+    ("EURIDR", "EUR/IDR"),
+    ("JPYIDR", "JPY/IDR"),
+    ("MYRIDR", "MYR/IDR"),
+    ("AUDIDR", "AUD/IDR"),
+];
+
+pub const CRYPTO_ASSETS: &[(&str, &str, &str, &str, &str)] = &[
+    ("BINANCE:BTCUSDT", "Bitcoin", "BTC", "BTC-USD", "BTC.CM="),
+    ("BINANCE:USDTIDR", "Tether IDR", "USDT", "USDT-IDR", "USDTIDR="),
+    ("BINANCE:ETHUSDT", "Ethereum", "ETH", "ETH-USD", "ETH.CM="),
+    ("BINANCE:SOLUSDT", "Solana", "SOL", "SOL-USD", "SOL.CM="),
+    ("BINANCE:BNBUSDT", "BNB", "BNB", "BNB-USD", "BNB.CM="),
+    ("BINANCE:XRPUSDT", "XRP", "XRP", "XRP-USD", "XRP.CM="),
+];
 
 pub type Commodity = (
     &'static str,

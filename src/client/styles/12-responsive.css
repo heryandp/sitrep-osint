@@ -46,7 +46,7 @@
   .tk-fetch-t{display:inline}
 
   .stk{flex:none}
-  .stk-r1,.stk-r2{flex:none;flex-direction:column}
+  .stk-r1,.stk-r2,.stk-r3{flex:none;flex-direction:column}
   .stk-ihsg{flex:none;width:100%;box-sizing:border-box;padding:8px 12px 8px 14px;border-right:0;border-bottom:1px solid var(--border);gap:12px}
   .stk-hd{flex-direction:column;gap:2px;flex:none;padding-right:0;margin-top:-2px}
   .stk-d{margin-left:0;text-align:left;white-space:nowrap}
