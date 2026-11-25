@@ -5,7 +5,7 @@ const ISDOWN_API = 'https://isdownapi.com/api/check?domain=';
 const DJP_PORTALS = Object.freeze([
   { id: 'pajak', name: 'Pajak.go.id', domain: 'pajak.go.id', url: 'https://www.pajak.go.id' },
   { id: 'coretax', name: 'Coretax DJP', domain: 'coretaxdjp.pajak.go.id', url: 'https://coretaxdjp.pajak.go.id' },
-  { id: 'djponline', name: 'DJP Online', domain: 'djponline.pajak.go.id', url: 'https://djponline.pajak.go.id' },
+  { id: 'djponline', name: 'DJP Online', domain: 'djponline.pajak.go.id', url: 'https://djponline.pajak.go.id/account/login' },
   { id: 'kemenkeu', name: 'Kemenkeu', domain: 'kemenkeu.go.id', url: 'https://www.kemenkeu.go.id' },
 ]);
 

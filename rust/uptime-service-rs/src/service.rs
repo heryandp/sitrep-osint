@@ -36,7 +36,7 @@ macro_rules! portals {
 pub const DJP_PORTALS: &[Portal] = portals! {
     ("pajak", "Pajak.go.id", "pajak.go.id", "https://www.pajak.go.id"),
     ("coretax", "Coretax DJP", "coretaxdjp.pajak.go.id", "https://coretaxdjp.pajak.go.id"),
-    ("djponline", "DJP Online", "djponline.pajak.go.id", "https://djponline.pajak.go.id"),
+    ("djponline", "DJP Online", "djponline.pajak.go.id", "https://djponline.pajak.go.id/account/login"),
     ("kemenkeu", "Kemenkeu", "kemenkeu.go.id", "https://www.kemenkeu.go.id"),
 };
 
