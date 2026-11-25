@@ -116,14 +116,20 @@
   content:"";position:absolute;left:-6px;top:-4px;bottom:12px;width:1px;background:#333;
 }
 
-.soc-telemetry{
-  display:inline-flex;align-items:center;gap:5px;margin-left:8px;flex:none;
+.soc-tel-bar{
+  flex:none;height:26px;padding:0 8px;display:flex;align-items:center;gap:6px;
+  background:#14151d;border-bottom:1px solid #232533;
+}
+.soc-tel-tag{
+  padding:2px 5px;border-radius:2px;background:rgba(56,189,248,.14);color:#38bdf8;
+  border:1px solid rgba(56,189,248,.35);font:700 8px/1 var(--mono);letter-spacing:.08em;
+  flex:none;
 }
 .soc-tel-chip{
-  display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:3px;
-  font:600 8.5px/1 var(--mono);letter-spacing:.02em;
+  display:inline-flex;align-items:center;gap:3px;padding:1.5px 5px;border-radius:2px;
+  font:600 8px/1 var(--mono);letter-spacing:.02em;
 }
-.soc-tel-chip .tel-dot{width:5px;height:5px;border-radius:50%;flex:none}
+.soc-tel-chip .tel-dot{width:4px;height:4px;border-radius:50%;flex:none}
 .soc-tel-chip.tel-pos{background:rgba(34,197,94,.12);color:#4ade80}
 .soc-tel-chip.tel-pos .tel-dot{background:#22c55e}
 .soc-tel-chip.tel-neu{background:rgba(148,163,184,.12);color:#94a3b8}
@@ -139,7 +145,7 @@
 .soc-deck::-webkit-scrollbar{height:4px}
 .soc-deck::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px}
 .soc-col{
-  flex:1 1 300px;min-width:270px;max-width:440px;display:flex;flex-direction:column;
+  flex:1 1 230px;min-width:215px;max-width:440px;display:flex;flex-direction:column;
   background:#14151a;border:1px solid #252834;border-radius:4px;
   box-shadow:0 2px 8px rgba(0,0,0,.25);overflow:hidden;
 }

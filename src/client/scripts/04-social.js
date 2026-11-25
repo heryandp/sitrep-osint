@@ -605,11 +605,10 @@ function setSocTab(t){
   if ($('#tmeta')) $('#tmeta').hidden = socTab !== 'threads';
   if (socTab === 'streams') {
     renderStreams();
-    if (!tPosts.length) pullThreads();
-    if (!xPosts.length) pullX();
-  } else if (socTab === 'threads' && !tPosts.length) {
+    if (!tPosts.length && typeof pullThreads === 'function') pullThreads();
+  } else if (socTab === 'threads' && !tPosts.length && typeof pullThreads === 'function') {
     pullThreads();
-  } else if (socTab === 'x' && !xPosts.length) {
+  } else if (socTab === 'x' && !xPosts.length && typeof pullX === 'function') {
     pullX();
   }
 }
@@ -618,13 +617,14 @@ $$('.soc-tab').forEach(b => {
   b.addEventListener('click', () => {
     const pane = b.closest('.pane');
     if (pane && !pane.classList.contains('open')) pane.classList.add('open');
-    setSocTab(b.dataset.tab);
+    const target = socTab === b.dataset.tab ? 'streams' : b.dataset.tab;
+    setSocTab(target);
   });
   b.addEventListener('keydown', e => {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
     e.preventDefault();
     const cur = b.dataset.tab;
-    const next = cur === 'streams' ? (e.key === 'ArrowRight' ? 'threads' : 'x') : cur === 'threads' ? (e.key === 'ArrowRight' ? 'x' : 'streams') : (e.key === 'ArrowRight' ? 'streams' : 'threads');
+    const next = cur === 'x' ? 'threads' : 'x';
     setSocTab(next);
     const target = $('.soc-tab[data-tab="' + next + '"]');
     if (target) target.focus();
@@ -643,5 +643,8 @@ $('#tq').addEventListener('input', debounce(() => { tShown = 30; renderThreads()
   }
 });
 
-setSocTab('streams');
+setTimeout(() => {
+  setSocTab('streams');
+  if (typeof pullX === 'function' && !xPosts.length) pullX();
+}, 60);
 

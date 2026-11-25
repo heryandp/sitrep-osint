@@ -132,21 +132,13 @@
   <section class="pane" id="pane-social" data-pane="social" aria-label="Social live">
     <div class="ph soc-ph">
       <span class="ph-k">[03]</span>
-      <h2 class="ph-t">Social Streams</h2>
-      <div class="soc-telemetry" id="soc-telemetry" aria-label="Telemetri Sentimen Sosial">
-        <span class="soc-tel-chip tel-pos"><i class="tel-dot"></i><b id="tel-pos-val">—</b> Pos</span>
-        <span class="soc-tel-chip tel-neu"><i class="tel-dot"></i><b id="tel-neu-val">—</b> Net</span>
-        <span class="soc-tel-chip tel-neg"><i class="tel-dot"></i><b id="tel-neg-val">—</b> Kritis</span>
-      </div>
+      <h2 class="ph-t">Social</h2>
       <div class="soc-tabs" role="tablist" aria-label="Sumber sosial">
-        <button class="soc-tab" id="tab-streams" type="button" role="tab" aria-selected="true" aria-controls="pane-streams" data-tab="streams">
-          <span class="lbl"><svg class="ic" aria-hidden="true"><use href="#i-layout"></use></svg><span class="tx">Streams</span></span>
+        <button class="soc-tab" id="tab-x" type="button" role="tab" aria-selected="false" aria-controls="pane-x" data-tab="x">
+          <span class="lbl"><svg class="ic" aria-hidden="true"><use href="#i-x"></use></svg><span class="tx">Tweets</span></span>
         </button>
         <button class="soc-tab" id="tab-th" type="button" role="tab" aria-selected="false" aria-controls="pane-th" data-tab="threads">
           <span class="lbl"><svg class="ic" aria-hidden="true"><use href="#i-threads"></use></svg><span class="tx">Threads</span></span>
-        </button>
-        <button class="soc-tab" id="tab-x" type="button" role="tab" aria-selected="false" aria-controls="pane-x" data-tab="x">
-          <span class="lbl"><svg class="ic" aria-hidden="true"><use href="#i-x"></use></svg><span class="tx">Tweets</span></span>
         </button>
       </div>
       <span class="ph-m" id="xmeta" hidden aria-hidden="true">—</span>
@@ -157,7 +149,13 @@
         <button class="ph-act ph-hide" type="button" title="Sembunyikan panel" aria-label="Sembunyikan panel"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button>
       </div>
     </div>
-    <div class="pb soc-body" id="pane-streams" role="tabpanel" aria-labelledby="tab-streams">
+    <div class="pb soc-body" id="pane-streams" role="region" aria-label="Aliran Multi-Stream Sosial">
+      <div class="soc-tel-bar" id="soc-telemetry" aria-label="Telemetri Sentimen Sosial">
+        <span class="soc-tel-tag">STREAMS</span>
+        <span class="soc-tel-chip tel-pos"><i class="tel-dot"></i><b id="tel-pos-val">—</b> Pos</span>
+        <span class="soc-tel-chip tel-neu"><i class="tel-dot"></i><b id="tel-neu-val">—</b> Net</span>
+        <span class="soc-tel-chip tel-neg"><i class="tel-dot"></i><b id="tel-neg-val">—</b> Kritis</span>
+      </div>
       <div class="soc-deck" id="soc-deck">
         <div class="soc-col" id="col-coretax" data-stream="coretax">
           <div class="sc-hdr">

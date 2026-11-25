@@ -1855,14 +1855,20 @@ a[href],[role="button"]:not([aria-disabled="true"]),summary,select{cursor:pointe
   content:"";position:absolute;left:-6px;top:-4px;bottom:12px;width:1px;background:#333;
 }
 
-.soc-telemetry{
-  display:inline-flex;align-items:center;gap:5px;margin-left:8px;flex:none;
+.soc-tel-bar{
+  flex:none;height:26px;padding:0 8px;display:flex;align-items:center;gap:6px;
+  background:#14151d;border-bottom:1px solid #232533;
+}
+.soc-tel-tag{
+  padding:2px 5px;border-radius:2px;background:rgba(56,189,248,.14);color:#38bdf8;
+  border:1px solid rgba(56,189,248,.35);font:700 8px/1 var(--mono);letter-spacing:.08em;
+  flex:none;
 }
 .soc-tel-chip{
-  display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:3px;
-  font:600 8.5px/1 var(--mono);letter-spacing:.02em;
+  display:inline-flex;align-items:center;gap:3px;padding:1.5px 5px;border-radius:2px;
+  font:600 8px/1 var(--mono);letter-spacing:.02em;
 }
-.soc-tel-chip .tel-dot{width:5px;height:5px;border-radius:50%;flex:none}
+.soc-tel-chip .tel-dot{width:4px;height:4px;border-radius:50%;flex:none}
 .soc-tel-chip.tel-pos{background:rgba(34,197,94,.12);color:#4ade80}
 .soc-tel-chip.tel-pos .tel-dot{background:#22c55e}
 .soc-tel-chip.tel-neu{background:rgba(148,163,184,.12);color:#94a3b8}
@@ -1878,7 +1884,7 @@ a[href],[role="button"]:not([aria-disabled="true"]),summary,select{cursor:pointe
 .soc-deck::-webkit-scrollbar{height:4px}
 .soc-deck::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px}
 .soc-col{
-  flex:1 1 300px;min-width:270px;max-width:440px;display:flex;flex-direction:column;
+  flex:1 1 230px;min-width:215px;max-width:440px;display:flex;flex-direction:column;
   background:#14151a;border:1px solid #252834;border-radius:4px;
   box-shadow:0 2px 8px rgba(0,0,0,.25);overflow:hidden;
 }
@@ -3805,6 +3811,8 @@ html[data-theme="light"] .sent-crit{background:#fee2e2;color:#991b1b;border-colo
 html[data-theme="light"] .soc-tel-chip.tel-pos{background:#dcfce7;color:#15803d}
 html[data-theme="light"] .soc-tel-chip.tel-neu{background:#f1f5f9;color:#475569}
 html[data-theme="light"] .soc-tel-chip.tel-neg{background:#fee2e2;color:#b91c1c}
+html[data-theme="light"] .soc-tel-bar{background:#ece9e1;border-bottom-color:#d5d1c7}
+html[data-theme="light"] .soc-tel-tag{background:#e0f2fe;color:#0369a1;border-color:#7dd3fc}
 
 html[data-theme="light"] .foot-src{color:#161618;text-decoration-color:rgba(22,22,24,.35)}
 html[data-theme="light"] .foot-src:hover{color:#0b637c;text-decoration-color:#0b637c}
@@ -4868,21 +4876,13 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
   <section class="pane" id="pane-social" data-pane="social" aria-label="Social live">
     <div class="ph soc-ph">
       <span class="ph-k">[03]</span>
-      <h2 class="ph-t">Social Streams</h2>
-      <div class="soc-telemetry" id="soc-telemetry" aria-label="Telemetri Sentimen Sosial">
-        <span class="soc-tel-chip tel-pos"><i class="tel-dot"></i><b id="tel-pos-val">—</b> Pos</span>
-        <span class="soc-tel-chip tel-neu"><i class="tel-dot"></i><b id="tel-neu-val">—</b> Net</span>
-        <span class="soc-tel-chip tel-neg"><i class="tel-dot"></i><b id="tel-neg-val">—</b> Kritis</span>
-      </div>
+      <h2 class="ph-t">Social</h2>
       <div class="soc-tabs" role="tablist" aria-label="Sumber sosial">
-        <button class="soc-tab" id="tab-streams" type="button" role="tab" aria-selected="true" aria-controls="pane-streams" data-tab="streams">
-          <span class="lbl"><svg class="ic" aria-hidden="true"><use href="#i-layout"></use></svg><span class="tx">Streams</span></span>
+        <button class="soc-tab" id="tab-x" type="button" role="tab" aria-selected="false" aria-controls="pane-x" data-tab="x">
+          <span class="lbl"><svg class="ic" aria-hidden="true"><use href="#i-x"></use></svg><span class="tx">Tweets</span></span>
         </button>
         <button class="soc-tab" id="tab-th" type="button" role="tab" aria-selected="false" aria-controls="pane-th" data-tab="threads">
           <span class="lbl"><svg class="ic" aria-hidden="true"><use href="#i-threads"></use></svg><span class="tx">Threads</span></span>
-        </button>
-        <button class="soc-tab" id="tab-x" type="button" role="tab" aria-selected="false" aria-controls="pane-x" data-tab="x">
-          <span class="lbl"><svg class="ic" aria-hidden="true"><use href="#i-x"></use></svg><span class="tx">Tweets</span></span>
         </button>
       </div>
       <span class="ph-m" id="xmeta" hidden aria-hidden="true">—</span>
@@ -4893,7 +4893,13 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
         <button class="ph-act ph-hide" type="button" title="Sembunyikan panel" aria-label="Sembunyikan panel"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button>
       </div>
     </div>
-    <div class="pb soc-body" id="pane-streams" role="tabpanel" aria-labelledby="tab-streams">
+    <div class="pb soc-body" id="pane-streams" role="region" aria-label="Aliran Multi-Stream Sosial">
+      <div class="soc-tel-bar" id="soc-telemetry" aria-label="Telemetri Sentimen Sosial">
+        <span class="soc-tel-tag">STREAMS</span>
+        <span class="soc-tel-chip tel-pos"><i class="tel-dot"></i><b id="tel-pos-val">—</b> Pos</span>
+        <span class="soc-tel-chip tel-neu"><i class="tel-dot"></i><b id="tel-neu-val">—</b> Net</span>
+        <span class="soc-tel-chip tel-neg"><i class="tel-dot"></i><b id="tel-neg-val">—</b> Kritis</span>
+      </div>
       <div class="soc-deck" id="soc-deck">
         <div class="soc-col" id="col-coretax" data-stream="coretax">
           <div class="sc-hdr">
@@ -8944,11 +8950,10 @@ function setSocTab(t){
   if ($('#tmeta')) $('#tmeta').hidden = socTab !== 'threads';
   if (socTab === 'streams') {
     renderStreams();
-    if (!tPosts.length) pullThreads();
-    if (!xPosts.length) pullX();
-  } else if (socTab === 'threads' && !tPosts.length) {
+    if (!tPosts.length && typeof pullThreads === 'function') pullThreads();
+  } else if (socTab === 'threads' && !tPosts.length && typeof pullThreads === 'function') {
     pullThreads();
-  } else if (socTab === 'x' && !xPosts.length) {
+  } else if (socTab === 'x' && !xPosts.length && typeof pullX === 'function') {
     pullX();
   }
 }
@@ -8957,13 +8962,14 @@ $$('.soc-tab').forEach(b => {
   b.addEventListener('click', () => {
     const pane = b.closest('.pane');
     if (pane && !pane.classList.contains('open')) pane.classList.add('open');
-    setSocTab(b.dataset.tab);
+    const target = socTab === b.dataset.tab ? 'streams' : b.dataset.tab;
+    setSocTab(target);
   });
   b.addEventListener('keydown', e => {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
     e.preventDefault();
     const cur = b.dataset.tab;
-    const next = cur === 'streams' ? (e.key === 'ArrowRight' ? 'threads' : 'x') : cur === 'threads' ? (e.key === 'ArrowRight' ? 'x' : 'streams') : (e.key === 'ArrowRight' ? 'streams' : 'threads');
+    const next = cur === 'x' ? 'threads' : 'x';
     setSocTab(next);
     const target = $('.soc-tab[data-tab="' + next + '"]');
     if (target) target.focus();
@@ -8982,7 +8988,10 @@ $('#tq').addEventListener('input', debounce(() => { tShown = 30; renderThreads()
   }
 });
 
-setSocTab('streams');
+setTimeout(() => {
+  setSocTab('streams');
+  if (typeof pullX === 'function' && !xPosts.length) pullX();
+}, 60);
 
 const RSS_SOURCES = [
   { id:'ANTARA', mode:'direct', url:'https://www.antaranews.com/rss/terkini.xml' },
