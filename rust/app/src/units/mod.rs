@@ -149,6 +149,10 @@ pub fn router() -> Router<Original> {
                 .fallback(original::proxy),
         )
         .route("/api/xdiag", get(route_43).fallback(original::proxy))
+        .route(
+            "/api/social/rsshub",
+            get(original::proxy).post(original::proxy),
+        )
         .route("/api/cctv", get(route_44).fallback(original::proxy))
         .route("/api/cams", get(route_45).fallback(original::proxy))
         .route("/api/cctv/stats", get(route_46).fallback(original::proxy))

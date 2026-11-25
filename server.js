@@ -456,6 +456,7 @@ const {
   warmSocial,
   threadOf,
   isKnownThreadUrl,
+  rsshub,
 } = socialSvc;
 
 const {
@@ -1364,6 +1365,14 @@ const SITREP_SERVER = http.createServer(async (req, res) => {
       txt = String(txt).slice(0, 1500);
       if (!txt.trim()) return json({ ok: false, err: 'text wajib diisi' }, 400);
       return json({ ok: true, explanation: SOC.explainPost(txt, getAdhoc()) });
+    }
+    if (u.pathname === '/api/social/rsshub') {
+      if (req.method === 'POST') {
+        if (!AUTH.hasRole(principal, 'operator')) return json({ ok: false, err: 'akses ditolak (butuh role operator)' }, 403);
+        const stats = await rsshub.refresh();
+        return json({ ok: true, stats }, 200, '', 0, pubCC(0, 0, 0));
+      }
+      return json({ ok: true, ...rsshub.status() }, 200, '', 0, pubCC(0, 0, 0));
     }
     if (u.pathname === '/api/nodes') {
       if (sendCached('nodes', 86400e3, 200, 'public, max-age=86400')) return;

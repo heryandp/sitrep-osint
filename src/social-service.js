@@ -161,6 +161,17 @@ function createSocialService({
   histAstroturf(xHist);
   histAstroturf(tHist);
 
+  const RSSHUB = require('./social-rsshub');
+  const rsshub = RSSHUB.createRsshubConnector({
+    baseUrl: process.env.RSSHUB_URL || 'http://127.0.0.1:1200',
+    tHist,
+    xHist,
+    histMerge,
+    histDir: HIST_DIR,
+    pollIntervalMs: 180000,
+  });
+  rsshub.start();
+
   const BEARER = 'AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA';
   const FEATURES = {
     rweb_tipjar_consumption_enabled: true, responsive_web_graphql_exclude_directive_enabled: true,
@@ -1461,6 +1472,7 @@ function createSocialService({
     warmSocial,
     threadOf,
     isKnownThreadUrl,
+    rsshub,
   };
 }
 

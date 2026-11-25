@@ -35,12 +35,17 @@ const tagSigOf = (extra = []) => {
 function tag(p, extra = [], now = Date.now(), meta = {}) {
   DROP_STATS.total++;
   const ts = tsOf(p);
-  if (!Number.isFinite(ts) || ts <= 0 || ts > now || now - ts > AGE) { DROP_STATS.age++; return false; }
+  const handle = String(p.handle || p.username || p.user || '').toLowerCase().replace(/^@/, '');
+  const isWatch = Array.isArray(SOC.SOC_WATCH_X) && SOC.SOC_WATCH_X.includes(handle);
+  const isOfficial = isWatch || Boolean(meta.isOfficial);
+  const isSocialStream = meta.discoverySource === 'rsshub' || Boolean(meta.isSocialStream);
+  const maxAge = Number(meta.maxAge) || (isOfficial ? 72 * 3600e3 : AGE);
+
+  if (!Number.isFinite(ts) || ts <= 0 || ts > now || now - ts > maxAge) { DROP_STATS.age++; return false; }
   if (typeof p.text === 'string' && p.text.includes('&')) {
     p.text = p.text.replace(/&amp;?/gi, '&').replace(/&lt;?/gi, '<').replace(/&gt;?/gi, '>').replace(/&quot;?/gi, '"').replace(/&#0*39;?|&apos;?/gi, "'");
   }
   const text = String(p.text || '');
-  const handle = String(p.handle || p.username || p.user || '').toLowerCase().replace(/^@/, '');
   if (/^(501awani|bernamadotcom|beritartm|astroawani|utusanonline|sinarharian|bharianmy|hmetromy|malaysiakini|thesiakapkeli|siakapkeli|ohbulanofficial|mstaronline|kosmo_online)$/i.test(handle)) { DROP_STATS.handle++; return false; }
   if (SOC.socNonLatin(text) || SOC.socVi(text) || SOC.socHashJunk(text) || SOC.socForeignLang(text)) { DROP_STATS.lang++; return false; }
   if (SOC.SOC_FOREIGN_RE.test(text) && !SOC.SOC_LOCAL_RE.test(text)) { DROP_STATS.foreign++; return false; }
@@ -58,6 +63,32 @@ function tag(p, extra = [], now = Date.now(), meta = {}) {
   };
 
   p.assessment = SOC.socAssess(p.text, extra, assessCtx);
+
+  if (isOfficial) {
+    if (!p.assessment) p.assessment = {};
+    p.assessment.feedEligible = true;
+    if (!p.assessment.feedLane || p.assessment.feedLane === 'rejected') {
+      p.assessment.feedLane = 'situational_context';
+    }
+    if (!Array.isArray(p.assessment.topics) || p.assessment.topics.length === 0) {
+      p.assessment.topics = [meta.topic || 'pajak'];
+    }
+    if (!p.assessment.provenance || p.assessment.provenance.sourceType === 'anonymous') {
+      p.assessment.provenance = {
+        sourceType: 'official',
+        authorityWeight: 1.0,
+        handle,
+        reason: 'official_account',
+        engagementExcludedFromCredibility: false,
+      };
+    }
+  } else if (isSocialStream && p.assessment && Array.isArray(p.assessment.topics) && p.assessment.topics.length > 0) {
+    p.assessment.feedEligible = true;
+    if (p.assessment.feedLane === 'rejected') {
+      p.assessment.feedLane = 'situational_context';
+    }
+  }
+
   const lane = p.assessment.feedLane || (p.assessment.signalEligible ? 'incident_signals' : p.assessment.feedEligible ? 'situational_context' : 'rejected');
   if (Object.prototype.hasOwnProperty.call(DROP_STATS.lanes, lane)) {
     DROP_STATS.lanes[lane]++;
