@@ -135,6 +135,14 @@ pub async fn handle(route: &str, _params: HashMap<String, String>, _req: Request
                 data.to_string(),
             )
         }
+        "GET /api/tma" | "GET /api/pintu-air" => {
+            let data = SENSORS.tma_pintu_air().await;
+            json_resp(
+                StatusCode::OK,
+                "public, max-age=60, s-maxage=180, stale-while-revalidate=20",
+                data.to_string(),
+            )
+        }
         _ => json_resp(
             StatusCode::NOT_FOUND,
             "no-store",

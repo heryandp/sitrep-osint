@@ -20,6 +20,8 @@ mod uptime_service;
 mod geo_sensors;
 mod reader_service;
 mod social_service;
+mod cctv_catalog;
+mod cctv_gateway;
 
 /// `RUST_ANYTHING_UNIT_<NAME>=original` sends that unit back to the original.
 fn sent_to_original(unit: &str) -> bool {
@@ -144,7 +146,19 @@ pub fn router() -> Router<Original> {
                 .fallback(original::proxy),
         )
         .route("/api/xdiag", get(route_43).fallback(original::proxy))
-        .fallback(original::proxy)
+        .route("/api/cctv", get(route_44).fallback(original::proxy))
+        .route("/api/cams", get(route_45).fallback(original::proxy))
+        .route("/api/cctv/stats", get(route_46).fallback(original::proxy))
+        .route("/api/cctv/snap", get(route_47).fallback(original::proxy))
+        .route("/api/cctv/rum", post(route_48).fallback(original::proxy))
+        .route("/api/cctv/report", post(route_49).fallback(original::proxy))
+        .route("/hls", get(route_50).fallback(original::proxy))
+        .route("/vhs", get(route_51).fallback(original::proxy))
+        .route("/api/tma", get(route_52).fallback(original::proxy))
+        .route("/api/pintu-air", get(route_53).fallback(original::proxy))
+        .route("/api/ping", get(route_ping).fallback(original::proxy))
+        .route("/api/metrics", get(route_metrics).fallback(original::proxy))
+        .fallback_service(tower_http::services::ServeDir::new("public"))
 }
 
 async fn route_0(State(original): State<Original>, req: Request) -> Response {
@@ -477,4 +491,111 @@ async fn route_43(State(original): State<Original>, req: Request) -> Response {
         return original::proxy(State(original), req).await;
     }
     social_service::handle("GET /api/xdiag", HashMap::new(), req).await
+}
+
+async fn route_44(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("CCTV_CATALOG") {
+        return original::proxy(State(original), req).await;
+    }
+    cctv_catalog::handle("GET /api/cctv", HashMap::new(), req).await
+}
+
+async fn route_45(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("CCTV_CATALOG") {
+        return original::proxy(State(original), req).await;
+    }
+    cctv_catalog::handle("GET /api/cams", HashMap::new(), req).await
+}
+
+async fn route_46(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("CCTV_GATEWAY") {
+        return original::proxy(State(original), req).await;
+    }
+    cctv_gateway::handle("GET /api/cctv/stats", HashMap::new(), req).await
+}
+
+async fn route_47(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("CCTV_GATEWAY") {
+        return original::proxy(State(original), req).await;
+    }
+    cctv_gateway::handle("GET /api/cctv/snap", HashMap::new(), req).await
+}
+
+async fn route_48(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("CCTV_GATEWAY") {
+        return original::proxy(State(original), req).await;
+    }
+    cctv_gateway::handle("POST /api/cctv/rum", HashMap::new(), req).await
+}
+
+async fn route_49(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("CCTV_GATEWAY") {
+        return original::proxy(State(original), req).await;
+    }
+    cctv_gateway::handle("POST /api/cctv/report", HashMap::new(), req).await
+}
+
+async fn route_50(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("CCTV_GATEWAY") {
+        return original::proxy(State(original), req).await;
+    }
+    cctv_gateway::handle("GET /hls", HashMap::new(), req).await
+}
+
+async fn route_51(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("CCTV_GATEWAY") {
+        return original::proxy(State(original), req).await;
+    }
+    cctv_gateway::handle("GET /vhs", HashMap::new(), req).await
+}
+
+async fn route_52(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/tma", HashMap::new(), req).await
+}
+
+async fn route_53(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/pintu-air", HashMap::new(), req).await
+}
+
+async fn route_ping() -> Response {
+    let mode = if crate::middleware::auth().user_mode() {
+        "session"
+    } else if crate::middleware::auth().public_mode() {
+        "public"
+    } else {
+        "token"
+    };
+    let payload = serde_json::json!({
+        "ok": true,
+        "x": true,
+        "mode": mode,
+        "classifierVersion": "2026-11-23.1",
+    });
+    axum::response::IntoResponse::into_response((
+        axum::http::StatusCode::OK,
+        [
+            (axum::http::header::CONTENT_TYPE, "application/json"),
+            (axum::http::header::CACHE_CONTROL, "no-store"),
+            (axum::http::header::REFERRER_POLICY, "same-origin"),
+            (axum::http::header::X_CONTENT_TYPE_OPTIONS, "nosniff"),
+        ],
+        payload.to_string(),
+    ))
+}
+
+async fn route_metrics() -> Response {
+    axum::response::IntoResponse::into_response((
+        axum::http::StatusCode::OK,
+        [
+            (axum::http::header::CONTENT_TYPE, "application/json"),
+            (axum::http::header::CACHE_CONTROL, "no-store"),
+        ],
+        r#"{"ok":true,"version":"rust-anything"}"#.to_string(),
+    ))
 }

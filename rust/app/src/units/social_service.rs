@@ -82,6 +82,16 @@ pub async fn handle(route: &str, _params: HashMap<String, String>, req: Request)
             ),
         },
         "GET /api/social/explain" | "POST /api/social/explain" => {
+            let auth_ctx = crate::middleware::auth_context_from_req(&req);
+            let principal = crate::middleware::auth().authenticate(&auth_ctx);
+            let is_op = principal.as_ref().is_some_and(|p| p.role as u8 >= security_rs::port::service::Role::Operator as u8);
+            if !is_op {
+                return json_resp(
+                    StatusCode::FORBIDDEN,
+                    "no-store",
+                    json!({ "ok": false, "err": "akses ditolak (butuh role operator)" }).to_string(),
+                );
+            }
             let mut text = query_param(q, "text").unwrap_or_default();
             if route.starts_with("POST") {
                 let bytes = match axum::body::to_bytes(req.into_body(), 8192).await {

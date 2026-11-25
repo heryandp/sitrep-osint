@@ -1,6 +1,6 @@
 # Port map: djp-sitrep
 
-25 of 47 units have a Rust port; no original changed since it was recorded.
+27 of 47 units have a Rust port; no original changed since it was recorded.
 
 ## Ports
 
@@ -9,6 +9,8 @@
 | `src/article-extract.js` | `rust/article-extract-rs` | `isChallengeHtml`, `decodeEntities`, `rdClean`, `rdInline`, `rdHost`, `rdAbs`, `parseAttrs`, `pickBestSrcset`, `rdMeta`, `rdLd`, `rdName`, `findMatchingClose`, `stripElementsByTag`, `stripJunkContainers`, `stripCardLinks`, `stripLinkBlocks`, `extractContainers`, `rdBlocks`, `rdVideos`, `rdOnTopic`, `topicTokens`, `pruneBlocks`, `computeTextQuality`, `cleanArticleTitle`, `rdExtract`, `rdJinaMd` | - | 3099 | 3099/3099 | unchanged |
 | `src/article-media.js` | `rust/article-media-rs` | `canonicalArticleUrl`, `regDomain`, `resolveUrl`, `upgradeImage`, `imageKey`, `dirKey`, `rdSmallHint`, `rdJunkUrl`, `classifyCandidateUrl`, `classifyCandidateAttrs`, `imageSize`, `inspectImageBuffer`, `validateImageMetrics`, `extractHtmlImageCandidates`, `extractJinaImageCandidates`, `extractFeedImageCandidates`, `feedImage`, `isHijackedHtml`, `resolveArticleMedia` | - | 1886 | 1886/1886 | unchanged |
 | `src/assessment.js` | `rust/assessment-rs` | `isHistorical`, `norm`, `clauses`, `classifyScope` | `assess` | 429 | 429/429 | unchanged |
+| `src/cctv-catalog.js` | `rust/cctv-catalog-rs` | `createCctvCatalog` | - | 12 | 12/12 | unchanged |
+| `src/cctv-gateway.js` | `rust/cctv-gateway-rs` | `createGateway`, `makeLane`, `makeBucket`, `makeLru` | - | 533 | 533/533 | unchanged |
 | `src/copernicus.js` | `rust/copernicus-rs` | `tileToBbox3857`, `tileToBbox4326`, `tileIntersectsBounds` | `createCopernicusProxy` | 646 | 646/646 | unchanged |
 | `src/evmerge.js` | `rust/evmerge-rs` | `mergeEvents`, `breakNorm`, `hazardOf`, `repScore`, `evHash` | - | 297 | 297/297 | unchanged |
 | `src/exa-summary.js` | `rust/exa-summary-rs` | `isValidPublicHttpUrl`, `extractKeyEntities`, `buildFallbackSummary`, `parseExaSummaryObject` | `createExaSummaryService` | 259 | 259/259 | unchanged |
@@ -36,6 +38,8 @@
 
 | Glue | Runs |
 | --- | --- |
+| `rust/app/src/units/cctv_catalog.rs` | Rust only |
+| `rust/app/src/units/cctv_gateway.rs` | Rust only |
 | `rust/app/src/units/copernicus.rs` | Rust only |
 | `rust/app/src/units/exa_summary.rs` | Rust only |
 | `rust/app/src/units/geo_sensors.rs` | Rust only |
@@ -71,9 +75,7 @@ In the order `analyze` suggests.
 | `social.js` | 1 | 0 | 100 |
 | `xpool.js` | 1 | 0 | 100 |
 | `public/` | 537 | 0 | 50 |
-| `src/cctv-catalog.js` | 505 | 1 | 38 |
 | `scripts/` | 489 | 0 | 35 |
-| `src/cctv-gateway.js` | 723 | 4 | 26 |
 | `server.js` | 1957 | 5 | 0 |
 | `src/client/scripts/` | 10212 | 0 | 0 |
 

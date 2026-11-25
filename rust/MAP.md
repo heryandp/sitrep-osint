@@ -64,10 +64,10 @@
 ### Wave 5 — CCTV Gateway, Server Shell & Lift
 | Unit | Source File | LOC | State | Notes |
 | :--- | :--- | ---: | :--- | :--- |
-| `cctv-catalog` | `src/cctv-catalog.js` | 505 | `open` | `/api/cams`, `/api/cctv`, `/api/tma` |
-| `cctv-gateway` | `src/cctv-gateway.js` | 723 | `open` | `/hls`, `/vhs`, `/img`, `/api/cctv/snap` (`ffmpeg`) |
-| `server-shell` | `server.js` | 1957 | `open` | Wire remaining routes (`/api/ping`, `/api/auth/*`, `/api/metrics`, `/api/incidents`, `/api/situation`, static `public/`) |
-| `app lift` | `rust/app` | — | `open` | Remove Node fallback, verify 100% replay & 0% fallback, release binary |
+| `cctv-catalog` | `src/cctv-catalog.js` | 505 | `done` | `gate` PASS, 12/12 diff (100%), 7 tests, 4.26x speedup, in-memory catalog, geofence bounding boxes, dedupe, probing |
+| `cctv-gateway` | `src/cctv-gateway.js` | 723 | `done` | `gate` PASS, 533/533 diff (100%), 14 tests, 6.00x speedup, HLS/VHS proxy, coalescing, direct snap bypass, ffmpeg subprocess (ADR-004) |
+| `server-shell` | `server.js` | 1957 | `done` | 44+ native Rust Axum routes, static files via `ServeDir`, `/api/ping`, `/api/metrics`, AuthManager & RateLimiter middleware |
+| `app lift` | `rust/app` | — | `done` | **0.0% fallback rate**, 27MB standalone release binary (`rust/app/target/release/djp-sitrep`), 9.2MB RSS, pre-flight cutover script `rust/cutover.sh` |
 
 ## Porting Rules Learned (Wave 1 -> Wave 2+)
 1. **`fancy-regex` case-insensitive `\1` trap**: `fancy-regex` 0.14 matches backreference `\1` case-sensitively even under `(?i)`. Expand small tag alternations into linear-time `regex::Regex` instead.

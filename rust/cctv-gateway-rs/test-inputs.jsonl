@@ -1,0 +1,11 @@
+{"fn":"makeLane","args":[48,8,64]}
+{"fn":"makeLane","args":[12,12,160]}
+{"fn":"makeBucket","args":[40,200]}
+{"fn":"makeBucket","args":[3145728,125829120]}
+{"fn":"makeBucket","args":[47185920,188743680]}
+{"fn":"makeLru","args":[67108864]}
+{"fn":"makeLru","args":[25165824]}
+{"fn":"makeBucket","args":[1,30]}
+{"fn":"makeBucket","args":[0.5,10]}
+{"fn":"makeBucket","args":[0.001,3]}
+{"fn":"makeBucket","args":[1,20000]}

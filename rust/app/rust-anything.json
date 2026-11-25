@@ -147,6 +147,32 @@
         "GET /api/xdiag"
       ],
       "switch": "RUST_ANYTHING_UNIT_SOCIAL_SERVICE"
+    },
+    {
+      "name": "cctv-catalog",
+      "crate": "cctv-catalog-rs",
+      "path": "../cctv-catalog-rs",
+      "commands": [],
+      "routes": [
+        "GET /api/cctv",
+        "GET /api/cams"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_CCTV_CATALOG"
+    },
+    {
+      "name": "cctv-gateway",
+      "crate": "cctv-gateway-rs",
+      "path": "../cctv-gateway-rs",
+      "commands": [],
+      "routes": [
+        "GET /api/cctv/stats",
+        "GET /api/cctv/snap",
+        "POST /api/cctv/rum",
+        "POST /api/cctv/report",
+        "GET /hls",
+        "GET /vhs"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_CCTV_GATEWAY"
     }
   ],
   "kind": "http",

@@ -1,0 +1,18 @@
+[Unit]
+Description=DJP SITREP OSINT Console (Pure Rust)
+After=network.target
+
+[Service]
+Type=simple
+User=ditip
+WorkingDirectory=/home/ditip/Documents/djp-sitrep
+ExecStart=/home/ditip/Documents/djp-sitrep/rust/app/target/release/djp-sitrep
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
+EnvironmentFile=-/home/ditip/Documents/djp-sitrep/.env
+Environment=PORT=8080
+
+[Install]
+WantedBy=multi-user.target
+

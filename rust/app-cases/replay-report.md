@@ -1,10 +1,10 @@
 # App replay
 
-Build: `rust/app/target/debug/djp-sitrep`
+Build: `env SITREP_PUBLIC=1 SITREP_HOST=127.0.0.1 node server.js`
 
 Passed: 270/272
 
-Fallback rate: 95.2% (259/272 cases answered by the original)
+Fallback rate: not reported by this build
 
 ## Failing cases
 

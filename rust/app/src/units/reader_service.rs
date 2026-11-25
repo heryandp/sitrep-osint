@@ -69,6 +69,13 @@ pub async fn handle(route: &str, _params: HashMap<String, String>, req: Request)
                     json!({ "ok": false, "err": "parameter u (URL) diperlukan" }).to_string(),
                 );
             }
+            if !ReaderService::is_public_url(&raw_url) {
+                return json_resp(
+                    StatusCode::FORBIDDEN,
+                    "no-store",
+                    json!({ "ok": false, "err": "host tidak diizinkan" }).to_string(),
+                );
+            }
             let bg = query_param(q, "bg").as_deref() == Some("1");
             let fresh = query_param(q, "fresh").as_deref() == Some("1");
 
@@ -188,6 +195,15 @@ pub async fn handle(route: &str, _params: HashMap<String, String>, req: Request)
                     StatusCode::BAD_REQUEST,
                     [(header::CONTENT_TYPE, "text/plain")],
                     "missing u param",
+                )
+                    .into_response();
+            }
+
+            if !raw_url.starts_with("https://") || !ReaderService::is_public_url(&raw_url) {
+                return (
+                    StatusCode::FORBIDDEN,
+                    [(header::CONTENT_TYPE, "text/plain")],
+                    "host tidak diizinkan",
                 )
                     .into_response();
             }
