@@ -134,6 +134,8 @@
 .soc-tel-chip.tel-pos .tel-dot{background:#22c55e}
 .soc-tel-chip.tel-neu{background:rgba(148,163,184,.12);color:#94a3b8}
 .soc-tel-chip.tel-neu .tel-dot{background:#94a3b8}
+.soc-tel-chip.tel-warn{background:rgba(245,158,11,.14);color:#fbbf24}
+.soc-tel-chip.tel-warn .tel-dot{background:#f59e0b}
 .soc-tel-chip.tel-neg{background:rgba(239,68,68,.14);color:#f87171}
 .soc-tel-chip.tel-neg .tel-dot{background:#ef4444}
 

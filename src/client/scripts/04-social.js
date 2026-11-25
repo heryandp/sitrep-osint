@@ -470,19 +470,13 @@ async function pullThreads(){
   } finally { tBusy = false; }
 }
 schedulePoll(() => pullThreads(), 90000, { dedupGlobalMs: 20000 });
-const STREAM_KW = {
-  coretax: ['coretax', 'djp online', 'ebupot', 'efaktur', 'e-faktur', 'sertel', 'sertifikat', 'gagal bayar', 'billing', 'error', 'eror', 'down', 'gangguan', 'maintenance', 'antre', 'antrean', 'server down', 'susah login', 'spt'],
-  regulasi: ['pajak', 'ppn', 'pph', 'tarif', 'ter', 'tax amnesty', 'amnesti', 'restitusi', 'dividen', 'fiskal', 'kemenkeu', 'menkeu', 'sri mulyani', 'anggaran', 'apbn', 'target pajak', 'wajib pajak', 'npwp', 'nik', 'pemadanan', 'fiskus'],
-  kritis: ['faktur fiktif', 'penipuan', 'korupsi', 'suap', 'calo', 'pemerasan', 'viral', 'boikot', 'demo', 'protes', 'kpk', 'kejaksaan', 'tersangka', 'ditangkap', 'gadungan', 'kebocoran data', 'hacker', 'breach', 'rugikan negara', 'gratifikasi']
-};
-
 const streamQ = { coretax: '', regulasi: '', kritis: '' };
 
 function assessSentiment(text){
   const t = (text || '').toLowerCase();
-  const critWords = ['faktur fiktif', 'penipuan', 'korupsi', 'suap', 'calo', 'pemerasan', 'viral', 'boikot', 'tersangka', 'kejaksaan', 'ditangkap', 'bocor', 'hacker', 'breach', 'rugikan negara'];
-  const warnWords = ['eror', 'error', 'down', 'gangguan', 'susah login', 'lambat', 'gagal', 'keluhan', 'kecewa', 'ribet', 'antre', 'tidak bisa', 'server down'];
-  const posWords = ['mudah', 'cepat', 'lancar', 'terima kasih', 'bagus', 'solutif', 'apresiasi', 'sukses', 'berhasil', 'membantu', 'mantap', 'keren', 'jempol'];
+  const critWords = ['faktur fiktif', 'penipuan', 'korupsi', 'suap', 'calo', 'pemerasan', 'tersangka', 'ditangkap', 'bocor', 'hacker', 'breach', 'rugikan negara', 'gijzeling', 'penyanderaan'];
+  const warnWords = ['eror', 'error', 'down', 'gangguan', 'susah login', 'lambat', 'gagal', 'keluhan', 'kecewa', 'ribet', 'antre', 'tidak bisa', 'server down', 'lemot', 'kendala'];
+  const posWords = ['mudah', 'cepat', 'lancar', 'terima kasih', 'bagus', 'solutif', 'apresiasi', 'sukses', 'berhasil', 'membantu', 'mantap', 'keren', 'jempol', 'selamat hari', 'tumbuh', 'meningkat', 'capaian', 'kontribusi'];
 
   if (critWords.some(w => t.includes(w))) return { label: 'Kritis', cls: 'sent-crit', score: -2 };
   if (warnWords.some(w => t.includes(w))) return { label: 'Keluhan', cls: 'sent-warn', score: -1 };
@@ -507,23 +501,47 @@ function allSocialPosts(){
 
 function postStreamMatch(p, streamKey){
   const txt = ((p.text || '') + ' ' + (p.full_name || p.name || '') + ' ' + (p.username || p.handle || '')).toLowerCase();
-  const kw = STREAM_KW[streamKey] || [];
-  return kw.some(k => txt.includes(k));
+  const handle = String(p.username || p.handle || '').toLowerCase();
+  const isOfficial = ['ditjenpajakri', 'kring_pajak', 'kemenkeuri'].includes(handle) || Boolean(p.official);
+
+  if (streamKey === 'kritis') {
+    if (isOfficial) return true;
+    if (/\b(?:faktur\s*fiktif|penipuan|korupsi|suap|calo|pemerasan|gijzeling|penyanderaan|sita\s*aset|pengemplang|ott|ditangkap|tersangka|bocor|kebocoran\s*data|hacker|breach|phishing|apk\s*palsu)\b/i.test(txt)) {
+      return /\b(?:pajak|djp|kemenkeu|fiskus|kpp|uang\s*negara|apbn|kas\s*negara|rekening|pejabat)\b/i.test(txt);
+    }
+    return false;
+  }
+
+  if (streamKey === 'coretax') {
+    if (/\b(?:coretax|core\s*tax|djp\s*online|e-?bupot|e-?faktur|sertel|sertifikat\s*elektronik|m-?pajak)\b/i.test(txt)) return true;
+    if (/\b(?:pajak|djp|spt|npwp|kpp)\b/i.test(txt) && /\b(?:error|eror|down|gangguan|gagal|lemot|lambat|antre|antrean|login|maintenance|server)\b/i.test(txt)) return true;
+    return false;
+  }
+
+  if (streamKey === 'regulasi') {
+    if (/\b(?:ppn|pph|tarif\s*ter|tax\s*amnesty|amnesti\s*pajak|restitusi|fiskal|apbn|wajib\s*pajak|lapor\s*spt|spt\s*tahunan|penerimaan\s*pajak|fiskus|insentif\s*pajak|bebas\s*pajak|pmk|denda\s*pajak|sanksi\s*pajak)\b/i.test(txt)) return true;
+    if (/\bpajak\b/i.test(txt) && /\b(?:aturan|peraturan|kebijakan|tarif|kenaikan|naik|turun|potongan|uu|revisi|penghasilan|badan|umkm)\b/i.test(txt)) return true;
+    return false;
+  }
+
+  return false;
 }
 
 function updateSocTelemetry(posts){
   if (!posts || !posts.length) return;
-  let pos = 0, neu = 0, neg = 0;
+  let pos = 0, neu = 0, warn = 0, crit = 0;
   posts.forEach(p => {
     const s = assessSentiment(p.text);
     if (s.cls === 'sent-pos') pos++;
-    else if (s.cls === 'sent-crit' || s.cls === 'sent-warn') neg++;
+    else if (s.cls === 'sent-warn') warn++;
+    else if (s.cls === 'sent-crit') crit++;
     else neu++;
   });
   const tot = posts.length || 1;
   const pPos = $('#tel-pos-val'); if (pPos) pPos.textContent = Math.round((pos / tot) * 100) + '%';
   const pNeu = $('#tel-neu-val'); if (pNeu) pNeu.textContent = Math.round((neu / tot) * 100) + '%';
-  const pNeg = $('#tel-neg-val'); if (pNeg) pNeg.textContent = Math.round((neg / tot) * 100) + '%';
+  const pWarn = $('#tel-warn-val'); if (pWarn) pWarn.textContent = Math.round((warn / tot) * 100) + '%';
+  const pCrit = $('#tel-neg-val'); if (pCrit) pCrit.textContent = Math.round((crit / tot) * 100) + '%';
 }
 
 function streamCard(p, streamType){
@@ -571,9 +589,6 @@ function renderStreamColumn(streamKey){
   const all = allSocialPosts();
   const q = (streamQ[streamKey] || '').toLowerCase().trim();
   let list = all.filter(p => postStreamMatch(p, streamKey));
-  if (!list.length && all.length) {
-    list = all.slice(0, 15);
-  }
   if (q) {
     list = list.filter(p => ((p.text || '') + ' ' + (p.username || p.handle || '')).toLowerCase().includes(q));
   }

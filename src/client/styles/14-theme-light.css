@@ -745,6 +745,7 @@ html[data-theme="light"] .sent-warn{background:#fef3c7;color:#92400e;border-colo
 html[data-theme="light"] .sent-crit{background:#fee2e2;color:#991b1b;border-color:#fca5a5}
 html[data-theme="light"] .soc-tel-chip.tel-pos{background:#dcfce7;color:#15803d}
 html[data-theme="light"] .soc-tel-chip.tel-neu{background:#f1f5f9;color:#475569}
+html[data-theme="light"] .soc-tel-chip.tel-warn{background:#fef3c7;color:#92400e}
 html[data-theme="light"] .soc-tel-chip.tel-neg{background:#fee2e2;color:#b91c1c}
 html[data-theme="light"] .soc-tel-bar{background:#ece9e1;border-bottom-color:#d5d1c7}
 html[data-theme="light"] .soc-tel-tag{background:#e0f2fe;color:#0369a1;border-color:#7dd3fc}

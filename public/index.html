@@ -1873,6 +1873,8 @@ a[href],[role="button"]:not([aria-disabled="true"]),summary,select{cursor:pointe
 .soc-tel-chip.tel-pos .tel-dot{background:#22c55e}
 .soc-tel-chip.tel-neu{background:rgba(148,163,184,.12);color:#94a3b8}
 .soc-tel-chip.tel-neu .tel-dot{background:#94a3b8}
+.soc-tel-chip.tel-warn{background:rgba(245,158,11,.14);color:#fbbf24}
+.soc-tel-chip.tel-warn .tel-dot{background:#f59e0b}
 .soc-tel-chip.tel-neg{background:rgba(239,68,68,.14);color:#f87171}
 .soc-tel-chip.tel-neg .tel-dot{background:#ef4444}
 
@@ -3810,6 +3812,7 @@ html[data-theme="light"] .sent-warn{background:#fef3c7;color:#92400e;border-colo
 html[data-theme="light"] .sent-crit{background:#fee2e2;color:#991b1b;border-color:#fca5a5}
 html[data-theme="light"] .soc-tel-chip.tel-pos{background:#dcfce7;color:#15803d}
 html[data-theme="light"] .soc-tel-chip.tel-neu{background:#f1f5f9;color:#475569}
+html[data-theme="light"] .soc-tel-chip.tel-warn{background:#fef3c7;color:#92400e}
 html[data-theme="light"] .soc-tel-chip.tel-neg{background:#fee2e2;color:#b91c1c}
 html[data-theme="light"] .soc-tel-bar{background:#ece9e1;border-bottom-color:#d5d1c7}
 html[data-theme="light"] .soc-tel-tag{background:#e0f2fe;color:#0369a1;border-color:#7dd3fc}
@@ -4898,6 +4901,7 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
         <span class="soc-tel-tag">STREAMS</span>
         <span class="soc-tel-chip tel-pos"><i class="tel-dot"></i><b id="tel-pos-val">—</b> Pos</span>
         <span class="soc-tel-chip tel-neu"><i class="tel-dot"></i><b id="tel-neu-val">—</b> Net</span>
+        <span class="soc-tel-chip tel-warn"><i class="tel-dot"></i><b id="tel-warn-val">—</b> Keluhan</span>
         <span class="soc-tel-chip tel-neg"><i class="tel-dot"></i><b id="tel-neg-val">—</b> Kritis</span>
       </div>
       <div class="soc-deck" id="soc-deck">
@@ -4905,7 +4909,7 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
           <div class="sc-hdr">
             <div class="sc-title">
               <span class="sc-num">[S1]</span>
-              <h3 class="sc-name">Coretax & Layanan</h3>
+              <h3 class="sc-name">Coretax & Layanan Digital</h3>
               <span class="sc-badge sc-badge-coretax">Sistem</span>
             </div>
             <div class="sc-meta"><span class="sc-cnt" id="sc-cnt-coretax">0 post</span></div>
@@ -4913,14 +4917,14 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
           <div class="sc-filter-bar">
             <input class="sc-search" id="sc-q-coretax" type="search" placeholder="Saring Coretax…" aria-label="Saring Coretax">
           </div>
-          <div class="sc-list" id="sc-list-coretax" aria-label="Aliran Coretax & Layanan"><div class="empty">Menghubungkan aliran Coretax…</div></div>
+          <div class="sc-list" id="sc-list-coretax" aria-label="Aliran Coretax & Layanan Digital"><div class="empty">Menghubungkan aliran Coretax…</div></div>
         </div>
 
         <div class="soc-col" id="col-regulasi" data-stream="regulasi">
           <div class="sc-hdr">
             <div class="sc-title">
               <span class="sc-num">[S2]</span>
-              <h3 class="sc-name">Kebijakan & Regulasi</h3>
+              <h3 class="sc-name">Kebijakan & Regulasi Fiskal</h3>
               <span class="sc-badge sc-badge-regulasi">Fiskal</span>
             </div>
             <div class="sc-meta"><span class="sc-cnt" id="sc-cnt-regulasi">0 post</span></div>
@@ -4928,14 +4932,14 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
           <div class="sc-filter-bar">
             <input class="sc-search" id="sc-q-regulasi" type="search" placeholder="Saring Regulasi…" aria-label="Saring Regulasi">
           </div>
-          <div class="sc-list" id="sc-list-regulasi" aria-label="Aliran Kebijakan & Regulasi"><div class="empty">Menghubungkan aliran Kebijakan…</div></div>
+          <div class="sc-list" id="sc-list-regulasi" aria-label="Aliran Kebijakan & Regulasi Fiskal"><div class="empty">Menghubungkan aliran Kebijakan…</div></div>
         </div>
 
         <div class="soc-col" id="col-kritis" data-stream="kritis">
           <div class="sc-hdr">
             <div class="sc-title">
               <span class="sc-num">[S3]</span>
-              <h3 class="sc-name">Kritis & Pengawasan</h3>
+              <h3 class="sc-name">Kritis & Akun Otoritas</h3>
               <span class="sc-badge sc-badge-kritis">Hazard</span>
             </div>
             <div class="sc-meta"><span class="sc-cnt" id="sc-cnt-kritis">0 post</span></div>
@@ -4943,7 +4947,7 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
           <div class="sc-filter-bar">
             <input class="sc-search" id="sc-q-kritis" type="search" placeholder="Saring Kritis…" aria-label="Saring Isu Kritis">
           </div>
-          <div class="sc-list" id="sc-list-kritis" aria-label="Aliran Isu Kritis & Pengawasan"><div class="empty">Menghubungkan aliran Pengawasan…</div></div>
+          <div class="sc-list" id="sc-list-kritis" aria-label="Aliran Kritis & Akun Otoritas"><div class="empty">Menghubungkan aliran Pengawasan…</div></div>
         </div>
       </div>
     </div>
@@ -8815,19 +8819,13 @@ async function pullThreads(){
   } finally { tBusy = false; }
 }
 schedulePoll(() => pullThreads(), 90000, { dedupGlobalMs: 20000 });
-const STREAM_KW = {
-  coretax: ['coretax', 'djp online', 'ebupot', 'efaktur', 'e-faktur', 'sertel', 'sertifikat', 'gagal bayar', 'billing', 'error', 'eror', 'down', 'gangguan', 'maintenance', 'antre', 'antrean', 'server down', 'susah login', 'spt'],
-  regulasi: ['pajak', 'ppn', 'pph', 'tarif', 'ter', 'tax amnesty', 'amnesti', 'restitusi', 'dividen', 'fiskal', 'kemenkeu', 'menkeu', 'sri mulyani', 'anggaran', 'apbn', 'target pajak', 'wajib pajak', 'npwp', 'nik', 'pemadanan', 'fiskus'],
-  kritis: ['faktur fiktif', 'penipuan', 'korupsi', 'suap', 'calo', 'pemerasan', 'viral', 'boikot', 'demo', 'protes', 'kpk', 'kejaksaan', 'tersangka', 'ditangkap', 'gadungan', 'kebocoran data', 'hacker', 'breach', 'rugikan negara', 'gratifikasi']
-};
-
 const streamQ = { coretax: '', regulasi: '', kritis: '' };
 
 function assessSentiment(text){
   const t = (text || '').toLowerCase();
-  const critWords = ['faktur fiktif', 'penipuan', 'korupsi', 'suap', 'calo', 'pemerasan', 'viral', 'boikot', 'tersangka', 'kejaksaan', 'ditangkap', 'bocor', 'hacker', 'breach', 'rugikan negara'];
-  const warnWords = ['eror', 'error', 'down', 'gangguan', 'susah login', 'lambat', 'gagal', 'keluhan', 'kecewa', 'ribet', 'antre', 'tidak bisa', 'server down'];
-  const posWords = ['mudah', 'cepat', 'lancar', 'terima kasih', 'bagus', 'solutif', 'apresiasi', 'sukses', 'berhasil', 'membantu', 'mantap', 'keren', 'jempol'];
+  const critWords = ['faktur fiktif', 'penipuan', 'korupsi', 'suap', 'calo', 'pemerasan', 'tersangka', 'ditangkap', 'bocor', 'hacker', 'breach', 'rugikan negara', 'gijzeling', 'penyanderaan'];
+  const warnWords = ['eror', 'error', 'down', 'gangguan', 'susah login', 'lambat', 'gagal', 'keluhan', 'kecewa', 'ribet', 'antre', 'tidak bisa', 'server down', 'lemot', 'kendala'];
+  const posWords = ['mudah', 'cepat', 'lancar', 'terima kasih', 'bagus', 'solutif', 'apresiasi', 'sukses', 'berhasil', 'membantu', 'mantap', 'keren', 'jempol', 'selamat hari', 'tumbuh', 'meningkat', 'capaian', 'kontribusi'];
 
   if (critWords.some(w => t.includes(w))) return { label: 'Kritis', cls: 'sent-crit', score: -2 };
   if (warnWords.some(w => t.includes(w))) return { label: 'Keluhan', cls: 'sent-warn', score: -1 };
@@ -8852,23 +8850,47 @@ function allSocialPosts(){
 
 function postStreamMatch(p, streamKey){
   const txt = ((p.text || '') + ' ' + (p.full_name || p.name || '') + ' ' + (p.username || p.handle || '')).toLowerCase();
-  const kw = STREAM_KW[streamKey] || [];
-  return kw.some(k => txt.includes(k));
+  const handle = String(p.username || p.handle || '').toLowerCase();
+  const isOfficial = ['ditjenpajakri', 'kring_pajak', 'kemenkeuri'].includes(handle) || Boolean(p.official);
+
+  if (streamKey === 'kritis') {
+    if (isOfficial) return true;
+    if (/\b(?:faktur\s*fiktif|penipuan|korupsi|suap|calo|pemerasan|gijzeling|penyanderaan|sita\s*aset|pengemplang|ott|ditangkap|tersangka|bocor|kebocoran\s*data|hacker|breach|phishing|apk\s*palsu)\b/i.test(txt)) {
+      return /\b(?:pajak|djp|kemenkeu|fiskus|kpp|uang\s*negara|apbn|kas\s*negara|rekening|pejabat)\b/i.test(txt);
+    }
+    return false;
+  }
+
+  if (streamKey === 'coretax') {
+    if (/\b(?:coretax|core\s*tax|djp\s*online|e-?bupot|e-?faktur|sertel|sertifikat\s*elektronik|m-?pajak)\b/i.test(txt)) return true;
+    if (/\b(?:pajak|djp|spt|npwp|kpp)\b/i.test(txt) && /\b(?:error|eror|down|gangguan|gagal|lemot|lambat|antre|antrean|login|maintenance|server)\b/i.test(txt)) return true;
+    return false;
+  }
+
+  if (streamKey === 'regulasi') {
+    if (/\b(?:ppn|pph|tarif\s*ter|tax\s*amnesty|amnesti\s*pajak|restitusi|fiskal|apbn|wajib\s*pajak|lapor\s*spt|spt\s*tahunan|penerimaan\s*pajak|fiskus|insentif\s*pajak|bebas\s*pajak|pmk|denda\s*pajak|sanksi\s*pajak)\b/i.test(txt)) return true;
+    if (/\bpajak\b/i.test(txt) && /\b(?:aturan|peraturan|kebijakan|tarif|kenaikan|naik|turun|potongan|uu|revisi|penghasilan|badan|umkm)\b/i.test(txt)) return true;
+    return false;
+  }
+
+  return false;
 }
 
 function updateSocTelemetry(posts){
   if (!posts || !posts.length) return;
-  let pos = 0, neu = 0, neg = 0;
+  let pos = 0, neu = 0, warn = 0, crit = 0;
   posts.forEach(p => {
     const s = assessSentiment(p.text);
     if (s.cls === 'sent-pos') pos++;
-    else if (s.cls === 'sent-crit' || s.cls === 'sent-warn') neg++;
+    else if (s.cls === 'sent-warn') warn++;
+    else if (s.cls === 'sent-crit') crit++;
     else neu++;
   });
   const tot = posts.length || 1;
   const pPos = $('#tel-pos-val'); if (pPos) pPos.textContent = Math.round((pos / tot) * 100) + '%';
   const pNeu = $('#tel-neu-val'); if (pNeu) pNeu.textContent = Math.round((neu / tot) * 100) + '%';
-  const pNeg = $('#tel-neg-val'); if (pNeg) pNeg.textContent = Math.round((neg / tot) * 100) + '%';
+  const pWarn = $('#tel-warn-val'); if (pWarn) pWarn.textContent = Math.round((warn / tot) * 100) + '%';
+  const pCrit = $('#tel-neg-val'); if (pCrit) pCrit.textContent = Math.round((crit / tot) * 100) + '%';
 }
 
 function streamCard(p, streamType){
@@ -8916,9 +8938,6 @@ function renderStreamColumn(streamKey){
   const all = allSocialPosts();
   const q = (streamQ[streamKey] || '').toLowerCase().trim();
   let list = all.filter(p => postStreamMatch(p, streamKey));
-  if (!list.length && all.length) {
-    list = all.slice(0, 15);
-  }
   if (q) {
     list = list.filter(p => ((p.text || '') + ' ' + (p.username || p.handle || '')).toLowerCase().includes(q));
   }
