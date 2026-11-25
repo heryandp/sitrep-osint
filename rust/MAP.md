@@ -8,9 +8,9 @@
 - **Out of Scope**: `public/` (served unchanged), `src/client/` & `scripts/` (client build tooling stays JS), `threads_worker.py` & `ffmpeg` (invoked as subprocesses per ADR-004).
 
 ## Progress Summary
-- **Front Door**: `done` (`rust/app` binary `djp-sitrep`, Axum 0.8 + Tokio, **272/272** HTTP cases passing; global Rust `AuthManager` + `RateLimiter` middleware + **23 native Rust routes** wired: `GET /api/pajak/uptime`, `GET /api/auth/me`, `POST /api/auth/login`, `POST /api/auth/logout`, `GET /api/nodes`, `GET /api/geo/labels`, `GET /api/exa/status`, `POST /api/pajak/summarize`, `POST /api/pajak/brief`, `GET /api/copernicus/status`, `GET /api/copernicus/tile/{*path}`, `GET /api/tomtom/status`, `GET /api/tomtom/flow`, `GET /api/tomtom/incidents`, `GET /api/tomtom/route`, `GET /tomtom/tile/{*path}`, `GET /api/market`, `GET /api/closes`, `GET /api/news`, `GET /api/breaking`, `GET /api/incidents`, `GET /api/situation`, `GET /api/pajak/clusters`)
-- **Fallback Rate**: **`95.2%` (`259/272`)** — down from `97.4%`
-- **Current Wave**: **Wave 3 complete (18/18 crates gated across Waves 1–3, 8,883/8,883 diff cases, 156 cargo tests)** -> ready for **Wave 4** (Reader, Social & Geo-Sensors)
+- **Front Door**: `done` (`rust/app` binary `djp-sitrep`, Axum 0.8 + Tokio, global Rust `AuthManager` + `RateLimiter` middleware + **35 native Rust routes** wired: auth, uptime, geocode, exa, copernicus, tomtom, market, news service, and geo-sensors)
+- **Fallback Rate**: **`95.2%` (`259/272`)**
+- **Current Wave**: **Wave 4a complete (22/22 crates gated across Waves 1–4a, 15,354/15,354 diff cases, 191 cargo tests)** -> ready for **Wave 4b** (`reader-service`, `social-history`, `social-service`)
 
 ## Wave Plan & Unit Roster
 
@@ -53,13 +53,13 @@
 ### Wave 4 — Reader, Social & Geo-Sensors
 | Unit | Source File | LOC | State | Notes |
 | :--- | :--- | ---: | :--- | :--- |
-| `article-extract` | `src/article-extract.js` | 1094 | `open` | HTML extraction (`scraper` + `fancy-regex`) |
-| `article-media` | `src/article-media.js` | 919 | `open` | OG/media extraction |
+| `article-extract` | `src/article-extract.js` | 1094 | `done` | `gate` PASS, 3099/3099 diff (100%), 3 tests, full HTML readability & DOM text extraction |
+| `article-media` | `src/article-media.js` | 919 | `done` | `gate` PASS, 1886/1886 diff (100%), 4 tests, OG metadata & hero candidate scoring |
 | `reader-service` | `src/reader-service.js` | 1979 | `open` | `/api/read`, `/api/thumb`, `/api/desc`, Firecrawl/Jina fallback |
-| `social` | `src/social.js` | 734 | `open` | Classifier & scoring |
+| `social` | `src/social.js` | 734 | `done` | `gate` PASS, 1320/1320 diff (100%), 21 tests, classifier, sentiment, intent & diagnostics |
 | `social-history` | `src/social-history.js` | 105 | `open` | Rolling social history |
 | `social-service` | `src/social-service.js` | 1405 | `open` | X GraphQL `SearchByRawQuery` + `threads_worker.py` subprocess |
-| `geo-sensors` | `src/geo-sensors.js` | 675 | `open` | AISStream WS, flights, BMKG, NASA FIRMS, Sipongi |
+| `geo-sensors` | `src/geo-sensors.js` | 675 | `done` | `gate` PASS, 166/166 diff (100%), 11 tests, `createGeoSensors` **1.96x**, `parseCsv` **1.93x**, async `GeoSensors` in `src/service.rs`, wired to `/api/flights`, `/api/ships`, `/api/transit`, `/api/disaster`, `/api/weather`, `/api/wind`, `/api/fires`, `/api/sipongi`, `/api/satellite`, `/api/bmkg-modelrun`, `/api/alerts`, `/api/radar` |
 
 ### Wave 5 — CCTV Gateway, Server Shell & Lift
 | Unit | Source File | LOC | State | Notes |

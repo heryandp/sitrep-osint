@@ -1,0 +1,18 @@
+{"fn":"csvLine","args":["foo, bar , baz"]}
+{"fn":"csvLine","args":["123, 456, 789, hello world"]}
+{"fn":"csvLine","args":["single"]}
+{"fn":"csvLine","args":[""]}
+{"fn":"parseCsv","args":["latitude,longitude,acq_date,acq_time,satellite,instrument,confidence,frp,daynight\n-6.2088,106.8456,2026-11-24,0345,Terra,MODIS,85,42.5,D\n-7.2575,112.7521,2026-11-24,1420,Aqua,MODIS,90,55.1,N\ninvalid,100.0,2026-11-24,1200,Terra,MODIS,50,10.0,D\n"]}
+{"fn":"parseCsv","args":["latitude,longitude\n1,2"]}
+{"fn":"parseCsv","args":[""]}
+{"fn":"parseCsv","args":["header only\n"]}
+{"fn":"parseMagma","args":["\nLevel III (Siaga)\n<table><tr><td> Merapi - Sleman, D.I. Yogyakarta <a href=\"/merapi\">detail</a></td></tr>\n<tr><td> Semeru - Lumajang, Jawa Timur <a href=\"/semeru\">detail</a></td></tr></table>\nLevel II (Waspada)\n<table><tr><td> Anak Krakatau - Lampung <a href=\"/krakatau\">detail</a></td></tr></table>\nLevel I (Normal)\n<table><tr><td> Sumbing - Magelang <a href=\"/sumbing\">detail</a></td></tr></table>\n"]}
+{"fn":"parseMagma","args":["No volcanoes found in this text"]}
+{"fn":"parseMagma","args":[""]}
+{"fn":"parseCapField","args":["<alert xmlns=\"urn:oasis:names:tc:emergency:cap:1.2\">\n  <identifier>BMKG-20261124-001</identifier>\n  <headline><![CDATA[Peringatan Dini Cuaca Ekstrem Jawa Barat]]></headline>\n  <description>Hujan deras disertai kilat/petir di wilayah Bogor dan Sukabumi</description>\n  <area>\n    <polygon>-6.5,106.8 -6.6,106.9 -6.7,106.7 -6.5,106.8</polygon>\n  </area>\n</alert>","headline"]}
+{"fn":"parseCapField","args":["<alert xmlns=\"urn:oasis:names:tc:emergency:cap:1.2\">\n  <identifier>BMKG-20261124-001</identifier>\n  <headline><![CDATA[Peringatan Dini Cuaca Ekstrem Jawa Barat]]></headline>\n  <description>Hujan deras disertai kilat/petir di wilayah Bogor dan Sukabumi</description>\n  <area>\n    <polygon>-6.5,106.8 -6.6,106.9 -6.7,106.7 -6.5,106.8</polygon>\n  </area>\n</alert>","description"]}
+{"fn":"parseCapField","args":["<alert xmlns=\"urn:oasis:names:tc:emergency:cap:1.2\">\n  <identifier>BMKG-20261124-001</identifier>\n  <headline><![CDATA[Peringatan Dini Cuaca Ekstrem Jawa Barat]]></headline>\n  <description>Hujan deras disertai kilat/petir di wilayah Bogor dan Sukabumi</description>\n  <area>\n    <polygon>-6.5,106.8 -6.6,106.9 -6.7,106.7 -6.5,106.8</polygon>\n  </area>\n</alert>","nonexistent"]}
+{"fn":"parsePolygon","args":["-6.5,106.8 -6.6,106.9 -6.7,106.7"]}
+{"fn":"parsePolygon","args":["-6.5 106.8 -6.6 106.9"]}
+{"fn":"parsePolygon","args":[""]}
+{"fn":"parsePolygon","args":["invalid"]}

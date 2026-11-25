@@ -239,6 +239,7 @@ dependencies = [
  "iana-time-zone",
  "js-sys",
  "num-traits",
+ "serde",
  "wasm-bindgen",
  "windows-link",
 ]
@@ -421,6 +422,7 @@ dependencies = [
  "axum",
  "copernicus-rs",
  "exa-summary-rs",
+ "geo-sensors-rs",
  "geocode-rs",
  "market-rs",
  "news-service-rs",
@@ -625,6 +627,21 @@ checksum = "85649ca51fd72272d7821adaf274ad91c288277713d9c18820d8499a7ff69e9a"
 dependencies = [
  "typenum",
  "version_check",
+]
+
+[[package]]
+name = "geo-sensors-rs"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "napi",
+ "napi-build",
+ "napi-derive",
+ "regex",
+ "reqwest 0.12.28",
+ "serde",
+ "serde_json",
+ "tokio",
 ]
 
 [[package]]

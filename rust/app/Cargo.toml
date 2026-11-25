@@ -22,5 +22,6 @@ copernicus-rs = { path = "../copernicus-rs" }
 tomtom-rs = { path = "../tomtom-rs" }
 market-rs = { path = "../market-rs" }
 news-service-rs = { path = "../news-service-rs" }
+geo-sensors-rs = { path = "../geo-sensors-rs" }
 
 [workspace]

@@ -1,0 +1,166 @@
+{"fn":"createGeoSensors","args":[true],"ok":{"flights":{"$function":"flights"},"disaster":{"$function":"disaster"},"disCache":{"at":0,"data":null},"weather":{"$function":"weather"},"radar":{"$function":"radar"},"tmaPintuAir":{"$function":"tmaPintuAir"},"petabencanaFloods":{"$function":"petabencanaFloods"},"fires":{"$function":"fires"},"sipongi":{"$function":"sipongi"},"bmkgModelRun":{"$function":"bmkgModelRun"},"satelliteProducts":{"$function":"satelliteProducts"},"windGrid":{"$function":"windGrid"},"alerts":{"$function":"alerts"},"ships":{"$function":"ships"},"shipMap":{"$map":[]},"stopAis":{"$function":"stopAis"},"isAisLive":{"$function":"isAisLive"},"transit":{"$function":"transit"}}}
+{"fn":"createGeoSensors","args":[0],"ok":{"flights":{"$function":"flights"},"disaster":{"$function":"disaster"},"disCache":{"at":0,"data":null},"weather":{"$function":"weather"},"radar":{"$function":"radar"},"tmaPintuAir":{"$function":"tmaPintuAir"},"petabencanaFloods":{"$function":"petabencanaFloods"},"fires":{"$function":"fires"},"sipongi":{"$function":"sipongi"},"bmkgModelRun":{"$function":"bmkgModelRun"},"satelliteProducts":{"$function":"satelliteProducts"},"windGrid":{"$function":"windGrid"},"alerts":{"$function":"alerts"},"ships":{"$function":"ships"},"shipMap":{"$map":[]},"stopAis":{"$function":"stopAis"},"isAisLive":{"$function":"isAisLive"},"transit":{"$function":"transit"}}}
+{"fn":"createGeoSensors","args":[[]],"ok":{"flights":{"$function":"flights"},"disaster":{"$function":"disaster"},"disCache":{"at":0,"data":null},"weather":{"$function":"weather"},"radar":{"$function":"radar"},"tmaPintuAir":{"$function":"tmaPintuAir"},"petabencanaFloods":{"$function":"petabencanaFloods"},"fires":{"$function":"fires"},"sipongi":{"$function":"sipongi"},"bmkgModelRun":{"$function":"bmkgModelRun"},"satelliteProducts":{"$function":"satelliteProducts"},"windGrid":{"$function":"windGrid"},"alerts":{"$function":"alerts"},"ships":{"$function":"ships"},"shipMap":{"$map":[]},"stopAis":{"$function":"stopAis"},"isAisLive":{"$function":"isAisLive"},"transit":{"$function":"transit"}}}
+{"fn":"createGeoSensors","args":[null],"error":"Cannot destructure property 'crypto' of 'object null' as it is null."}
+{"fn":"createGeoSensors","args":["x"],"ok":{"flights":{"$function":"flights"},"disaster":{"$function":"disaster"},"disCache":{"at":0,"data":null},"weather":{"$function":"weather"},"radar":{"$function":"radar"},"tmaPintuAir":{"$function":"tmaPintuAir"},"petabencanaFloods":{"$function":"petabencanaFloods"},"fires":{"$function":"fires"},"sipongi":{"$function":"sipongi"},"bmkgModelRun":{"$function":"bmkgModelRun"},"satelliteProducts":{"$function":"satelliteProducts"},"windGrid":{"$function":"windGrid"},"alerts":{"$function":"alerts"},"ships":{"$function":"ships"},"shipMap":{"$map":[]},"stopAis":{"$function":"stopAis"},"isAisLive":{"$function":"isAisLive"},"transit":{"$function":"transit"}}}
+{"fn":"createGeoSensors","args":[{"a":{"b":"c"}}],"ok":{"flights":{"$function":"flights"},"disaster":{"$function":"disaster"},"disCache":{"at":0,"data":null},"weather":{"$function":"weather"},"radar":{"$function":"radar"},"tmaPintuAir":{"$function":"tmaPintuAir"},"petabencanaFloods":{"$function":"petabencanaFloods"},"fires":{"$function":"fires"},"sipongi":{"$function":"sipongi"},"bmkgModelRun":{"$function":"bmkgModelRun"},"satelliteProducts":{"$function":"satelliteProducts"},"windGrid":{"$function":"windGrid"},"alerts":{"$function":"alerts"},"ships":{"$function":"ships"},"shipMap":{"$map":[]},"stopAis":{"$function":"stopAis"},"isAisLive":{"$function":"isAisLive"},"transit":{"$function":"transit"}}}
+{"fn":"createGeoSensors","args":[["a",1]],"ok":{"flights":{"$function":"flights"},"disaster":{"$function":"disaster"},"disCache":{"at":0,"data":null},"weather":{"$function":"weather"},"radar":{"$function":"radar"},"tmaPintuAir":{"$function":"tmaPintuAir"},"petabencanaFloods":{"$function":"petabencanaFloods"},"fires":{"$function":"fires"},"sipongi":{"$function":"sipongi"},"bmkgModelRun":{"$function":"bmkgModelRun"},"satelliteProducts":{"$function":"satelliteProducts"},"windGrid":{"$function":"windGrid"},"alerts":{"$function":"alerts"},"ships":{"$function":"ships"},"shipMap":{"$map":[]},"stopAis":{"$function":"stopAis"},"isAisLive":{"$function":"isAisLive"},"transit":{"$function":"transit"}}}
+{"fn":"createGeoSensors","args":[{"a":"b"}],"ok":{"flights":{"$function":"flights"},"disaster":{"$function":"disaster"},"disCache":{"at":0,"data":null},"weather":{"$function":"weather"},"radar":{"$function":"radar"},"tmaPintuAir":{"$function":"tmaPintuAir"},"petabencanaFloods":{"$function":"petabencanaFloods"},"fires":{"$function":"fires"},"sipongi":{"$function":"sipongi"},"bmkgModelRun":{"$function":"bmkgModelRun"},"satelliteProducts":{"$function":"satelliteProducts"},"windGrid":{"$function":"windGrid"},"alerts":{"$function":"alerts"},"ships":{"$function":"ships"},"shipMap":{"$map":[]},"stopAis":{"$function":"stopAis"},"isAisLive":{"$function":"isAisLive"},"transit":{"$function":"transit"}}}
+{"fn":"createGeoSensors","args":[{}],"ok":{"flights":{"$function":"flights"},"disaster":{"$function":"disaster"},"disCache":{"at":0,"data":null},"weather":{"$function":"weather"},"radar":{"$function":"radar"},"tmaPintuAir":{"$function":"tmaPintuAir"},"petabencanaFloods":{"$function":"petabencanaFloods"},"fires":{"$function":"fires"},"sipongi":{"$function":"sipongi"},"bmkgModelRun":{"$function":"bmkgModelRun"},"satelliteProducts":{"$function":"satelliteProducts"},"windGrid":{"$function":"windGrid"},"alerts":{"$function":"alerts"},"ships":{"$function":"ships"},"shipMap":{"$map":[]},"stopAis":{"$function":"stopAis"},"isAisLive":{"$function":"isAisLive"},"transit":{"$function":"transit"}}}
+{"fn":"createGeoSensors","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":{"flights":{"$function":"flights"},"disaster":{"$function":"disaster"},"disCache":{"at":0,"data":null},"weather":{"$function":"weather"},"radar":{"$function":"radar"},"tmaPintuAir":{"$function":"tmaPintuAir"},"petabencanaFloods":{"$function":"petabencanaFloods"},"fires":{"$function":"fires"},"sipongi":{"$function":"sipongi"},"bmkgModelRun":{"$function":"bmkgModelRun"},"satelliteProducts":{"$function":"satelliteProducts"},"windGrid":{"$function":"windGrid"},"alerts":{"$function":"alerts"},"ships":{"$function":"ships"},"shipMap":{"$map":[]},"stopAis":{"$function":"stopAis"},"isAisLive":{"$function":"isAisLive"},"transit":{"$function":"transit"}}}
+{"fn":"createGeoSensors","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":{"flights":{"$function":"flights"},"disaster":{"$function":"disaster"},"disCache":{"at":0,"data":null},"weather":{"$function":"weather"},"radar":{"$function":"radar"},"tmaPintuAir":{"$function":"tmaPintuAir"},"petabencanaFloods":{"$function":"petabencanaFloods"},"fires":{"$function":"fires"},"sipongi":{"$function":"sipongi"},"bmkgModelRun":{"$function":"bmkgModelRun"},"satelliteProducts":{"$function":"satelliteProducts"},"windGrid":{"$function":"windGrid"},"alerts":{"$function":"alerts"},"ships":{"$function":"ships"},"shipMap":{"$map":[]},"stopAis":{"$function":"stopAis"},"isAisLive":{"$function":"isAisLive"},"transit":{"$function":"transit"}}}
+{"fn":"createGeoSensors","args":[[3,1,2]],"ok":{"flights":{"$function":"flights"},"disaster":{"$function":"disaster"},"disCache":{"at":0,"data":null},"weather":{"$function":"weather"},"radar":{"$function":"radar"},"tmaPintuAir":{"$function":"tmaPintuAir"},"petabencanaFloods":{"$function":"petabencanaFloods"},"fires":{"$function":"fires"},"sipongi":{"$function":"sipongi"},"bmkgModelRun":{"$function":"bmkgModelRun"},"satelliteProducts":{"$function":"satelliteProducts"},"windGrid":{"$function":"windGrid"},"alerts":{"$function":"alerts"},"ships":{"$function":"ships"},"shipMap":{"$map":[]},"stopAis":{"$function":"stopAis"},"isAisLive":{"$function":"isAisLive"},"transit":{"$function":"transit"}}}
+{"fn":"parseMagma","args":[null],"error":"Cannot read properties of null (reading 'matchAll')"}
+{"fn":"parseMagma","args":[{"a":{"b":"c"}}],"error":"html.matchAll is not a function or its return value is not iterable"}
+{"fn":"parseMagma","args":[true],"error":"html.matchAll is not a function or its return value is not iterable"}
+{"fn":"parseMagma","args":["x"],"ok":[]}
+{"fn":"parseMagma","args":[{"a":"b"}],"error":"html.matchAll is not a function or its return value is not iterable"}
+{"fn":"parseMagma","args":[["a",1]],"error":"html.matchAll is not a function or its return value is not iterable"}
+{"fn":"parseMagma","args":[[]],"error":"html.matchAll is not a function or its return value is not iterable"}
+{"fn":"parseMagma","args":[{}],"error":"html.matchAll is not a function or its return value is not iterable"}
+{"fn":"parseMagma","args":[0],"error":"html.matchAll is not a function or its return value is not iterable"}
+{"fn":"parseMagma","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"error":"html.matchAll is not a function or its return value is not iterable"}
+{"fn":"parseMagma","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"error":"html.matchAll is not a function or its return value is not iterable"}
+{"fn":"parseMagma","args":[[3,1,2]],"error":"html.matchAll is not a function or its return value is not iterable"}
+{"fn":"csvLine","args":[[]],"error":"line.split is not a function"}
+{"fn":"csvLine","args":[{"a":{"b":"c"}}],"error":"line.split is not a function"}
+{"fn":"csvLine","args":["x"],"ok":["x"]}
+{"fn":"csvLine","args":[true],"error":"line.split is not a function"}
+{"fn":"csvLine","args":[0],"error":"line.split is not a function"}
+{"fn":"csvLine","args":[{"a":"b"}],"error":"line.split is not a function"}
+{"fn":"csvLine","args":[null],"error":"Cannot read properties of null (reading 'split')"}
+{"fn":"csvLine","args":[["a",1]],"error":"line.split is not a function"}
+{"fn":"csvLine","args":[{}],"error":"line.split is not a function"}
+{"fn":"csvLine","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"error":"line.split is not a function"}
+{"fn":"csvLine","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"error":"line.split is not a function"}
+{"fn":"csvLine","args":[[3,1,2]],"error":"line.split is not a function"}
+{"fn":"parseCsv","args":[null],"error":"Cannot read properties of null (reading 'trim')"}
+{"fn":"parseCsv","args":[{}],"error":"text.trim is not a function"}
+{"fn":"parseCsv","args":[{"a":"b"}],"error":"text.trim is not a function"}
+{"fn":"parseCsv","args":["x"],"ok":[]}
+{"fn":"parseCsv","args":[{"a":{"b":"c"}}],"error":"text.trim is not a function"}
+{"fn":"parseCsv","args":[["a",1]],"error":"text.trim is not a function"}
+{"fn":"parseCsv","args":[0],"error":"text.trim is not a function"}
+{"fn":"parseCsv","args":[true],"error":"text.trim is not a function"}
+{"fn":"parseCsv","args":[[]],"error":"text.trim is not a function"}
+{"fn":"parseCsv","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"error":"text.trim is not a function"}
+{"fn":"parseCsv","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"error":"text.trim is not a function"}
+{"fn":"parseCsv","args":[[3,1,2]],"error":"text.trim is not a function"}
+{"fn":"parseCapField","args":[[],{}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[["a",1],{"a":{"b":"c"}}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[0,["a",1]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[true,0],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[0,null],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{},{}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":["x",{"a":"b"}],"ok":""}
+{"fn":"parseCapField","args":[0,"x"],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":["x",[]],"ok":""}
+{"fn":"parseCapField","args":[{"a":"b"},["a",1]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":["x",{"a":{"b":"c"}}],"ok":""}
+{"fn":"parseCapField","args":[{"a":"b"},{}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[true,{"a":"b"}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[0,true],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{"a":{"b":"c"}},"x"],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[["a",1],{}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{"a":{"b":"c"}},[]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[null,[]],"error":"Cannot read properties of null (reading 'match')"}
+{"fn":"parseCapField","args":[[],0],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[true,"x"],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{"a":{"b":"c"}},true],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[null,{"a":{"b":"c"}}],"error":"Cannot read properties of null (reading 'match')"}
+{"fn":"parseCapField","args":[["a",1],null],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{},true],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{},["a",1]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{"a":{"b":"c"}},0],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[[],[]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[["a",1],true],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{},{"a":"b"}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[true,null],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[null,{"a":"b"}],"error":"Cannot read properties of null (reading 'match')"}
+{"fn":"parseCapField","args":[{},null],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{"a":"b"},{"a":{"b":"c"}}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[[],true],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[0,0],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[true,{"a":{"b":"c"}}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[null,null],"error":"Cannot read properties of null (reading 'match')"}
+{"fn":"parseCapField","args":[true,{}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{"a":{"b":"c"}},null],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{},[]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{"a":"b"},"x"],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{},{"a":{"b":"c"}}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[true,[]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":["x",["a",1]],"ok":""}
+{"fn":"parseCapField","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{"a":"b"},true],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[["a",1],{"a":"b"}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":["x",null],"ok":""}
+{"fn":"parseCapField","args":[null,{}],"error":"Cannot read properties of null (reading 'match')"}
+{"fn":"parseCapField","args":[["a",1],"x"],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":["x",0],"ok":""}
+{"fn":"parseCapField","args":[["a",1],0],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{"a":"b"},0],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[[],null],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[[],{"a":"b"}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{"a":{"b":"c"}},["a",1]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[true,["a",1]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{"a":"b"},[]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":["x","x"],"ok":""}
+{"fn":"parseCapField","args":[{"a":"b"},{"a":"b"}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":["x",true],"ok":""}
+{"fn":"parseCapField","args":[{"a":{"b":"c"}},{}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{},"x"],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[null,["a",1]],"error":"Cannot read properties of null (reading 'match')"}
+{"fn":"parseCapField","args":[{},0],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[["a",1],[]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[0,[]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[null,true],"error":"Cannot read properties of null (reading 'match')"}
+{"fn":"parseCapField","args":[["a",1],["a",1]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[0,{"a":"b"}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[[],"x"],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[null,"x"],"error":"Cannot read properties of null (reading 'match')"}
+{"fn":"parseCapField","args":[[],{"a":{"b":"c"}}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[true,true],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":["x",{}],"ok":""}
+{"fn":"parseCapField","args":["X","x"],"ok":""}
+{"fn":"parseCapField","args":[{"a":"b"},null],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[0,{"a":{"b":"c"}}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[null,0],"error":"Cannot read properties of null (reading 'match')"}
+{"fn":"parseCapField","args":[{"a":{"b":"c"}},{"a":"b"}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[0,{}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[[],["a",1]],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},{}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},{}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[[3,1,2],{}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[[],{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[[],{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"error":"xml.match is not a function"}
+{"fn":"parseCapField","args":[[],[3,1,2]],"error":"xml.match is not a function"}
+{"fn":"parsePolygon","args":[0],"error":"text.trim is not a function"}
+{"fn":"parsePolygon","args":[true],"error":"text.trim is not a function"}
+{"fn":"parsePolygon","args":[{"a":{"b":"c"}}],"error":"text.trim is not a function"}
+{"fn":"parsePolygon","args":[null],"error":"Cannot read properties of null (reading 'trim')"}
+{"fn":"parsePolygon","args":["x"],"ok":[]}
+{"fn":"parsePolygon","args":[{}],"error":"text.trim is not a function"}
+{"fn":"parsePolygon","args":[[]],"error":"text.trim is not a function"}
+{"fn":"parsePolygon","args":[["a",1]],"error":"text.trim is not a function"}
+{"fn":"parsePolygon","args":[{"a":"b"}],"error":"text.trim is not a function"}
+{"fn":"parsePolygon","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"error":"text.trim is not a function"}
+{"fn":"parsePolygon","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"error":"text.trim is not a function"}
+{"fn":"parsePolygon","args":[[3,1,2]],"error":"text.trim is not a function"}
+{"fn":"csvLine","args":["foo, bar , baz"],"ok":["foo","bar","baz"]}
+{"fn":"csvLine","args":["123, 456, 789, hello world"],"ok":["123","456","789","hello world"]}
+{"fn":"csvLine","args":["single"],"ok":["single"]}
+{"fn":"csvLine","args":[""],"ok":[""]}
+{"fn":"parseCsv","args":["latitude,longitude,acq_date,acq_time,satellite,instrument,confidence,frp,daynight\n-6.2088,106.8456,2026-11-24,0345,Terra,MODIS,85,42.5,D\n-7.2575,112.7521,2026-11-24,1420,Aqua,MODIS,90,55.1,N\ninvalid,100.0,2026-11-24,1200,Terra,MODIS,50,10.0,D\n"],"ok":[{"lat":-6.2088,"lon":106.8456,"time":1795491900000,"acqDate":"2026-11-24","acqTime":"0345","satellite":"Terra","instrument":"MODIS","confidence":"85","frp":42.5,"daynight":"D"},{"lat":-7.2575,"lon":112.7521,"time":1795530000000,"acqDate":"2026-11-24","acqTime":"1420","satellite":"Aqua","instrument":"MODIS","confidence":"90","frp":55.1,"daynight":"N"}]}
+{"fn":"parseCsv","args":["latitude,longitude\n1,2"],"ok":[]}
+{"fn":"parseCsv","args":[""],"ok":[]}
+{"fn":"parseCsv","args":["header only\n"],"ok":[]}
+{"fn":"parseMagma","args":["\nLevel III (Siaga)\n<table><tr><td> Merapi - Sleman, D.I. Yogyakarta <a href=\"/merapi\">detail</a></td></tr>\n<tr><td> Semeru - Lumajang, Jawa Timur <a href=\"/semeru\">detail</a></td></tr></table>\nLevel II (Waspada)\n<table><tr><td> Anak Krakatau - Lampung <a href=\"/krakatau\">detail</a></td></tr></table>\nLevel I (Normal)\n<table><tr><td> Sumbing - Magelang <a href=\"/sumbing\">detail</a></td></tr></table>\n"],"ok":[{"name":"Merapi","loc":"Sleman, D.I. Yogyakarta","level":"LEVEL III","status":"Siaga","lat":-7.54,"lon":110.44},{"name":"Semeru","loc":"Lumajang, Jawa Timur","level":"LEVEL III","status":"Siaga","lat":-8.11,"lon":112.92},{"name":"Anak Krakatau","loc":"Lampung","level":"LEVEL II","status":"Waspada","lat":-6.1,"lon":105.42},{"name":"Sumbing","loc":"Magelang","level":"LEVEL I","status":"Normal","lat":-7.385,"lon":110.073}]}
+{"fn":"parseMagma","args":["No volcanoes found in this text"],"ok":[]}
+{"fn":"parseMagma","args":[""],"ok":[]}
+{"fn":"parseCapField","args":["<alert xmlns=\"urn:oasis:names:tc:emergency:cap:1.2\">\n  <identifier>BMKG-20261124-001</identifier>\n  <headline><![CDATA[Peringatan Dini Cuaca Ekstrem Jawa Barat]]></headline>\n  <description>Hujan deras disertai kilat/petir di wilayah Bogor dan Sukabumi</description>\n  <area>\n    <polygon>-6.5,106.8 -6.6,106.9 -6.7,106.7 -6.5,106.8</polygon>\n  </area>\n</alert>","headline"],"ok":"Peringatan Dini Cuaca Ekstrem Jawa Barat"}
+{"fn":"parseCapField","args":["<alert xmlns=\"urn:oasis:names:tc:emergency:cap:1.2\">\n  <identifier>BMKG-20261124-001</identifier>\n  <headline><![CDATA[Peringatan Dini Cuaca Ekstrem Jawa Barat]]></headline>\n  <description>Hujan deras disertai kilat/petir di wilayah Bogor dan Sukabumi</description>\n  <area>\n    <polygon>-6.5,106.8 -6.6,106.9 -6.7,106.7 -6.5,106.8</polygon>\n  </area>\n</alert>","description"],"ok":"Hujan deras disertai kilat/petir di wilayah Bogor dan Sukabumi"}
+{"fn":"parseCapField","args":["<alert xmlns=\"urn:oasis:names:tc:emergency:cap:1.2\">\n  <identifier>BMKG-20261124-001</identifier>\n  <headline><![CDATA[Peringatan Dini Cuaca Ekstrem Jawa Barat]]></headline>\n  <description>Hujan deras disertai kilat/petir di wilayah Bogor dan Sukabumi</description>\n  <area>\n    <polygon>-6.5,106.8 -6.6,106.9 -6.7,106.7 -6.5,106.8</polygon>\n  </area>\n</alert>","nonexistent"],"ok":""}
+{"fn":"parsePolygon","args":["-6.5,106.8 -6.6,106.9 -6.7,106.7"],"ok":[[-6.5,106.8],[-6.6,106.9],[-6.7,106.7]]}
+{"fn":"parsePolygon","args":["-6.5 106.8 -6.6 106.9"],"ok":[[-6.5,106.8],[-6.6,106.9]]}
+{"fn":"parsePolygon","args":[""],"ok":[]}
+{"fn":"parsePolygon","args":["invalid"],"ok":[]}

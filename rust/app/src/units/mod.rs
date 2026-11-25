@@ -17,6 +17,7 @@ mod news_service;
 mod security;
 mod tomtom;
 mod uptime_service;
+mod geo_sensors;
 
 /// `RUST_ANYTHING_UNIT_<NAME>=original` sends that unit back to the original.
 fn sent_to_original(unit: &str) -> bool {
@@ -107,6 +108,18 @@ pub fn router() -> Router<Original> {
             "/tomtom/tile/{*path}",
             get(route_15).fallback(original::proxy),
         )
+        .route("/api/flights", get(route_23).fallback(original::proxy))
+        .route("/api/ships", get(route_24).fallback(original::proxy))
+        .route("/api/transit", get(route_25).fallback(original::proxy))
+        .route("/api/disaster", get(route_26).fallback(original::proxy))
+        .route("/api/weather", get(route_27).fallback(original::proxy))
+        .route("/api/wind", get(route_28).fallback(original::proxy))
+        .route("/api/fires", get(route_29).fallback(original::proxy))
+        .route("/api/sipongi", get(route_30).fallback(original::proxy))
+        .route("/api/satellite", get(route_31).fallback(original::proxy))
+        .route("/api/bmkg-modelrun", get(route_32).fallback(original::proxy))
+        .route("/api/alerts", get(route_33).fallback(original::proxy))
+        .route("/api/radar", get(route_34).fallback(original::proxy))
         .fallback(original::proxy)
 }
 
@@ -279,4 +292,88 @@ async fn route_22(State(original): State<Original>, req: Request) -> Response {
         return original::proxy(State(original), req).await;
     }
     news_service::handle("GET /api/pajak/clusters", HashMap::new(), req).await
+}
+
+async fn route_23(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/flights", HashMap::new(), req).await
+}
+
+async fn route_24(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/ships", HashMap::new(), req).await
+}
+
+async fn route_25(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/transit", HashMap::new(), req).await
+}
+
+async fn route_26(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/disaster", HashMap::new(), req).await
+}
+
+async fn route_27(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/weather", HashMap::new(), req).await
+}
+
+async fn route_28(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/wind", HashMap::new(), req).await
+}
+
+async fn route_29(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/fires", HashMap::new(), req).await
+}
+
+async fn route_30(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/sipongi", HashMap::new(), req).await
+}
+
+async fn route_31(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/satellite", HashMap::new(), req).await
+}
+
+async fn route_32(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/bmkg-modelrun", HashMap::new(), req).await
+}
+
+async fn route_33(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/alerts", HashMap::new(), req).await
+}
+
+async fn route_34(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("GEO_SENSORS") {
+        return original::proxy(State(original), req).await;
+    }
+    geo_sensors::handle("GET /api/radar", HashMap::new(), req).await
 }

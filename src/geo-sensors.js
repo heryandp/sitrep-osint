@@ -19,6 +19,70 @@ const VOLCANO_COORDS = {
   'Ciremai':[-6.892,108.40],'Gede':[-6.78,106.98],'Salak':[-6.716,106.734],'Sumbing':[-7.385,110.073]
 };
 
+function parseMagma(html) {
+  const marks = [...html.matchAll(/Level\s+(IV|III|II|I)\s*\((Awas|Siaga|Waspada|Normal)\)/g)];
+  const out = [];
+  for (let i = 0; i < marks.length; i++) {
+    const sec = html.slice(marks[i].index, marks[i+1] ? marks[i+1].index : html.length);
+    for (const m of sec.matchAll(/<td>\s*([^<>]+?)\s*-\s*([^<>]+?)\s*<a/g)) {
+      const name = m[1].trim();
+      out.push({ name, loc: m[2].trim(), level: 'LEVEL ' + marks[i][1], status: marks[i][2],
+        lat: VOLCANO_COORDS[name] ? VOLCANO_COORDS[name][0] : null,
+        lon: VOLCANO_COORDS[name] ? VOLCANO_COORDS[name][1] : null });
+    }
+  }
+  return out;
+}
+
+function csvLine(line) {
+  return line.split(',').map(v => v.trim());
+}
+
+function parseCsv(text) {
+  const lines = text.trim().split(/\r?\n/).filter(Boolean);
+  if (lines.length < 2) return [];
+  const head = csvLine(lines[0]).map(h => h.toLowerCase());
+  const idx = name => head.indexOf(name);
+  const iLat = idx('latitude'), iLon = idx('longitude'), iDate = idx('acq_date'), iTime = idx('acq_time');
+  const iSat = idx('satellite'), iInstr = idx('instrument'), iConf = idx('confidence'), iFrp = idx('frp'), iDay = idx('daynight');
+  if (iLat < 0 || iLon < 0 || iDate < 0 || iTime < 0) return [];
+  return lines.slice(1).map(line => {
+    const c = csvLine(line);
+    const lat = parseFloat(c[iLat]), lon = parseFloat(c[iLon]);
+    if (!isFinite(lat) || !isFinite(lon)) return null;
+    const hhmm = String(c[iTime] || '0').padStart(4, '0');
+    const ts = Date.parse(`${c[iDate]}T${hhmm.slice(0,2)}:${hhmm.slice(2,4)}:00Z`) || 0;
+    return {
+      lat, lon, time: ts, acqDate: c[iDate], acqTime: hhmm,
+      satellite: iSat >= 0 ? c[iSat] : '', instrument: iInstr >= 0 ? c[iInstr] : '',
+      confidence: iConf >= 0 ? c[iConf] : '', frp: iFrp >= 0 ? parseFloat(c[iFrp]) || null : null,
+      daynight: iDay >= 0 ? c[iDay] : ''
+    };
+  }).filter(Boolean);
+}
+
+function parseCapField(xml, tag) {
+  const m = xml.match(new RegExp('<' + tag + '[^>]*>([\\s\\S]*?)</' + tag + '>', 'i'));
+  return m ? m[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').trim() : '';
+}
+
+function parsePolygon(text) {
+  const pts = [];
+  const tokens = text.trim().split(/\s+/);
+  for (const t of tokens) {
+    const parts = t.split(',');
+    if (parts.length === 2) {
+      const a = parseFloat(parts[0]), b = parseFloat(parts[1]);
+      if (isFinite(a) && isFinite(b)) pts.push([a, b]);
+    }
+  }
+  if (pts.length === 0) {
+    const nums = text.trim().split(/[\s,]+/).map(Number).filter(isFinite);
+    for (let i = 0; i + 1 < nums.length; i += 2) pts.push([nums[i], nums[i+1]]);
+  }
+  return pts;
+}
+
 function createGeoSensors({
   crypto,
   UA,
@@ -69,20 +133,6 @@ function createGeoSensors({
   });
 
   const disCache = { at: 0, data: null };
-  function parseMagma(html) {
-    const marks = [...html.matchAll(/Level\s+(IV|III|II|I)\s*\((Awas|Siaga|Waspada|Normal)\)/g)];
-    const out = [];
-    for (let i = 0; i < marks.length; i++) {
-      const sec = html.slice(marks[i].index, marks[i+1] ? marks[i+1].index : html.length);
-      for (const m of sec.matchAll(/<td>\s*([^<>]+?)\s*-\s*([^<>]+?)\s*<a/g)) {
-        const name = m[1].trim();
-        out.push({ name, loc: m[2].trim(), level: 'LEVEL ' + marks[i][1], status: marks[i][2],
-          lat: VOLCANO_COORDS[name] ? VOLCANO_COORDS[name][0] : null,
-          lon: VOLCANO_COORDS[name] ? VOLCANO_COORDS[name][1] : null });
-      }
-    }
-    return out;
-  }
 
   const tmaCache = { at: 0, data: null };
   const tmaPintuAir = () => singleFlight(tmaCache, 60000, async () => {
@@ -286,31 +336,6 @@ function createGeoSensors({
     ['VIIRS_NOAA21_NRT', 'VIIRS NOAA-21', 3],
     ['MODIS_NRT', 'MODIS', 2]
   ];
-  function csvLine(line) {
-    return line.split(',').map(v => v.trim());
-  }
-  function parseCsv(text) {
-    const lines = text.trim().split(/\r?\n/).filter(Boolean);
-    if (lines.length < 2) return [];
-    const head = csvLine(lines[0]).map(h => h.toLowerCase());
-    const idx = name => head.indexOf(name);
-    const iLat = idx('latitude'), iLon = idx('longitude'), iDate = idx('acq_date'), iTime = idx('acq_time');
-    const iSat = idx('satellite'), iInstr = idx('instrument'), iConf = idx('confidence'), iFrp = idx('frp'), iDay = idx('daynight');
-    if (iLat < 0 || iLon < 0 || iDate < 0 || iTime < 0) return [];
-    return lines.slice(1).map(line => {
-      const c = csvLine(line);
-      const lat = parseFloat(c[iLat]), lon = parseFloat(c[iLon]);
-      if (!isFinite(lat) || !isFinite(lon)) return null;
-      const hhmm = String(c[iTime] || '0').padStart(4, '0');
-      const ts = Date.parse(`${c[iDate]}T${hhmm.slice(0,2)}:${hhmm.slice(2,4)}:00Z`) || 0;
-      return {
-        lat, lon, time: ts, acqDate: c[iDate], acqTime: hhmm,
-        satellite: iSat >= 0 ? c[iSat] : '', instrument: iInstr >= 0 ? c[iInstr] : '',
-        confidence: iConf >= 0 ? c[iConf] : '', frp: iFrp >= 0 ? parseFloat(c[iFrp]) || null : null,
-        daynight: iDay >= 0 ? c[iDay] : ''
-      };
-    }).filter(Boolean);
-  }
   const fires = () => singleFlight(fireCache, 600000, async () => {
     const key = (process.env.NASA_FIRMS_API_KEY || '').trim();
     if (!key) { fireCache.at = Date.now(); fireCache.data = { ok: false, err: 'NASA_FIRMS_API_KEY belum diset', items: [], at: Date.now(), sources: [] }; return fireCache.data; }
@@ -457,26 +482,6 @@ function createGeoSensors({
   });
 
   const alertCache = { at: 0, data: null };
-  function parseCapField(xml, tag) {
-    const m = xml.match(new RegExp('<' + tag + '[^>]*>([\\s\\S]*?)</' + tag + '>', 'i'));
-    return m ? m[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').trim() : '';
-  }
-  function parsePolygon(text) {
-    const pts = [];
-    const tokens = text.trim().split(/\s+/);
-    for (const t of tokens) {
-      const parts = t.split(',');
-      if (parts.length === 2) {
-        const a = parseFloat(parts[0]), b = parseFloat(parts[1]);
-        if (isFinite(a) && isFinite(b)) pts.push([a, b]);
-      }
-    }
-    if (pts.length === 0) {
-      const nums = text.trim().split(/[\s,]+/).map(Number).filter(isFinite);
-      for (let i = 0; i + 1 < nums.length; i += 2) pts.push([nums[i], nums[i+1]]);
-    }
-    return pts;
-  }
   const alerts = () => singleFlight(alertCache, 300000, async () => {
     const out = [];
     try {
@@ -691,4 +696,12 @@ function createGeoSensors({
   };
 }
 
-module.exports = { createGeoSensors, VOLCANO_COORDS };
+module.exports = {
+  createGeoSensors,
+  VOLCANO_COORDS,
+  parseMagma,
+  csvLine,
+  parseCsv,
+  parseCapField,
+  parsePolygon,
+};
