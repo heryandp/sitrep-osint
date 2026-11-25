@@ -11,15 +11,21 @@ const DEFAULT_RSSHUB_URL = process.env.RSSHUB_URL || 'http://127.0.0.1:1200';
 const DEFAULT_FEEDS = [
   // [S1] Coretax & Layanan Digital
   { route: 'threads/search/coretax', platform: 'threads', topic: 'coretax', stream: 'coretax' },
+  { route: 'threads/search/djp+online', platform: 'threads', topic: 'coretax', stream: 'coretax' },
+  { route: 'threads/search/efin', platform: 'threads', topic: 'coretax', stream: 'coretax' },
   { route: 'threads/search/efaktur', platform: 'threads', topic: 'coretax', stream: 'coretax' },
   { route: 'threads/search/ebupot', platform: 'threads', topic: 'coretax', stream: 'coretax' },
 
   // [S2] Kebijakan & Regulasi
   { route: 'threads/search/pajak', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
-  { route: 'threads/search/ppn', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
+  { route: 'threads/search/spt+tahunan', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
   { route: 'threads/search/spt', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
+  { route: 'threads/search/wajib+pajak', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
+  { route: 'threads/search/ppn', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
+  { route: 'threads/search/pph+21', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
 
   // [S3] Kritis & Akun Otoritas
+  { route: 'threads/search/sp2dk', platform: 'threads', topic: 'pajak', stream: 'kritis' },
   { route: 'threads/ditjenpajakri', platform: 'threads', topic: 'pajak', stream: 'kritis', official: true },
   { route: 'twitter/user/ditjenpajakri', platform: 'x', topic: 'pajak', stream: 'kritis', official: true },
   { route: 'twitter/user/kring_pajak', platform: 'x', topic: 'pajak', stream: 'kritis', official: true },

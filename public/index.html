@@ -8855,6 +8855,7 @@ function postStreamMatch(p, streamKey){
 
   if (streamKey === 'kritis') {
     if (isOfficial) return true;
+    if (/\b(?:sp2dk|bukper|bukti\s*permulaan|skpk?b?|skplb|stp|pemeriksaan\s*pajak|penyidikan\s*pajak|penipuan\s*pajak)\b/i.test(txt)) return true;
     if (/\b(?:faktur\s*fiktif|penipuan|korupsi|suap|calo|pemerasan|gijzeling|penyanderaan|sita\s*aset|pengemplang|ott|ditangkap|tersangka|bocor|kebocoran\s*data|hacker|breach|phishing|apk\s*palsu)\b/i.test(txt)) {
       return /\b(?:pajak|djp|kemenkeu|fiskus|kpp|uang\s*negara|apbn|kas\s*negara|rekening|pejabat)\b/i.test(txt);
     }
@@ -8862,13 +8863,13 @@ function postStreamMatch(p, streamKey){
   }
 
   if (streamKey === 'coretax') {
-    if (/\b(?:coretax|core\s*tax|djp\s*online|e-?bupot|e-?faktur|sertel|sertifikat\s*elektronik|m-?pajak)\b/i.test(txt)) return true;
-    if (/\b(?:pajak|djp|spt|npwp|kpp)\b/i.test(txt) && /\b(?:error|eror|down|gangguan|gagal|lemot|lambat|antre|antrean|login|maintenance|server)\b/i.test(txt)) return true;
+    if (/\b(?:coretax|core\s*tax|djp\s*online|efin|kode\s*billing|id\s*billing|e-?bupot|e-?faktur|sertel|sertifikat\s*elektronik|m-?pajak|portal\s*coretax|simulator\s*coretax)\b/i.test(txt)) return true;
+    if (/\b(?:pajak|djp|spt|npwp|kpp|efin|billing)\b/i.test(txt) && /\b(?:error|eror|down|gangguan|gagal|lemot|lambat|antre|antrean|login|maintenance|server|timeout|bug)\b/i.test(txt)) return true;
     return false;
   }
 
   if (streamKey === 'regulasi') {
-    if (/\b(?:ppn|pph|tarif\s*ter|tax\s*amnesty|amnesti\s*pajak|restitusi|fiskal|apbn|wajib\s*pajak|lapor\s*spt|spt\s*tahunan|penerimaan\s*pajak|fiskus|insentif\s*pajak|bebas\s*pajak|pmk|denda\s*pajak|sanksi\s*pajak)\b/i.test(txt)) return true;
+    if (/\b(?:ppn|pph|spt|spt\s*tahunan|spt\s*masa|1770|1771|1721-?a[12]|bupot|bukti\s*potong|kurang\s*bayar|lebih\s*bayar|nihil|ptkp|pkp|wp\s*op|wp\s*badan|tarif\s*ter|ter\s*pph|tax\s*amnesty|amnesti\s*pajak|pps|restitusi|fiskal|apbn|wajib\s*pajak|lapor\s*spt|penerimaan\s*pajak|fiskus|insentif\s*pajak|bebas\s*pajak|pmk|denda\s*pajak|sanksi\s*pajak)\b/i.test(txt)) return true;
     if (/\bpajak\b/i.test(txt) && /\b(?:aturan|peraturan|kebijakan|tarif|kenaikan|naik|turun|potongan|uu|revisi|penghasilan|badan|umkm)\b/i.test(txt)) return true;
     return false;
   }
@@ -8904,7 +8905,7 @@ function streamCard(p, streamType){
   const link = p.url || (plat === 'x' ? (handle ? `https://x.com/${handle}/status/${p.id}` : '#') : (p.code ? `https://www.threads.net/t/${p.code}` : '#'));
 
   let hlText = linkify(text);
-  const hlKw = ['coretax', 'djp', 'pajak', 'ppn', 'pph', 'faktur fiktif', 'spt', 'ebupot', 'efaktur', 'sertel'];
+  const hlKw = ['spt tahunan', 'spt masa', 'ditjen pajak', 'djp online', 'faktur fiktif', 'wajib pajak', 'tax amnesty', 'bukti potong', 'kode billing', 'id billing', 'wp badan', 'ter pph', 'restitusi', 'kemenkeu', 'coretax', 'ebupot', 'efaktur', 'sertel', 'fiskus', 'sp2dk', 'bupot', 'wp op', 'npwp', 'efin', 'ppnbm', 'ppn', 'pph', 'spt', 'djp', 'pajak'];
   hlKw.forEach(kw => {
     const re = new RegExp(`(^|\\s)(${kw})([\\s.,!?]|$)`, 'gi');
     hlText = hlText.replace(re, `$1<span class="sc-kw-hl">$2</span>$3`);
