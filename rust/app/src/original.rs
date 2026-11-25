@@ -11,10 +11,20 @@ use axum::extract::{Request, State};
 use axum::http::{StatusCode, header};
 use axum::response::{IntoResponse, Response};
 
-const ROOT: &str = match option_env!("RUST_ANYTHING_REPO") {
-    Some(root) => root,
-    None => concat!(env!("CARGO_MANIFEST_DIR"), "/../.."),
-};
+fn get_root() -> std::path::PathBuf {
+    if let Some(r) = option_env!("RUST_ANYTHING_REPO") {
+        let p = Path::new(r);
+        if p.exists() {
+            return p.to_path_buf();
+        }
+    }
+    let p = Path::new(concat!(env!("CARGO_MANIFEST_DIR"), "/../.."));
+    if p.exists() {
+        return p.to_path_buf();
+    }
+    std::env::current_dir().unwrap_or_else(|_| Path::new(".").to_path_buf())
+}
+
 const RUN: &[&str] = &[
     "env",
     "SITREP_PUBLIC=1",
@@ -29,7 +39,8 @@ fn resolve(word: &str, port: u16) -> OsString {
     if word.starts_with('-') {
         return word.into();
     }
-    let path = Path::new(ROOT).join(&word);
+    let root = get_root();
+    let path = root.join(&word);
     let looks_like_path = word.contains('/') || word.contains('\\') || path.is_file();
     if looks_like_path && path.exists() {
         return std::path::absolute(&path).unwrap_or(path).into_os_string();
@@ -64,36 +75,85 @@ impl Original {
         let port = TcpListener::bind("127.0.0.1:0")
             .and_then(|l| l.local_addr())
             .map(|a| a.port())
-            .expect("a free port");
-        let (program, rest) = RUN.split_first().expect("the original's command");
-        let mut child = Command::new(resolve(program, port))
-            .args(rest.iter().map(|w| resolve(w, port)))
-            .args(std::env::args_os().skip(1))
-            .current_dir(ROOT)
-            .env("PORT", port.to_string())
-            .env_remove(FALLBACK_LOG)
-            .stdin(Stdio::null())
-            .spawn()
-            .expect("starting the original");
-        let deadline = Instant::now() + Duration::from_secs(60);
-        while tokio::net::TcpStream::connect(("127.0.0.1", port))
-            .await
-            .is_err()
-        {
-            if let Ok(Some(status)) = child.try_wait() {
-                panic!("the original exited ({status}) before listening on port {port}");
-            }
-            assert!(
-                Instant::now() < deadline,
-                "the original did not listen on port {port}"
-            );
-            tokio::time::sleep(Duration::from_millis(50)).await;
-        }
+            .unwrap_or(39999);
         let client = reqwest::Client::builder()
             .no_proxy()
             .redirect(reqwest::redirect::Policy::none())
             .build()
             .expect("an HTTP client");
+
+        if std::env::var("SITREP_STANDALONE").is_ok_and(|v| v == "1")
+            || std::env::var("SITREP_NO_FALLBACK").is_ok_and(|v| v == "1")
+        {
+            eprintln!("[STANDALONE] SITREP_STANDALONE=1 active. Pure-Rust binary running with no Node.js process.");
+            return Original {
+                base: format!("http://127.0.0.1:{port}"),
+                client,
+                child: Arc::new(Mutex::new(None)),
+            };
+        }
+
+        let root = get_root();
+        let server_js = root.join("server.js");
+        if !server_js.exists() {
+            eprintln!("[STANDALONE] server.js not found at {:?}. Running pure-Rust binary.", server_js);
+            return Original {
+                base: format!("http://127.0.0.1:{port}"),
+                client,
+                child: Arc::new(Mutex::new(None)),
+            };
+        }
+
+        let (program, rest) = RUN.split_first().expect("the original's command");
+        let child_res = Command::new(resolve(program, port))
+            .args(rest.iter().map(|w| resolve(w, port)))
+            .args(std::env::args_os().skip(1))
+            .current_dir(&root)
+            .env("PORT", port.to_string())
+            .env_remove(FALLBACK_LOG)
+            .stdin(Stdio::null())
+            .spawn();
+
+        let mut child = match child_res {
+            Ok(c) => c,
+            Err(e) => {
+                eprintln!("[STANDALONE] Notice: Node.js fallback process not started ({e}). Running in pure-Rust standalone mode.");
+                return Original {
+                    base: format!("http://127.0.0.1:{port}"),
+                    client,
+                    child: Arc::new(Mutex::new(None)),
+                };
+            }
+        };
+
+        let deadline = Instant::now() + Duration::from_secs(5);
+        let mut ready = false;
+        while Instant::now() < deadline {
+            if let Ok(Some(status)) = child.try_wait() {
+                eprintln!("[STANDALONE] Node.js process exited ({status}). Running in pure-Rust mode.");
+                return Original {
+                    base: format!("http://127.0.0.1:{port}"),
+                    client,
+                    child: Arc::new(Mutex::new(None)),
+                };
+            }
+            if tokio::net::TcpStream::connect(("127.0.0.1", port)).await.is_ok() {
+                ready = true;
+                break;
+            }
+            tokio::time::sleep(Duration::from_millis(50)).await;
+        }
+
+        if !ready {
+            eprintln!("[STANDALONE] Notice: Node.js did not bind within 5s. Running in pure-Rust mode.");
+            let _ = child.kill();
+            return Original {
+                base: format!("http://127.0.0.1:{port}"),
+                client,
+                child: Arc::new(Mutex::new(None)),
+            };
+        }
+
         Original {
             base: format!("http://127.0.0.1:{port}"),
             client,
@@ -113,6 +173,9 @@ impl Original {
 
 /// Sends the request to the original and passes its answer through. Each call is one fallback.
 pub async fn proxy(State(original): State<Original>, req: Request) -> Response {
+    if original.child.lock().map_or(true, |c| c.is_none()) {
+        return (StatusCode::NOT_FOUND, "Not Found").into_response();
+    }
     let (parts, body) = req.into_parts();
     let target = parts
         .uri
