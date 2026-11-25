@@ -68,6 +68,8 @@ fn decode(text: &str) -> String {
 
 pub fn router() -> Router<Original> {
     Router::new()
+        .route("/", get(route_root))
+        .route("/index.html", get(route_root))
         .route("/api/auth/login", post(route_2).fallback(original::proxy))
         .route("/api/auth/logout", post(route_3).fallback(original::proxy))
         .route("/api/auth/me", get(route_1).fallback(original::proxy))
@@ -159,6 +161,59 @@ pub fn router() -> Router<Original> {
         .route("/api/ping", get(route_ping).fallback(original::proxy))
         .route("/api/metrics", get(route_metrics).fallback(original::proxy))
         .fallback_service(tower_http::services::ServeDir::new("public"))
+}
+
+async fn route_root(State(original): State<Original>, req: Request) -> Response {
+    use axum::http::{StatusCode, header};
+    use axum::response::IntoResponse;
+
+    let mgr = crate::middleware::auth();
+    if mgr.user_mode() {
+        let ctx = crate::middleware::auth_context_from_req(&req);
+        let principal = mgr.authenticate(&ctx);
+        if principal.is_none() {
+            let html = mgr.render_login_html();
+            return (
+                StatusCode::OK,
+                [
+                    (header::CONTENT_TYPE, "text/html; charset=utf-8"),
+                    (header::CACHE_CONTROL, "no-store"),
+                    (header::REFERRER_POLICY, "same-origin"),
+                    (header::X_CONTENT_TYPE_OPTIONS, "nosniff"),
+                ],
+                html,
+            )
+                .into_response();
+        }
+        if let Ok(raw) = std::fs::read_to_string("public/index.html") {
+            let html = mgr.inject_html_meta(&raw, principal.as_ref());
+            return (
+                StatusCode::OK,
+                [
+                    (header::CONTENT_TYPE, "text/html; charset=utf-8"),
+                    (header::CACHE_CONTROL, "no-store"),
+                    (header::REFERRER_POLICY, "same-origin"),
+                    (header::X_CONTENT_TYPE_OPTIONS, "nosniff"),
+                ],
+                html,
+            )
+                .into_response();
+        }
+    }
+
+    if let Ok(raw) = std::fs::read_to_string("public/index.html") {
+        return (
+            StatusCode::OK,
+            [
+                (header::CONTENT_TYPE, "text/html; charset=utf-8"),
+                (header::CACHE_CONTROL, "no-cache"),
+            ],
+            raw,
+        )
+            .into_response();
+    }
+
+    original::proxy(State(original), req).await
 }
 
 async fn route_0(State(original): State<Original>, req: Request) -> Response {
