@@ -1,4 +1,4 @@
-//! Glue from the Axum front door to `market-rs` (`/api/market`, `/api/closes`).
+//! Glue from the Axum front door to `market-rs` (`/api/market`, `/api/gold`, `/api/closes`).
 
 use std::collections::HashMap;
 use std::sync::LazyLock;
@@ -74,6 +74,15 @@ pub async fn handle(route: &str, _params: HashMap<String, String>, req: Request)
                 json!({ "ok": false, "err": e }).to_string(),
             ),
         },
+        "GET /api/gold" => json_resp(
+            StatusCode::OK,
+            if crate::middleware::auth().user_mode() {
+                "private, no-store"
+            } else {
+                "public, max-age=15, stale-while-revalidate=300"
+            },
+            MARKET.gold().await.to_string(),
+        ),
         "GET /api/closes" => {
             let q = req.uri().query();
             let list_raw = query_param(q, "list").unwrap_or_default();

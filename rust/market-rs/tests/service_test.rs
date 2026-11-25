@@ -3,7 +3,7 @@ use market_rs::port::{cnbc_symbol_for, downsample_closes};
 use serde_json::{Value, json};
 use std::collections::HashMap;
 use std::sync::Arc;
-use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicI64, AtomicUsize, Ordering};
 
 #[test]
 fn test_downsample_closes() {
@@ -199,13 +199,44 @@ async fn test_service_binance_fallback() {
 async fn test_service_market_and_world_index() {
     let tmp_dir = std::env::temp_dir().join(format!("mkt-test-mkt-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&tmp_dir);
+    let now = Arc::new(AtomicI64::new(1_795_564_800_000));
+    let clock = now.clone();
+    let gold_mode = Arc::new(AtomicUsize::new(0));
+    let mode = gold_mode.clone();
 
     let fetcher = Arc::new(
         move |url: String,
               body: Option<String>,
               _hdrs: Option<HashMap<String, String>>,
               _to: u64| {
+            let mode = mode.load(Ordering::SeqCst);
             Box::pin(async move {
+                if url.contains("logam-mulia-api.iamutaki.workers.dev") {
+                    let history = url.ends_with("/history?weight=1&length=10");
+                    if mode == 1 || (mode == 2 && history) {
+                        return Ok(HttpResponse::new(503, "Service Unavailable"));
+                    }
+                    let data = if history {
+                        json!([
+                            {"recordedDate":"2026-11-25","sellPrice":2490000,"materialType":"Antam 2026"},
+                            {"recordedDate":"2026-11-25","sellPrice":999999,"materialType":"Antam 2026"},
+                            {"recordedDate":"2026-11-24","sellPrice":"2485000","materialType":"Antam 2026"},
+                            {"recordedDate":"2026-11-23","sellPrice":2400000,"materialType":"Antam 2025"}
+                        ])
+                    } else if mode == 2 {
+                        json!([{"weight": 1, "sellPrice": 2500000}])
+                    } else {
+                        json!([
+                            {"weight":1,"sellPrice":2300000,"materialType":"Antam 2025"},
+                            {"weight":10,"sellPrice":24900000,"materialType":"Antam 2026"},
+                            {"weight":"1","sellPrice":"2490000","buybackPrice":2200000,"recordedDate":"2026-11-25","materialType":"Antam 2026"}
+                        ])
+                    };
+                    return Ok(HttpResponse::new(
+                        200,
+                        json!({"success":true,"data":data}).to_string(),
+                    ));
+                }
                 if url.contains("finance.yahoo.com") {
                     return Ok(HttpResponse::new(429, "Too Many Requests"));
                 }
@@ -286,9 +317,52 @@ async fn test_service_market_and_world_index() {
         },
     );
 
-    let svc = MarketService::new(&tmp_dir, "test-agent", Some(fetcher), None);
+    let svc = MarketService::new(
+        &tmp_dir,
+        "test-agent",
+        Some(fetcher.clone()),
+        Some(Arc::new(move || clock.load(Ordering::SeqCst))),
+    );
     let mkt = svc.market().await.expect("market");
     assert_eq!(mkt.get("ok"), Some(&json!(true)));
+    let gold = svc.gold().await;
+    assert_eq!(mkt["gold"], gold);
+    assert_eq!(gold["price"].as_f64(), Some(2490000.0));
+    assert_eq!(gold["buyback"].as_f64(), Some(2200000.0));
+    assert_eq!(gold["chg"].as_f64(), Some(5000.0));
+    assert_eq!(gold["pct"], json!(0.2));
+    assert_eq!(gold["closes"], json!([2485000.0, 2490000.0]));
+    assert_eq!(
+        gold["tiers"][0],
+        json!({"weight":1.0,"sell":2490000.0,"unit":"gr","buyback":2200000.0})
+    );
+    assert!(
+        mkt["forex"]["items"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|it| { it["sym"] == "EMAS:ANTAM" && it["price"] == gold["price"] })
+    );
+
+    gold_mode.store(2, Ordering::SeqCst);
+    assert_eq!(svc.gold().await, gold, "fresh cache must skip refresh");
+    now.fetch_add(15 * 60_000, Ordering::SeqCst);
+    gold_mode.store(1, Ordering::SeqCst);
+    assert_eq!(
+        svc.gold().await,
+        gold,
+        "keep stale quote on upstream failure"
+    );
+    let cold = MarketService::new(&tmp_dir, "test-agent", Some(fetcher), None);
+    assert_eq!(
+        cold.gold().await,
+        json!({"ok":false,"err":"gold fetch 503"})
+    );
+    gold_mode.store(2, Ordering::SeqCst);
+    let refreshed = svc.gold().await;
+    assert_eq!(refreshed["closes"], json!([2500000.0, 2500000.0]));
+    assert_eq!(refreshed["tiers"], json!([{"weight":1.0,"sell":2500000.0}]));
+    assert_eq!(refreshed["date"], "2026-11-25");
 
     let ihsg = mkt.get("ihsg").unwrap();
     assert!(

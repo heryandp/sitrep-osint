@@ -87,7 +87,7 @@ pub fn router() -> Router<Original> {
         .route("/api/geo/labels", get(route_5).fallback(original::proxy))
         .route("/api/incidents", get(route_20).fallback(original::proxy))
         .route("/api/market", get(route_16).fallback(original::proxy))
-        .route("/api/gold", get(original::proxy))
+        .route("/api/gold", get(route_gold).fallback(original::proxy))
         .route("/api/news", get(route_18).fallback(original::proxy))
         .route("/api/nodes", get(route_4).fallback(original::proxy))
         .route("/api/pajak/brief", post(route_8).fallback(original::proxy))
@@ -344,6 +344,13 @@ async fn route_16(State(original): State<Original>, req: Request) -> Response {
         return original::proxy(State(original), req).await;
     }
     market::handle("GET /api/market", HashMap::new(), req).await
+}
+
+async fn route_gold(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("MARKET") {
+        return original::proxy(State(original), req).await;
+    }
+    market::handle("GET /api/gold", HashMap::new(), req).await
 }
 
 async fn route_17(State(original): State<Original>, req: Request) -> Response {

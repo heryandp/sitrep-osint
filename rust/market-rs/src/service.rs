@@ -7,7 +7,7 @@ use futures_util::future::join_all;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
 use serde_json::{Value, json};
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::future::Future;
 use std::path::{Path, PathBuf};
 use std::pin::Pin;
@@ -175,6 +175,19 @@ pub struct MarketService {
     mkt_closes_save_at: Arc<AtomicI64>,
     mkt_memo: Arc<Mutex<Option<MemoItem>>>,
     world_memo: Arc<Mutex<Option<MemoItem>>>,
+    gold_memo: Arc<Mutex<Option<MemoItem>>>,
+}
+
+const GOLD_URL: &str = "https://logam-mulia-api.iamutaki.workers.dev/api/prices/anekalogam";
+
+fn antam_2026(item: &Value) -> bool {
+    item["materialType"]
+        .as_str()
+        .is_some_and(|s| s.contains("2026"))
+}
+
+fn gold_number(item: &Value, key: &str) -> Option<f64> {
+    json_num(item.get(key)).filter(|n| n.is_finite())
 }
 
 static GOOGLE_FIN_RE: LazyLock<Regex> = LazyLock::new(|| {
@@ -232,6 +245,7 @@ impl MarketService {
             mkt_closes_save_at: Arc::new(AtomicI64::new(0)),
             mkt_memo: Arc::new(Mutex::new(None)),
             world_memo: Arc::new(Mutex::new(None)),
+            gold_memo: Arc::new(Mutex::new(None)),
         }
     }
 
@@ -778,6 +792,134 @@ impl MarketService {
         Ok(result)
     }
 
+    async fn gold_items(&self, url: &str) -> Result<Vec<Value>, String> {
+        let headers = HashMap::from([
+            ("user-agent".into(), self.user_agent.clone()),
+            ("accept".into(), "application/json".into()),
+        ]);
+        let response = self.do_fetch(url, None, Some(&headers), 10_000).await?;
+        if !response.ok {
+            return Err(format!("gold fetch {}", response.status));
+        }
+        if let Ok(mut payload) = serde_json::from_str::<Value>(&response.body)
+            && payload["success"] == true
+            && let Value::Array(items) = payload["data"].take()
+            && !items.is_empty()
+        {
+            Ok(items)
+        } else {
+            Err("gold invalid data".into())
+        }
+    }
+
+    pub async fn gold(&self) -> Value {
+        let mut memo = self.gold_memo.lock().await;
+        let now = self.now_ms();
+        if let Some(cached) = memo.as_ref()
+            && now - cached.at < 15 * 60_000
+        {
+            return cached.data.clone();
+        }
+        let items = match self.gold_items(GOLD_URL).await {
+            Ok(items) => items,
+            Err(err) => {
+                return memo.as_ref().map_or_else(
+                    || json!({ "ok": false, "err": err }),
+                    |cached| cached.data.clone(),
+                );
+            }
+        };
+        let one_gram = |item: &&Value| gold_number(item, "weight") == Some(1.0);
+        let selected = items
+            .iter()
+            .filter(one_gram)
+            .find(|it| antam_2026(it))
+            .or_else(|| items.iter().find(one_gram))
+            .unwrap_or(&items[0]);
+        let price = gold_number(selected, "sellPrice").unwrap_or_default();
+        let buyback = gold_number(selected, "buybackPrice").unwrap_or_default();
+        let date = selected["recordedDate"]
+            .as_str()
+            .filter(|s| !s.is_empty())
+            .map_or_else(
+                || {
+                    chrono::DateTime::from_timestamp_millis(now)
+                        .unwrap_or_default()
+                        .date_naive()
+                        .to_string()
+                },
+                str::to_owned,
+            );
+
+        let history = self
+            .gold_items(&format!("{GOLD_URL}/history?weight=1&length=10"))
+            .await
+            .unwrap_or_default();
+        let prefer_2026 = history.iter().filter(|it| antam_2026(it)).take(2).count() == 2;
+        let mut seen = HashSet::new();
+        let mut closes: Vec<_> = history
+            .iter()
+            .filter(|it| !prefer_2026 || antam_2026(it))
+            .filter(|it| seen.insert(it.get("recordedDate").and_then(Value::as_str)))
+            .map(|it| gold_number(it, "sellPrice").unwrap_or_default())
+            .take(14)
+            .collect();
+        let prev_price = closes.get(1).copied().unwrap_or(price);
+        let chg = price - prev_price;
+        let pct = if prev_price > 0.0 {
+            chg / prev_price * 100.0
+        } else {
+            0.0
+        };
+        if closes.len() >= 2 {
+            closes.reverse();
+        } else {
+            closes = vec![price, price];
+        }
+
+        let mut tiers: Vec<_> = items.iter().filter(|it| antam_2026(it)).collect();
+        tiers.sort_by(|a, b| {
+            gold_number(a, "weight")
+                .unwrap_or(f64::INFINITY)
+                .total_cmp(&gold_number(b, "weight").unwrap_or(f64::INFINITY))
+        });
+        let tier_prices = |item: &Value| {
+            json!({
+                "weight": gold_number(item, "weight"),
+                "sell": gold_number(item, "sellPrice").unwrap_or_default(),
+            })
+        };
+        let tiers: Vec<_> = if tiers.is_empty() {
+            items.iter().map(tier_prices).collect()
+        } else {
+            tiers
+                .into_iter()
+                .map(|item| {
+                    let mut tier = tier_prices(item);
+                    tier["unit"] = json!(
+                        item["weightUnit"]
+                            .as_str()
+                            .filter(|s| !s.is_empty())
+                            .unwrap_or("gr")
+                    );
+                    tier["buyback"] = json!(gold_number(item, "buybackPrice").unwrap_or_default());
+                    tier
+                })
+                .collect()
+        };
+        let data = json!({
+            "ok": true, "source": "anekalogam", "displayName": "Aneka Logam (Antam)",
+            "date": date, "price": price, "buyback": buyback, "prevPrice": prev_price,
+            "chg": chg, "pct": format!("{pct:.2}").parse::<f64>().ok(),
+            "closes": closes, "tiers": tiers, "at": now,
+        });
+        *memo = Some(MemoItem {
+            at: now,
+            data: data.clone(),
+        });
+        data
+    }
+
     pub async fn market(&self) -> Result<Value, String> {
         let now = self.now_ms();
         {
@@ -802,7 +944,7 @@ impl MarketService {
             .map(|c| json!(c.0))
             .collect();
 
-        let (idx, fx, cmd_f, cmd_c, ihsg_r, idr_q, world, ihsg_closes) = tokio::join!(
+        let (idx, fx, cmd_f, cmd_c, ihsg_r, idr_q, world, ihsg_closes, gold) = tokio::join!(
             self.tv_scan("indonesia", json!({ "columns": cols5, "range": [0, 900], "symbols": { "query": { "types": ["stock"] }, "tickers": [] } })),
             self.tv_scan("forex", json!({ "columns": cols4, "symbols": { "query": { "types": [] }, "tickers": ["FX_IDC:USDIDR"] } })),
             self.tv_scan("futures", json!({ "columns": cols4, "symbols": { "query": { "types": [] }, "tickers": cmd_fut } })),
@@ -810,7 +952,8 @@ impl MarketService {
             self.tv_scan("indonesia", json!({ "columns": cols5, "symbols": { "query": { "types": [] }, "tickers": ["IDX:COMPOSITE"] } })),
             self.usdidr(),
             self.world_index(),
-            self.fetch_symbol_closes("IDX:COMPOSITE")
+            self.fetch_symbol_closes("IDX:COMPOSITE"),
+            self.gold()
         );
 
         let idx = idx.unwrap_or_default();
@@ -921,12 +1064,20 @@ impl MarketService {
             }
         }
 
+        if gold["ok"] == true && gold["price"].as_f64().is_some_and(|p| p != 0.0) {
+            forex.push(json!({
+                "sym": "EMAS:ANTAM", "ticker": "ANTAM", "name": "Emas 1g",
+                "price": gold["price"], "pct": gold["pct"], "chg": gold["chg"],
+                "closes": gold["closes"], "vol": 0, "mkt": "LOGAMMULIA"
+            }));
+        }
         let result = json!({
             "ok": true,
             "ihsg": ihsg,
             "stocks": { "ok": true, "items": stocks },
             "forex": { "ok": true, "items": forex },
             "world": world,
+            "gold": gold,
             "at": now
         });
 
@@ -951,6 +1102,7 @@ impl MarketService {
             mkt_closes_save_at: self.mkt_closes_save_at.clone(),
             mkt_memo: self.mkt_memo.clone(),
             world_memo: self.world_memo.clone(),
+            gold_memo: self.gold_memo.clone(),
         }
     }
 }
