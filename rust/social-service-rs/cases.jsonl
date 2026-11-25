@@ -1,0 +1,12 @@
+{"fn":"createSocialService","args":[true],"error":"Cannot read properties of undefined (reading 'keyOf')"}
+{"fn":"createSocialService","args":[0],"error":"Cannot read properties of undefined (reading 'keyOf')"}
+{"fn":"createSocialService","args":[{"a":{"b":"c"}}],"error":"Cannot read properties of undefined (reading 'keyOf')"}
+{"fn":"createSocialService","args":[null],"error":"Cannot destructure property 'fs' of 'object null' as it is null."}
+{"fn":"createSocialService","args":[{}],"error":"Cannot read properties of undefined (reading 'keyOf')"}
+{"fn":"createSocialService","args":[[]],"error":"Cannot read properties of undefined (reading 'keyOf')"}
+{"fn":"createSocialService","args":[{"a":"b"}],"error":"Cannot read properties of undefined (reading 'keyOf')"}
+{"fn":"createSocialService","args":[["a",1]],"error":"Cannot read properties of undefined (reading 'keyOf')"}
+{"fn":"createSocialService","args":["x"],"error":"Cannot read properties of undefined (reading 'keyOf')"}
+{"fn":"createSocialService","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"error":"Cannot read properties of undefined (reading 'keyOf')"}
+{"fn":"createSocialService","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"error":"Cannot read properties of undefined (reading 'keyOf')"}
+{"fn":"createSocialService","args":[[3,1,2]],"error":"Cannot read properties of undefined (reading 'keyOf')"}

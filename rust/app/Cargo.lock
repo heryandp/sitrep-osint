@@ -426,9 +426,12 @@ dependencies = [
  "geocode-rs",
  "market-rs",
  "news-service-rs",
+ "percent-encoding",
+ "reader-service-rs",
  "reqwest 0.12.28",
  "security-rs",
  "serde_json",
+ "social-service-rs",
  "tokio",
  "tomtom-rs",
  "uptime-service-rs",
@@ -1524,6 +1527,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "reader-service-rs"
+version = "0.1.0"
+dependencies = [
+ "fancy-regex",
+ "futures",
+ "futures-util",
+ "napi",
+ "napi-build",
+ "napi-derive",
+ "regex",
+ "reqwest 0.12.28",
+ "serde",
+ "serde_json",
+ "sha1 0.10.7",
+ "tokio",
+ "url",
+]
+
+[[package]]
 name = "redox_syscall"
 version = "0.5.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1995,6 +2017,27 @@ name = "smallvec"
 version = "1.16.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3244542535d5de959d90ec55d1b5ff0fd2bb7b1310223907d5f11932847f7b59"
+
+[[package]]
+name = "social-service-rs"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "fancy-regex",
+ "futures-util",
+ "napi",
+ "napi-build",
+ "napi-derive",
+ "regex",
+ "reqwest 0.12.28",
+ "serde",
+ "serde_json",
+ "sha1 0.10.7",
+ "tokio",
+ "unicode-normalization",
+ "url",
+ "whatlang",
+]
 
 [[package]]
 name = "socket2"

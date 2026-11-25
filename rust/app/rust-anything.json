@@ -97,6 +97,56 @@
         "GET /api/pajak/clusters"
       ],
       "switch": "RUST_ANYTHING_UNIT_NEWS_SERVICE"
+    },
+    {
+      "name": "geo-sensors",
+      "crate": "geo-sensors-rs",
+      "path": "../geo-sensors-rs",
+      "commands": [],
+      "routes": [
+        "GET /api/flights",
+        "GET /api/ships",
+        "GET /api/transit",
+        "GET /api/disaster",
+        "GET /api/weather",
+        "GET /api/wind",
+        "GET /api/fires",
+        "GET /api/sipongi",
+        "GET /api/satellite",
+        "GET /api/bmkg-modelrun",
+        "GET /api/alerts",
+        "GET /api/radar"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_GEO_SENSORS"
+    },
+    {
+      "name": "reader-service",
+      "crate": "reader-service-rs",
+      "path": "../reader-service-rs",
+      "commands": [],
+      "routes": [
+        "GET /api/read",
+        "GET /api/thumb",
+        "GET /api/desc",
+        "POST /api/desc",
+        "GET /img"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_READER_SERVICE"
+    },
+    {
+      "name": "social-service",
+      "crate": "social-service-rs",
+      "path": "../social-service-rs",
+      "commands": [],
+      "routes": [
+        "GET /api/x",
+        "GET /api/threads",
+        "GET /api/social/diagnostics",
+        "GET /api/social/explain",
+        "POST /api/social/explain",
+        "GET /api/xdiag"
+      ],
+      "switch": "RUST_ANYTHING_UNIT_SOCIAL_SERVICE"
     }
   ],
   "kind": "http",

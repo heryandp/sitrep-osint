@@ -13,6 +13,7 @@ path = "src/main.rs"
 axum = "0.8"
 reqwest = { version = "0.12", default-features = false }
 serde_json = "1"
+percent-encoding = "2"
 tokio = { version = "1", features = ["macros", "net", "rt-multi-thread", "signal", "time"] }
 uptime-service-rs = { path = "../uptime-service-rs" }
 security-rs = { path = "../security-rs" }
@@ -23,5 +24,7 @@ tomtom-rs = { path = "../tomtom-rs" }
 market-rs = { path = "../market-rs" }
 news-service-rs = { path = "../news-service-rs" }
 geo-sensors-rs = { path = "../geo-sensors-rs" }
+reader-service-rs = { path = "../reader-service-rs" }
+social-service-rs = { path = "../social-service-rs" }
 
 [workspace]

@@ -1,6 +1,6 @@
 # Port map: djp-sitrep
 
-22 of 47 units have a Rust port; no original changed since it was recorded.
+25 of 47 units have a Rust port; no original changed since it was recorded.
 
 ## Ports
 
@@ -21,9 +21,12 @@
 | `src/news-service.js` | `rust/news-service-rs` | `cleanPub`, `isBannedHostUrl`, `isBannedNewsItem`, `breakNorm`, `wibDayStartMs` | `createNewsService` | 81 | 81/81 | unchanged |
 | `src/nlp-adapter.js` | `rust/nlp-adapter-rs` | `getConfig`, `redactPII` | `createNlpAdapter` | 54 | 54/54 | unchanged |
 | `src/pajak-cluster.js` | `rust/pajak-cluster-rs` | `isTaxText`, `classifyTaxScope`, `classifyPajakThemes`, `buildPajakClusters` | - | 91 | 91/91 | unchanged |
+| `src/reader-service.js` | `rust/reader-service-rs` | `createReaderService` | - | 12 | 12/12 | unchanged |
 | `src/security.js` | `rust/security-rs` | `rdIPv4Bytes`, `rdPrivateBytes`, `rdPrivateIP`, `publicURL`, `verifyPassword`, `parseUsersSpec`, `hasRole`, `rateKey`, `getClientIp`, `isHttpsReq`, `isSameOriginPost` | `createHttpClient`, `loadTrustedRoots`, `hashPassword`, `createAuthManager`, `createRateLimiter`, `runIsolated`, `createFatalGuard` | 782 | 782/782 | unchanged |
 | `src/social-cluster.js` | `rust/social-cluster-rs` | `classifySourceProvenance`, `stripBoilerplateForSimilarity`, `similarityTokens`, `isNearDuplicate`, `deduplicatePosts`, `clusterIncidents`, `matchPostToNews`, `eventSpecificTokens`, `collapseSocialFeed` | `jaccardSimilarity` | 978 | 978/978 | unchanged |
 | `src/social-diagnostics.js` | `rust/social-diagnostics-rs` | `createDiagnostics`, `evaluateCorpus` | - | 90 | 90/90 | unchanged |
+| `src/social-history.js` | `rust/social-history-rs` | `keyOf`, `tsOf`, `tag`, `retag`, `snapshot` | - | 545 | 545/545 | unchanged |
+| `src/social-service.js` | `rust/social-service-rs` | `createSocialService` | - | 12 | 12/12 | unchanged |
 | `src/social.js` | `rust/social-rs` | `socAssess`, `socTopics`, `socAdhoc`, `socKeepX`, `socKeepTh`, `socBalance`, `socQueries`, `socHot`, `socNonLatin`, `socVi`, `socHashJunk`, `astroturfSig`, `socForeignLang`, `socKeywordMine`, `explainPost` | `socPhraseScan` | 1320 | 1320/1320 | unchanged |
 | `src/tomtom.js` | `rust/tomtom-rs` | `haversine`, `roundGrid`, `roundGridStr`, `ttHostOK` | `createTomTomService` | 420 | 420/420 | unchanged |
 | `src/uptime-service.js` | `rust/uptime-service-rs` | `normalizeCheckResult` | `createUptimeService` | 212 | 212/212 | unchanged |
@@ -39,7 +42,9 @@
 | `rust/app/src/units/geocode.rs` | Rust only |
 | `rust/app/src/units/market.rs` | Rust only |
 | `rust/app/src/units/news_service.rs` | Rust only |
+| `rust/app/src/units/reader_service.rs` | Rust only |
 | `rust/app/src/units/security.rs` | Rust only |
+| `rust/app/src/units/social_service.rs` | Rust only |
 | `rust/app/src/units/tomtom.rs` | Rust only |
 | `rust/app/src/units/uptime_service.rs` | Rust only |
 
@@ -49,7 +54,6 @@ In the order `analyze` suggests.
 
 | Unit | Lines | Exports | Readiness |
 | --- | ---: | ---: | ---: |
-| `src/social-history.js` | 105 | 5 | 79 |
 | `article-extract.js` | 3 | 0 | 100 |
 | `article-media.js` | 1 | 0 | 100 |
 | `assessment.js` | 1 | 0 | 100 |
@@ -70,8 +74,6 @@ In the order `analyze` suggests.
 | `src/cctv-catalog.js` | 505 | 1 | 38 |
 | `scripts/` | 489 | 0 | 35 |
 | `src/cctv-gateway.js` | 723 | 4 | 26 |
-| `src/social-service.js` | 1405 | 1 | 0 |
-| `src/reader-service.js` | 1979 | 1 | 0 |
 | `server.js` | 1957 | 5 | 0 |
 | `src/client/scripts/` | 10212 | 0 | 0 |
 

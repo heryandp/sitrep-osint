@@ -1,0 +1,545 @@
+{"fn":"keyOf","args":[{"a":{"b":"c"}}],"ok":""}
+{"fn":"keyOf","args":[["a",1]],"ok":""}
+{"fn":"keyOf","args":[{}],"ok":""}
+{"fn":"keyOf","args":[true],"ok":""}
+{"fn":"keyOf","args":[[]],"ok":""}
+{"fn":"keyOf","args":[{"a":"b"}],"ok":""}
+{"fn":"keyOf","args":[0],"ok":""}
+{"fn":"keyOf","args":["x"],"ok":""}
+{"fn":"keyOf","args":[null],"error":"Cannot read properties of null (reading 'url')"}
+{"fn":"keyOf","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":""}
+{"fn":"keyOf","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":""}
+{"fn":"keyOf","args":[[3,1,2]],"ok":""}
+{"fn":"tsOf","args":[true],"ok":0}
+{"fn":"tsOf","args":["x"],"ok":0}
+{"fn":"tsOf","args":[{"a":"b"}],"ok":0}
+{"fn":"tsOf","args":[[]],"ok":0}
+{"fn":"tsOf","args":[["a",1]],"ok":0}
+{"fn":"tsOf","args":[{"a":{"b":"c"}}],"ok":0}
+{"fn":"tsOf","args":[null],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tsOf","args":[0],"ok":0}
+{"fn":"tsOf","args":[{}],"ok":0}
+{"fn":"tsOf","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"ok":0}
+{"fn":"tsOf","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"ok":0}
+{"fn":"tsOf","args":[[3,1,2]],"ok":0}
+{"fn":"tag","args":[0,0,{"$undefined":true},true],"ok":false}
+{"fn":"tag","args":[{"a":"b"},true,["a",1],{}],"ok":false}
+{"fn":"tag","args":["x","x",true,null],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{"a":"b"},"x",{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":[true,[],{"a":{"b":"c"}},["a",1]],"ok":false}
+{"fn":"tag","args":[[],{"$undefined":true},true,{}],"ok":false}
+{"fn":"tag","args":[{},{"$undefined":true},{},["a",1]],"ok":false}
+{"fn":"tag","args":[["a",1],{"a":"b"},0,["a",1]],"ok":false}
+{"fn":"tag","args":[["a",1],{"a":"b"},{"$undefined":true},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[true,{},{"a":{"b":"c"}},"x"],"ok":false}
+{"fn":"tag","args":[true,"x",null,{"a":"b"}],"ok":false}
+{"fn":"tag","args":[true,null,{"$undefined":true},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[null,["a",1],null,null],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[0,true,null,["a",1]],"ok":false}
+{"fn":"tag","args":[["a",1],["a",1],[],true],"ok":false}
+{"fn":"tag","args":[{},0,{},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[true,true,["a",1],{}],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{"a":{"b":"c"}},{"a":"b"},{}],"ok":false}
+{"fn":"tag","args":["x",["a",1],0,{"a":"b"}],"ok":false}
+{"fn":"tag","args":[true,true,{},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[null,null,{},{"a":"b"}],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[{"a":"b"},true,{"a":"b"},{"a":"b"}],"ok":false}
+{"fn":"tag","args":["x",{"$undefined":true},0,{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":[{},[],{"a":"b"},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[null,{"$undefined":true},null,0],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[{},true,{"$undefined":true},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[0,{"$undefined":true},"x",{"a":"b"}],"ok":false}
+{"fn":"tag","args":["x",0,{"a":{"b":"c"}},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{"$undefined":true},0,{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":[["a",1],0,"x"],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{"$undefined":true},["a",1],["a",1]],"ok":false}
+{"fn":"tag","args":[{},null,{"a":{"b":"c"}},"x"],"ok":false}
+{"fn":"tag","args":[null,"x",{"a":"b"},["a",1]],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[0,[],["a",1],null],"ok":false}
+{"fn":"tag","args":[true,{"$undefined":true},{"a":{"b":"c"}},null],"ok":false}
+{"fn":"tag","args":[["a",1],{},null,["a",1]],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{"$undefined":true},null,{"a":"b"}],"ok":false}
+{"fn":"tag","args":[["a",1],true,{"$undefined":true},0],"ok":false}
+{"fn":"tag","args":[null,"x",{"$undefined":true},true],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[{},{},{"$undefined":true},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[["a",1],true,[],"x"],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{"a":{"b":"c"}},["a",1],{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{"$undefined":true},{"a":{"b":"c"}},true],"ok":false}
+{"fn":"tag","args":[{},{},{"$undefined":true},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[{"a":"b"},"x",{"$undefined":true},true],"ok":false}
+{"fn":"tag","args":[null,{"$undefined":true},{"$undefined":true},{"$undefined":true}],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[0,{"a":{"b":"c"}},{"$undefined":true},"x"],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},{"$undefined":true},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[0,true,{"a":{"b":"c"}},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[0,[],"x",{"a":"b"}],"ok":false}
+{"fn":"tag","args":[["a",1],[],{}],"ok":false}
+{"fn":"tag","args":[["a",1],["a",1],["a",1],null],"ok":false}
+{"fn":"tag","args":[["a",1],{},[],["a",1]],"ok":false}
+{"fn":"tag","args":[{},{"$undefined":true},null,{}],"ok":false}
+{"fn":"tag","args":["x",["a",1],{"a":"b"},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[["a",1],"x",{"$undefined":true},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[{},true,{"$undefined":true},{}],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},{"$undefined":true},{"$undefined":true},[]],"ok":false}
+{"fn":"tag","args":[["a",1],["a",1],["a",1],{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[{},0,true,null],"ok":false}
+{"fn":"tag","args":[true,["a",1],null,{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":["x",{"$undefined":true},true,{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":[true,{},["a",1],["a",1]],"ok":false}
+{"fn":"tag","args":["x",["a",1],{"a":"b"},0],"ok":false}
+{"fn":"tag","args":[{},null,0,[]],"ok":false}
+{"fn":"tag","args":["x",null,{"a":"b"},"x"],"ok":false}
+{"fn":"tag","args":["x",null,["a",1],null],"ok":false}
+{"fn":"tag","args":[null,[],{"$undefined":true},true],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[true,["a",1],{"$undefined":true},null],"ok":false}
+{"fn":"tag","args":[["a",1],null,0,[]],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{"$undefined":true},0,{"a":"b"}],"ok":false}
+{"fn":"tag","args":[{},[],0,{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},null,true,{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[true,{"$undefined":true},null,["a",1]],"ok":false}
+{"fn":"tag","args":[{"a":"b"},"x",0,0],"ok":false}
+{"fn":"tag","args":[true,true,{"a":{"b":"c"}},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[["a",1],["a",1],[],{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":[0,"x",{"$undefined":true},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},{"$undefined":true},["a",1]],"ok":false}
+{"fn":"tag","args":[null,{"$undefined":true},true,null],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[0,{"a":"b"},"x",{}],"ok":false}
+{"fn":"tag","args":[[],{"a":{"b":"c"}},{"a":"b"},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[0,{"$undefined":true},null,"x"],"ok":false}
+{"fn":"tag","args":[0,0,{"a":"b"},0],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},[],true,{"a":"b"}],"ok":false}
+{"fn":"tag","args":[["a",1],{"$undefined":true},{"$undefined":true},{}],"ok":false}
+{"fn":"tag","args":["x",{"a":"b"},{"$undefined":true},["a",1]],"ok":false}
+{"fn":"tag","args":["x",{"a":{"b":"c"}},true,["a",1]],"ok":false}
+{"fn":"tag","args":[["a",1],{},0,0],"ok":false}
+{"fn":"tag","args":[["a",1],0,["a",1],"x"],"ok":false}
+{"fn":"tag","args":[{},{"a":"b"},true,{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{"a":"b"},{"$undefined":true},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[0,{},[],{}],"ok":false}
+{"fn":"tag","args":[null,0,[],[]],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[{},{"$undefined":true},["a",1],null],"ok":false}
+{"fn":"tag","args":[null,["a",1],"x",{"a":"b"}],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},{}],"ok":false}
+{"fn":"tag","args":[null,0,[],null],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[0,null,{"$undefined":true},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[{},{"a":{"b":"c"}},{"$undefined":true},"x"],"ok":false}
+{"fn":"tag","args":[{},{},0,null],"ok":false}
+{"fn":"tag","args":[null,{},null],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[true,{"$undefined":true},{"$undefined":true},{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":[["a",1],"x",true,{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":[0,null,{"$undefined":true},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},{"$undefined":true},{"$undefined":true},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[true,"x",{"$undefined":true},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[0,["a",1],[],[]],"ok":false}
+{"fn":"tag","args":["x",null,{"$undefined":true},[]],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},true,{"a":"b"},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[{"a":"b"},["a",1],{"$undefined":true},null],"ok":false}
+{"fn":"tag","args":[{},{"a":{"b":"c"}},{"a":{"b":"c"}},{}],"ok":false}
+{"fn":"tag","args":[0,{"a":{"b":"c"}},{"$undefined":true},{}],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},null,{"a":{"b":"c"}},["a",1]],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},{"$undefined":true},{"a":{"b":"c"}},{}],"ok":false}
+{"fn":"tag","args":[0,true,{"$undefined":true},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[0,{"$undefined":true},{"$undefined":true},0],"ok":false}
+{"fn":"tag","args":[["a",1],{},true,null],"ok":false}
+{"fn":"tag","args":[null,true,{"a":{"b":"c"}}],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[[],{"a":"b"},{},{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":[null,{},null,"x"],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[{},0,{"$undefined":true},true],"ok":false}
+{"fn":"tag","args":[["a",1],true,{"$undefined":true},[]],"ok":false}
+{"fn":"tag","args":[0,{},{"$undefined":true},{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":["x",{"$undefined":true},["a",1],[]],"ok":false}
+{"fn":"tag","args":[["a",1],{"$undefined":true},{"$undefined":true},null],"ok":false}
+{"fn":"tag","args":[null,[],{"$undefined":true},null],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[["a",1],true,0,[]],"ok":false}
+{"fn":"tag","args":[["a",1],[],"x"],"ok":false}
+{"fn":"tag","args":[0,{"$undefined":true},["a",1],{"a":"b"}],"ok":false}
+{"fn":"tag","args":[{"a":"b"},0,[],{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[["a",1],{"$undefined":true},{"a":"b"},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[0,0,null,null],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},"x",{"a":{"b":"c"}},[]],"ok":false}
+{"fn":"tag","args":[[],"x",["a",1],null],"ok":false}
+{"fn":"tag","args":["x",{"$undefined":true},"x",{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},true,["a",1],null],"ok":false}
+{"fn":"tag","args":[["a",1],{"$undefined":true},true,{}],"ok":false}
+{"fn":"tag","args":[0,["a",1],{"a":"b"},{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":[{},true,{"a":"b"},[]],"ok":false}
+{"fn":"tag","args":[{},["a",1],{"$undefined":true},"x"],"ok":false}
+{"fn":"tag","args":[{"a":"b"},0,{"a":"b"},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[true,{"a":{"b":"c"}},0,["a",1]],"ok":false}
+{"fn":"tag","args":["x",{},[],"x"],"ok":false}
+{"fn":"tag","args":[true,[],null,{}],"ok":false}
+{"fn":"tag","args":[[],{"$undefined":true},[],{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":[[],true,{"a":{"b":"c"}},true],"ok":false}
+{"fn":"tag","args":[{},true,{"$undefined":true},null],"ok":false}
+{"fn":"tag","args":[[],{"$undefined":true},0,{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[{},null,{"$undefined":true},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[[],{"$undefined":true},0,{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":["x",[],[],{}],"ok":false}
+{"fn":"tag","args":[["a",1],[],{"$undefined":true},"x"],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},["a",1],{"a":"b"},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[["a",1],"x",0,["a",1]],"ok":false}
+{"fn":"tag","args":[{},0,true,[]],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},{"$undefined":true},null,null],"ok":false}
+{"fn":"tag","args":["x",true,{"a":{"b":"c"}},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[null,["a",1],null,[]],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[{},{"a":{"b":"c"}},{"$undefined":true},true],"ok":false}
+{"fn":"tag","args":[{},{"a":"b"},{"a":{"b":"c"}},[]],"ok":false}
+{"fn":"tag","args":[[],["a",1],{"$undefined":true},{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":[[],null,{"$undefined":true},"x"],"ok":false}
+{"fn":"tag","args":[true,"x",["a",1],{"a":"b"}],"ok":false}
+{"fn":"tag","args":[null,{"$undefined":true},[],[]],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":["x",0,["a",1],["a",1]],"ok":false}
+{"fn":"tag","args":[true,["a",1],[],true],"ok":false}
+{"fn":"tag","args":[0,0,true],"ok":false}
+{"fn":"tag","args":[{},true,null,["a",1]],"ok":false}
+{"fn":"tag","args":[true,{"a":"b"},{"a":{"b":"c"}},[]],"ok":false}
+{"fn":"tag","args":[true,null,null,{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":[[],{"$undefined":true},{"$undefined":true},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[null,null,"x",true],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[["a",1],true,null,[]],"ok":false}
+{"fn":"tag","args":[["a",1],null,{"$undefined":true},"x"],"ok":false}
+{"fn":"tag","args":[0,{},0,{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[[],null,["a",1]],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{"a":{"b":"c"}},true,"x"],"ok":false}
+{"fn":"tag","args":["x",true,"x",0],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{"a":"b"},{"$undefined":true},["a",1]],"ok":false}
+{"fn":"tag","args":[null,{},{"$undefined":true},{"a":{"b":"c"}}],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[[],0,{"$undefined":true},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[null,{"a":{"b":"c"}},["a",1],["a",1]],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[["a",1],{"$undefined":true},{"a":{"b":"c"}},{}],"ok":false}
+{"fn":"tag","args":[true,true,[],null],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{"$undefined":true},"x",0],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{"a":"b"},{"$undefined":true},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[null,0,[],["a",1]],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[true,{"a":"b"},{},{"a":{"b":"c"}}],"ok":false}
+{"fn":"tag","args":["x",{"a":{"b":"c"}},null,{}],"ok":false}
+{"fn":"tag","args":["x","x",{},{"a":"b"}],"ok":false}
+{"fn":"tag","args":[{},[],{"a":{"b":"c"}},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[true,{"a":{"b":"c"}},{"a":"b"},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[{"a":"b"},{},null,{"$undefined":true}],"ok":false}
+{"fn":"tag","args":["x",{"a":"b"},{"$undefined":true},{"$undefined":true}],"ok":false}
+{"fn":"tag","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},{"a":"b"},{"a":"b"}],"ok":false}
+{"fn":"tag","args":["x","x",{},true],"ok":false}
+{"fn":"tag","args":["x",{"$undefined":true},{"a":{"b":"c"}},true],"ok":false}
+{"fn":"tag","args":[[],true,{"a":{"b":"c"}},[]],"ok":false}
+{"fn":"tag","args":[null,"x",{"a":"b"},[]],"error":"Cannot read properties of null (reading 'ts')"}
+{"fn":"tag","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},0,{"$undefined":true},true],"ok":false}
+{"fn":"tag","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},0,{"$undefined":true},true],"ok":false}
+{"fn":"tag","args":[[3,1,2],0,{"$undefined":true},true],"ok":false}
+{"fn":"retag","args":[["a",1],[],[],0,true],"error":"map.delete is not a function"}
+{"fn":"retag","args":[null,"x",{"$undefined":true},{"$undefined":true},{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[[],["a",1],{"$undefined":true},{"a":{"b":"c"}}],"ok":{"$undefined":true}}
+{"fn":"retag","args":[{"a":"b"},"x",{"$undefined":true},0,{}],"error":"map is not iterable"}
+{"fn":"retag","args":[[],{"a":"b"},{"a":"b"},null,["a",1]],"ok":{"$undefined":true}}
+{"fn":"retag","args":[null,{},[],[],null],"error":"map is not iterable"}
+{"fn":"retag","args":[true,{"a":"b"},{"$undefined":true},{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[true,["a",1],{"a":{"b":"c"}},{"a":"b"},{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],true,["a",1],null],"error":"map.delete is not a function"}
+{"fn":"retag","args":[null,{"a":{"b":"c"}},{"a":"b"},"x",0],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],0,{"$undefined":true},["a",1],{"a":{"b":"c"}}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[0,null,{"$undefined":true},true,{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],0,{"$undefined":true},true,["a",1]],"error":"map.delete is not a function"}
+{"fn":"retag","args":[0,{},{"a":{"b":"c"}},"x",["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},0,[],0,"x"],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],0,{},{"$undefined":true},{}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[0,{"a":{"b":"c"}},0,{"a":"b"},{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},true,["a",1],0,{"a":{"b":"c"}}],"error":"map is not iterable"}
+{"fn":"retag","args":["x",true,null,{},true],"error":"map.delete is not a function"}
+{"fn":"retag","args":[["a",1],{"a":{"b":"c"}},"x",[],true],"error":"map.delete is not a function"}
+{"fn":"retag","args":[true,["a",1],true,{"a":"b"},"x"],"error":"map is not iterable"}
+{"fn":"retag","args":[0,true,null,{"a":{"b":"c"}},{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[true,{},true,[],{"a":{"b":"c"}}],"error":"map is not iterable"}
+{"fn":"retag","args":[0,[],{},null,{}],"error":"map is not iterable"}
+{"fn":"retag","args":["x",0,{},{},[]],"error":"map.delete is not a function"}
+{"fn":"retag","args":[{"a":"b"},true,"x",{"a":{"b":"c"}},true],"error":"map is not iterable"}
+{"fn":"retag","args":[[],null,{"a":{"b":"c"}},{"a":{"b":"c"}}],"ok":{"$undefined":true}}
+{"fn":"retag","args":[{"a":"b"},true,{"$undefined":true},0],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],{"a":"b"},{"a":"b"},{"$undefined":true},0],"error":"map.delete is not a function"}
+{"fn":"retag","args":[{"a":{"b":"c"}},0,[],null,{}],"error":"map is not iterable"}
+{"fn":"retag","args":[[],{"a":"b"},0,null,{}],"ok":{"$undefined":true}}
+{"fn":"retag","args":[true,{},true,0,null],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":"b"},{"a":{"b":"c"}},true,{},0],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},{},0,"x",0],"error":"map is not iterable"}
+{"fn":"retag","args":[null,0,{"$undefined":true},["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":["x",true,{"$undefined":true},{"$undefined":true}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[0,{},null,["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],0,{"a":{"b":"c"}},{"a":"b"},{"a":"b"}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[true,[],null,["a",1],["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],[],true,0,{"a":{"b":"c"}}],"error":"map.delete is not a function"}
+{"fn":"retag","args":["x",true,{"a":{"b":"c"}},{"$undefined":true},true],"error":"map.delete is not a function"}
+{"fn":"retag","args":[null,null,{"$undefined":true},["a",1],{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[null,true,{},{"a":{"b":"c"}},"x"],"error":"map is not iterable"}
+{"fn":"retag","args":[true,{"a":{"b":"c"}},{"$undefined":true},0,["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":[0,0,{"$undefined":true},["a",1],"x"],"error":"map is not iterable"}
+{"fn":"retag","args":[[],{"a":"b"},null,true,null],"ok":{"$undefined":true}}
+{"fn":"retag","args":[{"a":{"b":"c"}},[],true,["a",1],{}],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],["a",1],["a",1],[],["a",1]],"error":"map.delete is not a function"}
+{"fn":"retag","args":[{"a":{"b":"c"}},"x",{},{"$undefined":true},"x"],"error":"map is not iterable"}
+{"fn":"retag","args":[null,"x",null,null,"x"],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":"b"},[],"x",{"$undefined":true},null],"error":"map is not iterable"}
+{"fn":"retag","args":[[],{"a":{"b":"c"}},0,{"$undefined":true},{"a":{"b":"c"}}],"ok":{"$undefined":true}}
+{"fn":"retag","args":[[],{},{"$undefined":true},{"a":"b"},0],"ok":{"$undefined":true}}
+{"fn":"retag","args":[{},{"a":{"b":"c"}},{"a":{"b":"c"}},true,true],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},{"a":"b"},{},{"a":{"b":"c"}},{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[[],{"a":{"b":"c"}},{},"x"],"ok":{"$undefined":true}}
+{"fn":"retag","args":[null,["a",1],{"a":"b"},"x",{"a":{"b":"c"}}],"error":"map is not iterable"}
+{"fn":"retag","args":[0,{"a":"b"},null,true],"error":"map is not iterable"}
+{"fn":"retag","args":[[],{"a":{"b":"c"}}],"ok":{"$undefined":true}}
+{"fn":"retag","args":[{},true,["a",1],[],{}],"error":"map is not iterable"}
+{"fn":"retag","args":["x",{"a":"b"},null,true,["a",1]],"error":"map.delete is not a function"}
+{"fn":"retag","args":[["a",1],"x",["a",1],{"$undefined":true},{"a":{"b":"c"}}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[true,{"a":{"b":"c"}},{"a":{"b":"c"}},["a",1],{"a":{"b":"c"}}],"error":"map is not iterable"}
+{"fn":"retag","args":[[],["a",1],0,{"$undefined":true},{}],"ok":{"$undefined":true}}
+{"fn":"retag","args":[true,null,{"$undefined":true},{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],true,{"$undefined":true},"x"],"error":"map.delete is not a function"}
+{"fn":"retag","args":[{"a":{"b":"c"}},null,{},{"$undefined":true},true],"error":"map is not iterable"}
+{"fn":"retag","args":[null,{"a":{"b":"c"}},true],"error":"map is not iterable"}
+{"fn":"retag","args":["x",[],{"a":{"b":"c"}},["a",1],{"a":{"b":"c"}}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[true,["a",1],["a",1],["a",1],["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],["a",1],{"a":"b"},{"a":"b"},true],"error":"map.delete is not a function"}
+{"fn":"retag","args":[["a",1],["a",1],0,0,{"$undefined":true}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[true,{"a":"b"},null,["a",1],["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":"b"},{},0,{"$undefined":true},{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[[],[],{},[],{}],"ok":{"$undefined":true}}
+{"fn":"retag","args":[{"a":"b"},true,"x",{},0],"error":"map is not iterable"}
+{"fn":"retag","args":[[],{},[],[],true],"ok":{"$undefined":true}}
+{"fn":"retag","args":[0,true,{"a":"b"},["a",1],null],"error":"map is not iterable"}
+{"fn":"retag","args":[0,0,"x",["a",1],["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":["x",{},null,null,{}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[{"a":"b"},[],{},{},null],"error":"map is not iterable"}
+{"fn":"retag","args":[[],null,0,null,"x"],"ok":{"$undefined":true}}
+{"fn":"retag","args":[[],true,{"a":{"b":"c"}},{"$undefined":true},true],"ok":{"$undefined":true}}
+{"fn":"retag","args":[{"a":{"b":"c"}},null,{"a":"b"},{},{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[{},{"a":{"b":"c"}},null,null,true],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],"x",{"$undefined":true},null,["a",1]],"error":"map.delete is not a function"}
+{"fn":"retag","args":[{"a":"b"},{"a":{"b":"c"}},{"a":"b"},null,{"a":{"b":"c"}}],"error":"map is not iterable"}
+{"fn":"retag","args":[{},["a",1],{},{"a":"b"},["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":[0,0,{"$undefined":true},0,{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[[],true,{"$undefined":true},{"a":{"b":"c"}},{"a":"b"}],"ok":{"$undefined":true}}
+{"fn":"retag","args":[{"a":"b"},{"a":{"b":"c"}},["a",1],{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":["x",{"a":{"b":"c"}},[],{},null],"error":"map.delete is not a function"}
+{"fn":"retag","args":[null,null,true,{"$undefined":true},{}],"error":"map is not iterable"}
+{"fn":"retag","args":[true,{},{"$undefined":true},{},true],"error":"map is not iterable"}
+{"fn":"retag","args":[0,{},[],{"$undefined":true},true],"error":"map is not iterable"}
+{"fn":"retag","args":[[],[],0,[]],"ok":{"$undefined":true}}
+{"fn":"retag","args":[0,true,{"$undefined":true},[],{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},true,true,{"$undefined":true},["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":[[],{"a":{"b":"c"}},"x",["a",1],[]],"ok":{"$undefined":true}}
+{"fn":"retag","args":[0,{"a":{"b":"c"}},"x",null,["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":"b"},{"a":{"b":"c"}},["a",1],true,{}],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},[],{"a":{"b":"c"}},0,{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],{},[],{},{"$undefined":true}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[{"a":"b"},{"a":{"b":"c"}},[],0,true],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":"b"},0,[],"x",[]],"error":"map is not iterable"}
+{"fn":"retag","args":[{},0,{"$undefined":true},"x",{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[true,[],{"$undefined":true},{"a":{"b":"c"}},{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[{},{},["a",1],["a",1],true],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},[],{"$undefined":true},0,["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":[{},"x",[],[],{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[0,{"a":"b"},true,{"$undefined":true},{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[{},{"a":"b"},["a",1],{"$undefined":true},{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[0,["a",1],{"$undefined":true},null,{"a":{"b":"c"}}],"error":"map is not iterable"}
+{"fn":"retag","args":[true,0,["a",1],{},"x"],"error":"map is not iterable"}
+{"fn":"retag","args":[[],0,true,"x","x"],"ok":{"$undefined":true}}
+{"fn":"retag","args":[0,{},{"$undefined":true},{"$undefined":true},{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[null,"x",[],"x",{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[true,{"a":"b"},{"a":{"b":"c"}},["a",1],null],"error":"map is not iterable"}
+{"fn":"retag","args":[[],{},{},{"a":"b"},true],"ok":{"$undefined":true}}
+{"fn":"retag","args":[[],null,0,true,null],"ok":{"$undefined":true}}
+{"fn":"retag","args":[0,0,{"$undefined":true},{"$undefined":true},[]],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},{},{"a":{"b":"c"}},null],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":"b"},{"a":{"b":"c"}},0,true,true],"error":"map is not iterable"}
+{"fn":"retag","args":[true,0,{"a":{"b":"c"}},{"a":{"b":"c"}}],"error":"map is not iterable"}
+{"fn":"retag","args":[true,true,"x",[],{"a":{"b":"c"}}],"error":"map is not iterable"}
+{"fn":"retag","args":[null,"x",{"a":{"b":"c"}},["a",1],{"a":{"b":"c"}}],"error":"map is not iterable"}
+{"fn":"retag","args":[[],null,"x",[],"x"],"ok":{"$undefined":true}}
+{"fn":"retag","args":[[],["a",1],{"a":{"b":"c"}},{}],"ok":{"$undefined":true}}
+{"fn":"retag","args":[{"a":{"b":"c"}},"x",{"$undefined":true},{},{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[{},{"a":{"b":"c"}},{},{"a":"b"},0],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},["a",1],[],{"a":{"b":"c"}},true],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":"b"},true,true,[],{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[{},{},["a",1],{"$undefined":true},{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":["x",0,[],true,0],"error":"map.delete is not a function"}
+{"fn":"retag","args":[{"a":"b"},0,null,{"$undefined":true},{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[null,{"a":{"b":"c"}},null,true,{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[0,null,0,["a",1],{}],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],null,[],{"$undefined":true},true],"error":"map.delete is not a function"}
+{"fn":"retag","args":[null,{},"x",null,{"a":{"b":"c"}}],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":"b"},"x",{"$undefined":true},true,0],"error":"map is not iterable"}
+{"fn":"retag","args":[true,["a",1],true,"x",null],"error":"map is not iterable"}
+{"fn":"retag","args":[true,[],{"a":"b"},{"a":"b"},[]],"error":"map is not iterable"}
+{"fn":"retag","args":[null,[],null,{},[]],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":"b"},{},{"$undefined":true},0,0],"error":"map is not iterable"}
+{"fn":"retag","args":[[],{"a":"b"},{"$undefined":true},["a",1],null],"ok":{"$undefined":true}}
+{"fn":"retag","args":[true,{},[],"x",{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},0,0,true,{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":["x",["a",1],{"$undefined":true},"x",0],"error":"map.delete is not a function"}
+{"fn":"retag","args":[null,0,[],{}],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},{"a":{"b":"c"}},true,true],"error":"map is not iterable"}
+{"fn":"retag","args":["x",{"a":{"b":"c"}},{"a":{"b":"c"}},{"a":"b"},{}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[["a",1],[],[],true,{"a":{"b":"c"}}],"error":"map.delete is not a function"}
+{"fn":"retag","args":["x",null,{"$undefined":true},0,["a",1]],"error":"map.delete is not a function"}
+{"fn":"retag","args":[{},null,{},{"$undefined":true},{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":["x","x",{"a":"b"},0,"x"],"error":"map.delete is not a function"}
+{"fn":"retag","args":[0,true,{},[],[]],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},["a",1],["a",1],0,{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],[],{"a":{"b":"c"}},[],{}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[{"a":"b"},null,{"$undefined":true},[],["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":[[],"x",{"$undefined":true},"x",{"$undefined":true}],"ok":{"$undefined":true}}
+{"fn":"retag","args":[{"a":"b"},true,{"$undefined":true},true,{"a":{"b":"c"}}],"error":"map is not iterable"}
+{"fn":"retag","args":[null,{"a":{"b":"c"}},["a",1],null],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],{},{"$undefined":true},{"$undefined":true},[]],"error":"map.delete is not a function"}
+{"fn":"retag","args":[{},0,{"$undefined":true},{"a":{"b":"c"}},[]],"error":"map is not iterable"}
+{"fn":"retag","args":["x",{},{},null,["a",1]],"error":"map.delete is not a function"}
+{"fn":"retag","args":[0,{"a":"b"},null,"x",["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":"b"},{"a":"b"},null,["a",1],0],"error":"map is not iterable"}
+{"fn":"retag","args":["x",0,[],0,0],"error":"map.delete is not a function"}
+{"fn":"retag","args":[[],{"a":"b"},0,{"a":"b"},{"a":{"b":"c"}}],"ok":{"$undefined":true}}
+{"fn":"retag","args":[{},{},null,[],0],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],true,0,"x"],"error":"map.delete is not a function"}
+{"fn":"retag","args":[null,null,{"$undefined":true},["a",1],0],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},0,{"$undefined":true},null],"error":"map is not iterable"}
+{"fn":"retag","args":[null,"x",[],{},"x"],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},{"a":{"b":"c"}},null,{"a":"b"},["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":["x","x",{"$undefined":true},{},{"a":"b"}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[{"a":"b"},true,0,[],0],"error":"map is not iterable"}
+{"fn":"retag","args":[true,"x",{"a":"b"},[],{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":["x",{"a":{"b":"c"}},{"$undefined":true},{},{}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[0,{},["a",1],{"$undefined":true},null],"error":"map is not iterable"}
+{"fn":"retag","args":[{},[],{},true,"x"],"error":"map is not iterable"}
+{"fn":"retag","args":[0,[],{"$undefined":true},{},true],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":"b"},["a",1],{},[],{"a":{"b":"c"}}],"error":"map is not iterable"}
+{"fn":"retag","args":[0,{},null,{"$undefined":true},{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],true,{},{"$undefined":true},null],"error":"map.delete is not a function"}
+{"fn":"retag","args":[0,[],["a",1],0,"x"],"error":"map is not iterable"}
+{"fn":"retag","args":[{},{"a":"b"},0,{"$undefined":true},null],"error":"map is not iterable"}
+{"fn":"retag","args":[0,null,{"$undefined":true},{"$undefined":true}],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],["a",1],["a",1],{},{}],"error":"map.delete is not a function"}
+{"fn":"retag","args":[[],null,true,"x",{"a":{"b":"c"}}],"ok":{"$undefined":true}}
+{"fn":"retag","args":[{"a":"b"},{"a":{"b":"c"}},{"$undefined":true},null,["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},{"a":"b"},{"$undefined":true},true,{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[0,{"a":{"b":"c"}},{"a":{"b":"c"}},"x",{"a":{"b":"c"}}],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":{"b":"c"}},"x",[],"x",true],"error":"map is not iterable"}
+{"fn":"retag","args":[{"a":"b"},["a",1],null,true,null],"error":"map is not iterable"}
+{"fn":"retag","args":[0,{"a":{"b":"c"}},{},["a",1],["a",1]],"error":"map is not iterable"}
+{"fn":"retag","args":["x",0,true,{"a":{"b":"c"}},null],"error":"map.delete is not a function"}
+{"fn":"retag","args":[true,true,{"a":{"b":"c"}},{"a":"b"},{"a":"b"}],"error":"map is not iterable"}
+{"fn":"retag","args":[[],{"a":{"b":"c"}},{"a":"b"},{"a":"b"},{"a":{"b":"c"}}],"ok":{"$undefined":true}}
+{"fn":"retag","args":[["a",1],true,{"a":"b"},null,"x"],"error":"map.delete is not a function"}
+{"fn":"retag","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},[],[],0,true],"error":"map is not iterable"}
+{"fn":"retag","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},[],[],0,true],"error":"map is not iterable"}
+{"fn":"retag","args":[[3,1,2],[],[],0,true],"error":".for is not iterable"}
+{"fn":"retag","args":[{},[],[],0,true],"error":"map is not iterable"}
+{"fn":"retag","args":[["a",1],{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},[],0,true],"error":"map.delete is not a function"}
+{"fn":"retag","args":[["a",1],{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},[],0,true],"error":"map.delete is not a function"}
+{"fn":"retag","args":[["a",1],[3,1,2],[],0,true],"error":"map.delete is not a function"}
+{"fn":"retag","args":[["a",1],{},[],0,true],"error":"map.delete is not a function"}
+{"fn":"snapshot","args":[{},["a",1]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[null,{"a":"b"}],"error":"Cannot read properties of null (reading 'values')"}
+{"fn":"snapshot","args":[true,[]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":{"b":"c"}},null],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":["x"],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[[],"x"],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":"x","posts":[],"at":"x","coverage":"sampled"}}
+{"fn":"snapshot","args":["x",0],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[0,["a",1]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[0,{"$undefined":true}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[["a",1],{"a":"b"}],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":{"a":"b"},"posts":["a",1],"at":{"a":"b"},"coverage":"sampled"}}
+{"fn":"snapshot","args":[{}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":{"b":"c"}},{"$undefined":true}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":"b"},["a",1]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[[],{"a":"b"}],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":{"a":"b"},"posts":[],"at":{"a":"b"},"coverage":"sampled"}}
+{"fn":"snapshot","args":[0,{"a":{"b":"c"}}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[true,0],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[true],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[[]],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":1795572225640,"posts":[],"at":1795572225640,"coverage":"sampled"}}
+{"fn":"snapshot","args":["x",["a",1]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[null,{"a":{"b":"c"}}],"error":"Cannot read properties of null (reading 'values')"}
+{"fn":"snapshot","args":[{"a":"b"},true],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[null,true],"error":"Cannot read properties of null (reading 'values')"}
+{"fn":"snapshot","args":[[],null],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":null,"posts":[],"at":null,"coverage":"sampled"}}
+{"fn":"snapshot","args":[{"a":{"b":"c"}},true],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":{"b":"c"}}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[0,"x"],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":{"b":"c"}},0],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":["x",[]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[["a",1]],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":1795572225641,"posts":["a",1],"at":1795572225641,"coverage":"sampled"}}
+{"fn":"snapshot","args":[{},{}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[null,"x"],"error":"Cannot read properties of null (reading 'values')"}
+{"fn":"snapshot","args":[[],{}],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":{},"posts":[],"at":{},"coverage":"sampled"}}
+{"fn":"snapshot","args":[["a",1],[]],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":[],"posts":["a",1],"at":[],"coverage":"sampled"}}
+{"fn":"snapshot","args":[{"a":"b"},{"a":"b"}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[true,null],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":["x",true],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[["a",1],{}],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":{},"posts":["a",1],"at":{},"coverage":"sampled"}}
+{"fn":"snapshot","args":[0,{}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":"b"},null],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":"b"},[]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[true,true],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":["x",{"$undefined":true}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[null,null],"error":"Cannot read properties of null (reading 'values')"}
+{"fn":"snapshot","args":[[],true],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":true,"posts":[],"at":true,"coverage":"sampled"}}
+{"fn":"snapshot","args":[{"a":"b"},{}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":["x","x"],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":["x",{}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[null,[]],"error":"Cannot read properties of null (reading 'values')"}
+{"fn":"snapshot","args":[{},null],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":"b"}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{},true],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":"b"},0],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[0,null],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{},{"a":"b"}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":{"b":"c"}},{"a":"b"}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[0,[]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[true,"x"],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[true,{"a":{"b":"c"}}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[["a",1],{"a":{"b":"c"}}],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":{"a":{"b":"c"}},"posts":["a",1],"at":{"a":{"b":"c"}},"coverage":"sampled"}}
+{"fn":"snapshot","args":[{},{"$undefined":true}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[true,["a",1]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[0,{"a":"b"}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[null,0],"error":"Cannot read properties of null (reading 'values')"}
+{"fn":"snapshot","args":[["a",1],true],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":true,"posts":["a",1],"at":true,"coverage":"sampled"}}
+{"fn":"snapshot","args":[["a",1],["a",1]],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":["a",1],"posts":["a",1],"at":["a",1],"coverage":"sampled"}}
+{"fn":"snapshot","args":[0],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":"b"},"x"],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[null,{"$undefined":true}],"error":"Cannot read properties of null (reading 'values')"}
+{"fn":"snapshot","args":[["a",1],0],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":0,"posts":["a",1],"at":0,"coverage":"sampled"}}
+{"fn":"snapshot","args":["x",null],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[null,{}],"error":"Cannot read properties of null (reading 'values')"}
+{"fn":"snapshot","args":[{"a":"b"},{"$undefined":true}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[0,true],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[["a",1],{"$undefined":true}],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":1795572225641,"posts":["a",1],"at":1795572225641,"coverage":"sampled"}}
+{"fn":"snapshot","args":[{},[]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":{"b":"c"}},{"a":{"b":"c"}}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[true,{}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{},{"a":{"b":"c"}}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":{"b":"c"}},"x"],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[[],[]],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":[],"posts":[],"at":[],"coverage":"sampled"}}
+{"fn":"snapshot","args":[["a",1],null],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":null,"posts":["a",1],"at":null,"coverage":"sampled"}}
+{"fn":"snapshot","args":[0,0],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[null,["a",1]],"error":"Cannot read properties of null (reading 'values')"}
+{"fn":"snapshot","args":[null],"error":"Cannot read properties of null (reading 'values')"}
+{"fn":"snapshot","args":["x",{"a":{"b":"c"}}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[[],0],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":0,"posts":[],"at":0,"coverage":"sampled"}}
+{"fn":"snapshot","args":[[],{"$undefined":true}],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":1795572225641,"posts":[],"at":1795572225641,"coverage":"sampled"}}
+{"fn":"snapshot","args":[["a",1],"x"],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":"x","posts":["a",1],"at":"x","coverage":"sampled"}}
+{"fn":"snapshot","args":[{},"x"],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[true,{"$undefined":true}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":["x",{"a":"b"}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[true,{"a":"b"}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":"b"},{"a":{"b":"c"}}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[[],{"a":{"b":"c"}}],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":{"a":{"b":"c"}},"posts":[],"at":{"a":{"b":"c"}},"coverage":"sampled"}}
+{"fn":"snapshot","args":[{},0],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":{"b":"c"}},[]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"a":{"b":"c"}},{}],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[[],["a",1]],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":["a",1],"posts":[],"at":["a",1],"coverage":"sampled"}}
+{"fn":"snapshot","args":[{"a":{"b":"c"}},["a",1]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":["x","X"],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":["X","x"],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6},["a",1]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7},["a",1]],"error":"map.values is not a function or its return value is not iterable"}
+{"fn":"snapshot","args":[[3,1,2],["a",1]],"ok":{"ok":true,"snapshot":true,"classifierVersion":"2026-11-23.1","snapshotAt":["a",1],"posts":[3,1,2],"at":["a",1],"coverage":"sampled"}}
+{"fn":"tag","args":[{"url":"https://x.com/infobmkg/status/101","handle":"@infobmkg","user":"infobmkg","text":"BMKG keluarkan peringatan hujan ekstrem disertai angin kencang untuk wilayah Jakarta Selatan","created_at":"2026-11-25T01:48:44.164Z","ts":1795571324164},[],1795572224629,{"recordDiagnostics":true}],"ok":true}
+{"fn":"tag","args":[{"url":"https://x.com/warga_bks/status/102","handle":"@warga_bks","user":"warga_bks","text":"Air udah masuk rumah gue di Bekasi setelah hujan deras sejam","created_at":"2026-11-25T01:53:44.164Z","ts":1795571624164},[],1795572224629,{"recordDiagnostics":true}],"ok":true}
+{"fn":"tag","args":[{"url":"https://x.com/penjual/status/103","handle":"@penjual","user":"penjual","text":"Dijual rumah 2 lantai di Jakarta Selatan harga nego siap huni KPR","created_at":"2026-11-25T01:58:44.164Z","ts":1795571924164,"adhocPhrases":["jakarta"],"assessment":{"version":"legacy-v0","topics":["jakarta"],"feedEligible":true,"signalEligible":true}},[],1795572224629,{"recordDiagnostics":true}],"ok":false}
+{"fn":"tag","args":[{"url":"https://x.com/nanya/status/104","handle":"@nanya","user":"nanya","text":"Ada yang dengar suara ledakan keras di daerah Jakarta barusan?","created_at":"2026-11-25T02:00:24.164Z","ts":1795572024164},[],1795572224629,{"recordDiagnostics":true}],"ok":true}
+{"fn":"tag","args":[{"code":"TH101","handle":"@warga_depok","username":"warga_depok","text":"Kebakaran melalap 4 ruko di Jalan Margonda Depok malam ini petugas damkar sudah di lokasi","created_at":"2026-11-25T01:57:04.164Z","ts":1795571824164},[],1795572224710,{"recordDiagnostics":true}],"ok":true}
+{"fn":"tag","args":[{"code":"TH102","handle":"@curhat_jkt","username":"curhat_jkt","text":"Capek banget kerja di Jakarta pengen resign aja tiap hari pulang malem","created_at":"2026-11-25T01:59:34.164Z","ts":1795571974164,"adhocPhrases":["jakarta"]},[],1795572224710,{"recordDiagnostics":true}],"ok":false}

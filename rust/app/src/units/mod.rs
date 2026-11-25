@@ -18,6 +18,8 @@ mod security;
 mod tomtom;
 mod uptime_service;
 mod geo_sensors;
+mod reader_service;
+mod social_service;
 
 /// `RUST_ANYTHING_UNIT_<NAME>=original` sends that unit back to the original.
 fn sent_to_original(unit: &str) -> bool {
@@ -120,6 +122,28 @@ pub fn router() -> Router<Original> {
         .route("/api/bmkg-modelrun", get(route_32).fallback(original::proxy))
         .route("/api/alerts", get(route_33).fallback(original::proxy))
         .route("/api/radar", get(route_34).fallback(original::proxy))
+        .route("/api/read", get(route_35).fallback(original::proxy))
+        .route("/api/thumb", get(route_36).fallback(original::proxy))
+        .route(
+            "/api/desc",
+            get(route_37_get)
+                .post(route_37_post)
+                .fallback(original::proxy),
+        )
+        .route("/img", get(route_38).fallback(original::proxy))
+        .route("/api/x", get(route_39).fallback(original::proxy))
+        .route("/api/threads", get(route_40).fallback(original::proxy))
+        .route(
+            "/api/social/diagnostics",
+            get(route_41).fallback(original::proxy),
+        )
+        .route(
+            "/api/social/explain",
+            get(route_42_get)
+                .post(route_42_post)
+                .fallback(original::proxy),
+        )
+        .route("/api/xdiag", get(route_43).fallback(original::proxy))
         .fallback(original::proxy)
 }
 
@@ -376,4 +400,81 @@ async fn route_34(State(original): State<Original>, req: Request) -> Response {
         return original::proxy(State(original), req).await;
     }
     geo_sensors::handle("GET /api/radar", HashMap::new(), req).await
+}
+
+async fn route_35(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("READER_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    reader_service::handle("GET /api/read", HashMap::new(), req).await
+}
+
+async fn route_36(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("READER_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    reader_service::handle("GET /api/thumb", HashMap::new(), req).await
+}
+
+async fn route_37_get(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("READER_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    reader_service::handle("GET /api/desc", HashMap::new(), req).await
+}
+
+async fn route_37_post(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("READER_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    reader_service::handle("POST /api/desc", HashMap::new(), req).await
+}
+
+async fn route_38(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("READER_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    reader_service::handle("GET /img", HashMap::new(), req).await
+}
+
+async fn route_39(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("SOCIAL_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    social_service::handle("GET /api/x", HashMap::new(), req).await
+}
+
+async fn route_40(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("SOCIAL_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    social_service::handle("GET /api/threads", HashMap::new(), req).await
+}
+
+async fn route_41(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("SOCIAL_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    social_service::handle("GET /api/social/diagnostics", HashMap::new(), req).await
+}
+
+async fn route_42_get(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("SOCIAL_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    social_service::handle("GET /api/social/explain", HashMap::new(), req).await
+}
+
+async fn route_42_post(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("SOCIAL_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    social_service::handle("POST /api/social/explain", HashMap::new(), req).await
+}
+
+async fn route_43(State(original): State<Original>, req: Request) -> Response {
+    if sent_to_original("SOCIAL_SERVICE") {
+        return original::proxy(State(original), req).await;
+    }
+    social_service::handle("GET /api/xdiag", HashMap::new(), req).await
 }

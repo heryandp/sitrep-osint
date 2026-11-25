@@ -1,0 +1,12 @@
+{"fn":"createReaderService","args":[{}],"error":"Cannot destructure property 'publicURL' of 'SEC' as it is undefined."}
+{"fn":"createReaderService","args":[["a",1]],"error":"Cannot destructure property 'publicURL' of 'SEC' as it is undefined."}
+{"fn":"createReaderService","args":[true],"error":"Cannot destructure property 'publicURL' of 'SEC' as it is undefined."}
+{"fn":"createReaderService","args":[{"a":{"b":"c"}}],"error":"Cannot destructure property 'publicURL' of 'SEC' as it is undefined."}
+{"fn":"createReaderService","args":[null],"error":"Cannot destructure property 'CFG' of 'object null' as it is null."}
+{"fn":"createReaderService","args":["x"],"error":"Cannot destructure property 'publicURL' of 'SEC' as it is undefined."}
+{"fn":"createReaderService","args":[{"a":"b"}],"error":"Cannot destructure property 'publicURL' of 'SEC' as it is undefined."}
+{"fn":"createReaderService","args":[[]],"error":"Cannot destructure property 'publicURL' of 'SEC' as it is undefined."}
+{"fn":"createReaderService","args":[0],"error":"Cannot destructure property 'publicURL' of 'SEC' as it is undefined."}
+{"fn":"createReaderService","args":[{"2":4,"10":3,"zebra":1,"apple":2,"é":5,"Apple":6}],"error":"Cannot destructure property 'publicURL' of 'SEC' as it is undefined."}
+{"fn":"createReaderService","args":[{"n":9007199254740992,"f":1e+21,"t":0.1,"neg":-7}],"error":"Cannot destructure property 'publicURL' of 'SEC' as it is undefined."}
+{"fn":"createReaderService","args":[[3,1,2]],"error":"Cannot destructure property 'publicURL' of 'SEC' as it is undefined."}
