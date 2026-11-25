@@ -237,4 +237,8 @@
 }
 .sc-origin:hover{color:#38bdf8}
 .sc-origin svg{width:10px;height:10px}
+.sc-card[data-plat="bsky"] .sc-kpi-item svg{color:#0285ff;opacity:1}
+.sc-card[data-plat="youtube"] .sc-kpi-item svg{color:#ef4444;opacity:1}
+.sc-thumb{margin:6px 0;border-radius:4px;overflow:hidden;max-height:160px;background:#0d0e12;border:1px solid #20222c}
+.sc-thumb img{width:100%;height:auto;max-height:160px;object-fit:cover;display:block}
 

@@ -37,9 +37,9 @@ function tag(p, extra = [], now = Date.now(), meta = {}) {
   const ts = tsOf(p);
   const handle = String(p.handle || p.username || p.user || '').toLowerCase().replace(/^@/, '');
   const isWatch = Array.isArray(SOC.SOC_WATCH_X) && SOC.SOC_WATCH_X.includes(handle);
-  const isOfficial = isWatch || Boolean(meta.isOfficial);
+  const isOfficial = isWatch || Boolean(meta.isOfficial) || Boolean(p.official);
   const isSocialStream = meta.discoverySource === 'rsshub' || Boolean(meta.isSocialStream);
-  const maxAge = Number(meta.maxAge) || (isOfficial ? 72 * 3600e3 : AGE);
+  const maxAge = Number(meta.maxAge) || (p.platform === 'youtube' ? 90 * 86400e3 : (isOfficial ? 72 * 3600e3 : AGE));
 
   if (!Number.isFinite(ts) || ts <= 0 || ts > now || now - ts > maxAge) { DROP_STATS.age++; return false; }
   if (typeof p.text === 'string' && p.text.includes('&')) {
@@ -115,7 +115,9 @@ function retag(map, keep, extra = [], now = Date.now(), opts = {}) {
   for (const [key, p] of map) {
     if (!p) { map.delete(key); continue; }
     const ts = tsOf(p);
-    if (!Number.isFinite(ts) || ts <= 0 || ts > now || now - ts > AGE) {
+    const isOfficial = p.official || Boolean(p.assessment?.provenance?.sourceType?.startsWith('official')) || p.platform === 'youtube';
+    const maxAge = p.platform === 'youtube' ? 90 * 86400e3 : (isOfficial ? 72 * 3600e3 : AGE);
+    if (!Number.isFinite(ts) || ts <= 0 || ts > now || now - ts > maxAge) {
       map.delete(key);
       continue;
     }
@@ -129,7 +131,7 @@ function retag(map, keep, extra = [], now = Date.now(), opts = {}) {
       continue;
     }
 
-    if (!tag(p, defs, now, { recordDiagnostics }) || !keep(p)) map.delete(key);
+    if (!tag(p, defs, now, { recordDiagnostics, isOfficial, maxAge }) || !keep(p)) map.delete(key);
   }
 }
 

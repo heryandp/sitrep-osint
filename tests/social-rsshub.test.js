@@ -105,6 +105,74 @@ test('social-rsshub: parseRsshubItem constructs valid PostRecord for Twitter', (
   assert.equal(post.assessment.feedEligible, true);
 });
 
+test('social-rsshub: parseRsshubItem constructs valid PostRecord for Bluesky', () => {
+  const sample = {
+    id: 'https://bsky.app/profile/jasafinance.bsky.social/post/3n34lunyw722g',
+    url: 'https://bsky.app/profile/jasafinance.bsky.social/post/3n34lunyw722g',
+    title: 'BUTUH JASA KONSULTASI PERPAJAKAN? PPh 21, SPT Tahunan, PPN...',
+    content_html: '<p>BUTUH JASA KONSULTASI PERPAJAKAN? PPh 21, SPT Tahunan, PPN</p>',
+    date_published: new Date(Date.now() - 1800e3).toISOString(),
+    authors: [{ name: 'Jasa Akuntansi, Finance & Tax', avatar: 'https://cdn.bsky.app/avatar.jpg' }]
+  };
+
+  const post = RSSHUB.parseRsshubItem(sample, {
+    route: 'bsky/keyword/pajak',
+    platform: 'bsky',
+    stream: 'regulasi',
+  });
+
+  assert.equal(post.platform, 'bsky');
+  assert.equal(post.from, 'Bluesky');
+  assert.equal(post.username, 'jasafinance.bsky.social');
+  assert.equal(post.author, 'Jasa Akuntansi, Finance & Tax');
+  assert.equal(post.avatar, 'https://cdn.bsky.app/avatar.jpg');
+  assert.equal(post.stream, 'regulasi');
+
+  const tagged = HISTORY.tag(post, [], Date.now(), {
+    platform: post.platform,
+    discoverySource: 'rsshub',
+    topic: 'pajak',
+  });
+  assert.equal(tagged, true);
+  assert.ok(post.topics.includes('pajak'));
+});
+
+test('social-rsshub: parseRsshubItem constructs valid PostRecord for YouTube', () => {
+  const sample = {
+    id: 'https://www.youtube.com/watch?v=AXFJYS2FyQA',
+    url: 'https://www.youtube.com/watch?v=AXFJYS2FyQA',
+    title: 'Yuk Lapor Pajak pakai Coretax DJP',
+    content_html: '<iframe src="https://www.youtube-nocookie.com/embed/AXFJYS2FyQA"></iframe>',
+    image: 'https://i.ytimg.com/vi/AXFJYS2FyQA/maxresdefault.jpg',
+    date_published: new Date(Date.now() - 3600e3).toISOString(),
+    authors: [{ name: 'Direktorat Jenderal Pajak' }]
+  };
+
+  const post = RSSHUB.parseRsshubItem(sample, {
+    route: 'youtube/user/DitjenPajakRI',
+    platform: 'youtube',
+    stream: 'coretax',
+    official: true,
+  });
+
+  assert.equal(post.platform, 'youtube');
+  assert.equal(post.from, 'YouTube');
+  assert.equal(post.username, 'ditjenpajakri');
+  assert.equal(post.official, true);
+  assert.equal(post.stream, 'coretax');
+  assert.ok(post.media.includes('https://i.ytimg.com/vi/AXFJYS2FyQA/maxresdefault.jpg'));
+  assert.ok(post.text.includes('Yuk Lapor Pajak pakai Coretax DJP'));
+
+  const tagged = HISTORY.tag(post, [], Date.now(), {
+    platform: post.platform,
+    discoverySource: 'rsshub',
+    isOfficial: true,
+    topic: 'coretax',
+  });
+  assert.equal(tagged, true);
+  assert.ok(post.topics.includes('coretax'));
+});
+
 test('social-rsshub: createRsshubConnector lifecycle', () => {
   const tHist = new Map();
   const xHist = new Map();

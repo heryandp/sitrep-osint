@@ -15,6 +15,8 @@ const DEFAULT_FEEDS = [
   { route: 'threads/search/efin', platform: 'threads', topic: 'coretax', stream: 'coretax' },
   { route: 'threads/search/efaktur', platform: 'threads', topic: 'coretax', stream: 'coretax' },
   { route: 'threads/search/ebupot', platform: 'threads', topic: 'coretax', stream: 'coretax' },
+  { route: 'bsky/keyword/coretax', platform: 'bsky', topic: 'coretax', stream: 'coretax' },
+  { route: 'youtube/user/DitjenPajakRI', platform: 'youtube', topic: 'coretax', stream: 'coretax', official: true },
 
   // [S2] Kebijakan & Regulasi
   { route: 'threads/search/pajak', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
@@ -23,9 +25,12 @@ const DEFAULT_FEEDS = [
   { route: 'threads/search/wajib+pajak', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
   { route: 'threads/search/ppn', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
   { route: 'threads/search/pph+21', platform: 'threads', topic: 'pajak', stream: 'regulasi' },
+  { route: 'bsky/keyword/pajak', platform: 'bsky', topic: 'pajak', stream: 'regulasi' },
+  { route: 'bsky/keyword/spt+tahunan', platform: 'bsky', topic: 'pajak', stream: 'regulasi' },
 
   // [S3] Kritis & Akun Otoritas
   { route: 'threads/search/sp2dk', platform: 'threads', topic: 'pajak', stream: 'kritis' },
+  { route: 'bsky/keyword/sp2dk', platform: 'bsky', topic: 'pajak', stream: 'kritis' },
   { route: 'threads/ditjenpajakri', platform: 'threads', topic: 'pajak', stream: 'kritis', official: true },
   { route: 'twitter/user/ditjenpajakri', platform: 'x', topic: 'pajak', stream: 'kritis', official: true },
   { route: 'twitter/user/kring_pajak', platform: 'x', topic: 'pajak', stream: 'kritis', official: true },
@@ -84,6 +89,8 @@ function extractCode(url, fallbackId) {
     if (thMatch) return thMatch[1];
     const twMatch = url.match(/\/status\/(\d+)/);
     if (twMatch) return twMatch[1];
+    const ytMatch = url.match(/(?:\/watch\?v=|\/shorts\/)([A-Za-z0-9_-]+)/);
+    if (ytMatch) return ytMatch[1];
   }
   if (fallbackId && typeof fallbackId === 'string') {
     const subMatch = fallbackId.match(/([A-Za-z0-9_-]{5,})$/);
@@ -122,8 +129,34 @@ function parseRsshubItem(item, feedMeta = {}) {
   }
 
   const media = extractMedia(rawHtml);
+  if (item.image && !media.includes(item.image)) {
+    media.unshift(item.image);
+  }
+
   const ts = Date.parse(item.date_published || item.date_modified || '') || Date.now();
-  const platform = feedMeta.platform || (url.includes('twitter.com') || url.includes('x.com') ? 'x' : 'threads');
+  const platform = feedMeta.platform || (url.includes('twitter.com') || url.includes('x.com') ? 'x' : (url.includes('bsky.app') ? 'bsky' : (url.includes('youtube.com') ? 'youtube' : 'threads')));
+
+  let from = 'Threads';
+  if (platform === 'x') from = 'X';
+  else if (platform === 'bsky') from = 'Bluesky';
+  else if (platform === 'youtube') from = 'YouTube';
+
+  if (platform === 'bsky') {
+    const bskyHandleMatch = url.match(/bsky\.app\/profile\/([^/]+)/);
+    if (bskyHandleMatch) {
+      username = bskyHandleMatch[1].toLowerCase();
+    }
+  } else if (platform === 'youtube') {
+    if (!author) author = 'Direktorat Jenderal Pajak';
+    if (!username || username === 'anon' || username.includes(' ')) username = 'ditjenpajakri';
+    if (item.title && text && !text.includes(item.title)) {
+      text = item.title + (text ? '\n' + text : '');
+    } else if (item.title && !text) {
+      text = item.title;
+    }
+  }
+
+  const avatar = (item.authors && item.authors[0] && item.authors[0].avatar) || (platform === 'youtube' ? (item.icon || 'https://yt3.googleusercontent.com/ytc/AIdro_mI-gm0_0qx4ipetj1hmtwx_gcBZZiMQAFgMkMqr64ZUgw=s900-c-k-c0x00ffffff-no-rj') : '');
 
   return {
     id: String(item.id || code),
@@ -133,10 +166,11 @@ function parseRsshubItem(item, feedMeta = {}) {
     author: author || username || 'Anon',
     username: username || 'anon',
     handle: username || 'anon',
+    avatar,
     created_at: new Date(ts).toISOString(),
     ts,
     platform,
-    from: platform === 'threads' ? 'Threads' : platform === 'x' ? 'X' : 'Telegram',
+    from,
     media,
     images: media,
     like_count: 0,
@@ -144,6 +178,7 @@ function parseRsshubItem(item, feedMeta = {}) {
     metrics: { views: 0, likes: 0, reposts: 0, replies: 0 },
     q: feedMeta.route || '',
     stream: feedMeta.stream || 'coretax',
+    topic: feedMeta.topic || 'pajak',
     official: Boolean(feedMeta.official),
   };
 }
@@ -243,21 +278,22 @@ function createRsshubConnector(deps = {}) {
 
       for (const p of posts) {
         const isOfficial = p.official || SOC.SOC_WATCH_X.includes(p.handle);
+        const maxAge = p.platform === 'youtube' ? 90 * 86400e3 : (isOfficial ? 72 * 3600e3 : 48 * 3600e3);
         const tagged = HISTORY.tag(p, [], Date.now(), {
           platform: p.platform,
           discoverySource: 'rsshub',
           isOfficial,
           isSocialStream: true,
           topic: p.topic || 'pajak',
-          maxAge: isOfficial ? 72 * 3600e3 : 48 * 3600e3,
+          maxAge,
         });
 
         if (tagged) {
           nIngested++;
-          if (p.platform === 'threads' && tHist) {
-            thBatch.push(p);
-          } else if (p.platform === 'x' && xHist) {
+          if (p.platform === 'x' && xHist) {
             xBatch.push(p);
+          } else if (tHist) {
+            thBatch.push(p);
           }
         }
       }

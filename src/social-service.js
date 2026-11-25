@@ -130,7 +130,12 @@ function createSocialService({
     const now = Date.now();
     histRetag(map, map === xHist ? SOC.socKeepX : SOC.socKeepTh);
     histAstroturf(map);
-    const arr = [...map.values()].filter(p => histTs(p) > 0 && histTs(p) <= now && now - histTs(p) <= HIST_AGE).sort((a, b) => histTs(b) - histTs(a));
+    const arr = [...map.values()].filter(p => {
+      const ts = histTs(p);
+      const isOfficial = p.official || p.platform === 'youtube';
+      const maxAge = p.platform === 'youtube' ? 90 * 86400e3 : (isOfficial ? 72 * 3600e3 : HIST_AGE);
+      return ts > 0 && ts <= now && now - ts <= maxAge;
+    }).sort((a, b) => histTs(b) - histTs(a));
     const kept = SOC.socBalance(arr, max, histUser);
 
     const keptSet = new Set(kept);

@@ -489,10 +489,11 @@ function allSocialPosts(){
   const seen = new Set();
   const add = (p, plat) => {
     if (!p) return;
-    const id = (plat || 'th') + '_' + (p.id || p.post_id || p.uri || (p.text || '').slice(0, 24));
+    const pPlat = p.platform || p._plat || plat;
+    const id = pPlat + '_' + (p.id || p.post_id || p.uri || (p.text || '').slice(0, 24));
     if (seen.has(id)) return;
     seen.add(id);
-    res.push(Object.assign({}, p, { _plat: plat }));
+    res.push(Object.assign({}, p, { _plat: pPlat }));
   };
   (tPosts || []).forEach(p => add(p, 'th'));
   (xPosts || []).forEach(p => add(p, 'x'));
@@ -551,8 +552,9 @@ function streamCard(p, streamType){
   const handle = p.username || p.handle || '';
   const timeStr = p.ts && typeof formatWibTime === 'function' ? formatWibTime(p.ts) : p.created_at ? esc(p.created_at).slice(0, 16) : '';
   const sent = assessSentiment(text);
-  const plat = p._plat === 'x' ? 'x' : 'threads';
-  const platIcon = plat === 'x' ? ic('x') : ic('threads');
+  const plat = p._plat === 'x' ? 'x' : (p._plat === 'bsky' ? 'bsky' : (p._plat === 'youtube' ? 'youtube' : 'threads'));
+  const platIcon = plat === 'x' ? ic('x') : (plat === 'bsky' ? ic('bsky') : (plat === 'youtube' ? ic('youtube') : ic('threads')));
+  const platLabel = plat === 'x' ? 'X' : (plat === 'bsky' ? 'Bluesky' : (plat === 'youtube' ? 'YouTube' : 'Threads'));
   const link = p.url || (plat === 'x' ? (handle ? `https://x.com/${handle}/status/${p.id}` : '#') : (p.code ? `https://www.threads.net/t/${p.code}` : '#'));
 
   let hlText = linkify(text);
@@ -561,6 +563,8 @@ function streamCard(p, streamType){
     const re = new RegExp(`(^|\\s)(${kw})([\\s.,!?]|$)`, 'gi');
     hlText = hlText.replace(re, `$1<span class="sc-kw-hl">$2</span>$3`);
   });
+
+  const thumbHtml = (p.media && p.media.length && (plat === 'youtube' || p.media[0])) ? `<div class="sc-thumb"><img src="${escUrl(p.media[0])}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"></div>` : '';
 
   return `<article class="sc-card" data-plat="${plat}">
     <div class="sc-card-top">
@@ -572,11 +576,12 @@ function streamCard(p, streamType){
       <span class="sc-tag-sent ${sent.cls}">${sent.label}</span>
     </div>
     <div class="sc-text">${hlText}</div>
+    ${thumbHtml}
     <div class="sc-foot">
       <div class="sc-kpis">
         <span class="sc-kpi-item" title="Suka">${ic('heart')} ${num(p.like_count || p.likes || 0)}</span>
         <span class="sc-kpi-item" title="Balasan">${ic('reply')} ${num(p.reply_count || p.replies || 0)}</span>
-        <span class="sc-kpi-item" title="Platform">${platIcon}</span>
+        <span class="sc-kpi-item" title="Platform: ${platLabel}">${platIcon}</span>
       </div>
       <a class="sc-origin" href="${escUrl(link)}" target="_blank" rel="noopener noreferrer" title="Buka tautan asli">${timeStr ? esc(timeStr) : 'Tautan'} ${ic('out')}</a>
     </div>

@@ -1976,6 +1976,10 @@ a[href],[role="button"]:not([aria-disabled="true"]),summary,select{cursor:pointe
 }
 .sc-origin:hover{color:#38bdf8}
 .sc-origin svg{width:10px;height:10px}
+.sc-card[data-plat="bsky"] .sc-kpi-item svg{color:#0285ff;opacity:1}
+.sc-card[data-plat="youtube"] .sc-kpi-item svg{color:#ef4444;opacity:1}
+.sc-thumb{margin:6px 0;border-radius:4px;overflow:hidden;max-height:160px;background:#0d0e12;border:1px solid #20222c}
+.sc-thumb img{width:100%;height:auto;max-height:160px;object-fit:cover;display:block}
 
 .geobar{
   flex:none;height:36px;display:flex;align-items:stretch;gap:0;padding:0 0 0 12px;
@@ -4550,6 +4554,8 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
   <symbol id="i-threads" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M18.263 11.097c-.03-3.486-1.92-5.586-5.111-5.586-2.13 0-3.922.963-4.863 2.499l2.062 1.438c.535-.843 1.272-1.543 2.628-1.543 1.528 0 2.318.85 2.544 2.431a15 15 0 0 0-2.236-.173c-4.125 0-6.068 1.867-6.068 4.336s1.943 3.99 4.804 3.99c3.139 0 5.013-2.115 5.781-4.735.798.361 1.348 1.204 1.348 2.47 0 3.387-3.907 5.232-7.22 5.232-4.885 0-8.077-3.207-8.077-8.424 0-6.392 4.223-10.487 9.9-10.487 3.808 0 5.69 1.671 6.97 3.914l2.108-1.475C21.44 2.078 18.331 0 13.663 0 6.227 0 1.168 5.277 1.168 12.934c0 7 4.953 11.066 10.856 11.066 4.878 0 9.809-2.846 9.809-7.716 0-2.545-1.46-4.231-3.569-5.187m-6.33 4.855c-1.077 0-2.026-.512-2.026-1.453 0-1.483 1.822-1.934 3.606-1.934.678 0 1.34.045 1.927.173-.422 1.927-1.671 3.215-3.508 3.214Z"/></symbol>
   <symbol id="i-thcheck" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" fill="currentColor" stroke="none"/><path d="M5.1 8.2 7.1 10.2l3.8-4.1" stroke="#fff" stroke-width="1.6" fill="none"/></symbol>
   <symbol id="i-x" viewBox="-2.5 -2.5 29 29"><path fill="currentColor" stroke="none" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></symbol>
+  <symbol id="i-bsky" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566 1.01 0 1.872 0 4.887c0 2.502 1.343 10.02 2.11 11.238 2.22 3.526 6.368 3.738 8.64 1.488.75-.742 1.25-1.74 1.25-1.74s.5 1 .998 1.74c2.272 2.25 6.42 2.038 8.64-1.488.767-1.218 2.11-8.736 2.11-11.238 0-3.015-2.566-3.877-5.202-2.082-2.752 1.942-5.71 5.881-6.798 7.995Z"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></symbol>
   <symbol id="i-news" viewBox="0 0 16 16"><rect x="2" y="2.5" width="12" height="11"/><path d="M5.5 2.5v11"/><path d="M2 5.5h3.5"/><path d="M8 7.2h4"/><path d="M8 9.6h4"/><path d="M8 12h2.6"/></symbol>
   <symbol id="i-tk-pajak" viewBox="0 0 16 16"><path d="M3 2h7l3 3v9H3z"/><path d="M10 2v3h3"/><path d="M5.5 11.2 10.5 6.8"/><circle cx="6.1" cy="7.3" r=".8" fill="currentColor" stroke="none"/><circle cx="9.9" cy="10.7" r=".8" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-tk-demo" viewBox="0 0 16 16"><path d="M2 6.2v3.6h2.2l5.3 3.2V3L4.2 6.2H2Z"/><path d="M4.2 9.8 5 13.5h2l-.6-3.2"/><path d="M11.8 5.6a3.3 3.3 0 0 1 0 4.8"/><path d="M13.4 3.8a5.8 5.8 0 0 1 0 8.4"/></symbol>
@@ -8838,10 +8844,11 @@ function allSocialPosts(){
   const seen = new Set();
   const add = (p, plat) => {
     if (!p) return;
-    const id = (plat || 'th') + '_' + (p.id || p.post_id || p.uri || (p.text || '').slice(0, 24));
+    const pPlat = p.platform || p._plat || plat;
+    const id = pPlat + '_' + (p.id || p.post_id || p.uri || (p.text || '').slice(0, 24));
     if (seen.has(id)) return;
     seen.add(id);
-    res.push(Object.assign({}, p, { _plat: plat }));
+    res.push(Object.assign({}, p, { _plat: pPlat }));
   };
   (tPosts || []).forEach(p => add(p, 'th'));
   (xPosts || []).forEach(p => add(p, 'x'));
@@ -8900,8 +8907,9 @@ function streamCard(p, streamType){
   const handle = p.username || p.handle || '';
   const timeStr = p.ts && typeof formatWibTime === 'function' ? formatWibTime(p.ts) : p.created_at ? esc(p.created_at).slice(0, 16) : '';
   const sent = assessSentiment(text);
-  const plat = p._plat === 'x' ? 'x' : 'threads';
-  const platIcon = plat === 'x' ? ic('x') : ic('threads');
+  const plat = p._plat === 'x' ? 'x' : (p._plat === 'bsky' ? 'bsky' : (p._plat === 'youtube' ? 'youtube' : 'threads'));
+  const platIcon = plat === 'x' ? ic('x') : (plat === 'bsky' ? ic('bsky') : (plat === 'youtube' ? ic('youtube') : ic('threads')));
+  const platLabel = plat === 'x' ? 'X' : (plat === 'bsky' ? 'Bluesky' : (plat === 'youtube' ? 'YouTube' : 'Threads'));
   const link = p.url || (plat === 'x' ? (handle ? `https://x.com/${handle}/status/${p.id}` : '#') : (p.code ? `https://www.threads.net/t/${p.code}` : '#'));
 
   let hlText = linkify(text);
@@ -8910,6 +8918,8 @@ function streamCard(p, streamType){
     const re = new RegExp(`(^|\\s)(${kw})([\\s.,!?]|$)`, 'gi');
     hlText = hlText.replace(re, `$1<span class="sc-kw-hl">$2</span>$3`);
   });
+
+  const thumbHtml = (p.media && p.media.length && (plat === 'youtube' || p.media[0])) ? `<div class="sc-thumb"><img src="${escUrl(p.media[0])}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"></div>` : '';
 
   return `<article class="sc-card" data-plat="${plat}">
     <div class="sc-card-top">
@@ -8921,11 +8931,12 @@ function streamCard(p, streamType){
       <span class="sc-tag-sent ${sent.cls}">${sent.label}</span>
     </div>
     <div class="sc-text">${hlText}</div>
+    ${thumbHtml}
     <div class="sc-foot">
       <div class="sc-kpis">
         <span class="sc-kpi-item" title="Suka">${ic('heart')} ${num(p.like_count || p.likes || 0)}</span>
         <span class="sc-kpi-item" title="Balasan">${ic('reply')} ${num(p.reply_count || p.replies || 0)}</span>
-        <span class="sc-kpi-item" title="Platform">${platIcon}</span>
+        <span class="sc-kpi-item" title="Platform: ${platLabel}">${platIcon}</span>
       </div>
       <a class="sc-origin" href="${escUrl(link)}" target="_blank" rel="noopener noreferrer" title="Buka tautan asli">${timeStr ? esc(timeStr) : 'Tautan'} ${ic('out')}</a>
     </div>
