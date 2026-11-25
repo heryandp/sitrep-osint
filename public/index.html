@@ -322,6 +322,49 @@ a[href],[role="button"]:not([aria-disabled="true"]),summary,select{cursor:pointe
 }
 .ic.solid{fill:currentColor;stroke:none}
 
+.hdr-layout-wrap{position:relative;display:inline-flex}
+.hdr-layout-btn{
+  height:30px;padding:0 10px;background:#1b1b19;
+  border:1px solid #282832;border-radius:4px;
+  color:#a6a6b2;font:600 8.5px/1 var(--mono);
+  letter-spacing:.09em;text-transform:uppercase;gap:6px;cursor:pointer;
+  transition:all .15s ease;
+}
+.hdr-layout-btn:hover{background:#25252b;color:#f5f5f7;border-color:#3e3e4e}
+.hdr-layout-btn[aria-expanded="true"]{
+  background:#2a2a35;color:#22d3ee;border-color:rgba(34,211,238,.4);
+  box-shadow:0 0 10px rgba(34,211,238,.15);
+}
+.layout-menu{
+  position:absolute;top:calc(100% + 6px);right:0;width:250px;
+  background:#131418;border:1px solid #2d303e;border-radius:6px;
+  padding:12px 14px;box-shadow:0 14px 32px rgba(0,0,0,.65),0 0 1px rgba(255,255,255,.1);
+  z-index:100;display:flex;flex-direction:column;gap:12px;
+}
+.layout-menu[hidden]{display:none !important}
+.lm-h{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #232530;padding-bottom:8px}
+.lm-t{font:700 9.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#f0f3f6}
+.lm-reset{
+  background:transparent;border:1px solid #363949;border-radius:3px;
+  color:#9499ad;font:600 8px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 6px;cursor:pointer;
+}
+.lm-reset:hover{color:#f85149;border-color:#f85149}
+.lm-sec{display:flex;flex-direction:column;gap:6px}
+.lm-st{font:600 8px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+.lm-item{display:flex;align-items:center;gap:8px;font:500 10px/1.3 var(--mono);color:#c9cdd8;cursor:pointer;user-select:none}
+.lm-item input[type="checkbox"]{accent-color:#22d3ee;width:13px;height:13px;cursor:pointer}
+.lm-presets,.lm-sizes{display:flex;gap:5px;flex-wrap:wrap}
+.lm-preset-btn,.lm-size-btn{
+  flex:1 1 calc(50% - 3px);height:24px;background:#1b1c24;
+  border:1px solid #2b2e3e;border-radius:3px;color:#9fa4b8;
+  font:600 8.5px/1 var(--mono);letter-spacing:.06em;cursor:pointer;
+  transition:all .14s ease;
+}
+.lm-preset-btn:hover,.lm-size-btn:hover{background:#252836;color:#fff;border-color:#45495e}
+.lm-size-btn.is-active{background:rgba(34,211,238,.15);border-color:rgba(34,211,238,.5);color:#22d3ee}
+
+
 .ticker{
   --tk-ic:14px;--tk-box:30px;--tk-tm:38px;--tk-src:76px;--tk-gap:10px;
   flex:none;height:var(--tick);display:grid;grid-template-columns:auto 72px minmax(0,1fr);
@@ -532,22 +575,59 @@ a[href],[role="button"]:not([aria-disabled="true"]),summary,select{cursor:pointe
 @media (prefers-reduced-motion:reduce){.ticker.tk-surge::after,.ticker.tk-surge .tk-vp,.tk.tk-new::before,.tk.tk-new .tk-t{animation:none}}
 
 .console{
-  flex:1;min-height:0;display:grid;gap:1px;background:var(--border);
-  grid-template-columns:420px minmax(0,.78fr) minmax(0,1.06fr) minmax(0,1.08fr);
-  grid-template-rows:auto minmax(0,1fr);
+  flex:1;min-height:0;position:relative;background:var(--border);
+  display:grid;gap:1px;
+  grid-template-areas: var(--grid-areas,
+    "situasi mkt    mkt  mkt"
+    "situasi social wire cctv"
+  );
+  grid-template-columns: var(--grid-cols, var(--col-sit, 420px) var(--col-soc, minmax(0,.78fr)) var(--col-wire, minmax(0,1.06fr)) var(--col-cctv, minmax(0,1.08fr)));
+  grid-template-rows: var(--grid-rows, auto minmax(0,1fr));
 }
-.pane{display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--bg)}
-.console>.pane:first-child{grid-column:1;grid-row:1/3}
-.pane.mkt{grid-column:2/-1;grid-row:1}
+.pane{display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--bg);position:relative}
+#pane-situasi{grid-area:situasi}
+#pane-mkt{grid-area:mkt}
+#pane-social{grid-area:social}
+#pane-wire{grid-area:wire}
+#pane-cctv{grid-area:cctv}
+
+.pane.is-hidden{display:none !important}
+.pane.is-maximized{
+  position:absolute !important;inset:0 !important;
+  z-index:80 !important;width:100% !important;height:100% !important;
+}
+.pane.is-maximized .ph-max .ic{color:#22d3ee}
+.pane.is-dragging{opacity:.45;outline:2px dashed #22d3ee;z-index:10}
+.pane.drop-target{outline:2px solid #22d3ee;background:rgba(34,211,238,.06)}
+
 .ph{
-  flex:none;display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;
-  background:#151514;border-bottom:1px solid var(--border);
+  flex:none;display:flex;align-items:center;gap:8px;height:38px;padding:0 10px 0 14px;
+  background:#151514;border-bottom:1px solid var(--border);position:relative;
 }
 .ph-k{font:600 9.5px/1 var(--lex);letter-spacing:.05em;color:#B85C46;flex:none}
 .ph-t{margin:0;font:600 10.5px/1 var(--lex);letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;color:#C9C5BA}
 .ph-m{
   margin-left:auto;font:400 9.5px/1.2 var(--mono);letter-spacing:.03em;text-transform:uppercase;color:var(--text3);
-  font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:58%;
+  font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:48%;
+}
+.ph-acts{margin-left:6px;display:flex;align-items:center;gap:3px;flex:none}
+.ph-act{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:20px;height:20px;border-radius:3px;border:1px solid transparent;
+  background:transparent;color:var(--text3);cursor:pointer;padding:0;
+  transition:all .14s ease;
+}
+.ph-act:hover{color:#fff;background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.14)}
+.ph-act.ph-drag{cursor:grab}
+.ph-act.ph-drag:active{cursor:grabbing}
+.ph-act .ic{width:11.5px;height:11.5px}
+
+.resizer-v{
+  position:absolute;top:0;bottom:0;width:7px;cursor:col-resize;
+  z-index:40;margin-left:-3.5px;transition:background .15s;
+}
+.resizer-v:hover,.resizer-v.is-active{
+  background:rgba(34,211,238,.55);box-shadow:0 0 8px rgba(34,211,238,.4);
 }
 .mkt-pill{display:inline-flex;align-items:center;gap:5px;height:17px;padding:0 9px;margin-right:8px;
   border-radius:9px;font:700 9px/1 var(--mono);letter-spacing:.05em;
@@ -4307,7 +4387,11 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
   <symbol id="i-m-s2" viewBox="0 0 16 16"><rect x="6.5" y="6.5" width="3" height="3" transform="rotate(45 8 8)"/><path d="M2.2 4.6 5 7.4 6.6 5.8 3.8 3Z"/><path d="M10.2 11l2.8 2.8 1.6-1.6-2.8-2.8Z"/><path d="M6.2 11.4a3.5 3.5 0 0 1-1.6-1.6"/><path d="M4.4 13.2a6 6 0 0 1-2.6-2.6"/></symbol>
   <symbol id="i-moon" viewBox="0 0 16 16"><path d="M12.9 10.4A5.5 5.5 0 0 1 5.6 3.1a5.6 5.6 0 1 0 7.3 7.3Z"/></symbol>
   <symbol id="i-sun" viewBox="0 0 16 16"><circle cx="8" cy="8" r="3.1"/><path d="M8 1.6v1.8M8 12.6v1.8M1.6 8h1.8M12.6 8h1.8M3.5 3.5l1.3 1.3M11.2 11.2l1.3 1.3M12.5 3.5l-1.3 1.3M4.8 11.2l-1.3 1.3"/></symbol>
-
+  <symbol id="i-drag" viewBox="0 0 16 16"><circle cx="5" cy="4" r="1.2" fill="currentColor"/><circle cx="5" cy="8" r="1.2" fill="currentColor"/><circle cx="5" cy="12" r="1.2" fill="currentColor"/><circle cx="11" cy="4" r="1.2" fill="currentColor"/><circle cx="11" cy="8" r="1.2" fill="currentColor"/><circle cx="11" cy="12" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 16 16"><path d="M1.5 1.5h4M1.5 1.5v4M14.5 1.5h-4M14.5 1.5v4M1.5 14.5h4M1.5 14.5v-4M14.5 14.5h-4M14.5 14.5v-4"/></symbol>
+  <symbol id="i-contract" viewBox="0 0 16 16"><path d="M5.5 1.5v4h-4M10.5 1.5v4h4M5.5 14.5v-4h-4M10.5 14.5v-4h4"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 16 16"><path d="M2.5 8h11"/></symbol>
+  <symbol id="i-layout" viewBox="0 0 16 16"><rect x="1.5" y="2.5" width="13" height="11" rx="1"/><path d="M6 2.5v11M10.5 2.5v11"/></symbol>
 </svg>
 
 <div class="splash" id="splash" role="status" aria-live="polite" aria-label="Memuat SITREP DJP OSINT Console">
@@ -4383,6 +4467,43 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
       <span class="hdr-dock-sep" aria-hidden="true"></span>
       <span class="hstat" id="clock">--:--:-- WIB</span>
     </div>
+    <div class="hdr-layout-wrap" id="layout-wrap">
+      <button class="btn hdr-layout-btn" id="btn-layout" type="button" aria-expanded="false" aria-controls="layout-menu" title="Pengaturan Tata Letak &amp; Jendela Konsol">
+        <svg class="ic" aria-hidden="true"><use href="#i-layout"></use></svg>
+        <span class="btn-tx">Tata Letak</span>
+      </button>
+      <div class="layout-menu" id="layout-menu" hidden role="region" aria-label="Menu Tata Letak Konsol">
+        <div class="lm-h">
+          <span class="lm-t">Tata Letak Konsol</span>
+          <button class="lm-reset" id="lm-reset" type="button" title="Kembalikan tata letak ke pengaturan standar">Reset</button>
+        </div>
+        <div class="lm-sec">
+          <span class="lm-st">Visibilitas Jendela</span>
+          <label class="lm-item"><input type="checkbox" data-toggle-pane="situasi" checked> <span>[01] Situasi &amp; Globe</span></label>
+          <label class="lm-item"><input type="checkbox" data-toggle-pane="mkt" checked> <span>[02] Market · IDX</span></label>
+          <label class="lm-item"><input type="checkbox" data-toggle-pane="social" checked> <span>[03] Social Live</span></label>
+          <label class="lm-item"><input type="checkbox" data-toggle-pane="wire" checked> <span>[04] News Wire</span></label>
+          <label class="lm-item"><input type="checkbox" data-toggle-pane="cctv" checked> <span>[05] CCTV Regional</span></label>
+        </div>
+        <div class="lm-sec">
+          <span class="lm-st">Preset Tata Letak</span>
+          <div class="lm-presets">
+            <button class="lm-preset-btn" type="button" data-preset="default">Default</button>
+            <button class="lm-preset-btn" type="button" data-preset="intel">Fokus Intel</button>
+            <button class="lm-preset-btn" type="button" data-preset="cctv">CCTV Wall</button>
+            <button class="lm-preset-btn" type="button" data-preset="geo">Geospasial</button>
+          </div>
+        </div>
+        <div class="lm-sec">
+          <span class="lm-st">Ukuran Kolom Situasi</span>
+          <div class="lm-sizes">
+            <button class="lm-size-btn" type="button" data-sit-w="340px">Ringkas</button>
+            <button class="lm-size-btn is-active" type="button" data-sit-w="420px">Normal</button>
+            <button class="lm-size-btn" type="button" data-sit-w="520px">Lebar</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <button class="btn hdr-sync" id="btn-refresh" type="button" data-state="idle" title="Tarik ulang semua sumber (R)">
       <svg class="ic" aria-hidden="true"><use href="#i-sync"></use></svg>
       <span class="btn-tx">Sync</span>
@@ -4411,8 +4532,14 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
 
 <main class="console" id="main-console">
 
-  <section class="pane" aria-label="Situasi nasional">
-    <div class="ph"><span class="ph-k">[01]</span><h2 class="ph-t">Situasi</h2><span class="ph-m" id="dmeta">sync —</span></div>
+  <section class="pane" id="pane-situasi" data-pane="situasi" aria-label="Situasi nasional">
+    <div class="ph"><span class="ph-k">[01]</span><h2 class="ph-t">Situasi</h2><span class="ph-m" id="dmeta">sync —</span>
+      <div class="ph-acts" role="toolbar" aria-label="Aksi jendela">
+        <button class="ph-act ph-drag" type="button" title="Tahan dan geser untuk menukar posisi" aria-label="Geser panel"><svg class="ic" aria-hidden="true"><use href="#i-drag"></use></svg></button>
+        <button class="ph-act ph-max" type="button" title="Maksimalkan / Fokus panel" aria-label="Maksimalkan panel"><svg class="ic" aria-hidden="true"><use href="#i-expand"></use></svg></button>
+        <button class="ph-act ph-hide" type="button" title="Sembunyikan panel" aria-label="Sembunyikan panel"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button>
+      </div>
+    </div>
     <div class="pb sit-body">
       <div class="sit-mapwrap is-loading">
         <canvas id="sit-globe" role="img" aria-label="Globe dunia dengan titik insiden live, bisa di-drag dan di-zoom"></canvas>
@@ -4469,9 +4596,15 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
     </div>
   </section>
 
-  <section class="pane mkt" aria-label="Pasar saham Indonesia">
+  <section class="pane mkt" id="pane-mkt" data-pane="mkt" aria-label="Pasar saham Indonesia">
     <div class="ph"><span class="ph-k">[02]</span><h2 class="ph-t">Market · IDX</h2>
-      <span class="ph-m" id="stk-meta">—</span></div>
+      <span class="ph-m" id="stk-meta">—</span>
+      <div class="ph-acts" role="toolbar" aria-label="Aksi jendela">
+        <button class="ph-act ph-drag" type="button" title="Tahan dan geser untuk menukar posisi" aria-label="Geser panel"><svg class="ic" aria-hidden="true"><use href="#i-drag"></use></svg></button>
+        <button class="ph-act ph-max" type="button" title="Maksimalkan / Fokus panel" aria-label="Maksimalkan panel"><svg class="ic" aria-hidden="true"><use href="#i-expand"></use></svg></button>
+        <button class="ph-act ph-hide" type="button" title="Sembunyikan panel" aria-label="Sembunyikan panel"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button>
+      </div>
+    </div>
     <div class="mkt-body">
     <div class="tape" id="tape" hidden><div class="tapetrack" id="tapetrack"></div></div>
     <div class="stk">
@@ -4496,13 +4629,13 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
     </div>
     <div class="djp-upbar" id="djp-uptime" role="region" aria-label="Status portal DJP dan Kemenkeu">
       <span class="up-hd">Portal DJP</span>
-      <div class="up-list" id="djp-up-list"><span class="up-wait">Memeriksa 4 portal (probe langsung server)…</span></div>
-      <button class="up-ref" id="djp-up-ref" type="button" title="Cek ulang status 4 portal (probe langsung server)" aria-label="Cek ulang status portal DJP"><svg class="ic" aria-hidden="true"><use href="#i-sync"></use></svg><span>Cek</span></button>
+      <div class="up-list" id="djp-up-list"><span class="up-wait">Memeriksa 4 portal via isdownapi.com…</span></div>
+      <button class="up-ref" id="djp-up-ref" type="button" title="Cek ulang status 4 portal (isdownapi.com)" aria-label="Cek ulang status portal DJP"><svg class="ic" aria-hidden="true"><use href="#i-sync"></use></svg><span>Cek</span></button>
     </div>
     </div>
   </section>
 
-  <section class="pane" aria-label="Social live">
+  <section class="pane" id="pane-social" data-pane="social" aria-label="Social live">
     <div class="ph soc-ph">
       <span class="ph-k">[03]</span>
       <h2 class="ph-t">Social</h2>
@@ -4516,6 +4649,11 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
       </div>
       <span class="ph-m" id="xmeta" hidden aria-hidden="true">—</span>
       <span class="ph-m" id="tmeta" hidden aria-hidden="true">—</span>
+      <div class="ph-acts" role="toolbar" aria-label="Aksi jendela">
+        <button class="ph-act ph-drag" type="button" title="Tahan dan geser untuk menukar posisi" aria-label="Geser panel"><svg class="ic" aria-hidden="true"><use href="#i-drag"></use></svg></button>
+        <button class="ph-act ph-max" type="button" title="Maksimalkan / Fokus panel" aria-label="Maksimalkan panel"><svg class="ic" aria-hidden="true"><use href="#i-expand"></use></svg></button>
+        <button class="ph-act ph-hide" type="button" title="Sembunyikan panel" aria-label="Sembunyikan panel"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button>
+      </div>
     </div>
     <div class="pb" id="pane-x" role="tabpanel" aria-labelledby="tab-x" hidden>
       <div class="tools"><input class="inp cmd" id="xq" type="search" placeholder="Cari post atau akun…" aria-label="Cari post X"></div>
@@ -4529,8 +4667,14 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
     </div>
   </section>
 
-  <section class="pane" aria-label="Wire berita">
-    <div class="ph"><span class="ph-k">[04]</span><h2 class="ph-t">News Wire</h2><span class="ph-m" id="nmeta">Memuat…</span></div>
+  <section class="pane" id="pane-wire" data-pane="wire" aria-label="Wire berita">
+    <div class="ph"><span class="ph-k">[04]</span><h2 class="ph-t">News Wire</h2><span class="ph-m" id="nmeta">Memuat…</span>
+      <div class="ph-acts" role="toolbar" aria-label="Aksi jendela">
+        <button class="ph-act ph-drag" type="button" title="Tahan dan geser untuk menukar posisi" aria-label="Geser panel"><svg class="ic" aria-hidden="true"><use href="#i-drag"></use></svg></button>
+        <button class="ph-act ph-max" type="button" title="Maksimalkan / Fokus panel" aria-label="Maksimalkan panel"><svg class="ic" aria-hidden="true"><use href="#i-expand"></use></svg></button>
+        <button class="ph-act ph-hide" type="button" title="Sembunyikan panel" aria-label="Sembunyikan panel"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button>
+      </div>
+    </div>
     <div class="pb">
       <div class="catbar" id="catbar" role="group" aria-label="Kategori berita"></div>
       <div class="flt-wrap" id="fltwrap">
@@ -4561,8 +4705,14 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
     </div>
   </section>
 
-  <section class="pane" aria-label="CCTV Regional">
-    <div class="ph"><span class="ph-k">[05]</span><h2 class="ph-t">CCTV · Regional</h2><span class="ph-m" id="ccount">—</span></div>
+  <section class="pane" id="pane-cctv" data-pane="cctv" aria-label="CCTV Regional">
+    <div class="ph"><span class="ph-k">[05]</span><h2 class="ph-t">CCTV · Regional</h2><span class="ph-m" id="ccount">—</span>
+      <div class="ph-acts" role="toolbar" aria-label="Aksi jendela">
+        <button class="ph-act ph-drag" type="button" title="Tahan dan geser untuk menukar posisi" aria-label="Geser panel"><svg class="ic" aria-hidden="true"><use href="#i-drag"></use></svg></button>
+        <button class="ph-act ph-max" type="button" title="Maksimalkan / Fokus panel" aria-label="Maksimalkan panel"><svg class="ic" aria-hidden="true"><use href="#i-expand"></use></svg></button>
+        <button class="ph-act ph-hide" type="button" title="Sembunyikan panel" aria-label="Sembunyikan panel"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button>
+      </div>
+    </div>
     <div class="pb">
       <div class="tools cam-tools"><input class="inp cmd" id="cq" type="search" placeholder="Cari kamera…" aria-label="Cari kamera"><button class="cam-off-btn" id="cam-off-tog" type="button" aria-pressed="false" hidden>Offline <span>0</span></button></div>
       <div class="citybar" id="citybar" role="tablist" aria-label="Wilayah kamera"></div>
@@ -15308,7 +15458,7 @@ function renderDjpUptime(){
   if (pjBar) {
     const downN = Number(djpUptimeData.downCount) || 0;
     const sumLbl = downN > 0 ? `${downN} GANGGUAN` : `${djpUptimeData.upCount}/${djpUptimeData.total} UP`;
-    pjBar.innerHTML = `<span class="up-hd${downN > 0 ? ' is-alert' : ''}">Portal · ${esc(sumLbl)}</span><div class="up-list">${chips}</div><button class="up-ref" type="button" data-pj-up-ref="1" title="Cek ulang status portal (probe langsung server)" aria-label="Cek ulang status portal"><svg class="ic" aria-hidden="true"><use href="#i-sync"></use></svg><span>Cek</span></button>`;
+    pjBar.innerHTML = `<span class="up-hd${downN > 0 ? ' is-alert' : ''}">Portal · ${esc(sumLbl)}</span><div class="up-list">${chips}</div><button class="up-ref" type="button" data-pj-up-ref="1" title="Cek ulang status portal via isdownapi.com" aria-label="Cek ulang status portal"><svg class="ic" aria-hidden="true"><use href="#i-sync"></use></svg><span>Cek</span></button>`;
   }
 }
 
@@ -15420,6 +15570,418 @@ async function pullDjpUptime(fresh){
 
   setTimeout(() => { if (!closed && !apiDone) setProgress(0.48, 'Menghubungkan konsol…'); }, 320);
   exitTimer = setTimeout(() => finishSplash(false), maxMs);
+})();
+'use strict';
+
+(() => {
+  const STORAGE_KEY = 'sitrep_layout_v1';
+  const consoleEl = document.getElementById('main-console');
+  if (!consoleEl) return;
+
+  const DEFAULT_LAYOUT = {
+    panes: {
+      situasi: { visible: true, width: '420px' },
+      mkt:     { visible: true },
+      social:  { visible: true, flex: 0.8 },
+      wire:    { visible: true, flex: 1.1 },
+      cctv:    { visible: true, flex: 1.1 }
+    },
+    order: ['social', 'wire', 'cctv'],
+    maximized: null
+  };
+
+  let state = loadLayout();
+
+  function loadLayout() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        return {
+          panes: Object.assign({}, DEFAULT_LAYOUT.panes, parsed.panes || {}),
+          order: Array.isArray(parsed.order) && parsed.order.length ? parsed.order : DEFAULT_LAYOUT.order.slice(),
+          maximized: parsed.maximized || null
+        };
+      }
+    } catch (_) {}
+    return JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
+  }
+
+  function saveLayout() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        panes: state.panes,
+        order: state.order,
+        maximized: state.maximized
+      }));
+    } catch (_) {}
+  }
+
+  function applyLayout() {
+    if (!consoleEl) return;
+
+    const allPanes = consoleEl.querySelectorAll('.pane[data-pane]');
+    allPanes.forEach(p => {
+      const id = p.dataset.pane;
+      const isMax = state.maximized === id;
+      p.classList.toggle('is-maximized', isMax);
+
+      const maxBtn = p.querySelector('.ph-max');
+      if (maxBtn) {
+        maxBtn.setAttribute('title', isMax ? 'Kembalikan ukuran normal' : 'Maksimalkan / Fokus panel');
+        maxBtn.setAttribute('aria-label', isMax ? 'Kembalikan ukuran' : 'Maksimalkan panel');
+        const ic = maxBtn.querySelector('use');
+        if (ic) ic.setAttribute('href', isMax ? '#i-contract' : '#i-expand');
+      }
+
+      const isVis = state.panes[id] && state.panes[id].visible !== false;
+      p.classList.toggle('is-hidden', !isVis && !isMax);
+    });
+
+    if (state.maximized) {
+      triggerResize();
+      updateMenuCheckboxes();
+      return;
+    }
+
+    const sitVis = state.panes.situasi && state.panes.situasi.visible !== false;
+    const mktVis = state.panes.mkt && state.panes.mkt.visible !== false;
+    const activeBottom = state.order.filter(id => state.panes[id] && state.panes[id].visible !== false);
+    const bottomCols = activeBottom.length;
+
+    let gridAreas = '';
+    let gridCols = '';
+    let gridRows = '';
+
+    const sitW = (state.panes.situasi && state.panes.situasi.width) || '420px';
+
+    if (sitVis) {
+      if (bottomCols > 0) {
+        const colFractions = activeBottom.map(id => {
+          const fl = (state.panes[id] && state.panes[id].flex) || 1;
+          return `minmax(0, ${fl}fr)`;
+        }).join(' ');
+
+        gridCols = `${sitW} ${colFractions}`;
+
+        if (mktVis) {
+          const mktRepeat = activeBottom.map(() => 'mkt').join(' ');
+          const botRepeat = activeBottom.join(' ');
+          gridAreas = `"${'situasi'} ${mktRepeat}" "${'situasi'} ${botRepeat}"`;
+          gridRows = 'auto minmax(0, 1fr)';
+        } else {
+          const botRepeat = activeBottom.join(' ');
+          gridAreas = `"${'situasi'} ${botRepeat}"`;
+          gridRows = 'minmax(0, 1fr)';
+        }
+      } else {
+        if (mktVis) {
+          gridCols = `${sitW} minmax(0, 1fr)`;
+          gridAreas = '"situasi mkt"';
+          gridRows = 'minmax(0, 1fr)';
+        } else {
+          gridCols = '1fr';
+          gridAreas = '"situasi"';
+          gridRows = '1fr';
+        }
+      }
+    } else {
+      if (bottomCols > 0) {
+        const colFractions = activeBottom.map(id => {
+          const fl = (state.panes[id] && state.panes[id].flex) || 1;
+          return `minmax(0, ${fl}fr)`;
+        }).join(' ');
+
+        gridCols = colFractions;
+
+        if (mktVis) {
+          const mktRepeat = activeBottom.map(() => 'mkt').join(' ');
+          const botRepeat = activeBottom.join(' ');
+          gridAreas = `"${mktRepeat}" "${botRepeat}"`;
+          gridRows = 'auto minmax(0, 1fr)';
+        } else {
+          const botRepeat = activeBottom.join(' ');
+          gridAreas = `"${botRepeat}"`;
+          gridRows = 'minmax(0, 1fr)';
+        }
+      } else {
+        if (mktVis) {
+          gridCols = '1fr';
+          gridAreas = '"mkt"';
+          gridRows = '1fr';
+        } else {
+          gridCols = '1fr';
+          gridAreas = '"situasi"';
+          gridRows = '1fr';
+        }
+      }
+    }
+
+    consoleEl.style.setProperty('--grid-areas', gridAreas);
+    consoleEl.style.setProperty('--grid-cols', gridCols);
+    consoleEl.style.setProperty('--grid-rows', gridRows);
+
+    updateResizers();
+    updateMenuCheckboxes();
+    triggerResize();
+  }
+
+  function triggerResize() {
+    requestAnimationFrame(() => {
+      window.dispatchEvent(new Event('resize'));
+    });
+  }
+
+  function updateMenuCheckboxes() {
+    const menu = document.getElementById('layout-menu');
+    if (!menu) return;
+
+    menu.querySelectorAll('input[data-toggle-pane]').forEach(cb => {
+      const id = cb.dataset.togglePane;
+      if (state.panes[id]) {
+        cb.checked = state.panes[id].visible !== false;
+      }
+    });
+
+    const sitW = (state.panes.situasi && state.panes.situasi.width) || '420px';
+    menu.querySelectorAll('.lm-size-btn').forEach(btn => {
+      btn.classList.toggle('is-active', btn.dataset.sitW === sitW);
+    });
+  }
+
+  function updateResizers() {
+    consoleEl.querySelectorAll('.resizer-v').forEach(r => r.remove());
+
+    const sitVis = state.panes.situasi && state.panes.situasi.visible !== false && !state.maximized;
+    const sitPane = document.getElementById('pane-situasi');
+
+    if (sitVis && sitPane) {
+      const resizer = document.createElement('div');
+      resizer.className = 'resizer-v';
+      resizer.setAttribute('title', 'Tahan dan geser untuk mengubah lebar kolom Situasi');
+      consoleEl.appendChild(resizer);
+
+      const updatePos = () => {
+        const rect = sitPane.getBoundingClientRect();
+        const consoleRect = consoleEl.getBoundingClientRect();
+        resizer.style.left = `${rect.right - consoleRect.left}px`;
+      };
+
+      updatePos();
+
+      resizer.addEventListener('pointerdown', e => {
+        e.preventDefault();
+        resizer.classList.add('is-active');
+        const startX = e.clientX;
+        const initialWidth = sitPane.offsetWidth;
+
+        const onPointerMove = moveEv => {
+          const deltaX = moveEv.clientX - startX;
+          const newWidth = Math.max(260, Math.min(initialWidth + deltaX, window.innerWidth * 0.65));
+          state.panes.situasi.width = `${Math.round(newWidth)}px`;
+          applyLayout();
+        };
+
+        const onPointerUp = () => {
+          resizer.classList.remove('is-active');
+          window.removeEventListener('pointermove', onPointerMove);
+          window.removeEventListener('pointerup', onPointerUp);
+          saveLayout();
+        };
+
+        window.addEventListener('pointermove', onPointerMove);
+        window.addEventListener('pointerup', onPointerUp);
+      });
+    }
+  }
+
+  function bindPaneActions() {
+    consoleEl.querySelectorAll('.pane[data-pane]').forEach(p => {
+      const id = p.dataset.pane;
+
+      const hideBtn = p.querySelector('.ph-hide');
+      if (hideBtn) {
+        hideBtn.addEventListener('click', e => {
+          e.stopPropagation();
+          if (state.panes[id]) {
+            state.panes[id].visible = false;
+            if (state.maximized === id) state.maximized = null;
+            applyLayout();
+            saveLayout();
+          }
+        });
+      }
+
+      const maxBtn = p.querySelector('.ph-max');
+      if (maxBtn) {
+        maxBtn.addEventListener('click', e => {
+          e.stopPropagation();
+          state.maximized = (state.maximized === id) ? null : id;
+          applyLayout();
+          saveLayout();
+        });
+      }
+
+      const dragHandle = p.querySelector('.ph-drag');
+      if (dragHandle) {
+        dragHandle.setAttribute('draggable', 'true');
+
+        dragHandle.addEventListener('dragstart', e => {
+          e.dataTransfer.setData('text/plain', id);
+          e.dataTransfer.effectAllowed = 'move';
+          p.classList.add('is-dragging');
+        });
+
+        dragHandle.addEventListener('dragend', () => {
+          p.classList.remove('is-dragging');
+          consoleEl.querySelectorAll('.pane').forEach(el => el.classList.remove('drop-target'));
+        });
+      }
+
+      p.addEventListener('dragover', e => {
+        const dragging = consoleEl.querySelector('.pane.is-dragging');
+        if (dragging && dragging !== p) {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          p.classList.add('drop-target');
+        }
+      });
+
+      p.addEventListener('dragleave', () => {
+        p.classList.remove('drop-target');
+      });
+
+      p.addEventListener('drop', e => {
+        e.preventDefault();
+        p.classList.remove('drop-target');
+        const srcId = e.dataTransfer.getData('text/plain');
+        const targetId = id;
+
+        if (srcId && targetId && srcId !== targetId) {
+          reorderPanes(srcId, targetId);
+        }
+      });
+    });
+  }
+
+  function reorderPanes(srcId, targetId) {
+    const srcInBottom = state.order.indexOf(srcId);
+    const targetInBottom = state.order.indexOf(targetId);
+
+    if (srcInBottom !== -1 && targetInBottom !== -1) {
+      state.order.splice(srcInBottom, 1);
+      state.order.splice(targetInBottom, 0, srcId);
+      applyLayout();
+      saveLayout();
+    }
+  }
+
+  function bindMenuControls() {
+    const layoutWrap = document.getElementById('layout-wrap');
+    const layoutBtn = document.getElementById('btn-layout');
+    const layoutMenu = document.getElementById('layout-menu');
+    if (!layoutBtn || !layoutMenu) return;
+
+    layoutBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = !layoutMenu.hidden;
+      layoutMenu.hidden = open;
+      layoutBtn.setAttribute('aria-expanded', String(!open));
+    });
+
+    document.addEventListener('click', e => {
+      if (!layoutWrap.contains(e.target)) {
+        layoutMenu.hidden = true;
+        layoutBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    layoutMenu.querySelectorAll('input[data-toggle-pane]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const id = cb.dataset.togglePane;
+        if (state.panes[id]) {
+          state.panes[id].visible = cb.checked;
+          if (state.maximized === id && !cb.checked) state.maximized = null;
+          applyLayout();
+          saveLayout();
+        }
+      });
+    });
+
+    layoutMenu.querySelectorAll('.lm-preset-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const preset = btn.dataset.preset;
+        if (preset === 'default') {
+          state = JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
+        } else if (preset === 'intel') {
+          state.panes.situasi.visible = true;
+          state.panes.situasi.width = '380px';
+          state.panes.mkt.visible = true;
+          state.panes.social.visible = true;
+          state.panes.social.flex = 1.2;
+          state.panes.wire.visible = true;
+          state.panes.wire.flex = 1.6;
+          state.panes.cctv.visible = false;
+          state.order = ['social', 'wire', 'cctv'];
+          state.maximized = null;
+        } else if (preset === 'cctv') {
+          state.panes.situasi.visible = false;
+          state.panes.mkt.visible = false;
+          state.panes.social.visible = false;
+          state.panes.wire.visible = false;
+          state.panes.cctv.visible = true;
+          state.panes.cctv.flex = 1;
+          state.maximized = 'cctv';
+        } else if (preset === 'geo') {
+          state.panes.situasi.visible = true;
+          state.panes.situasi.width = '540px';
+          state.panes.mkt.visible = true;
+          state.panes.social.visible = false;
+          state.panes.wire.visible = true;
+          state.panes.cctv.visible = true;
+          state.maximized = null;
+        }
+        applyLayout();
+        saveLayout();
+      });
+    });
+
+    layoutMenu.querySelectorAll('.lm-size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const w = btn.dataset.sitW;
+        if (w) {
+          state.panes.situasi.width = w;
+          applyLayout();
+          saveLayout();
+        }
+      });
+    });
+
+    const resetBtn = document.getElementById('lm-reset');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        state = JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
+        localStorage.removeItem(STORAGE_KEY);
+        applyLayout();
+      });
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    bindPaneActions();
+    bindMenuControls();
+    applyLayout();
+  });
+
+  if (document.readyState !== 'loading') {
+    bindPaneActions();
+    bindMenuControls();
+    applyLayout();
+  }
+
+  window.addEventListener('resize', () => {
+    updateResizers();
+  });
 })();
 </script>
 </body>

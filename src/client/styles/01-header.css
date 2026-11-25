@@ -160,3 +160,46 @@
 }
 .ic.solid{fill:currentColor;stroke:none}
 
+.hdr-layout-wrap{position:relative;display:inline-flex}
+.hdr-layout-btn{
+  height:30px;padding:0 10px;background:#1b1b19;
+  border:1px solid #282832;border-radius:4px;
+  color:#a6a6b2;font:600 8.5px/1 var(--mono);
+  letter-spacing:.09em;text-transform:uppercase;gap:6px;cursor:pointer;
+  transition:all .15s ease;
+}
+.hdr-layout-btn:hover{background:#25252b;color:#f5f5f7;border-color:#3e3e4e}
+.hdr-layout-btn[aria-expanded="true"]{
+  background:#2a2a35;color:#22d3ee;border-color:rgba(34,211,238,.4);
+  box-shadow:0 0 10px rgba(34,211,238,.15);
+}
+.layout-menu{
+  position:absolute;top:calc(100% + 6px);right:0;width:250px;
+  background:#131418;border:1px solid #2d303e;border-radius:6px;
+  padding:12px 14px;box-shadow:0 14px 32px rgba(0,0,0,.65),0 0 1px rgba(255,255,255,.1);
+  z-index:100;display:flex;flex-direction:column;gap:12px;
+}
+.layout-menu[hidden]{display:none !important}
+.lm-h{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #232530;padding-bottom:8px}
+.lm-t{font:700 9.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#f0f3f6}
+.lm-reset{
+  background:transparent;border:1px solid #363949;border-radius:3px;
+  color:#9499ad;font:600 8px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 6px;cursor:pointer;
+}
+.lm-reset:hover{color:#f85149;border-color:#f85149}
+.lm-sec{display:flex;flex-direction:column;gap:6px}
+.lm-st{font:600 8px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+.lm-item{display:flex;align-items:center;gap:8px;font:500 10px/1.3 var(--mono);color:#c9cdd8;cursor:pointer;user-select:none}
+.lm-item input[type="checkbox"]{accent-color:#22d3ee;width:13px;height:13px;cursor:pointer}
+.lm-presets,.lm-sizes{display:flex;gap:5px;flex-wrap:wrap}
+.lm-preset-btn,.lm-size-btn{
+  flex:1 1 calc(50% - 3px);height:24px;background:#1b1c24;
+  border:1px solid #2b2e3e;border-radius:3px;color:#9fa4b8;
+  font:600 8.5px/1 var(--mono);letter-spacing:.06em;cursor:pointer;
+  transition:all .14s ease;
+}
+.lm-preset-btn:hover,.lm-size-btn:hover{background:#252836;color:#fff;border-color:#45495e}
+.lm-size-btn.is-active{background:rgba(34,211,238,.15);border-color:rgba(34,211,238,.5);color:#22d3ee}
+
+

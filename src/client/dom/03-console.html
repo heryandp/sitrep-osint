@@ -1,7 +1,13 @@
 <main class="console" id="main-console">
 
-  <section class="pane" aria-label="Situasi nasional">
-    <div class="ph"><span class="ph-k">[01]</span><h2 class="ph-t">Situasi</h2><span class="ph-m" id="dmeta">sync —</span></div>
+  <section class="pane" id="pane-situasi" data-pane="situasi" aria-label="Situasi nasional">
+    <div class="ph"><span class="ph-k">[01]</span><h2 class="ph-t">Situasi</h2><span class="ph-m" id="dmeta">sync —</span>
+      <div class="ph-acts" role="toolbar" aria-label="Aksi jendela">
+        <button class="ph-act ph-drag" type="button" title="Tahan dan geser untuk menukar posisi" aria-label="Geser panel"><svg class="ic" aria-hidden="true"><use href="#i-drag"></use></svg></button>
+        <button class="ph-act ph-max" type="button" title="Maksimalkan / Fokus panel" aria-label="Maksimalkan panel"><svg class="ic" aria-hidden="true"><use href="#i-expand"></use></svg></button>
+        <button class="ph-act ph-hide" type="button" title="Sembunyikan panel" aria-label="Sembunyikan panel"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button>
+      </div>
+    </div>
     <div class="pb sit-body">
       <div class="sit-mapwrap is-loading">
         <canvas id="sit-globe" role="img" aria-label="Globe dunia dengan titik insiden live, bisa di-drag dan di-zoom"></canvas>
@@ -58,9 +64,15 @@
     </div>
   </section>
 
-  <section class="pane mkt" aria-label="Pasar saham Indonesia">
+  <section class="pane mkt" id="pane-mkt" data-pane="mkt" aria-label="Pasar saham Indonesia">
     <div class="ph"><span class="ph-k">[02]</span><h2 class="ph-t">Market · IDX</h2>
-      <span class="ph-m" id="stk-meta">—</span></div>
+      <span class="ph-m" id="stk-meta">—</span>
+      <div class="ph-acts" role="toolbar" aria-label="Aksi jendela">
+        <button class="ph-act ph-drag" type="button" title="Tahan dan geser untuk menukar posisi" aria-label="Geser panel"><svg class="ic" aria-hidden="true"><use href="#i-drag"></use></svg></button>
+        <button class="ph-act ph-max" type="button" title="Maksimalkan / Fokus panel" aria-label="Maksimalkan panel"><svg class="ic" aria-hidden="true"><use href="#i-expand"></use></svg></button>
+        <button class="ph-act ph-hide" type="button" title="Sembunyikan panel" aria-label="Sembunyikan panel"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button>
+      </div>
+    </div>
     <div class="mkt-body">
     <div class="tape" id="tape" hidden><div class="tapetrack" id="tapetrack"></div></div>
     <div class="stk">
@@ -91,7 +103,7 @@
     </div>
   </section>
 
-  <section class="pane" aria-label="Social live">
+  <section class="pane" id="pane-social" data-pane="social" aria-label="Social live">
     <div class="ph soc-ph">
       <span class="ph-k">[03]</span>
       <h2 class="ph-t">Social</h2>
@@ -105,6 +117,11 @@
       </div>
       <span class="ph-m" id="xmeta" hidden aria-hidden="true">—</span>
       <span class="ph-m" id="tmeta" hidden aria-hidden="true">—</span>
+      <div class="ph-acts" role="toolbar" aria-label="Aksi jendela">
+        <button class="ph-act ph-drag" type="button" title="Tahan dan geser untuk menukar posisi" aria-label="Geser panel"><svg class="ic" aria-hidden="true"><use href="#i-drag"></use></svg></button>
+        <button class="ph-act ph-max" type="button" title="Maksimalkan / Fokus panel" aria-label="Maksimalkan panel"><svg class="ic" aria-hidden="true"><use href="#i-expand"></use></svg></button>
+        <button class="ph-act ph-hide" type="button" title="Sembunyikan panel" aria-label="Sembunyikan panel"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button>
+      </div>
     </div>
     <div class="pb" id="pane-x" role="tabpanel" aria-labelledby="tab-x" hidden>
       <div class="tools"><input class="inp cmd" id="xq" type="search" placeholder="Cari post atau akun…" aria-label="Cari post X"></div>
@@ -118,8 +135,14 @@
     </div>
   </section>
 
-  <section class="pane" aria-label="Wire berita">
-    <div class="ph"><span class="ph-k">[04]</span><h2 class="ph-t">News Wire</h2><span class="ph-m" id="nmeta">Memuat…</span></div>
+  <section class="pane" id="pane-wire" data-pane="wire" aria-label="Wire berita">
+    <div class="ph"><span class="ph-k">[04]</span><h2 class="ph-t">News Wire</h2><span class="ph-m" id="nmeta">Memuat…</span>
+      <div class="ph-acts" role="toolbar" aria-label="Aksi jendela">
+        <button class="ph-act ph-drag" type="button" title="Tahan dan geser untuk menukar posisi" aria-label="Geser panel"><svg class="ic" aria-hidden="true"><use href="#i-drag"></use></svg></button>
+        <button class="ph-act ph-max" type="button" title="Maksimalkan / Fokus panel" aria-label="Maksimalkan panel"><svg class="ic" aria-hidden="true"><use href="#i-expand"></use></svg></button>
+        <button class="ph-act ph-hide" type="button" title="Sembunyikan panel" aria-label="Sembunyikan panel"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button>
+      </div>
+    </div>
     <div class="pb">
       <div class="catbar" id="catbar" role="group" aria-label="Kategori berita"></div>
       <div class="flt-wrap" id="fltwrap">
@@ -150,8 +173,14 @@
     </div>
   </section>
 
-  <section class="pane" aria-label="CCTV Regional">
-    <div class="ph"><span class="ph-k">[05]</span><h2 class="ph-t">CCTV · Regional</h2><span class="ph-m" id="ccount">—</span></div>
+  <section class="pane" id="pane-cctv" data-pane="cctv" aria-label="CCTV Regional">
+    <div class="ph"><span class="ph-k">[05]</span><h2 class="ph-t">CCTV · Regional</h2><span class="ph-m" id="ccount">—</span>
+      <div class="ph-acts" role="toolbar" aria-label="Aksi jendela">
+        <button class="ph-act ph-drag" type="button" title="Tahan dan geser untuk menukar posisi" aria-label="Geser panel"><svg class="ic" aria-hidden="true"><use href="#i-drag"></use></svg></button>
+        <button class="ph-act ph-max" type="button" title="Maksimalkan / Fokus panel" aria-label="Maksimalkan panel"><svg class="ic" aria-hidden="true"><use href="#i-expand"></use></svg></button>
+        <button class="ph-act ph-hide" type="button" title="Sembunyikan panel" aria-label="Sembunyikan panel"><svg class="ic" aria-hidden="true"><use href="#i-minus"></use></svg></button>
+      </div>
+    </div>
     <div class="pb">
       <div class="tools cam-tools"><input class="inp cmd" id="cq" type="search" placeholder="Cari kamera…" aria-label="Cari kamera"><button class="cam-off-btn" id="cam-off-tog" type="button" aria-pressed="false" hidden>Offline <span>0</span></button></div>
       <div class="citybar" id="citybar" role="tablist" aria-label="Wilayah kamera"></div>

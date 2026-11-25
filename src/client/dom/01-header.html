@@ -71,6 +71,43 @@
       <span class="hdr-dock-sep" aria-hidden="true"></span>
       <span class="hstat" id="clock">--:--:-- WIB</span>
     </div>
+    <div class="hdr-layout-wrap" id="layout-wrap">
+      <button class="btn hdr-layout-btn" id="btn-layout" type="button" aria-expanded="false" aria-controls="layout-menu" title="Pengaturan Tata Letak &amp; Jendela Konsol">
+        <svg class="ic" aria-hidden="true"><use href="#i-layout"></use></svg>
+        <span class="btn-tx">Tata Letak</span>
+      </button>
+      <div class="layout-menu" id="layout-menu" hidden role="region" aria-label="Menu Tata Letak Konsol">
+        <div class="lm-h">
+          <span class="lm-t">Tata Letak Konsol</span>
+          <button class="lm-reset" id="lm-reset" type="button" title="Kembalikan tata letak ke pengaturan standar">Reset</button>
+        </div>
+        <div class="lm-sec">
+          <span class="lm-st">Visibilitas Jendela</span>
+          <label class="lm-item"><input type="checkbox" data-toggle-pane="situasi" checked> <span>[01] Situasi &amp; Globe</span></label>
+          <label class="lm-item"><input type="checkbox" data-toggle-pane="mkt" checked> <span>[02] Market · IDX</span></label>
+          <label class="lm-item"><input type="checkbox" data-toggle-pane="social" checked> <span>[03] Social Live</span></label>
+          <label class="lm-item"><input type="checkbox" data-toggle-pane="wire" checked> <span>[04] News Wire</span></label>
+          <label class="lm-item"><input type="checkbox" data-toggle-pane="cctv" checked> <span>[05] CCTV Regional</span></label>
+        </div>
+        <div class="lm-sec">
+          <span class="lm-st">Preset Tata Letak</span>
+          <div class="lm-presets">
+            <button class="lm-preset-btn" type="button" data-preset="default">Default</button>
+            <button class="lm-preset-btn" type="button" data-preset="intel">Fokus Intel</button>
+            <button class="lm-preset-btn" type="button" data-preset="cctv">CCTV Wall</button>
+            <button class="lm-preset-btn" type="button" data-preset="geo">Geospasial</button>
+          </div>
+        </div>
+        <div class="lm-sec">
+          <span class="lm-st">Ukuran Kolom Situasi</span>
+          <div class="lm-sizes">
+            <button class="lm-size-btn" type="button" data-sit-w="340px">Ringkas</button>
+            <button class="lm-size-btn is-active" type="button" data-sit-w="420px">Normal</button>
+            <button class="lm-size-btn" type="button" data-sit-w="520px">Lebar</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <button class="btn hdr-sync" id="btn-refresh" type="button" data-state="idle" title="Tarik ulang semua sumber (R)">
       <svg class="ic" aria-hidden="true"><use href="#i-sync"></use></svg>
       <span class="btn-tx">Sync</span>
