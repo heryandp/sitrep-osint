@@ -720,6 +720,36 @@ a[href],[role="button"]:not([aria-disabled="true"]),summary,select{cursor:pointe
   display:block;pointer-events:none;z-index:1;
 }
 
+.gold-bar{
+  flex:none;height:28px;display:flex;align-items:center;gap:10px;padding:0 14px;
+  background:#141310;border-top:1px solid #282418;
+  font:400 9.5px/1 var(--mono);overflow-x:auto;scrollbar-width:none;
+}
+.gold-bar::-webkit-scrollbar{display:none}
+.gold-badge{
+  display:inline-flex;align-items:center;gap:5px;flex:none;
+  padding:2px 7px;border-radius:3px;
+  background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.28);
+  color:#facc15;font:700 9px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+}
+.gold-ic{width:11px;height:11px;color:#facc15}
+.gold-hero{display:inline-flex;align-items:baseline;gap:5px;flex:none}
+.gold-lbl{color:var(--text3);font-size:9px;text-transform:uppercase}
+.gold-p{color:#fef08a;font-weight:700;font-size:11px;letter-spacing:-.01em}
+.gold-bb{color:#fde047;font-weight:600;font-size:10.5px}
+.gold-d{font-size:9px;font-weight:600}
+.gold-d.up{color:var(--ok)}.gold-d.dn{color:var(--accent)}
+.gold-sep{color:rgba(255,255,255,.15);flex:none}
+.gold-tiers{display:inline-flex;align-items:center;gap:8px;flex:none}
+.gt-item{
+  display:inline-flex;align-items:baseline;gap:4px;color:#d4d4d8;
+  padding:1px 5px;background:rgba(255,255,255,.04);border-radius:2px;
+}
+.gt-item b{color:#a1a1aa;font-weight:600;font-size:8.5px}
+.gold-meta{margin-left:auto;display:inline-flex;align-items:center;gap:8px;flex:none;color:var(--text3);font-size:8.5px}
+.gold-src{text-transform:uppercase;letter-spacing:.05em;color:#94a3b8}
+
+
 .sit-body{display:flex;flex-direction:column;background:var(--bg)}
 .sit-mapwrap{position:relative;height:460px;flex:none;border-bottom:1px solid var(--border);background:#0e0e0e;overflow:hidden}
 .sit-mapwrap::before{
@@ -4392,6 +4422,7 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
   <symbol id="i-contract" viewBox="0 0 16 16"><path d="M5.5 1.5v4h-4M10.5 1.5v4h4M5.5 14.5v-4h-4M10.5 14.5v-4h4"/></symbol>
   <symbol id="i-minus" viewBox="0 0 16 16"><path d="M2.5 8h11"/></symbol>
   <symbol id="i-layout" viewBox="0 0 16 16"><rect x="1.5" y="2.5" width="13" height="11" rx="1"/><path d="M6 2.5v11M10.5 2.5v11"/></symbol>
+  <symbol id="i-gold" viewBox="0 0 16 16"><path d="M2.5 12.5h11l-1.8-6.5h-7.4z"/><path d="M5.5 6 7 2.5h4.5l1.5 3.5"/><path d="M7 6v6.5M10 6v6.5"/></symbol>
 </svg>
 
 <div class="splash" id="splash" role="status" aria-live="polite" aria-label="Memuat SITREP DJP OSINT Console">
@@ -4625,6 +4656,32 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
           <canvas class="stk-spark" id="fx-spark" width="165" height="46" aria-hidden="true"></canvas>
         </div>
         <div class="stk-chips" id="fx-chips"></div>
+      </div>
+    </div>
+    <div class="gold-bar" id="gold-bar" role="region" aria-label="Pantauan Harga Emas Logam Mulia Antam">
+      <div class="gold-badge">
+        <svg class="ic gold-ic" aria-hidden="true"><use href="#i-gold"></use></svg>
+        <span class="gold-k">Emas Antam</span>
+      </div>
+      <div class="gold-hero">
+        <span class="gold-lbl">1g:</span>
+        <b class="gold-p" id="gold-p">—</b>
+        <span class="gold-d" id="gold-d">—</span>
+      </div>
+      <span class="gold-sep" aria-hidden="true">|</span>
+      <div class="gold-hero">
+        <span class="gold-lbl">Buyback:</span>
+        <b class="gold-bb" id="gold-bb">—</b>
+      </div>
+      <div class="gold-tiers" id="gold-tiers">
+        <span class="gt-item"><b>0.5g</b> <span id="gt-05">—</span></span>
+        <span class="gt-item"><b>2g</b> <span id="gt-2">—</span></span>
+        <span class="gt-item"><b>5g</b> <span id="gt-5">—</span></span>
+        <span class="gt-item"><b>10g</b> <span id="gt-10">—</span></span>
+      </div>
+      <div class="gold-meta">
+        <span class="gold-src">anekalogam</span>
+        <time class="gold-date" id="gold-date">—</time>
       </div>
     </div>
     <div class="djp-upbar" id="djp-uptime" role="region" aria-label="Status portal DJP dan Kemenkeu">
@@ -7691,11 +7748,44 @@ function renderStocks(d){
     dEl.textContent = (up ? '▲ +' : '▼ ') + fmtIDR(Math.abs(IHSG.chg)) + ' · ' + Math.abs(IHSG.pct).toFixed(2) + '%';
     dEl.className = 'stk-d ' + (up ? 'up' : 'dn');
   } else { $('#stk-ihsg').textContent = '—'; $('#stk-ihsg-d').textContent = '—'; }
+  if (d.gold) renderGold(d.gold);
   renderChips();
   renderFx();
   paintHeroes();
   loadCloses();
   initTvTape();
+}
+function renderGold(g){
+  if (!g || !g.ok) return;
+  const pEl = $('#gold-p');
+  if (pEl) pEl.textContent = fmtIDR(g.price);
+  const bbEl = $('#gold-bb');
+  if (bbEl) bbEl.textContent = fmtIDR(g.buyback);
+  const dEl = $('#gold-d');
+  if (dEl) {
+    const up = (g.pct || 0) >= 0;
+    dEl.textContent = (up ? '▲ +' : '▼ ') + Math.abs(g.pct || 0).toFixed(2) + '%';
+    dEl.className = 'gold-d ' + (up ? 'up' : 'dn');
+  }
+  const dateEl = $('#gold-date');
+  if (dateEl && g.date) dateEl.textContent = g.date;
+  const tiers = Array.isArray(g.tiers) ? g.tiers : [];
+  const findTier = w => tiers.find(t => Math.abs(t.weight - w) < 0.05);
+  const t05 = findTier(0.5);
+  const t2 = findTier(2);
+  const t5 = findTier(5);
+  const t10 = findTier(10);
+  const el05 = $('#gt-05'); if (el05 && t05) el05.textContent = fmtIDR(t05.sell);
+  const el2 = $('#gt-2'); if (el2 && t2) el2.textContent = fmtIDR(t2.sell);
+  const el5 = $('#gt-5'); if (el5 && t5) el5.textContent = fmtIDR(t5.sell);
+  const el10 = $('#gt-10'); if (el10 && t10) el10.textContent = fmtIDR(t10.sell);
+}
+async function pullGold(){
+  if (API == null) return;
+  try {
+    const d = await getJson(API + '/api/gold', 20000);
+    if (d && d.ok) renderGold(d);
+  } catch (_) {}
 }
 window.addEventListener('resize', () => { if (IHSG || FX) requestAnimationFrame(paintHeroes); });
 async function initTvTape(){
@@ -7728,6 +7818,7 @@ async function pullStocks(){
   try {
     const d = await getJson(API + '/api/market', 30000);
     if (d && (d.stocks || d.items)) renderStocks(d.stocks ? d : { stocks: d });
+    if (d && d.gold) renderGold(d.gold); else pullGold();
   } catch (e) { $('#stk-meta').textContent = 'market feed error'; }
 }
 

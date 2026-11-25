@@ -467,6 +467,7 @@ const {
   fetchSymbolCloses,
   closes,
   market,
+  gold,
   worldIndex,
   closeMemo,
   saveMktCloses,
@@ -1505,6 +1506,12 @@ const SITREP_SERVER = http.createServer(async (req, res) => {
       const hasMkt = Boolean(mktData && ((mktData.stocks && mktData.stocks.items && mktData.stocks.items.length) || (mktData.ihsg && mktData.ihsg.price)));
       return json(mktData, 200, 'market', hasMkt ? 12000 : 2500, hasMkt ? mktCC : pubCC(2, 5, 0));
     }
+    if (u.pathname === '/api/gold') {
+      const cc = pubCC(60, 300, 15);
+      if (sendCached('gold', 60000, 200, cc)) return;
+      const goldData = await gold();
+      return json(goldData, 200, 'gold', 60000, cc);
+    }
     if (u.pathname === '/api/closes') {
       let list = (u.searchParams.get('list') || '').split(',').map(s => s.trim()).filter(Boolean);
       if (!AUTH.hasRole(principal, 'operator')) {
@@ -1995,6 +2002,7 @@ module.exports = {
   fetchSymbolCloses,
   closes,
   market,
+  gold,
   worldIndex,
   closeMemo,
   setMarketFetch,

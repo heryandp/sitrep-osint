@@ -163,3 +163,42 @@ test('6. public/index.html client market logic coalesces /api/closes and never l
   assert.ok(html.includes("if (IHSG && Array.isArray(IHSG.closes) && IHSG.closes.length >= 2) {\n    CLOSES['IDX:COMPOSITE'] = IHSG.closes;"));
   assert.ok(html.includes('const y = rg > 0 ? (h - 2 - (v - min) / rg * (h - 6)) : (h / 2);'));
 });
+
+test('7. market() integrates gold prices from Logam Mulia and exports gold endpoint', async () => {
+  SRV.setMarketFetch(async (url) => {
+    if (url.includes('logam-mulia-api')) {
+      if (url.includes('/history')) {
+        return {
+          ok: true,
+          status: 200,
+          json: async () => ({
+            success: true,
+            data: [
+              { recordedDate: '2026-11-25', sellPrice: 2490000, buybackPrice: 2200000, materialType: 'LM Antam produksi tahun 2026' },
+              { recordedDate: '2026-11-24', sellPrice: 2485000, buybackPrice: 2200000, materialType: 'LM Antam produksi tahun 2026' }
+            ]
+          })
+        };
+      }
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          success: true,
+          data: [
+            { source: 'anekalogam', weight: 1, sellPrice: 2490000, buybackPrice: 2200000, recordedDate: '2026-11-25', materialType: 'LM Antam produksi tahun 2026' },
+            { source: 'anekalogam', weight: 0.5, sellPrice: 1295000, buybackPrice: 1010000, recordedDate: '2026-11-25', materialType: 'LM Antam produksi tahun 2026' }
+          ]
+        })
+      };
+    }
+    return { ok: true, status: 200, json: async () => ({ data: [] }), text: async () => '' };
+  });
+
+  const gold = await SRV.gold();
+  assert.ok(gold && gold.ok, 'gold() must return ok:true');
+  assert.equal(gold.price, 2490000, 'gold price for 1g must match 2490000');
+  assert.equal(gold.buyback, 2200000, 'gold buyback must match 2200000');
+  assert.equal(gold.chg, 5000, 'gold change must match 5000');
+  assert.equal(gold.pct, 0.2, 'gold pct must match 0.2%');
+});

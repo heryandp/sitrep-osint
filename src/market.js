@@ -317,14 +317,105 @@ function createMarketService({ fs, path, HIST_DIR, UA, get, memo }) {
   });
 
   const knownMarketSyms = new Set([
-    'IDX:COMPOSITE', 'FX_IDC:USDIDR', 'BINANCE:BTCUSDT', '^JKSE', 'IDR=X',
+    'IDX:COMPOSITE', 'FX_IDC:USDIDR', 'BINANCE:BTCUSDT', '^JKSE', 'IDR=X', 'EMAS:ANTAM',
     ...WORLD_IDX.map(w => w[0]),
     ...COMMODITIES.map(c => c[0]),
   ]);
 
+  let goldMemo = null;
+  let goldMemoAt = 0;
+
+  async function fetchGold() {
+    const now = Date.now();
+    if (goldMemo && (now - goldMemoAt < 15 * 60 * 1000)) {
+      return goldMemo;
+    }
+    try {
+      const r = await mktFetch('https://logam-mulia-api.iamutaki.workers.dev/api/prices/anekalogam', {
+        headers: { 'user-agent': UA, accept: 'application/json' }
+      }, 10000);
+      if (!r.ok) throw new Error('gold fetch ' + r.status);
+      const json = await r.json();
+      if (!json || !json.success || !Array.isArray(json.data) || !json.data.length) {
+        throw new Error('gold invalid data');
+      }
+
+      const items = json.data;
+      const oneGram = items.find(it => Number(it.weight) === 1 && it.materialType && it.materialType.includes('2026'))
+        || items.find(it => Number(it.weight) === 1)
+        || items[0];
+
+      const price = oneGram ? Number(oneGram.sellPrice) || 0 : 0;
+      const buyback = oneGram ? Number(oneGram.buybackPrice) || 0 : 0;
+      const date = (oneGram && oneGram.recordedDate) || new Date().toISOString().slice(0, 10);
+
+      let closes = [];
+      let prevPrice = price;
+      let chg = 0;
+      let pct = 0;
+      try {
+        const hr = await mktFetch('https://logam-mulia-api.iamutaki.workers.dev/api/prices/anekalogam/history?weight=1&length=10', {
+          headers: { 'user-agent': UA, accept: 'application/json' }
+        }, 10000);
+        if (hr.ok) {
+          const hj = await hr.json();
+          if (hj && hj.success && Array.isArray(hj.data)) {
+            const hList = hj.data.filter(it => it.materialType && it.materialType.includes('2026'));
+            const listToUse = hList.length >= 2 ? hList : hj.data;
+            const uniqueDates = [];
+            const seen = new Set();
+            for (const h of listToUse) {
+              const d = h.recordedDate;
+              if (!seen.has(d)) {
+                seen.add(d);
+                uniqueDates.push(Number(h.sellPrice) || 0);
+              }
+            }
+            if (uniqueDates.length >= 2) {
+              prevPrice = uniqueDates[1];
+              chg = price - prevPrice;
+              pct = prevPrice > 0 ? (chg / prevPrice) * 100 : 0;
+            }
+            closes = uniqueDates.reverse().slice(-14);
+          }
+        }
+      } catch (_) {}
+
+      const tiers = items
+        .filter(it => it.materialType && it.materialType.includes('2026'))
+        .map(it => ({
+          weight: Number(it.weight),
+          unit: it.weightUnit || 'gr',
+          sell: Number(it.sellPrice) || 0,
+          buyback: Number(it.buybackPrice) || 0
+        }))
+        .sort((a, b) => a.weight - b.weight);
+
+      goldMemo = {
+        ok: true,
+        source: 'anekalogam',
+        displayName: 'Aneka Logam (Antam)',
+        date,
+        price,
+        buyback,
+        prevPrice,
+        chg,
+        pct: Number(pct.toFixed(2)),
+        closes: closes.length >= 2 ? closes : [price, price],
+        tiers: tiers.length ? tiers : items.map(it => ({ weight: Number(it.weight), sell: Number(it.sellPrice) || 0 })),
+        at: now
+      };
+      goldMemoAt = now;
+      return goldMemo;
+    } catch (e) {
+      if (goldMemo) return goldMemo;
+      return { ok: false, err: e.message };
+    }
+  }
+
   const market = () => memo('market', 45000, async () => {
     const cmdTick = m => COMMODITIES.filter(c => c[2] === m).map(c => c[0]);
-    const [idx, fx, cmdF, cmdC, ihsgR, idrQ, world, ihsgCloses] = await Promise.all([
+    const [idx, fx, cmdF, cmdC, ihsgR, idrQ, world, ihsgCloses, goldData] = await Promise.all([
       tvScan('indonesia', { columns: COLS, range: [0, 900],
         symbols: { query: { types: ['stock'] }, tickers: [] } }),
       tvScan('forex', { columns: COLS.slice(0, 4),
@@ -337,7 +428,8 @@ function createMarketService({ fs, path, HIST_DIR, UA, get, memo }) {
         symbols: { query: { types: [] }, tickers: ['IDX:COMPOSITE'] } }),
       usdidr(),
       worldIndex().catch(() => []),
-      fetchSymbolCloses('IDX:COMPOSITE').catch(() => [])
+      fetchSymbolCloses('IDX:COMPOSITE').catch(() => []),
+      fetchGold().catch(() => null)
     ]);
     const stocks = idx.map(s => {
       const it = row('IDX', s);
@@ -366,9 +458,23 @@ function createMarketService({ fs, path, HIST_DIR, UA, get, memo }) {
     }
     const idr = forex.find(x => x.ticker === 'USDIDR');
     if (idr && idrQ) Object.assign(idr, { price: idrQ.price, chg: idrQ.chg, pct: idrQ.pct, closes: idrQ.closes });
+    if (goldData && goldData.ok && goldData.price) {
+      forex.push({
+        sym: 'EMAS:ANTAM',
+        ticker: 'ANTAM',
+        name: 'Emas 1g',
+        price: goldData.price,
+        pct: goldData.pct || 0,
+        chg: goldData.chg || 0,
+        closes: goldData.closes || [],
+        vol: 0,
+        mkt: 'LOGAMMULIA'
+      });
+      knownMarketSyms.add('EMAS:ANTAM');
+    }
     for (const s of stocks) if (s && s.sym) knownMarketSyms.add(s.sym);
     for (const f of forex) if (f && f.sym) knownMarketSyms.add(f.sym);
-    return { ok: true, ihsg, stocks: { ok: true, items: stocks }, forex: { ok: true, items: forex }, world, at: Date.now() };
+    return { ok: true, ihsg, stocks: { ok: true, items: stocks }, forex: { ok: true, items: forex }, world, gold: goldData, at: Date.now() };
   });
 
   async function closes(list) {
@@ -391,6 +497,7 @@ function createMarketService({ fs, path, HIST_DIR, UA, get, memo }) {
     fetchSymbolCloses,
     closes,
     market,
+    gold: fetchGold,
     worldIndex,
     closeMemo,
     saveMktCloses,

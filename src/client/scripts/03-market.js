@@ -318,11 +318,44 @@ function renderStocks(d){
     dEl.textContent = (up ? '▲ +' : '▼ ') + fmtIDR(Math.abs(IHSG.chg)) + ' · ' + Math.abs(IHSG.pct).toFixed(2) + '%';
     dEl.className = 'stk-d ' + (up ? 'up' : 'dn');
   } else { $('#stk-ihsg').textContent = '—'; $('#stk-ihsg-d').textContent = '—'; }
+  if (d.gold) renderGold(d.gold);
   renderChips();
   renderFx();
   paintHeroes();
   loadCloses();
   initTvTape();
+}
+function renderGold(g){
+  if (!g || !g.ok) return;
+  const pEl = $('#gold-p');
+  if (pEl) pEl.textContent = fmtIDR(g.price);
+  const bbEl = $('#gold-bb');
+  if (bbEl) bbEl.textContent = fmtIDR(g.buyback);
+  const dEl = $('#gold-d');
+  if (dEl) {
+    const up = (g.pct || 0) >= 0;
+    dEl.textContent = (up ? '▲ +' : '▼ ') + Math.abs(g.pct || 0).toFixed(2) + '%';
+    dEl.className = 'gold-d ' + (up ? 'up' : 'dn');
+  }
+  const dateEl = $('#gold-date');
+  if (dateEl && g.date) dateEl.textContent = g.date;
+  const tiers = Array.isArray(g.tiers) ? g.tiers : [];
+  const findTier = w => tiers.find(t => Math.abs(t.weight - w) < 0.05);
+  const t05 = findTier(0.5);
+  const t2 = findTier(2);
+  const t5 = findTier(5);
+  const t10 = findTier(10);
+  const el05 = $('#gt-05'); if (el05 && t05) el05.textContent = fmtIDR(t05.sell);
+  const el2 = $('#gt-2'); if (el2 && t2) el2.textContent = fmtIDR(t2.sell);
+  const el5 = $('#gt-5'); if (el5 && t5) el5.textContent = fmtIDR(t5.sell);
+  const el10 = $('#gt-10'); if (el10 && t10) el10.textContent = fmtIDR(t10.sell);
+}
+async function pullGold(){
+  if (API == null) return;
+  try {
+    const d = await getJson(API + '/api/gold', 20000);
+    if (d && d.ok) renderGold(d);
+  } catch (_) {}
 }
 window.addEventListener('resize', () => { if (IHSG || FX) requestAnimationFrame(paintHeroes); });
 async function initTvTape(){
@@ -355,6 +388,7 @@ async function pullStocks(){
   try {
     const d = await getJson(API + '/api/market', 30000);
     if (d && (d.stocks || d.items)) renderStocks(d.stocks ? d : { stocks: d });
+    if (d && d.gold) renderGold(d.gold); else pullGold();
   } catch (e) { $('#stk-meta').textContent = 'market feed error'; }
 }
 

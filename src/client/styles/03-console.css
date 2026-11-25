@@ -144,3 +144,33 @@
   display:block;pointer-events:none;z-index:1;
 }
 
+.gold-bar{
+  flex:none;height:28px;display:flex;align-items:center;gap:10px;padding:0 14px;
+  background:#141310;border-top:1px solid #282418;
+  font:400 9.5px/1 var(--mono);overflow-x:auto;scrollbar-width:none;
+}
+.gold-bar::-webkit-scrollbar{display:none}
+.gold-badge{
+  display:inline-flex;align-items:center;gap:5px;flex:none;
+  padding:2px 7px;border-radius:3px;
+  background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.28);
+  color:#facc15;font:700 9px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+}
+.gold-ic{width:11px;height:11px;color:#facc15}
+.gold-hero{display:inline-flex;align-items:baseline;gap:5px;flex:none}
+.gold-lbl{color:var(--text3);font-size:9px;text-transform:uppercase}
+.gold-p{color:#fef08a;font-weight:700;font-size:11px;letter-spacing:-.01em}
+.gold-bb{color:#fde047;font-weight:600;font-size:10.5px}
+.gold-d{font-size:9px;font-weight:600}
+.gold-d.up{color:var(--ok)}.gold-d.dn{color:var(--accent)}
+.gold-sep{color:rgba(255,255,255,.15);flex:none}
+.gold-tiers{display:inline-flex;align-items:center;gap:8px;flex:none}
+.gt-item{
+  display:inline-flex;align-items:baseline;gap:4px;color:#d4d4d8;
+  padding:1px 5px;background:rgba(255,255,255,.04);border-radius:2px;
+}
+.gt-item b{color:#a1a1aa;font-weight:600;font-size:8.5px}
+.gold-meta{margin-left:auto;display:inline-flex;align-items:center;gap:8px;flex:none;color:var(--text3);font-size:8.5px}
+.gold-src{text-transform:uppercase;letter-spacing:.05em;color:#94a3b8}
+
+

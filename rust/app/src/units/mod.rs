@@ -87,6 +87,7 @@ pub fn router() -> Router<Original> {
         .route("/api/geo/labels", get(route_5).fallback(original::proxy))
         .route("/api/incidents", get(route_20).fallback(original::proxy))
         .route("/api/market", get(route_16).fallback(original::proxy))
+        .route("/api/gold", get(original::proxy))
         .route("/api/news", get(route_18).fallback(original::proxy))
         .route("/api/nodes", get(route_4).fallback(original::proxy))
         .route("/api/pajak/brief", post(route_8).fallback(original::proxy))
