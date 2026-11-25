@@ -4496,8 +4496,8 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
     </div>
     <div class="djp-upbar" id="djp-uptime" role="region" aria-label="Status portal DJP dan Kemenkeu">
       <span class="up-hd">Portal DJP</span>
-      <div class="up-list" id="djp-up-list"><span class="up-wait">Memeriksa 4 portal via isdownapi.com…</span></div>
-      <button class="up-ref" id="djp-up-ref" type="button" title="Cek ulang status 4 portal (isdownapi.com)" aria-label="Cek ulang status portal DJP"><svg class="ic" aria-hidden="true"><use href="#i-sync"></use></svg><span>Cek</span></button>
+      <div class="up-list" id="djp-up-list"><span class="up-wait">Memeriksa 4 portal (probe langsung server)…</span></div>
+      <button class="up-ref" id="djp-up-ref" type="button" title="Cek ulang status 4 portal (probe langsung server)" aria-label="Cek ulang status portal DJP"><svg class="ic" aria-hidden="true"><use href="#i-sync"></use></svg><span>Cek</span></button>
     </div>
     </div>
   </section>
@@ -15308,7 +15308,7 @@ function renderDjpUptime(){
   if (pjBar) {
     const downN = Number(djpUptimeData.downCount) || 0;
     const sumLbl = downN > 0 ? `${downN} GANGGUAN` : `${djpUptimeData.upCount}/${djpUptimeData.total} UP`;
-    pjBar.innerHTML = `<span class="up-hd${downN > 0 ? ' is-alert' : ''}">Portal · ${esc(sumLbl)}</span><div class="up-list">${chips}</div><button class="up-ref" type="button" data-pj-up-ref="1" title="Cek ulang status portal via isdownapi.com" aria-label="Cek ulang status portal"><svg class="ic" aria-hidden="true"><use href="#i-sync"></use></svg><span>Cek</span></button>`;
+    pjBar.innerHTML = `<span class="up-hd${downN > 0 ? ' is-alert' : ''}">Portal · ${esc(sumLbl)}</span><div class="up-list">${chips}</div><button class="up-ref" type="button" data-pj-up-ref="1" title="Cek ulang status portal (probe langsung server)" aria-label="Cek ulang status portal"><svg class="ic" aria-hidden="true"><use href="#i-sync"></use></svg><span>Cek</span></button>`;
   }
 }
 

@@ -1,4 +1,4 @@
-//! Async `UptimeService` for DJP & Kemenkeu portal availability checks (`isdownapi.com`).
+//! Async `UptimeService` for DJP & Kemenkeu portal availability checks via direct server ping/probes.
 
 #![forbid(unsafe_code)]
 
@@ -9,13 +9,15 @@ use serde_json::{Value, json};
 use std::borrow::Cow;
 use std::collections::{HashMap, VecDeque};
 use std::future::Future;
+use std::net::ToSocketAddrs;
 use std::pin::Pin;
 use std::sync::Arc;
-use std::time::{Duration, SystemTime, UNIX_EPOCH};
+use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 use tokio::sync::{Mutex, watch};
 
-pub const DEFAULT_TTL_MS: i64 = 90_000;
+pub const DEFAULT_TTL_MS: i64 = 60_000;
 pub const HISTORY_LIMIT: usize = 12;
+pub const SLOW_MS: i64 = 2500;
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Portal {
@@ -94,7 +96,8 @@ struct State {
 pub struct UptimeService {
     portals: Vec<Portal>,
     ttl_ms: i64,
-    fetch_fn: FetchFn,
+    client: reqwest::Client,
+    custom_fetch_fn: Option<FetchFn>,
     now_fn: NowFn,
     state: Mutex<State>,
 }
@@ -107,33 +110,30 @@ impl Default for UptimeService {
 
 impl UptimeService {
     pub fn new() -> Self {
-        Self::with_client(reqwest::Client::new())
+        let client = reqwest::Client::builder()
+            .timeout(Duration::from_secs(5))
+            .danger_accept_invalid_certs(true)
+            .redirect(reqwest::redirect::Policy::limited(5))
+            .user_agent("Mozilla/5.0 (compatible; SITREP-ServerProbe/1.0; +https://pajak.go.id)")
+            .build()
+            .unwrap_or_default();
+        Self::with_client(client)
     }
 
     pub fn with_client(client: reqwest::Client) -> Self {
-        let fetch: FetchFn = Arc::new(move |url| {
-            let c = client.clone();
-            Box::pin(async move {
-                let req = c
-                    .get(&url)
-                    .header("accept", "application/json")
-                    .timeout(Duration::from_secs(12));
-                let r = req.send().await.map_err(|e| e.to_string())?;
-                let (ok, status) = (r.status().is_success(), r.status().as_u16());
-                let body = if ok {
-                    r.json().await.map_err(|e| e.to_string())?
-                } else {
-                    Value::Null
-                };
-                Ok(ProbeResponse { ok, status, body })
-            })
-        });
         let now: NowFn = Arc::new(|| {
             SystemTime::now()
                 .duration_since(UNIX_EPOCH)
                 .map_or(0, |d| d.as_millis() as i64)
         });
-        Self::with_options(DJP_PORTALS.to_vec(), DEFAULT_TTL_MS, fetch, now)
+        Self {
+            portals: DJP_PORTALS.to_vec(),
+            ttl_ms: DEFAULT_TTL_MS,
+            client,
+            custom_fetch_fn: None,
+            now_fn: now,
+            state: Mutex::new(State::default()),
+        }
     }
 
     pub fn with_options(
@@ -142,10 +142,17 @@ impl UptimeService {
         fetch_fn: FetchFn,
         now_fn: NowFn,
     ) -> Self {
+        let client = reqwest::Client::builder()
+            .timeout(Duration::from_secs(5))
+            .danger_accept_invalid_certs(true)
+            .redirect(reqwest::redirect::Policy::limited(5))
+            .build()
+            .unwrap_or_default();
         Self {
             portals,
             ttl_ms,
-            fetch_fn,
+            client,
+            custom_fetch_fn: Some(fetch_fn),
             now_fn,
             state: Mutex::new(State::default()),
         }
@@ -159,27 +166,101 @@ impl UptimeService {
     }
 
     async fn check_one(&self, portal: &Portal) -> DomainStatus {
-        let base = "https://isdownapi.com/api/check";
-        let url = reqwest::Url::parse_with_params(base, &[("domain", portal.domain.as_ref())])
-            .map_or_else(|_| format!("{base}?domain={}", portal.domain), String::from);
-        let (raw, err) = match (self.fetch_fn)(url).await {
-            Ok(r) if r.ok => (r.body, false),
-            Ok(r) => (
-                json!({"status": "down", "error": format!("isdownapi HTTP {}", r.status)}),
-                true,
-            ),
-            Err(e) => (
-                json!({"status": "down", "error": String::from_utf16_lossy(&e.encode_utf16().take(120).collect::<Vec<_>>())}),
-                true,
-            ),
-        };
-        let pval = serde_json::to_value(portal).unwrap_or(Value::Null);
-        let mut it: DomainStatus = normalize_check_result(pval, raw, Value::from((self.now_fn)()))
+        if let Some(fetch_fn) = &self.custom_fetch_fn {
+            let base = "https://isdownapi.com/api/check";
+            let url = reqwest::Url::parse_with_params(base, &[("domain", portal.domain.as_ref())])
+                .map_or_else(|_| format!("{base}?domain={}", portal.domain), String::from);
+            let (raw, err) = match (fetch_fn)(url).await {
+                Ok(r) if r.ok => (r.body, false),
+                Ok(r) => (
+                    json!({"status": "down", "error": format!("isdownapi HTTP {}", r.status)}),
+                    true,
+                ),
+                Err(e) => (
+                    json!({"status": "down", "error": String::from_utf16_lossy(&e.encode_utf16().take(120).collect::<Vec<_>>())}),
+                    true,
+                ),
+            };
+            let pval = serde_json::to_value(portal).unwrap_or(Value::Null);
+            let mut it: DomainStatus = normalize_check_result(pval, raw, Value::from((self.now_fn)()))
+                .ok()
+                .and_then(|v| serde_json::from_value(v).ok())
+                .unwrap_or_default();
+            it.probe_error = err.then_some(true);
+            return it;
+        }
+
+        // Direct probe / ping from our own server (no external 3rd-party API)
+        let now = (self.now_fn)();
+        let ip = (portal.domain.as_ref(), 443)
+            .to_socket_addrs()
             .ok()
-            .and_then(|v| serde_json::from_value(v).ok())
-            .unwrap_or_default();
-        it.probe_error = err.then_some(true);
-        it
+            .and_then(|mut it| it.next())
+            .map(|sa| sa.ip().to_string());
+
+        let start = Instant::now();
+        let resp = self
+            .client
+            .get(portal.url.as_ref())
+            .header("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+            .timeout(Duration::from_secs(5))
+            .send()
+            .await;
+        let elapsed_ms = start.elapsed().as_millis() as i64;
+
+        match resp {
+            Ok(r) => {
+                let code = r.status().as_u16();
+                let remote_ip = r.remote_addr().map(|sa| sa.ip().to_string()).or(ip);
+                let is_up = code < 500;
+                let state = if !is_up {
+                    "down"
+                } else if elapsed_ms >= SLOW_MS {
+                    "slow"
+                } else {
+                    "up"
+                };
+                let error = if !is_up {
+                    Some(format!("HTTP {code}"))
+                } else {
+                    None
+                };
+                DomainStatus {
+                    id: portal.id.to_string(),
+                    name: portal.name.to_string(),
+                    domain: portal.domain.to_string(),
+                    url: portal.url.to_string(),
+                    status: if is_up { "up".into() } else { "down".into() },
+                    state: state.into(),
+                    http_code: Some(code as i64),
+                    response_ms: Some(elapsed_ms),
+                    ip: remote_ip,
+                    error,
+                    checked_at: now,
+                    probe_error: (!is_up).then_some(true),
+                    history: Vec::new(),
+                }
+            }
+            Err(e) => {
+                let err_str = e.to_string();
+                let truncated = err_str.chars().take(120).collect::<String>();
+                DomainStatus {
+                    id: portal.id.to_string(),
+                    name: portal.name.to_string(),
+                    domain: portal.domain.to_string(),
+                    url: portal.url.to_string(),
+                    status: "down".into(),
+                    state: "down".into(),
+                    http_code: None,
+                    response_ms: None,
+                    ip,
+                    error: Some(truncated),
+                    checked_at: now,
+                    probe_error: Some(true),
+                    history: Vec::new(),
+                }
+            }
+        }
     }
 
     pub async fn check_all(&self, force: bool) -> UptimePayload {
@@ -223,7 +304,7 @@ impl UptimeService {
             let at = (self.now_fn)();
             let payload = UptimePayload {
                 ok: true,
-                provider: "isdownapi.com".into(),
+                provider: "server-direct".into(),
                 total: items.len(),
                 up_count: up,
                 slow_count: slow,

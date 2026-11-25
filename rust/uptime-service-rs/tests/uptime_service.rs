@@ -220,3 +220,23 @@ fn normalizes_dates_and_truncates_errors_to_140_chars() {
     .unwrap();
     assert_eq!(fallback["checkedAt"], 1_700_000_000_000_i64);
 }
+
+#[tokio::test]
+async fn direct_server_probe_measures_portals_without_external_api() {
+    let svc = UptimeService::new();
+    assert_eq!(svc.portals().len(), 4);
+    let res = svc.check_all(true).await;
+    assert_eq!(res.provider, "server-direct");
+    assert_eq!(res.total, 4);
+    // At least the reachable DJP portals return results
+    for it in &res.items {
+        assert!(!it.id.is_empty());
+        assert!(!it.domain.is_empty());
+        assert!(matches!(it.status.as_str(), "up" | "down"));
+        assert!(matches!(it.state.as_str(), "up" | "slow" | "down"));
+        if it.status == "up" {
+            assert!(it.response_ms.is_some());
+            assert!(it.http_code.is_some());
+        }
+    }
+}

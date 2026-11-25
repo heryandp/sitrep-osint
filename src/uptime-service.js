@@ -54,18 +54,44 @@ function createUptimeService({
   }
 
   async function checkOne(portal) {
-    const url = ISDOWN_API + encodeURIComponent(portal.domain);
-    const doFetch = fetchFn || ((u, opt, ms) => fetch(u, { ...opt, signal: AbortSignal.timeout(ms || 12000) }));
-    try {
-      const r = await doFetch(url, { headers: { accept: 'application/json' } }, 12000);
-      if (!r.ok) {
+    if (fetchFn) {
+      const url = ISDOWN_API + encodeURIComponent(portal.domain);
+      try {
+        const r = await fetchFn(url, { headers: { accept: 'application/json' } }, 12000);
+        if (!r.ok) {
+          return {
+            ...normalizeCheckResult(portal, { status: 'down', error: 'isdownapi HTTP ' + r.status }, nowFn()),
+            probeError: true,
+          };
+        }
+        const data = await r.json();
+        return normalizeCheckResult(portal, data, nowFn());
+      } catch (e) {
         return {
-          ...normalizeCheckResult(portal, { status: 'down', error: 'isdownapi HTTP ' + r.status }, nowFn()),
+          ...normalizeCheckResult(portal, { status: 'down', error: String(e && e.message || e).slice(0, 120) }, nowFn()),
           probeError: true,
         };
       }
-      const data = await r.json();
-      return normalizeCheckResult(portal, data, nowFn());
+    }
+
+    // Direct probe from our own server
+    const t0 = Date.now();
+    try {
+      const r = await fetch(portal.url, {
+        headers: {
+          'user-agent': 'Mozilla/5.0 (compatible; SITREP-ServerProbe/1.0; +https://pajak.go.id)',
+          accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        },
+        signal: AbortSignal.timeout(5000),
+      });
+      const ms = Date.now() - t0;
+      const isUp = r.status < 500;
+      return normalizeCheckResult(portal, {
+        status: isUp ? 'up' : 'down',
+        http_code: r.status,
+        response_time_ms: ms,
+        error: isUp ? null : `HTTP ${r.status}`,
+      }, nowFn());
     } catch (e) {
       return {
         ...normalizeCheckResult(portal, { status: 'down', error: String(e && e.message || e).slice(0, 120) }, nowFn()),
@@ -92,7 +118,7 @@ function createUptimeService({
       const slowCount = enriched.filter(x => x.state === 'slow').length;
       const payload = {
         ok: true,
-        provider: 'isdownapi.com',
+        provider: 'server-direct',
         total: enriched.length,
         upCount,
         slowCount,
