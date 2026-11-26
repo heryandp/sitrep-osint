@@ -180,7 +180,9 @@ function createGateway(d) {
   function canonicalKey(raw) {
     try {
       const u = new URL(raw);
-      if (/(^|\.)pantaucctv\.com$/i.test(u.hostname) && u.searchParams.has('t')) {
+      if (/(^|\.)(pantaucctv\.com|cctvnusantara\.com|99apps\.id)$/i.test(u.hostname)) {
+        const id = u.searchParams.get('id');
+        if (id) return 'pc:' + id.toLowerCase();
         const t = u.searchParams.get('t') || '';
         const b64 = t.split('.')[0];
         if (b64) {

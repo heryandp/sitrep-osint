@@ -11,7 +11,7 @@
   function streamKey(url) {
     try {
       const u = new URL(url);
-      if (/(^|\.)pantaucctv\.com$/i.test(u.hostname) && /api\/stream/i.test(u.pathname)) {
+      if (/(^|\.)(pantaucctv\.com|cctvnusantara\.com|99apps\.id)$/i.test(u.hostname) && /api\/stream/i.test(u.pathname)) {
         const id = u.searchParams.get('id'); if (id) return 'pc:' + id.toLowerCase();
       }
       if (/(^|\.)dpuprkotang\.info$/i.test(u.hostname)) {

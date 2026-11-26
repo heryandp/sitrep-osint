@@ -37,6 +37,8 @@ hostMode.set('dki-jkt.balitower.co.id:7028', 'proxy');
 hostMode.set('cctv.molecool.id', 'proxy');
 hostMode.set('proxycctv.dsdajakarta.id', 'proxy');
 hostMode.set('pantaucctv.com', 'proxy');
+hostMode.set('cctvnusantara.com', 'proxy');
+hostMode.set('cctv.99apps.id', 'proxy');
 hostMode.set('cctv-dishub.tangerangkab.go.id', 'proxy');
 hostMode.set('transcode.baliprov.go.id', 'proxy');
 hostMode.set('pelindung.bandung.go.id:3443', 'proxy');

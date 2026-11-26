@@ -174,7 +174,9 @@ pub fn stream_key(url_str: &str) -> String {
     let host = u.host_str().unwrap_or_default();
     let host_lower = host.to_ascii_lowercase();
 
-    if (host_lower == "pantaucctv.com" || host_lower.ends_with(".pantaucctv.com"))
+    if (host_lower == "pantaucctv.com" || host_lower.ends_with(".pantaucctv.com")
+        || host_lower == "cctvnusantara.com" || host_lower.ends_with(".cctvnusantara.com")
+        || host_lower == "99apps.id" || host_lower.ends_with(".99apps.id"))
         && u.path().to_ascii_lowercase().contains("api/stream")
     {
         for (k, v) in u.query_pairs() {

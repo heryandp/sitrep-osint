@@ -16,7 +16,7 @@ use tokio::sync::{Semaphore, broadcast};
 use url::Url;
 
 static RE_PANTAU: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"(?i)(^|\.)pantaucctv\.com$").expect("valid regex"));
+    LazyLock::new(|| Regex::new(r"(?i)(^|\.)(pantaucctv\.com|cctvnusantara\.com|99apps\.id)$").expect("valid regex"));
 static RE_MOLECOOL: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r"(?i)^cctv\.molecool\.id$").expect("valid regex"));
 static RE_KOTANG: LazyLock<Regex> =
@@ -538,44 +538,49 @@ impl CctvGateway {
         };
         let host = u.host_str().unwrap_or("").to_lowercase();
 
-        if RE_PANTAU.is_match(&host) && u.query_pairs().any(|(k, _)| k == "t") {
-            let t_val = u
-                .query_pairs()
-                .find(|(k, _)| k == "t")
-                .map(|(_, v)| v.to_string())
-                .unwrap_or_default();
-            let b64 = t_val.split('.').next().unwrap_or("");
-            if !b64.is_empty()
-                && let Ok(json_str) = Self::decode_base64url(b64)
-                && let Ok(val) = serde_json::from_str::<serde_json::Value>(&json_str)
-            {
-                let inner = val
-                    .get("u")
-                    .or_else(|| val.get("url"))
-                    .or_else(|| val.get("stream"))
-                    .and_then(|v| v.as_str());
-                if let Some(inner_url) = inner
-                    && let Ok(iu) = Url::parse(inner_url)
+        if RE_PANTAU.is_match(&host) {
+            if let Some((_, id)) = u.query_pairs().find(|(k, _)| k == "id") {
+                return format!("pc:{}", id.to_ascii_lowercase());
+            }
+            if u.query_pairs().any(|(k, _)| k == "t") {
+                let t_val = u
+                    .query_pairs()
+                    .find(|(k, _)| k == "t")
+                    .map(|(_, v)| v.to_string())
+                    .unwrap_or_default();
+                let b64 = t_val.split('.').next().unwrap_or("");
+                if !b64.is_empty()
+                    && let Ok(json_str) = Self::decode_base64url(b64)
+                    && let Ok(val) = serde_json::from_str::<serde_json::Value>(&json_str)
                 {
-                    let i_host = iu.host_str().unwrap_or("").to_lowercase();
-                    return format!("pc:{}{}", i_host, iu.path());
+                    let inner = val
+                        .get("u")
+                        .or_else(|| val.get("url"))
+                        .or_else(|| val.get("stream"))
+                        .and_then(|v| v.as_str());
+                    if let Some(inner_url) = inner
+                        && let Ok(iu) = Url::parse(inner_url)
+                    {
+                        let i_host = iu.host_str().unwrap_or("").to_lowercase();
+                        return format!("pc:{}{}", i_host, iu.path());
+                    }
                 }
+                let mut u_clean = u.clone();
+                let filtered_pairs: Vec<(String, String)> = u_clean
+                    .query_pairs()
+                    .filter(|(k, _)| k != "t")
+                    .map(|(k, v)| (k.to_string(), v.to_string()))
+                    .collect();
+                u_clean.set_query(None);
+                for (k, v) in filtered_pairs {
+                    u_clean.query_pairs_mut().append_pair(&k, &v);
+                }
+                let query_part = u_clean
+                    .query()
+                    .map(|q| format!("?{}", q))
+                    .unwrap_or_default();
+                return format!("pc:{}{}{}", host, u_clean.path(), query_part);
             }
-            let mut u_clean = u.clone();
-            let filtered_pairs: Vec<(String, String)> = u_clean
-                .query_pairs()
-                .filter(|(k, _)| k != "t")
-                .map(|(k, v)| (k.to_string(), v.to_string()))
-                .collect();
-            u_clean.set_query(None);
-            for (k, v) in filtered_pairs {
-                u_clean.query_pairs_mut().append_pair(&k, &v);
-            }
-            let query_part = u_clean
-                .query()
-                .map(|q| format!("?{}", q))
-                .unwrap_or_default();
-            return format!("pc:{}{}{}", host, u_clean.path(), query_part);
         }
 
         if RE_MOLECOOL.is_match(&host) {
