@@ -402,7 +402,7 @@ function rdArticle(d, url) {
       if (!slot || API == null) return;
       if (leadExaCache.has(safeExaUrl)) {
         if (slot.innerHTML) {
-          slot.innerHTML = '';
+          slot.replaceChildren();
           exaBtn.textContent = 'Tampilkan Ringkasan Exa AI';
         } else {
           slot.innerHTML = exaCardHtml(leadExaCache.get(safeExaUrl));
@@ -517,7 +517,7 @@ async function rdLoadThread(kind, url) {
   const seq = ++rdThreadSeq;
   box.innerHTML = `<div class="rd-rep"><div class="rd-rh"><b>Balasan</b><span>memuat…</span></div>
     <div class="rd-sk s"></div><div class="rd-sk"></div><div class="rd-sk s"></div></div>`;
-  if (API == null) { box.innerHTML = ''; return; }
+  if (API == null) { box.replaceChildren(); return; }
   try {
     let d = rdThreadCache.get(url);
     if (!d) {

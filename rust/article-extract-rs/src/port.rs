@@ -22,6 +22,17 @@ fn sub_all(t: &mut String, r: &Regex, rep: &str) {
     }
 }
 
+pub fn safe_truncate_str(s: &str, max_bytes: usize) -> &str {
+    if s.len() <= max_bytes {
+        return s;
+    }
+    let mut end = max_bytes;
+    while end > 0 && !s.is_char_boundary(end) {
+        end -= 1;
+    }
+    &s[..end]
+}
+
 fn is_js_ws(c: char) -> bool {
     matches!(
         c,
@@ -1556,7 +1567,7 @@ fn prune_blocks_impl(
                 continue;
             }
         }
-        let dk = if n.len() > 150 { &n[..150] } else { &n };
+        let dk = safe_truncate_str(&n, 150);
         if seen_para.contains(dk) {
             duplicate_dropped += 1;
             continue;
@@ -2006,11 +2017,7 @@ fn rd_blocks_impl(
         if c.is_empty() && im.alt.len() >= 16 {
             c = im.alt.clone();
         }
-        let cap_truncated = if c.len() > 220 {
-            c[..220].to_string()
-        } else {
-            c
-        };
+        let cap_truncated = safe_truncate_str(&c, 220).to_string();
         imgs.push(ImageBlock {
             url: im.url,
             cap: cap_truncated,
@@ -3818,11 +3825,7 @@ pub fn rd_extract(
     if (clean_desc.len() < 25 || re(r"(?i)^[-–—\s]*[A-Za-z0-9.\s]+$").is_match(&clean_desc))
         && let Some(first_p) = joined.iter().find(|p| p.len() >= 40)
     {
-        clean_desc = if first_p.len() > 300 {
-            first_p[..300].to_string()
-        } else {
-            first_p.clone()
-        };
+        clean_desc = safe_truncate_str(first_p, 300).to_string();
     }
 
     let off_topic = !candidates.is_empty() && candidates.iter().all(|c| !c.quality.is_on_topic);
@@ -4029,11 +4032,7 @@ pub fn rd_jina_md(
         let c = RE_MD_IMG_CAP_CLEAN.replace(alt, "");
         let c = rd_inline_str(&c);
         if c.len() >= 6 && !RE_MD_IMG_JUNK_CAP.is_match(&c) {
-            if c.len() > 220 {
-                c[..220].to_string()
-            } else {
-                c
-            }
+            safe_truncate_str(&c, 220).to_string()
         } else {
             String::new()
         }
@@ -4222,13 +4221,7 @@ pub fn rd_jina_md(
 
     let desc = final_paras
         .first()
-        .map(|p| {
-            if p.len() > 300 {
-                p[..300].to_string()
-            } else {
-                p.clone()
-            }
-        })
+        .map(|p| safe_truncate_str(p, 300).to_string())
         .unwrap_or_default();
 
     let site_clean = clean_site_name_impl("", &url_str);

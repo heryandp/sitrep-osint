@@ -20,7 +20,7 @@ function paintBreak(ms){
 const tkFetchEl = $('#tk-fetch');
 tkFetchEl.addEventListener('click', () => { if (!breakBusy) pullBreaking(); });
 tkFetchEl.addEventListener('keydown', e => {
-  if ((e.key === 'Enter' || e.key === ' ') && !breakBusy) { e.preventDefault(); pullBreaking(); }
+  if ((e.key === 'Enter' || e.key === ' ') && !e.isComposing && !breakBusy) { e.preventDefault(); pullBreaking(); }
 });
 const TK_SIG = { pajak:'#i-tk-pajak', demo:'#i-tk-demo', fire:'#i-tk-fire', flood:'#i-tk-flood', disaster:'#i-tk-disaster',
   insiden:'#i-tk-insiden', siber:'#i-tk-siber', kriminal:'#i-tk-kriminal',
@@ -123,7 +123,7 @@ function buildTicker(force){
   }
 }
 
-let tkX = 0, tkSetW = 0, tkLast = 0, tkHold = false, tkVel = TICK_PX_S;
+let tkX = 0, tkSetW = 0, tkLast = 0, tkHold = false, tkVel = TICK_PX_S, tkRafId = 0;
 function tkFrame(t) {
   const dt = tkLast ? Math.min(t - tkLast, 100) / 1000 : 0;
   tkLast = t;
@@ -135,9 +135,23 @@ function tkFrame(t) {
     if (tkX >= tkSetW) tkX %= tkSetW;
     tickTrack.style.transform = 'translate3d(' + (-tkX).toFixed(2) + 'px,0,0)';
   } else tickTrack.style.transform = '';
-  requestAnimationFrame(tkFrame);
+  if (!document.hidden) tkRafId = requestAnimationFrame(tkFrame);
+  else tkRafId = 0;
 }
-requestAnimationFrame(tkFrame);
+function startTkLoop(){
+  if (!tkRafId && !document.hidden) {
+    tkLast = performance.now();
+    tkRafId = requestAnimationFrame(tkFrame);
+  }
+}
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    if (tkRafId) { cancelAnimationFrame(tkRafId); tkRafId = 0; }
+  } else {
+    startTkLoop();
+  }
+});
+startTkLoop();
 {
 
   const vpEl = $('.tk-vp');

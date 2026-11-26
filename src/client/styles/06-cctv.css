@@ -70,7 +70,8 @@
 .cb[aria-selected="true"]:hover{background:rgba(255,255,255,.06);color:#fff}
 .cb:focus-visible{outline:2px solid var(--focus);outline-offset:-2px;z-index:4}
 .camgrid{display:grid;grid-template-columns:repeat(var(--cols,2),minmax(0,1fr));gap:1px;background:var(--border)}
-.cam{position:relative;display:block;width:100%;padding:0;background:#000;text-align:left;cursor:pointer;outline:none}
+.cam{position:relative;display:block;width:100%;padding:0;background:#000;text-align:left;cursor:pointer;outline:none;content-visibility:auto;contain-intrinsic-size:auto 160px auto 120px}
+.cam-sentinel{grid-column:1 / -1;height:1px;pointer-events:none;visibility:hidden}
 .cam:focus{outline:none}
 .cam:focus-visible{outline:2px solid var(--focus);outline-offset:-2px;z-index:4}
 .cam .frame{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000}

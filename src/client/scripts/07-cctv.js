@@ -27,7 +27,8 @@ function getJakLoader(){
   return _JakLoader;
 }
 const hlsJak = cfg => { const jl = getJakLoader(); return jl ? Object.assign({loader:jl}, cfg) : cfg; };
-let aliveMap = null, district = 'Semua', camList = [], showOfflineCams = false;
+let aliveMap = null, district = 'Semua', camList = [], showOfflineCams = false, fullCamList = [], camRenderCount = 0, sentinelObserver = null;
+const CAM_PAGE_SIZE = 48;
 let pinnedCams = [];
 try {
   const raw = localStorage.getItem('sitrep_pinned_cams');
@@ -85,7 +86,7 @@ function togglePinCam(c, ev){
   drawCityBar();
 }
 
-const MAXL = 8, PERHOST = 4, LIVE_CAP = 12, SOFT_MS = 12000, OFF_FREE_MS = 20000, ORDER_COOLDOWN_MS = 4000;
+const MAXL = 8, PERHOST = 4; let LIVE_CAP = 12; const SOFT_MS = 12000, OFF_FREE_MS = 20000, ORDER_COOLDOWN_MS = 4000;
 let camSnapOK = false, lastOrderAt = 0, orderTimer = 0, orderDeferred = false;
 
 const HEDGE_MS = 2500, hostMode = new Map(), hostWin = new Map();
@@ -643,6 +644,7 @@ function pump(){
     const all = [...P.entries()].filter(([, p]) => !p.dead);
 
     const visRanked = CctvCore.pickLiveKeys(liveCands, vr);
+    LIVE_CAP = (document.documentElement && document.documentElement.classList.contains('is-lite')) ? 3 : 12;
     const wantLive = new Set(visRanked.slice(0, LIVE_CAP));
     const wantLoadSlot = new Set();
     {
@@ -842,6 +844,8 @@ function onCctvScroll(e){
   const st = (t && typeof t.scrollTop === 'number') ? t.scrollTop : (window.scrollY || document.documentElement.scrollTop || 0);
   cctvScrollDir = st >= cctvLastScrollTop ? 'down' : 'up';
   cctvLastScrollTop = st;
+  const root = getCctvScrollRoot() || document.scrollingElement || document.documentElement;
+  if (root && root.scrollHeight - root.scrollTop - root.clientHeight < 360) loadMoreCams();
   refreshCamVis();
   clearTimeout(camScrollEndT);
   camScrollEndT = setTimeout(runPump, 120);
@@ -959,12 +963,14 @@ function wantList(){
 }
 let camsRenderQueued = false;
 function renderCams(){
-
   if (document.hidden) { camsRenderQueued = true; return; }
   camsRenderQueued = false;
   const nextList = wantList();
   if (!nextList.length) {
+    fullCamList = [];
     camList = [];
+    camRenderCount = 0;
+    updateSentinel();
     P.forEach((p, el) => {
       clearTimeout(p.t); clearTimeout(p.retry); clearTimeout(p.rel);
       if (p.waitTimer) { clearTimeout(p.waitTimer); p.waitTimer = null; }
@@ -1012,9 +1018,11 @@ function renderCams(){
     layout(); upd();
     return;
   }
+  fullCamList = nextList;
+  camRenderCount = Math.min(fullCamList.length, CAM_PAGE_SIZE);
+  camList = fullCamList.slice(0, camRenderCount);
   if (!P.size) {
-    camList = nextList;
-    camGrid.innerHTML = camList.map(cellHtml).join('');
+    camGrid.innerHTML = camList.map(cellHtml).join('') + (camRenderCount < fullCamList.length ? '<div class="cam-sentinel"></div>' : '');
     camGrid.querySelectorAll('.cam').forEach((el, i) => {
       const c = camList[i];
       const p = { vis: false, idx: i, host: CctvCore.hostOf(c.s) };
@@ -1023,12 +1031,13 @@ function renderCams(){
       P.set(el, p);
       vio.observe(el);
     });
+    updateSentinel();
     layout(); upd(); pump();
     return;
   }
   const byUrl = new Map();
   P.forEach((p, el) => { if (el.dataset.s) byUrl.set(el.dataset.s, { el, p }); });
-  const keepUrls = new Set(nextList.map(c => c.s));
+  const keepUrls = new Set(camList.map(c => c.s));
   for (const [url, { el, p }] of byUrl) {
     if (keepUrls.has(url)) continue;
     clearTimeout(p.t); clearTimeout(p.retry); clearTimeout(p.rel); if (p.waitTimer) { clearTimeout(p.waitTimer); p.waitTimer = null; } clearSnapTimer(p);
@@ -1039,7 +1048,6 @@ function renderCams(){
     P.delete(el);
     el.remove();
   }
-  camList = nextList;
   const frag = document.createDocumentFragment(), tpl = document.createElement('div');
   for (let i = 0; i < camList.length; i++) {
     const c = camList[i], ex = byUrl.get(c.s);
@@ -1072,9 +1080,65 @@ function renderCams(){
       frag.appendChild(el);
     }
   }
-  if (frag.childNodes.length) camGrid.appendChild(frag);
+  const curSentinel = camGrid.querySelector('.cam-sentinel');
+  if (frag.childNodes.length) {
+    if (curSentinel) camGrid.insertBefore(frag, curSentinel);
+    else camGrid.appendChild(frag);
+  }
+  updateSentinel();
   orderCams(true);
   layout(); upd(); pump();
+}
+function updateSentinel(){
+  let s = camGrid.querySelector('.cam-sentinel');
+  if (camRenderCount < fullCamList.length) {
+    if (!s) {
+      s = document.createElement('div');
+      s.className = 'cam-sentinel';
+      camGrid.appendChild(s);
+    }
+    initSentinel();
+    if (sentinelObserver && s) sentinelObserver.observe(s);
+  } else if (s) {
+    if (sentinelObserver) sentinelObserver.unobserve(s);
+    s.remove();
+  }
+}
+function initSentinel(){
+  if (sentinelObserver) return;
+  const targetRoot = getCctvScrollRoot();
+  sentinelObserver = new IntersectionObserver(entries => {
+    for (const ent of entries) {
+      if (ent.isIntersecting) loadMoreCams();
+    }
+  }, { root: targetRoot, rootMargin: '300px 0px 300px 0px' });
+}
+function loadMoreCams(){
+  if (camRenderCount >= fullCamList.length) return;
+  const start = camRenderCount;
+  camRenderCount = Math.min(fullCamList.length, camRenderCount + CAM_PAGE_SIZE);
+  camList = fullCamList.slice(0, camRenderCount);
+  const frag = document.createDocumentFragment(), tpl = document.createElement('div');
+  for (let i = start; i < camRenderCount; i++) {
+    const c = camList[i];
+    tpl.innerHTML = cellHtml(c, i);
+    const el = tpl.firstElementChild;
+    const p = { vis: false, idx: i, host: CctvCore.hostOf(c.s) };
+    if (c._srvOff) { p.dead = true; p.bad = true; p.tries = 1; badge(el, 'off', 'Offline'); el.classList.add('is-offline'); }
+    el.style.order = String(CctvCore.camOrderValue(p, i));
+    P.set(el, p);
+    vio.observe(el);
+    frag.appendChild(el);
+  }
+  const s = camGrid.querySelector('.cam-sentinel');
+  if (frag.childNodes.length) {
+    if (s) camGrid.insertBefore(frag, s);
+    else camGrid.appendChild(frag);
+  }
+  updateSentinel();
+  layout();
+  upd();
+  pumpSoon();
 }
 function drawCityBar(){
   const cnt = {};

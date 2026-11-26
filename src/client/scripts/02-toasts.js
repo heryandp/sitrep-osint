@@ -594,6 +594,6 @@ function clToastDismiss(card){
 }
 addEventListener('pagehide', () => {
   clToastQ.forEach(s => clearTimeout(s.t)); clToastQ.clear(); clToastOrder.length = 0; clToastActiveEl = null;
-  const box = $('#cl-toasts'); if (box) box.innerHTML = '';
+  const box = $('#cl-toasts'); if (box) box.replaceChildren();
 });
 

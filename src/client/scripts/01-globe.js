@@ -266,8 +266,9 @@ function drawGlobe(now){
   const c = $('#sit-globe');
   if (!c || typeof d3 === 'undefined') return;
   tickFly(now);
+  const isLite = document.documentElement.classList.contains('is-lite');
   const ctx = c.getContext('2d');
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const dpr = isLite ? 1 : Math.min(window.devicePixelRatio || 1, 2);
   const w = c.clientWidth, h = c.clientHeight;
   if (!w || !h) return;
   const cw = Math.round(w * dpr), ch = Math.round(h * dpr);
@@ -443,7 +444,7 @@ function drawGlobe(now){
       ctx.moveTo(d.x, d.y - s); ctx.lineTo(d.x + s * 0.92, d.y + s * 0.62); ctx.lineTo(d.x - s * 0.92, d.y + s * 0.62);
       ctx.closePath();
       ctx.save();
-      ctx.shadowColor = d.color; ctx.shadowBlur = dim ? 0 : (alert ? 12 : 5);
+      ctx.shadowColor = d.color; ctx.shadowBlur = (isLite || dim) ? 0 : (alert ? 12 : 5);
       ctx.fillStyle = hexA(d.color, (alert ? 0.95 : 0.72) * (dim ? 0.3 : 1));
       ctx.fill(); ctx.restore();
       ctx.lineWidth = .9; ctx.strokeStyle = light ? '#ffffff' : '#0d0d0d'; ctx.stroke();
@@ -468,7 +469,7 @@ function drawGlobe(now){
       ctx.lineTo(d.x - s * 0.88, d.y);
       ctx.closePath();
       ctx.save();
-      ctx.shadowColor = d.color; ctx.shadowBlur = dim ? 0 : (alert ? 12 : 6);
+      ctx.shadowColor = d.color; ctx.shadowBlur = (isLite || dim) ? 0 : (alert ? 12 : 6);
       ctx.fillStyle = hexA(d.color, (alert ? 0.95 : 0.78) * (dim ? 0.3 : 1));
       ctx.fill(); ctx.restore();
       ctx.lineWidth = .9; ctx.strokeStyle = light ? '#ffffff' : '#0d0d0d'; ctx.stroke();
@@ -486,7 +487,7 @@ function drawGlobe(now){
     ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
     ctx.save();
     ctx.shadowColor = d.color;
-    ctx.shadowBlur = dim ? 0 : (d.ageMs < 2 * 3600e3 ? 7 : (d.ageMs < 12 * 3600e3 ? 4 : 0));
+    ctx.shadowBlur = (isLite || dim) ? 0 : (d.ageMs < 2 * 3600e3 ? 7 : (d.ageMs < 12 * 3600e3 ? 4 : 0));
     ctx.fillStyle = hexA(d.color, (d.alpha || 0.65) * (dim ? 0.3 : 1));
     ctx.fill();
     ctx.restore();
@@ -597,6 +598,8 @@ function globeLoop(now){
   globeRaf = 0;
   if (!globeReady) { globeRaf = requestAnimationFrame(globeLoop); return; }
   if (mapOpen || document.hidden) return;
+  const sitPane = document.getElementById('pane-situasi');
+  if (sitPane && sitPane.classList.contains('is-hidden')) return;
 
   if (globeVel && !gesture && !flyAnim) {
     const dt = Math.min(50, Math.max(4, now - (globeLast || now - 16)));
@@ -607,8 +610,10 @@ function globeLoop(now){
     globeVel.vx *= dec; globeVel.vy *= dec;
     if (Math.hypot(globeVel.vx, globeVel.vy) < 0.004) globeVel = null;
   }
+  const isLite = document.documentElement.classList.contains('is-lite');
   const busy = ptrs.size > 0 || !!flyAnim || !!globeVel || now - lastGestEnd < 250 || saHiding || (saShowT0 && Date.now() - saShowT0 < 300);
-  if (now - globeLast > (busy ? 4 : 45)) {
+  const minInterval = isLite ? (busy ? 33 : 90) : (busy ? 4 : 45);
+  if (now - globeLast > minInterval) {
     globeLast = now;
     const gc = $('#sit-globe');
     if (gc && (!gc.clientWidth || !gc.clientHeight)) { try { tickFly(now); } catch (e) {} }

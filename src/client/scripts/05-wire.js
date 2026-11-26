@@ -424,7 +424,7 @@ async function renderLead(h, isLatest = true){
   leadRenderURL = h && h.url || '';
   stopLeadMedia();
   const box = $('#lead');
-  if (!h) { box.setAttribute('aria-busy', 'false'); box.innerHTML = ''; return; }
+  if (!h) { box.setAttribute('aria-busy', 'false'); box.replaceChildren(); return; }
   box.setAttribute('aria-busy', 'true');
   box.innerHTML = leadSkeletonHtml();
 
@@ -647,7 +647,7 @@ function renderNews(){
     curLeadScope = scope;
     leadRenderId++;
     leadRenderURL = '';
-    $('#lead').innerHTML = '';
+    $('#lead').replaceChildren();
     $('#nlist').innerHTML = items.length
       ? '<div class="empty">Tidak ada berita yang lolos saring.</div>'
       : lastGood.size
@@ -720,7 +720,7 @@ function renderNlist(){
 
   const sc = $('#nlist').closest('.pb') || document.scrollingElement;
   const st = sc ? sc.scrollTop : 0;
-  $('#nlist').innerHTML = '';
+  $('#nlist').replaceChildren();
   nwAppend();
   if (sc) sc.scrollTop = st;
 }

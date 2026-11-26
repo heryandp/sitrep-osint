@@ -31,7 +31,7 @@
         };
       }
     } catch (_) {}
-    return JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
+    return structuredClone(DEFAULT_LAYOUT);
   }
 
   function saveLayout() {
@@ -440,7 +440,7 @@
       btn.addEventListener('click', () => {
         const preset = btn.dataset.preset;
         if (preset === 'default') {
-          state = JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
+          state = structuredClone(DEFAULT_LAYOUT);
         } else if (preset === 'intel') {
           state.panes.situasi.visible = true;
           state.panes.situasi.width = '380px';
@@ -488,20 +488,58 @@
     const resetBtn = document.getElementById('lm-reset');
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
-        state = JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
+        state = structuredClone(DEFAULT_LAYOUT);
         localStorage.removeItem(STORAGE_KEY);
         applyLayout();
       });
     }
+
+    const perfTog = document.getElementById('perf-lite-tog');
+    if (perfTog) {
+      perfTog.addEventListener('change', () => {
+        const isLite = perfTog.checked;
+        document.documentElement.classList.toggle('is-lite', isLite);
+        try {
+          localStorage.setItem('sitrep_perf_mode', isLite ? 'lite' : 'full');
+        } catch (_) {}
+        if (typeof renderCams === 'function') renderCams();
+      });
+    }
+  }
+
+  function isDeviceLowSpec() {
+    try {
+      if (typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 4) return true;
+      if (typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4) return true;
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return true;
+    } catch (_) {}
+    return false;
+  }
+
+  function initPerfMode() {
+    let active = false;
+    try {
+      const saved = localStorage.getItem('sitrep_perf_mode');
+      if (saved === 'lite') active = true;
+      else if (saved === 'full') active = false;
+      else active = isDeviceLowSpec();
+    } catch (_) {
+      active = isDeviceLowSpec();
+    }
+    document.documentElement.classList.toggle('is-lite', active);
+    const tog = document.getElementById('perf-lite-tog');
+    if (tog) tog.checked = active;
   }
 
   window.addEventListener('DOMContentLoaded', () => {
+    initPerfMode();
     bindPaneActions();
     bindMenuControls();
     applyLayout();
   });
 
   if (document.readyState !== 'loading') {
+    initPerfMode();
     bindPaneActions();
     bindMenuControls();
     applyLayout();

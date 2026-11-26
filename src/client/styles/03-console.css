@@ -72,7 +72,7 @@
 .mkt-pill.break i{background:var(--warn);opacity:.7}
 .mkt-pill.closed{color:#ff6b6b;background:rgba(218,30,40,.07)}
 .mkt-pill.closed i{background:var(--accent);opacity:.8}
-.pb{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;scrollbar-width:thin;scrollbar-color:#454545 transparent}
+.pb{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;scrollbar-width:thin;scrollbar-color:#454545 transparent;contain:layout style paint}
 .pb::-webkit-scrollbar{width:8px;height:8px}
 .pb::-webkit-scrollbar-track{background:transparent}
 .pb::-webkit-scrollbar-thumb{background:#3d3d3d;border:2px solid var(--bg)}
@@ -182,5 +182,10 @@
 .gold-meta{margin-left:auto;display:inline-flex;align-items:center;gap:6px;flex:none;color:#a1a1aa;font-size:8px}
 .gold-src{text-transform:uppercase;letter-spacing:.06em;color:#e4e4e7;font-weight:600}
 .gold-date{color:#a1a1aa}
+html.is-lite *{backdrop-filter:none !important;-webkit-backdrop-filter:none !important;box-shadow:none !important;text-shadow:none !important}
+html.is-lite .resizer-v:hover,html.is-lite .resizer-v.is-active,
+html.is-lite .resizer-col:hover,html.is-lite .resizer-col.is-active,
+html.is-lite .resizer-h:hover,html.is-lite .resizer-h.is-active{background:#22d3ee;box-shadow:none !important}
+html.is-lite .mkt-pill.open i,html.is-lite .mkt-pill.pre i,html.is-lite .mkt-pill.post i{animation:none !important}
 
 

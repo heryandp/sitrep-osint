@@ -648,7 +648,7 @@ a[href],[role="button"]:not([aria-disabled="true"]),summary,select{cursor:pointe
 .mkt-pill.break i{background:var(--warn);opacity:.7}
 .mkt-pill.closed{color:#ff6b6b;background:rgba(218,30,40,.07)}
 .mkt-pill.closed i{background:var(--accent);opacity:.8}
-.pb{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;scrollbar-width:thin;scrollbar-color:#454545 transparent}
+.pb{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;scrollbar-width:thin;scrollbar-color:#454545 transparent;contain:layout style paint}
 .pb::-webkit-scrollbar{width:8px;height:8px}
 .pb::-webkit-scrollbar-track{background:transparent}
 .pb::-webkit-scrollbar-thumb{background:#3d3d3d;border:2px solid var(--bg)}
@@ -758,6 +758,11 @@ a[href],[role="button"]:not([aria-disabled="true"]),summary,select{cursor:pointe
 .gold-meta{margin-left:auto;display:inline-flex;align-items:center;gap:6px;flex:none;color:#a1a1aa;font-size:8px}
 .gold-src{text-transform:uppercase;letter-spacing:.06em;color:#e4e4e7;font-weight:600}
 .gold-date{color:#a1a1aa}
+html.is-lite *{backdrop-filter:none !important;-webkit-backdrop-filter:none !important;box-shadow:none !important;text-shadow:none !important}
+html.is-lite .resizer-v:hover,html.is-lite .resizer-v.is-active,
+html.is-lite .resizer-col:hover,html.is-lite .resizer-col.is-active,
+html.is-lite .resizer-h:hover,html.is-lite .resizer-h.is-active{background:#22d3ee;box-shadow:none !important}
+html.is-lite .mkt-pill.open i,html.is-lite .mkt-pill.pre i,html.is-lite .mkt-pill.post i{animation:none !important}
 
 
 .sit-body{display:flex;flex-direction:column;background:var(--bg)}
@@ -1665,7 +1670,8 @@ a[href],[role="button"]:not([aria-disabled="true"]),summary,select{cursor:pointe
 .cb[aria-selected="true"]:hover{background:rgba(255,255,255,.06);color:#fff}
 .cb:focus-visible{outline:2px solid var(--focus);outline-offset:-2px;z-index:4}
 .camgrid{display:grid;grid-template-columns:repeat(var(--cols,2),minmax(0,1fr));gap:1px;background:var(--border)}
-.cam{position:relative;display:block;width:100%;padding:0;background:#000;text-align:left;cursor:pointer;outline:none}
+.cam{position:relative;display:block;width:100%;padding:0;background:#000;text-align:left;cursor:pointer;outline:none;content-visibility:auto;contain-intrinsic-size:auto 160px auto 120px}
+.cam-sentinel{grid-column:1 / -1;height:1px;pointer-events:none;visibility:hidden}
 .cam:focus{outline:none}
 .cam:focus-visible{outline:2px solid var(--focus);outline-offset:-2px;z-index:4}
 .cam .frame{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000}
@@ -4779,6 +4785,10 @@ html[data-theme="light"] .spl-skip:hover{background:#e0dcd3;border-color:#57544c
             <button class="lm-size-btn" type="button" data-sit-w="520px">Lebar</button>
           </div>
         </div>
+        <div class="lm-sec">
+          <span class="lm-st">Performa Perangkat</span>
+          <label class="lm-item"><input type="checkbox" id="perf-lite-tog"> <span>Mode Ringan (Hemat CPU/RAM)</span></label>
+        </div>
       </div>
     </div>
     <button class="btn hdr-sync" id="btn-refresh" type="button" data-state="idle" title="Tarik ulang semua sumber (R)">
@@ -6321,8 +6331,9 @@ function drawGlobe(now){
   const c = $('#sit-globe');
   if (!c || typeof d3 === 'undefined') return;
   tickFly(now);
+  const isLite = document.documentElement.classList.contains('is-lite');
   const ctx = c.getContext('2d');
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const dpr = isLite ? 1 : Math.min(window.devicePixelRatio || 1, 2);
   const w = c.clientWidth, h = c.clientHeight;
   if (!w || !h) return;
   const cw = Math.round(w * dpr), ch = Math.round(h * dpr);
@@ -6498,7 +6509,7 @@ function drawGlobe(now){
       ctx.moveTo(d.x, d.y - s); ctx.lineTo(d.x + s * 0.92, d.y + s * 0.62); ctx.lineTo(d.x - s * 0.92, d.y + s * 0.62);
       ctx.closePath();
       ctx.save();
-      ctx.shadowColor = d.color; ctx.shadowBlur = dim ? 0 : (alert ? 12 : 5);
+      ctx.shadowColor = d.color; ctx.shadowBlur = (isLite || dim) ? 0 : (alert ? 12 : 5);
       ctx.fillStyle = hexA(d.color, (alert ? 0.95 : 0.72) * (dim ? 0.3 : 1));
       ctx.fill(); ctx.restore();
       ctx.lineWidth = .9; ctx.strokeStyle = light ? '#ffffff' : '#0d0d0d'; ctx.stroke();
@@ -6523,7 +6534,7 @@ function drawGlobe(now){
       ctx.lineTo(d.x - s * 0.88, d.y);
       ctx.closePath();
       ctx.save();
-      ctx.shadowColor = d.color; ctx.shadowBlur = dim ? 0 : (alert ? 12 : 6);
+      ctx.shadowColor = d.color; ctx.shadowBlur = (isLite || dim) ? 0 : (alert ? 12 : 6);
       ctx.fillStyle = hexA(d.color, (alert ? 0.95 : 0.78) * (dim ? 0.3 : 1));
       ctx.fill(); ctx.restore();
       ctx.lineWidth = .9; ctx.strokeStyle = light ? '#ffffff' : '#0d0d0d'; ctx.stroke();
@@ -6541,7 +6552,7 @@ function drawGlobe(now){
     ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
     ctx.save();
     ctx.shadowColor = d.color;
-    ctx.shadowBlur = dim ? 0 : (d.ageMs < 2 * 3600e3 ? 7 : (d.ageMs < 12 * 3600e3 ? 4 : 0));
+    ctx.shadowBlur = (isLite || dim) ? 0 : (d.ageMs < 2 * 3600e3 ? 7 : (d.ageMs < 12 * 3600e3 ? 4 : 0));
     ctx.fillStyle = hexA(d.color, (d.alpha || 0.65) * (dim ? 0.3 : 1));
     ctx.fill();
     ctx.restore();
@@ -6652,6 +6663,8 @@ function globeLoop(now){
   globeRaf = 0;
   if (!globeReady) { globeRaf = requestAnimationFrame(globeLoop); return; }
   if (mapOpen || document.hidden) return;
+  const sitPane = document.getElementById('pane-situasi');
+  if (sitPane && sitPane.classList.contains('is-hidden')) return;
 
   if (globeVel && !gesture && !flyAnim) {
     const dt = Math.min(50, Math.max(4, now - (globeLast || now - 16)));
@@ -6662,8 +6675,10 @@ function globeLoop(now){
     globeVel.vx *= dec; globeVel.vy *= dec;
     if (Math.hypot(globeVel.vx, globeVel.vy) < 0.004) globeVel = null;
   }
+  const isLite = document.documentElement.classList.contains('is-lite');
   const busy = ptrs.size > 0 || !!flyAnim || !!globeVel || now - lastGestEnd < 250 || saHiding || (saShowT0 && Date.now() - saShowT0 < 300);
-  if (now - globeLast > (busy ? 4 : 45)) {
+  const minInterval = isLite ? (busy ? 33 : 90) : (busy ? 4 : 45);
+  if (now - globeLast > minInterval) {
     globeLast = now;
     const gc = $('#sit-globe');
     if (gc && (!gc.clientWidth || !gc.clientHeight)) { try { tickFly(now); } catch (e) {} }
@@ -7745,7 +7760,7 @@ function clToastDismiss(card){
 }
 addEventListener('pagehide', () => {
   clToastQ.forEach(s => clearTimeout(s.t)); clToastQ.clear(); clToastOrder.length = 0; clToastActiveEl = null;
-  const box = $('#cl-toasts'); if (box) box.innerHTML = '';
+  const box = $('#cl-toasts'); if (box) box.replaceChildren();
 });
 
 function activeWindowPointStats(now = Date.now()){
@@ -9555,7 +9570,7 @@ async function renderLead(h, isLatest = true){
   leadRenderURL = h && h.url || '';
   stopLeadMedia();
   const box = $('#lead');
-  if (!h) { box.setAttribute('aria-busy', 'false'); box.innerHTML = ''; return; }
+  if (!h) { box.setAttribute('aria-busy', 'false'); box.replaceChildren(); return; }
   box.setAttribute('aria-busy', 'true');
   box.innerHTML = leadSkeletonHtml();
 
@@ -9778,7 +9793,7 @@ function renderNews(){
     curLeadScope = scope;
     leadRenderId++;
     leadRenderURL = '';
-    $('#lead').innerHTML = '';
+    $('#lead').replaceChildren();
     $('#nlist').innerHTML = items.length
       ? '<div class="empty">Tidak ada berita yang lolos saring.</div>'
       : lastGood.size
@@ -9851,7 +9866,7 @@ function renderNlist(){
 
   const sc = $('#nlist').closest('.pb') || document.scrollingElement;
   const st = sc ? sc.scrollTop : 0;
-  $('#nlist').innerHTML = '';
+  $('#nlist').replaceChildren();
   nwAppend();
   if (sc) sc.scrollTop = st;
 }
@@ -10279,7 +10294,7 @@ function paintBreak(ms){
 const tkFetchEl = $('#tk-fetch');
 tkFetchEl.addEventListener('click', () => { if (!breakBusy) pullBreaking(); });
 tkFetchEl.addEventListener('keydown', e => {
-  if ((e.key === 'Enter' || e.key === ' ') && !breakBusy) { e.preventDefault(); pullBreaking(); }
+  if ((e.key === 'Enter' || e.key === ' ') && !e.isComposing && !breakBusy) { e.preventDefault(); pullBreaking(); }
 });
 const TK_SIG = { pajak:'#i-tk-pajak', demo:'#i-tk-demo', fire:'#i-tk-fire', flood:'#i-tk-flood', disaster:'#i-tk-disaster',
   insiden:'#i-tk-insiden', siber:'#i-tk-siber', kriminal:'#i-tk-kriminal',
@@ -10382,7 +10397,7 @@ function buildTicker(force){
   }
 }
 
-let tkX = 0, tkSetW = 0, tkLast = 0, tkHold = false, tkVel = TICK_PX_S;
+let tkX = 0, tkSetW = 0, tkLast = 0, tkHold = false, tkVel = TICK_PX_S, tkRafId = 0;
 function tkFrame(t) {
   const dt = tkLast ? Math.min(t - tkLast, 100) / 1000 : 0;
   tkLast = t;
@@ -10394,9 +10409,23 @@ function tkFrame(t) {
     if (tkX >= tkSetW) tkX %= tkSetW;
     tickTrack.style.transform = 'translate3d(' + (-tkX).toFixed(2) + 'px,0,0)';
   } else tickTrack.style.transform = '';
-  requestAnimationFrame(tkFrame);
+  if (!document.hidden) tkRafId = requestAnimationFrame(tkFrame);
+  else tkRafId = 0;
 }
-requestAnimationFrame(tkFrame);
+function startTkLoop(){
+  if (!tkRafId && !document.hidden) {
+    tkLast = performance.now();
+    tkRafId = requestAnimationFrame(tkFrame);
+  }
+}
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    if (tkRafId) { cancelAnimationFrame(tkRafId); tkRafId = 0; }
+  } else {
+    startTkLoop();
+  }
+});
+startTkLoop();
 {
 
   const vpEl = $('.tk-vp');
@@ -10513,7 +10542,8 @@ function getJakLoader(){
   return _JakLoader;
 }
 const hlsJak = cfg => { const jl = getJakLoader(); return jl ? Object.assign({loader:jl}, cfg) : cfg; };
-let aliveMap = null, district = 'Semua', camList = [], showOfflineCams = false;
+let aliveMap = null, district = 'Semua', camList = [], showOfflineCams = false, fullCamList = [], camRenderCount = 0, sentinelObserver = null;
+const CAM_PAGE_SIZE = 48;
 let pinnedCams = [];
 try {
   const raw = localStorage.getItem('sitrep_pinned_cams');
@@ -10571,7 +10601,7 @@ function togglePinCam(c, ev){
   drawCityBar();
 }
 
-const MAXL = 8, PERHOST = 4, LIVE_CAP = 12, SOFT_MS = 12000, OFF_FREE_MS = 20000, ORDER_COOLDOWN_MS = 4000;
+const MAXL = 8, PERHOST = 4; let LIVE_CAP = 12; const SOFT_MS = 12000, OFF_FREE_MS = 20000, ORDER_COOLDOWN_MS = 4000;
 let camSnapOK = false, lastOrderAt = 0, orderTimer = 0, orderDeferred = false;
 
 const HEDGE_MS = 2500, hostMode = new Map(), hostWin = new Map();
@@ -11129,6 +11159,7 @@ function pump(){
     const all = [...P.entries()].filter(([, p]) => !p.dead);
 
     const visRanked = CctvCore.pickLiveKeys(liveCands, vr);
+    LIVE_CAP = (document.documentElement && document.documentElement.classList.contains('is-lite')) ? 3 : 12;
     const wantLive = new Set(visRanked.slice(0, LIVE_CAP));
     const wantLoadSlot = new Set();
     {
@@ -11328,6 +11359,8 @@ function onCctvScroll(e){
   const st = (t && typeof t.scrollTop === 'number') ? t.scrollTop : (window.scrollY || document.documentElement.scrollTop || 0);
   cctvScrollDir = st >= cctvLastScrollTop ? 'down' : 'up';
   cctvLastScrollTop = st;
+  const root = getCctvScrollRoot() || document.scrollingElement || document.documentElement;
+  if (root && root.scrollHeight - root.scrollTop - root.clientHeight < 360) loadMoreCams();
   refreshCamVis();
   clearTimeout(camScrollEndT);
   camScrollEndT = setTimeout(runPump, 120);
@@ -11445,12 +11478,14 @@ function wantList(){
 }
 let camsRenderQueued = false;
 function renderCams(){
-
   if (document.hidden) { camsRenderQueued = true; return; }
   camsRenderQueued = false;
   const nextList = wantList();
   if (!nextList.length) {
+    fullCamList = [];
     camList = [];
+    camRenderCount = 0;
+    updateSentinel();
     P.forEach((p, el) => {
       clearTimeout(p.t); clearTimeout(p.retry); clearTimeout(p.rel);
       if (p.waitTimer) { clearTimeout(p.waitTimer); p.waitTimer = null; }
@@ -11498,9 +11533,11 @@ function renderCams(){
     layout(); upd();
     return;
   }
+  fullCamList = nextList;
+  camRenderCount = Math.min(fullCamList.length, CAM_PAGE_SIZE);
+  camList = fullCamList.slice(0, camRenderCount);
   if (!P.size) {
-    camList = nextList;
-    camGrid.innerHTML = camList.map(cellHtml).join('');
+    camGrid.innerHTML = camList.map(cellHtml).join('') + (camRenderCount < fullCamList.length ? '<div class="cam-sentinel"></div>' : '');
     camGrid.querySelectorAll('.cam').forEach((el, i) => {
       const c = camList[i];
       const p = { vis: false, idx: i, host: CctvCore.hostOf(c.s) };
@@ -11509,12 +11546,13 @@ function renderCams(){
       P.set(el, p);
       vio.observe(el);
     });
+    updateSentinel();
     layout(); upd(); pump();
     return;
   }
   const byUrl = new Map();
   P.forEach((p, el) => { if (el.dataset.s) byUrl.set(el.dataset.s, { el, p }); });
-  const keepUrls = new Set(nextList.map(c => c.s));
+  const keepUrls = new Set(camList.map(c => c.s));
   for (const [url, { el, p }] of byUrl) {
     if (keepUrls.has(url)) continue;
     clearTimeout(p.t); clearTimeout(p.retry); clearTimeout(p.rel); if (p.waitTimer) { clearTimeout(p.waitTimer); p.waitTimer = null; } clearSnapTimer(p);
@@ -11525,7 +11563,6 @@ function renderCams(){
     P.delete(el);
     el.remove();
   }
-  camList = nextList;
   const frag = document.createDocumentFragment(), tpl = document.createElement('div');
   for (let i = 0; i < camList.length; i++) {
     const c = camList[i], ex = byUrl.get(c.s);
@@ -11558,9 +11595,65 @@ function renderCams(){
       frag.appendChild(el);
     }
   }
-  if (frag.childNodes.length) camGrid.appendChild(frag);
+  const curSentinel = camGrid.querySelector('.cam-sentinel');
+  if (frag.childNodes.length) {
+    if (curSentinel) camGrid.insertBefore(frag, curSentinel);
+    else camGrid.appendChild(frag);
+  }
+  updateSentinel();
   orderCams(true);
   layout(); upd(); pump();
+}
+function updateSentinel(){
+  let s = camGrid.querySelector('.cam-sentinel');
+  if (camRenderCount < fullCamList.length) {
+    if (!s) {
+      s = document.createElement('div');
+      s.className = 'cam-sentinel';
+      camGrid.appendChild(s);
+    }
+    initSentinel();
+    if (sentinelObserver && s) sentinelObserver.observe(s);
+  } else if (s) {
+    if (sentinelObserver) sentinelObserver.unobserve(s);
+    s.remove();
+  }
+}
+function initSentinel(){
+  if (sentinelObserver) return;
+  const targetRoot = getCctvScrollRoot();
+  sentinelObserver = new IntersectionObserver(entries => {
+    for (const ent of entries) {
+      if (ent.isIntersecting) loadMoreCams();
+    }
+  }, { root: targetRoot, rootMargin: '300px 0px 300px 0px' });
+}
+function loadMoreCams(){
+  if (camRenderCount >= fullCamList.length) return;
+  const start = camRenderCount;
+  camRenderCount = Math.min(fullCamList.length, camRenderCount + CAM_PAGE_SIZE);
+  camList = fullCamList.slice(0, camRenderCount);
+  const frag = document.createDocumentFragment(), tpl = document.createElement('div');
+  for (let i = start; i < camRenderCount; i++) {
+    const c = camList[i];
+    tpl.innerHTML = cellHtml(c, i);
+    const el = tpl.firstElementChild;
+    const p = { vis: false, idx: i, host: CctvCore.hostOf(c.s) };
+    if (c._srvOff) { p.dead = true; p.bad = true; p.tries = 1; badge(el, 'off', 'Offline'); el.classList.add('is-offline'); }
+    el.style.order = String(CctvCore.camOrderValue(p, i));
+    P.set(el, p);
+    vio.observe(el);
+    frag.appendChild(el);
+  }
+  const s = camGrid.querySelector('.cam-sentinel');
+  if (frag.childNodes.length) {
+    if (s) camGrid.insertBefore(frag, s);
+    else camGrid.appendChild(frag);
+  }
+  updateSentinel();
+  layout();
+  upd();
+  pumpSoon();
 }
 function drawCityBar(){
   const cnt = {};
@@ -15148,7 +15241,7 @@ function rdArticle(d, url) {
       if (!slot || API == null) return;
       if (leadExaCache.has(safeExaUrl)) {
         if (slot.innerHTML) {
-          slot.innerHTML = '';
+          slot.replaceChildren();
           exaBtn.textContent = 'Tampilkan Ringkasan Exa AI';
         } else {
           slot.innerHTML = exaCardHtml(leadExaCache.get(safeExaUrl));
@@ -15263,7 +15356,7 @@ async function rdLoadThread(kind, url) {
   const seq = ++rdThreadSeq;
   box.innerHTML = `<div class="rd-rep"><div class="rd-rh"><b>Balasan</b><span>memuat…</span></div>
     <div class="rd-sk s"></div><div class="rd-sk"></div><div class="rd-sk s"></div></div>`;
-  if (API == null) { box.innerHTML = ''; return; }
+  if (API == null) { box.replaceChildren(); return; }
   try {
     let d = rdThreadCache.get(url);
     if (!d) {
@@ -16402,7 +16495,7 @@ async function pullDjpUptime(fresh){
         };
       }
     } catch (_) {}
-    return JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
+    return structuredClone(DEFAULT_LAYOUT);
   }
 
   function saveLayout() {
@@ -16811,7 +16904,7 @@ async function pullDjpUptime(fresh){
       btn.addEventListener('click', () => {
         const preset = btn.dataset.preset;
         if (preset === 'default') {
-          state = JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
+          state = structuredClone(DEFAULT_LAYOUT);
         } else if (preset === 'intel') {
           state.panes.situasi.visible = true;
           state.panes.situasi.width = '380px';
@@ -16859,20 +16952,58 @@ async function pullDjpUptime(fresh){
     const resetBtn = document.getElementById('lm-reset');
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
-        state = JSON.parse(JSON.stringify(DEFAULT_LAYOUT));
+        state = structuredClone(DEFAULT_LAYOUT);
         localStorage.removeItem(STORAGE_KEY);
         applyLayout();
       });
     }
+
+    const perfTog = document.getElementById('perf-lite-tog');
+    if (perfTog) {
+      perfTog.addEventListener('change', () => {
+        const isLite = perfTog.checked;
+        document.documentElement.classList.toggle('is-lite', isLite);
+        try {
+          localStorage.setItem('sitrep_perf_mode', isLite ? 'lite' : 'full');
+        } catch (_) {}
+        if (typeof renderCams === 'function') renderCams();
+      });
+    }
+  }
+
+  function isDeviceLowSpec() {
+    try {
+      if (typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 4) return true;
+      if (typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4) return true;
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return true;
+    } catch (_) {}
+    return false;
+  }
+
+  function initPerfMode() {
+    let active = false;
+    try {
+      const saved = localStorage.getItem('sitrep_perf_mode');
+      if (saved === 'lite') active = true;
+      else if (saved === 'full') active = false;
+      else active = isDeviceLowSpec();
+    } catch (_) {
+      active = isDeviceLowSpec();
+    }
+    document.documentElement.classList.toggle('is-lite', active);
+    const tog = document.getElementById('perf-lite-tog');
+    if (tog) tog.checked = active;
   }
 
   window.addEventListener('DOMContentLoaded', () => {
+    initPerfMode();
     bindPaneActions();
     bindMenuControls();
     applyLayout();
   });
 
   if (document.readyState !== 'loading') {
+    initPerfMode();
     bindPaneActions();
     bindMenuControls();
     applyLayout();
