@@ -24,10 +24,45 @@ static HTTP_CLIENT: LazyLock<reqwest::Client> = LazyLock::new(|| {
     reqwest::Client::builder()
         .timeout(Duration::from_secs(12))
         .danger_accept_invalid_certs(true)
-        .user_agent("sitrep-cctv/1.0")
+        .user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
         .build()
         .unwrap_or_default()
 });
+
+fn cctv_request_builder(url_str: &str) -> reqwest::RequestBuilder {
+    let ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
+    let mut req = HTTP_CLIENT.get(url_str).header(header::USER_AGENT, ua);
+    if let Ok(parsed) = Url::parse(url_str) {
+        let host = parsed.host_str().unwrap_or("").to_lowercase();
+        if host.ends_with("molecool.id") {
+            req = req.header(header::REFERER, "https://molecool.id/")
+                     .header(header::ORIGIN, "https://molecool.id");
+        } else if host.ends_with("pantaucctv.com") || host.ends_with("cctvnusantara.com") || host.ends_with("99apps.id") {
+            req = req.header(header::REFERER, "https://cctvnusantara.com/")
+                     .header(header::ORIGIN, "https://cctvnusantara.com");
+        } else if host.ends_with("jogjakota.go.id") {
+            req = req.header(header::REFERER, "https://cctv.jogjakota.go.id/");
+        } else if host.ends_with("bpjt.pu.go.id") {
+            req = req.header(header::REFERER, "https://bpjt.pu.go.id/");
+        } else if host.ends_with("jakarta.go.id") || host.ends_with("balitower.co.id") {
+            req = req.header(header::REFERER, "https://smartcity.jakarta.go.id/")
+                     .header(header::ORIGIN, "https://smartcity.jakarta.go.id");
+        } else if host.ends_with("dpuprkotang.info") {
+            req = req.header(header::REFERER, "https://cctv.dpuprkotang.info/");
+        } else if host.ends_with("dsdajakarta.id") || host.ends_with("dsdadki.web.id") {
+            req = req.header(header::REFERER, "https://poskobanjirdsda.jakarta.go.id/");
+        } else if host.ends_with("tangerangkab.go.id") {
+            req = req.header(header::REFERER, "https://cctv-dishub.tangerangkab.go.id/");
+        } else if host.ends_with("baliprov.go.id") {
+            req = req.header(header::REFERER, "https://balisatudata.baliprov.go.id/");
+        } else if host.ends_with("bandung.go.id") {
+            req = req.header(header::REFERER, "https://pelindung.bandung.go.id/");
+        } else if host.ends_with("semarangkota.go.id") {
+            req = req.header(header::REFERER, "https://pantausemar.semarangkota.go.id/");
+        }
+    }
+    req
+}
 
 fn now_ms() -> u64 {
     SystemTime::now()
@@ -164,7 +199,7 @@ pub async fn handle(route: &str, _params: HashMap<String, String>, req: Request)
             // Direct JPEG bypass for dpuprkotang or direct image urls
             let target_url = CctvGateway::resolve_direct_snap_url(&raw_url).unwrap_or_else(|| raw_url.clone());
             if (target_url.contains("/api/frame.jpeg") || target_url.ends_with(".jpg") || target_url.ends_with(".jpeg"))
-                && let Ok(resp) = HTTP_CLIENT.get(&target_url).send().await
+                && let Ok(resp) = cctv_request_builder(&target_url).send().await
                 && resp.status().is_success()
                 && let Ok(bytes) = resp.bytes().await
             {
@@ -263,8 +298,7 @@ pub async fn handle(route: &str, _params: HashMap<String, String>, req: Request)
             let host = parsed.host_str().unwrap_or("").to_string();
 
             let fetch_fut = async {
-                let resp = HTTP_CLIENT
-                    .get(&raw_url)
+                let resp = cctv_request_builder(&raw_url)
                     .send()
                     .await
                     .map_err(|_| (502u16, "upstream error"))?;

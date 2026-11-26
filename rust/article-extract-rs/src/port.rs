@@ -2180,7 +2180,11 @@ fn rd_blocks_impl(
                 {
                     let mut k_norm = RE_NON_WORD.replace_all(&t.to_lowercase(), " ").to_string();
                     if k_norm.len() > 140 {
-                        k_norm.truncate(140);
+                        let mut end = 140;
+                        while end > 0 && !k_norm.is_char_boundary(end) {
+                            end -= 1;
+                        }
+                        k_norm.truncate(end);
                     }
                     if !pseen.contains(&k_norm) {
                         pseen.insert(k_norm);
@@ -3925,7 +3929,11 @@ fn emit_md_text(
         .replace_all(&clean.to_lowercase(), " ")
         .to_string();
     if k.len() > 140 {
-        k.truncate(140);
+        let mut end = 140;
+        while end > 0 && !k.is_char_boundary(end) {
+            end -= 1;
+        }
+        k.truncate(end);
     }
     if seen.contains(&k) {
         return;

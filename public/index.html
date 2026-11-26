@@ -11418,17 +11418,20 @@ function wantList(){
   const toks = q ? q.split(/\s+/).filter(Boolean) : [];
   const list = [];
   let srvOff = 0;
-  const onlyPinned = pinnedOnly || district === 'Tersemat';
+  const isSearching = toks.length > 0;
+  const onlyPinned = !isSearching && (pinnedOnly || district === 'Tersemat');
   for (let i = 0; i < CAMS.length; i++) {
     const c = CAMS[i];
     if (c._hide === true) continue;
-    if (onlyPinned) {
-      if (!isPinned(c)) continue;
-    } else {
-      if (!camInDistrict(c, district)) continue;
+    if (!isSearching) {
+      if (onlyPinned) {
+        if (!isPinned(c)) continue;
+      } else {
+        if (!camInDistrict(c, district)) continue;
+      }
     }
     if (toks.length) {
-      const hay = ((c.n || '') + ' ' + (c.sub || '') + ' ' + (c.region || '') + ' ' + (c.rawC || '') + ' ' + (c.c || '')).toLowerCase();
+      const hay = ((c.n || '') + ' ' + (c.sub || '') + ' ' + (c.region || '') + ' ' + (c.rawC || '') + ' ' + (c.c || '') + ' ' + (c.s || '')).toLowerCase();
       if (!toks.every(t => hay.includes(t))) continue;
     }
     const isSrvOff = Boolean(aliveMap && aliveMap[i] === false);
@@ -11446,7 +11449,7 @@ function renderCams(){
   if (document.hidden) { camsRenderQueued = true; return; }
   camsRenderQueued = false;
   const nextList = wantList();
-  if ((pinnedOnly || district === 'Tersemat') && !nextList.length) {
+  if (!nextList.length) {
     camList = [];
     P.forEach((p, el) => {
       clearTimeout(p.t); clearTimeout(p.retry); clearTimeout(p.rel);
@@ -11457,22 +11460,40 @@ function renderCams(){
       try { vio.unobserve(el); } catch (e) {}
     });
     P.clear();
-    camGrid.innerHTML = `<div class="cam-empty-pin">
-      <div class="cep-ic"><svg class="ic" aria-hidden="true"><use href="#i-thumbtack"></use></svg></div>
-      <div class="cep-t">Belum Ada Kamera Tersemat</div>
-      <div class="cep-d">Arahkan kursor pada kartu CCTV mana pun lalu klik ikon jarum pin (📌) untuk menyematkan maksimal 3 kamera pantauan prioritas.</div>
-      <button class="cep-btn" type="button" id="cep-show-all">Tampilkan Semua Kamera</button>
-    </div>`;
-    const showAllBtn = document.getElementById('cep-show-all');
-    if (showAllBtn) {
-      showAllBtn.addEventListener('click', () => {
-        pinnedOnly = false;
-        district = 'Semua';
-        savePinnedCams();
-        updatePinUi();
-        drawCityBar();
-        renderCams();
-      });
+    const qVal = ($('#cq') && $('#cq').value) || '';
+    if (qVal.trim()) {
+      camGrid.innerHTML = `<div class="cam-empty-pin">
+        <div class="cep-ic"><svg class="ic" aria-hidden="true"><use href="#i-search"></use></svg></div>
+        <div class="cep-t">Tidak Ada Kamera Ditemukan</div>
+        <div class="cep-d">Tidak ditemukan kamera dengan kata kunci "${esc(qVal)}". Coba kata kunci lain seperti nama jalan, kota, atau daerah.</div>
+        <button class="cep-btn" type="button" id="cep-clear-search">Hapus Pencarian</button>
+      </div>`;
+      const clrBtn = document.getElementById('cep-clear-search');
+      if (clrBtn) {
+        clrBtn.addEventListener('click', () => {
+          const inp = $('#cq');
+          if (inp) { inp.value = ''; inp.focus(); }
+          renderCams();
+        });
+      }
+    } else if (pinnedOnly || district === 'Tersemat') {
+      camGrid.innerHTML = `<div class="cam-empty-pin">
+        <div class="cep-ic"><svg class="ic" aria-hidden="true"><use href="#i-thumbtack"></use></svg></div>
+        <div class="cep-t">Belum Ada Kamera Tersemat</div>
+        <div class="cep-d">Arahkan kursor pada kartu CCTV mana pun lalu klik ikon jarum pin (📌) untuk menyematkan maksimal 3 kamera pantauan prioritas.</div>
+        <button class="cep-btn" type="button" id="cep-show-all">Tampilkan Semua Kamera</button>
+      </div>`;
+      const showAllBtn = document.getElementById('cep-show-all');
+      if (showAllBtn) {
+        showAllBtn.addEventListener('click', () => {
+          pinnedOnly = false;
+          district = 'Semua';
+          savePinnedCams();
+          updatePinUi();
+          drawCityBar();
+          renderCams();
+        });
+      }
     }
     layout(); upd();
     return;
@@ -11571,7 +11592,17 @@ $('#citybar').addEventListener('click', e => {
   const b = e.target.closest('.cb'); if (!b) return;
   district = b.dataset.city; drawCityBar(); renderCams();
 });
-$('#cq').addEventListener('input', debounce(renderCams, 200));
+if ($('#cq')) {
+  $('#cq').addEventListener('input', debounce(renderCams, 150));
+  $('#cq').addEventListener('search', () => renderCams());
+  $('#cq').addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      $('#cq').value = '';
+      renderCams();
+      $('#cq').blur();
+    }
+  });
+}
 if ($('#cam-pin-tog')) {
   $('#cam-pin-tog').addEventListener('click', () => {
     pinnedOnly = !pinnedOnly;
