@@ -272,7 +272,14 @@
       </div>
     </div>
     <div class="pb">
-      <div class="tools cam-tools"><input class="inp cmd" id="cq" type="search" placeholder="Cari kamera…" aria-label="Cari kamera"><button class="cam-off-btn" id="cam-off-tog" type="button" aria-pressed="false" hidden>Offline <span>0</span></button></div>
+      <div class="tools cam-tools">
+        <input class="inp cmd" id="cq" type="search" placeholder="Cari kamera…" aria-label="Cari kamera">
+        <button class="cam-pin-tog" id="cam-pin-tog" type="button" aria-pressed="false" title="Tampilkan hanya kamera tersemat (Maks 3)">
+          <svg class="ic" aria-hidden="true"><use href="#i-thumbtack"></use></svg>
+          <span id="cam-pin-label">Tersemat <b>0/3</b></span>
+        </button>
+        <button class="cam-off-btn" id="cam-off-tog" type="button" aria-pressed="false" hidden>Offline <span>0</span></button>
+      </div>
       <div class="citybar" id="citybar" role="tablist" aria-label="Wilayah kamera"></div>
       <div class="camgrid" id="camgrid"></div>
     </div>

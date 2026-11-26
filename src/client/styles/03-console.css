@@ -46,12 +46,18 @@
 .ph-act.ph-drag:active{cursor:grabbing}
 .ph-act .ic{width:11.5px;height:11.5px}
 
-.resizer-v{
-  position:absolute;top:0;bottom:0;width:7px;cursor:col-resize;
-  z-index:40;margin-left:-3.5px;transition:background .15s;
+.resizer-v,.resizer-col{
+  position:absolute;top:0;bottom:0;width:8px;cursor:col-resize;
+  z-index:45;margin-left:-4px;transition:background .15s;
 }
-.resizer-v:hover,.resizer-v.is-active{
-  background:rgba(34,211,238,.55);box-shadow:0 0 8px rgba(34,211,238,.4);
+.resizer-h{
+  position:absolute;left:0;right:0;height:8px;cursor:row-resize;
+  z-index:45;margin-top:-4px;transition:background .15s;
+}
+.resizer-v:hover,.resizer-v.is-active,
+.resizer-col:hover,.resizer-col.is-active,
+.resizer-h:hover,.resizer-h.is-active{
+  background:rgba(34,211,238,.75);box-shadow:0 0 10px rgba(34,211,238,.5);
 }
 .mkt-pill{display:inline-flex;align-items:center;gap:5px;height:17px;padding:0 9px;margin-right:8px;
   border-radius:9px;font:700 9px/1 var(--mono);letter-spacing:.05em;

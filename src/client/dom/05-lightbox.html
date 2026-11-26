@@ -1,5 +1,8 @@
 <div class="glb" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Player CCTV besar">
-  <button class="gx" id="glb-close" type="button">Tutup <svg class="ic" aria-hidden="true"><use href="#i-close"></use></svg></button>
+  <div class="glb-acts">
+    <button class="gx glb-pin-btn" id="glb-pin" type="button"><svg class="ic" aria-hidden="true"><use href="#i-thumbtack"></use></svg> <span id="glb-pin-txt">Sematkan</span></button>
+    <button class="gx" id="glb-close" type="button">Tutup <svg class="ic" aria-hidden="true"><use href="#i-close"></use></svg></button>
+  </div>
   <video id="glb-video" controls muted playsinline></video>
   <img id="glb-snap" alt="" style="display:none">
   <iframe id="glb-frame" allow="autoplay; fullscreen" style="display:none"></iframe>

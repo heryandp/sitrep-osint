@@ -8,7 +8,7 @@
   const DEFAULT_LAYOUT = {
     panes: {
       situasi: { visible: true, width: '420px' },
-      mkt:     { visible: true },
+      mkt:     { visible: true, height: 'auto' },
       social:  { visible: true, flex: 0.8 },
       wire:    { visible: true, flex: 1.1 },
       cctv:    { visible: true, flex: 1.1 }
@@ -81,6 +81,7 @@
     let gridRows = '';
 
     const sitW = (state.panes.situasi && state.panes.situasi.width) || '420px';
+    const mktH = (state.panes.mkt && state.panes.mkt.height) || 'auto';
 
     if (sitVis) {
       if (bottomCols > 0) {
@@ -95,7 +96,7 @@
           const mktRepeat = activeBottom.map(() => 'mkt').join(' ');
           const botRepeat = activeBottom.join(' ');
           gridAreas = `"${'situasi'} ${mktRepeat}" "${'situasi'} ${botRepeat}"`;
-          gridRows = 'auto minmax(0, 1fr)';
+          gridRows = `${mktH} minmax(0, 1fr)`;
         } else {
           const botRepeat = activeBottom.join(' ');
           gridAreas = `"${'situasi'} ${botRepeat}"`;
@@ -125,7 +126,7 @@
           const mktRepeat = activeBottom.map(() => 'mkt').join(' ');
           const botRepeat = activeBottom.join(' ');
           gridAreas = `"${mktRepeat}" "${botRepeat}"`;
-          gridRows = 'auto minmax(0, 1fr)';
+          gridRows = `${mktH} minmax(0, 1fr)`;
         } else {
           const botRepeat = activeBottom.join(' ');
           gridAreas = `"${botRepeat}"`;
@@ -177,9 +178,11 @@
   }
 
   function updateResizers() {
-    consoleEl.querySelectorAll('.resizer-v').forEach(r => r.remove());
+    consoleEl.querySelectorAll('.resizer-v, .resizer-col, .resizer-h').forEach(r => r.remove());
+    if (state.maximized) return;
 
-    const sitVis = state.panes.situasi && state.panes.situasi.visible !== false && !state.maximized;
+    const consoleRect = consoleEl.getBoundingClientRect();
+    const sitVis = state.panes.situasi && state.panes.situasi.visible !== false;
     const sitPane = document.getElementById('pane-situasi');
 
     if (sitVis && sitPane) {
@@ -190,10 +193,8 @@
 
       const updatePos = () => {
         const rect = sitPane.getBoundingClientRect();
-        const consoleRect = consoleEl.getBoundingClientRect();
         resizer.style.left = `${rect.right - consoleRect.left}px`;
       };
-
       updatePos();
 
       resizer.addEventListener('pointerdown', e => {
@@ -219,6 +220,106 @@
         window.addEventListener('pointermove', onPointerMove);
         window.addEventListener('pointerup', onPointerUp);
       });
+    }
+
+    const mktVis = state.panes.mkt && state.panes.mkt.visible !== false;
+    const mktPane = document.getElementById('pane-mkt');
+    const activeBottom = state.order.filter(id => state.panes[id] && state.panes[id].visible !== false);
+
+    if (mktVis && mktPane && activeBottom.length > 0) {
+      const resizerH = document.createElement('div');
+      resizerH.className = 'resizer-h';
+      resizerH.setAttribute('title', 'Tahan dan geser untuk mengubah tinggi panel Market');
+      consoleEl.appendChild(resizerH);
+
+      const updateHPos = () => {
+        const rect = mktPane.getBoundingClientRect();
+        resizerH.style.top = `${rect.bottom - consoleRect.top}px`;
+        resizerH.style.left = `${rect.left - consoleRect.left}px`;
+        resizerH.style.width = `${rect.width}px`;
+      };
+      updateHPos();
+
+      resizerH.addEventListener('pointerdown', e => {
+        e.preventDefault();
+        resizerH.classList.add('is-active');
+        const startY = e.clientY;
+        const initialH = mktPane.offsetHeight;
+
+        const onPointerMove = moveEv => {
+          const deltaY = moveEv.clientY - startY;
+          const maxH = Math.max(120, consoleEl.offsetHeight * 0.6);
+          const newH = Math.max(50, Math.min(initialH + deltaY, maxH));
+          if (!state.panes.mkt) state.panes.mkt = { visible: true };
+          state.panes.mkt.height = `${Math.round(newH)}px`;
+          applyLayout();
+        };
+
+        const onPointerUp = () => {
+          resizerH.classList.remove('is-active');
+          window.removeEventListener('pointermove', onPointerMove);
+          window.removeEventListener('pointerup', onPointerUp);
+          saveLayout();
+        };
+
+        window.addEventListener('pointermove', onPointerMove);
+        window.addEventListener('pointerup', onPointerUp);
+      });
+    }
+
+    if (activeBottom.length > 1) {
+      for (let i = 0; i < activeBottom.length - 1; i++) {
+        const idA = activeBottom[i];
+        const idB = activeBottom[i + 1];
+        const paneA = document.getElementById(`pane-${idA}`);
+        const paneB = document.getElementById(`pane-${idB}`);
+        if (!paneA || !paneB) continue;
+
+        const resizerCol = document.createElement('div');
+        resizerCol.className = 'resizer-col';
+        resizerCol.setAttribute('title', 'Tahan dan geser untuk mengubah pembagian kolom');
+        consoleEl.appendChild(resizerCol);
+
+        const rectA = paneA.getBoundingClientRect();
+        resizerCol.style.top = `${rectA.top - consoleRect.top}px`;
+        resizerCol.style.height = `${rectA.height}px`;
+        resizerCol.style.left = `${rectA.right - consoleRect.left}px`;
+
+        resizerCol.addEventListener('pointerdown', e => {
+          e.preventDefault();
+          resizerCol.classList.add('is-active');
+          const startX = e.clientX;
+          const rectStartA = paneA.getBoundingClientRect();
+          const rectStartB = paneB.getBoundingClientRect();
+          const wA = rectStartA.width;
+          const wB = rectStartB.width;
+          const totalW = wA + wB;
+          const flexA = Number((state.panes[idA] && state.panes[idA].flex) || 1);
+          const flexB = Number((state.panes[idB] && state.panes[idB].flex) || 1);
+          const totalFlex = flexA + flexB;
+
+          const onPointerMove = moveEv => {
+            const deltaX = moveEv.clientX - startX;
+            const newWA = Math.max(140, Math.min(wA + deltaX, totalW - 140));
+            const ratio = newWA / totalW;
+            if (!state.panes[idA]) state.panes[idA] = { visible: true };
+            if (!state.panes[idB]) state.panes[idB] = { visible: true };
+            state.panes[idA].flex = parseFloat((totalFlex * ratio).toFixed(3));
+            state.panes[idB].flex = parseFloat((totalFlex * (1 - ratio)).toFixed(3));
+            applyLayout();
+          };
+
+          const onPointerUp = () => {
+            resizerCol.classList.remove('is-active');
+            window.removeEventListener('pointermove', onPointerMove);
+            window.removeEventListener('pointerup', onPointerUp);
+            saveLayout();
+          };
+
+          window.addEventListener('pointermove', onPointerMove);
+          window.addEventListener('pointerup', onPointerUp);
+        });
+      }
     }
   }
 

@@ -39,7 +39,7 @@ test('frontend modular source tree integrity and zero-drift build verification',
       '00-auth-utils.js', '01-globe.js', '02-toasts.js', '03-market.js',
       '04-social.js', '05-wire.js', '06-ticker.js', '07-cctv.js',
       '08-map.js', '09-tv-footer.js', '10-reader.js', '11-boot.js',
-      '12-pajak-window.js', '13-splash.js'
+      '12-pajak-window.js', '13-splash.js', '14-layout-engine.js'
     ];
     for (const sc of expectedScripts) {
       assert.ok(fs.existsSync(path.join(CLIENT_DIR, 'scripts', sc)), `scripts/${sc} must exist`);

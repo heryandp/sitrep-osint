@@ -28,6 +28,62 @@ function getJakLoader(){
 }
 const hlsJak = cfg => { const jl = getJakLoader(); return jl ? Object.assign({loader:jl}, cfg) : cfg; };
 let aliveMap = null, district = 'Semua', camList = [], showOfflineCams = false;
+let pinnedCams = [];
+try {
+  const raw = localStorage.getItem('sitrep_pinned_cams');
+  pinnedCams = raw ? JSON.parse(raw) : [];
+  if (!Array.isArray(pinnedCams)) pinnedCams = [];
+} catch (_) { pinnedCams = []; }
+let pinnedOnly = false;
+try {
+  pinnedOnly = localStorage.getItem('sitrep_pinned_only') === '1';
+} catch (_) { pinnedOnly = false; }
+
+function savePinnedCams(){
+  try {
+    localStorage.setItem('sitrep_pinned_cams', JSON.stringify(pinnedCams));
+  } catch (_) {}
+  try {
+    localStorage.setItem('sitrep_pinned_only', pinnedOnly ? '1' : '0');
+  } catch (_) {}
+}
+
+const isPinned = c => {
+  if (!c) return false;
+  const s = typeof c === 'string' ? c : c.s;
+  return pinnedCams.includes(s);
+};
+
+function updatePinUi(){
+  const lbl = $('#cam-pin-label');
+  if (lbl) lbl.innerHTML = `Tersemat <b>${pinnedCams.length}/3</b>`;
+  const tog = $('#cam-pin-tog');
+  if (tog) {
+    tog.classList.toggle('is-active', pinnedOnly);
+    tog.setAttribute('aria-pressed', String(pinnedOnly));
+  }
+}
+
+function togglePinCam(c, ev){
+  if (ev) { ev.stopPropagation(); ev.preventDefault(); }
+  if (!c || !c.s) return;
+  const idx = pinnedCams.indexOf(c.s);
+  if (idx >= 0) {
+    pinnedCams.splice(idx, 1);
+    if (typeof toast === 'function') toast(`Batal menyematkan: ${c.n || 'Kamera'}`);
+  } else {
+    if (pinnedCams.length >= 3) {
+      if (typeof toast === 'function') toast('Maksimal 3 kamera tersemat. Lepas salah satu terlebih dahulu.', 'warn');
+      return;
+    }
+    pinnedCams.push(c.s);
+    if (typeof toast === 'function') toast(`Disematkan (${pinnedCams.length}/3): ${c.n || 'Kamera'}`);
+  }
+  savePinnedCams();
+  updatePinUi();
+  renderCams();
+  drawCityBar();
+}
 
 const MAXL = 8, PERHOST = 4, LIVE_CAP = 12, SOFT_MS = 12000, OFF_FREE_MS = 20000, ORDER_COOLDOWN_MS = 4000;
 let camSnapOK = false, lastOrderAt = 0, orderTimer = 0, orderDeferred = false;
@@ -852,9 +908,12 @@ setInterval(() => {
 }, 5000);
 
 function cellHtml(c, i){
-  return `<div class="cam" data-i="${i}" data-s="${esc(c.s)}" role="button" tabindex="0" aria-label="${esc(c.n)}">
-    <div class="frame"><span class="badge wait">Antre</span></div>
-    <div class="cap">${esc(c.n)}</div>
+  const pinned = isPinned(c);
+  const pinBtn = `<button class="cam-pin${pinned ? ' is-pinned' : ''}" type="button" data-act="pin" title="${pinned ? 'Lepas sematan' : 'Sematkan kamera (maks 3)'}" aria-label="${pinned ? 'Lepas sematan' : 'Sematkan kamera'}"><svg class="ic" aria-hidden="true"><use href="#i-thumbtack"></use></svg></button>`;
+  const pinBadge = pinned ? '<span class="cap-pin" title="Tersemat">📌</span>' : '';
+  return `<div class="cam${pinned ? ' is-pinned' : ''}" data-i="${i}" data-s="${esc(c.s)}" role="button" tabindex="0" aria-label="${esc(c.n)}">
+    <div class="frame">${pinBtn}<span class="badge wait">Antre</span></div>
+    <div class="cap">${pinBadge}${esc(c.n)}</div>
   </div>`;
 }
 function layout(){
@@ -873,10 +932,15 @@ function wantList(){
   const toks = q ? q.split(/\s+/).filter(Boolean) : [];
   const list = [];
   let srvOff = 0;
+  const onlyPinned = pinnedOnly || district === 'Tersemat';
   for (let i = 0; i < CAMS.length; i++) {
     const c = CAMS[i];
     if (c._hide === true) continue;
-    if (!camInDistrict(c, district)) continue;
+    if (onlyPinned) {
+      if (!isPinned(c)) continue;
+    } else {
+      if (!camInDistrict(c, district)) continue;
+    }
     if (toks.length) {
       const hay = ((c.n || '') + ' ' + (c.sub || '') + ' ' + (c.region || '') + ' ' + (c.rawC || '') + ' ' + (c.c || '')).toLowerCase();
       if (!toks.every(t => hay.includes(t))) continue;
@@ -887,7 +951,7 @@ function wantList(){
   }
   wantList.srvOff = srvOff;
   const isToll = x => Boolean(x && (x.src === 'bpjt' || x.road === 'toll'));
-  list.sort((a, b) => ((a._srvOff ? 1 : 0) - (b._srvOff ? 1 : 0)) || ((isToll(a) ? 1 : 0) - (isToll(b) ? 1 : 0)) || (a._i - b._i));
+  list.sort((a, b) => ((isPinned(b) ? 1 : 0) - (isPinned(a) ? 1 : 0)) || ((a._srvOff ? 1 : 0) - (b._srvOff ? 1 : 0)) || ((isToll(a) ? 1 : 0) - (isToll(b) ? 1 : 0)) || (a._i - b._i));
   return list;
 }
 let camsRenderQueued = false;
@@ -896,6 +960,37 @@ function renderCams(){
   if (document.hidden) { camsRenderQueued = true; return; }
   camsRenderQueued = false;
   const nextList = wantList();
+  if ((pinnedOnly || district === 'Tersemat') && !nextList.length) {
+    camList = [];
+    P.forEach((p, el) => {
+      clearTimeout(p.t); clearTimeout(p.retry); clearTimeout(p.rel);
+      if (p.waitTimer) { clearTimeout(p.waitTimer); p.waitTimer = null; }
+      clearSnapTimer(p);
+      if (p.h && p.h !== 'native') { try { p.h.destroy(); } catch (e) {} }
+      const v = vid(el); if (v) cleanVid(v);
+      try { vio.unobserve(el); } catch (e) {}
+    });
+    P.clear();
+    camGrid.innerHTML = `<div class="cam-empty-pin">
+      <div class="cep-ic"><svg class="ic" aria-hidden="true"><use href="#i-thumbtack"></use></svg></div>
+      <div class="cep-t">Belum Ada Kamera Tersemat</div>
+      <div class="cep-d">Arahkan kursor pada kartu CCTV mana pun lalu klik ikon jarum pin (📌) untuk menyematkan maksimal 3 kamera pantauan prioritas.</div>
+      <button class="cep-btn" type="button" id="cep-show-all">Tampilkan Semua Kamera</button>
+    </div>`;
+    const showAllBtn = document.getElementById('cep-show-all');
+    if (showAllBtn) {
+      showAllBtn.addEventListener('click', () => {
+        pinnedOnly = false;
+        district = 'Semua';
+        savePinnedCams();
+        updatePinUi();
+        drawCityBar();
+        renderCams();
+      });
+    }
+    layout(); upd();
+    return;
+  }
   if (!P.size) {
     camList = nextList;
     camGrid.innerHTML = camList.map(cellHtml).join('');
@@ -932,6 +1027,19 @@ function renderCams(){
       ex.el.dataset.i = String(i);
       syncOfflineCell(ex.el, ex.p);
       ex.el.style.order = String(CctvCore.camOrderValue(ex.p, i));
+      const isP = isPinned(c);
+      ex.el.classList.toggle('is-pinned', isP);
+      const pinBtn = ex.el.querySelector('.cam-pin');
+      if (pinBtn) {
+        pinBtn.classList.toggle('is-pinned', isP);
+        pinBtn.setAttribute('title', isP ? 'Lepas sematan' : 'Sematkan kamera (maks 3)');
+        pinBtn.setAttribute('aria-label', isP ? 'Lepas sematan' : 'Sematkan kamera');
+      }
+      const capEl = ex.el.querySelector('.cap');
+      if (capEl) {
+        const pinBadge = isP ? '<span class="cap-pin" title="Tersemat">📌</span>' : '';
+        capEl.innerHTML = `${pinBadge}${esc(c.n)}`;
+      }
     } else {
       tpl.innerHTML = cellHtml(c, i);
       const el = tpl.firstElementChild;
@@ -959,11 +1067,12 @@ function drawCityBar(){
     .filter(k => k !== 'Pantau Banjir' && k !== 'Kota Jakarta')
     .sort((a, b) => cnt[b] - cnt[a]);
   const ds = ['Semua'];
+  if (pinnedCams.length > 0) ds.push('Tersemat');
   if (cnt['Pantau Banjir']) ds.push('Pantau Banjir');
   if (cnt['Kota Jakarta']) ds.push('Kota Jakarta');
   ds.push(...otherCities);
   $('#citybar').innerHTML = ds.map((d, idx) => {
-    const n = CAMS.filter(c => c._hide !== true && camInDistrict(c, d)).length;
+    const n = d === 'Tersemat' ? pinnedCams.length : CAMS.filter(c => c._hide !== true && camInDistrict(c, d)).length;
     const num = String(idx).padStart(2, '0');
     return `<button class="cb" type="button" data-city="${esc(d)}" role="tab" aria-selected="${d === district}">` +
       `<span class="cb-idx">${num}</span>` +
@@ -977,6 +1086,15 @@ $('#citybar').addEventListener('click', e => {
   district = b.dataset.city; drawCityBar(); renderCams();
 });
 $('#cq').addEventListener('input', debounce(renderCams, 200));
+if ($('#cam-pin-tog')) {
+  $('#cam-pin-tog').addEventListener('click', () => {
+    pinnedOnly = !pinnedOnly;
+    savePinnedCams();
+    updatePinUi();
+    renderCams();
+    drawCityBar();
+  });
+}
 if ($('#cam-off-tog')) {
   $('#cam-off-tog').addEventListener('click', () => {
     showOfflineCams = !showOfflineCams;
@@ -988,6 +1106,17 @@ if ($('#cam-off-tog')) {
 camGrid.addEventListener('mouseleave', () => { if (orderDeferred) orderCams(); });
 new ResizeObserver(debounce(() => { layout(); refreshCamVis(); }, 120)).observe(camGrid);
 camGrid.addEventListener('click', e => {
+  const pinBtn = e.target.closest('.cam-pin');
+  if (pinBtn) {
+    e.stopPropagation();
+    e.preventDefault();
+    const cell = pinBtn.closest('.cam');
+    if (cell) {
+      const c = camList[+cell.dataset.i];
+      if (c) togglePinCam(c);
+    }
+    return;
+  }
   const cell = e.target.closest('.cam'); if (!cell) return;
   const c = camList[+cell.dataset.i]; openLightbox(camStream(c), c.n, camSubLabel(c), c.e, camSteps(c), cell);
 });
@@ -1188,6 +1317,7 @@ function openLightbox(url, nama, kota, embed, steps, trigger){
   glbEmbed = (embed && /^(https?:)?\/\//i.test(embed) && /(?:embed|stream\.html)/i.test(embed) && !/balitower/i.test(embed)) ? safeUrl(embed) : '';
   camGrid.querySelectorAll('video').forEach(cv => { if (!cv.paused && !cv._lbPaused) { cv._lbPaused = true; try { cv.pause(); } catch (e) {} } });
   $('#glb-cap').innerHTML = `${esc(nama)} · ${esc(kota)}`;
+  syncGlbPin();
   if (sim) {
     sim.style.display = 'none';
     if (glbSnapUrl) {
@@ -1268,6 +1398,23 @@ function closeLightbox(){
   pump();
 }
 $('#glb-close').addEventListener('click', closeLightbox);
+function syncGlbPin(){
+  const pinBtn = $('#glb-pin');
+  if (!pinBtn) return;
+  const pinned = glbUrl ? isPinned(glbUrl) : false;
+  pinBtn.classList.toggle('is-pinned', pinned);
+  const txt = $('#glb-pin-txt');
+  if (txt) txt.textContent = pinned ? 'Lepas Sematan' : 'Sematkan';
+}
+if ($('#glb-pin')) {
+  $('#glb-pin').addEventListener('click', e => {
+    e.stopPropagation();
+    if (!glbUrl) return;
+    const camObj = CAMS.find(x => x.s === glbUrl);
+    togglePinCam(camObj || { s: glbUrl, n: 'Kamera' });
+    syncGlbPin();
+  });
+}
 $('#lightbox').addEventListener('click', e => { if (e.target.id === 'lightbox') closeLightbox(); });
 addEventListener('keydown', e => {
   if (e.key === 'Escape') {
@@ -1344,4 +1491,5 @@ setInterval(() => {
     probeOfflineCell(cell);
   }
 }, 60000);
+updatePinUi();
 
